@@ -1,4 +1,3 @@
-import Link from "next/link";
 
 interface IButton {
     children: React.ReactNode;
@@ -19,11 +18,11 @@ const Button = ({ children,
         ? "bg-secondary"
         : "bg-transparent";
 
-    return <Link href=""><button className={`
+    return <button className={`
  flex text-sm px-10 py-[7px] rounded-[20px]
 cursor-pointer transition-all duration-300 hover:scale-90 ${variantClass} active:scale-105 ${className} `}
         onClick={onClick}
-    >{children}</button></Link>
+    >{children}</button>
 }
 
 export default Button
