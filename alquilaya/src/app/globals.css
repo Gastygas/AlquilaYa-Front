@@ -12,7 +12,15 @@
 
 }
 
-@media (prefers-color-scheme: dark) {
+body {
+  @apply flex flex-col min-h-[100vh];
+}
+
+footer {
+  @apply mt-auto;
+  }
+
+@media (prefers-color-scheme: ligth) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
@@ -33,6 +41,14 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.padding-section{
+  @apply flex  flex-col items-center my-28;
+}
+
+.container {
+  @apply py-0 px-6 max-w-screen-xl my-0 mx-auto ;
 }
 
 h1,
