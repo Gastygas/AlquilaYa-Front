@@ -5,23 +5,70 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --darkBlue: #190045;
+  --lightBlue: #9AEDFF;
+  --cyan: #2CFFDE;
+  --black: #000000;
+
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --darkBlue: #190045;
+    --lightBlue: #9AEDFF;
+    --cyan: #2CFFDE;
+    --black: #000000;
   }
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-primary);
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-primary);
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 50px;
+}
+
+h2 {
+  font-size: 40px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  font-size: 10px;
+}
+
+p {
+  font-size: 20px
 }
