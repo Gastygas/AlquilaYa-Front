@@ -7,8 +7,9 @@ import Link from 'next/link';
 //import AuthContext from '@/contexts/authContext'; RUTA DEL ESTADO GLOBAL
 
 
+
 const LoginForm = () => {
-//const {setUser} = useContext(AuthContext);
+  //const {setUser} = useContext(AuthContext);
 
   const router = useRouter()
   const initialData = { email: "", password: "" };
@@ -22,15 +23,15 @@ const LoginForm = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-//     const response = await loginService(`${process.env.NEXT_PUBLIC_API_URL}/users/login`, data)
-//     if (response.login) {
-//       alert("Login success");
-//       setUser(response);
-//       router.back();
-//     } else {
-//       alert("User or credentials wrong!");
-//     };
-//   };
+    //     const response = await loginService(`${process.env.NEXT_PUBLIC_API_URL}/users/login`, data)
+    //     if (response.login) {
+    //       alert("Login success");
+    //       setUser(response);
+    //       router.back();
+    //     } else {
+    //       alert("User or credentials wrong!");
+    //     };
+    //   };
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,38 +54,46 @@ const LoginForm = () => {
   }, [data]);
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor='email'>Email</label>
-      <input type='email'
-        id='email'
-        name='email'
-        placeholder='email@example.com'
-        onChange={handleChange}
-        value={data.email}
-        onBlur={handleBlur}
-       />
-      {dirty.email ? <p>{error.email}</p> : null}
+    <form onSubmit={handleSubmit} className='padding-section container bg-darkBlue text-lightBlue p-6 rounded-lg'>
 
-      <label htmlFor='password'>Password</label>
-      <input type='password'
-        id='password'
-        name='password'
-        placeholder='At least 8 characters'
-        onChange={handleChange}
-        value={data.password}
-        onBlur={handleBlur}
+      <div className='flex justify-between items-center mb-4'>
+        <input type='email'
+          id='email'
+          name='email'
+          placeholder='email@ejemplo.com'
+          onChange={handleChange}
+          value={data.email}
+          onBlur={handleBlur}
+          className='w-3/4 border border-lightBlue p-3 rounded-md bg-lightBlue text-darkBlue'
         />
-      {dirty.password ? <p>{error.password}</p> : null}
+        <label htmlFor='email' className='ml-4 text-cyan'>Email</label>
+      </div>
+      {dirty.email ? <p className='text-red-600'>{error.email}</p> : null}
 
-      <div>
+
+      <div className='flex justify-between items-center mb-4'>
+        <input type='password'
+          id='password'
+          name='password'
+          placeholder='Al menos 8 caracteres'
+          onChange={handleChange}
+          value={data.password}
+          onBlur={handleBlur}
+          className='w-3/4 border border-lightBlue p-3 rounded-md bg-lightBlue text-darkBlue'
+        />
+        <label htmlFor='password' className='ml-4 text-cyan'>Contraseña</label>
+      </div>
+      {dirty.password ? <p className='text-red-600'>{error.password}</p> : null}
+
+      <div className='flex justify-between items-center mt-6'>
         <button>
-          Login
+          Ingresar
         </button>
 
-        <Link  
-        href={"/register"}>
+        <Link
+          href={"/register"}>
           <button >
-            Register
+            Registrate
           </button>
         </Link>
       </div>

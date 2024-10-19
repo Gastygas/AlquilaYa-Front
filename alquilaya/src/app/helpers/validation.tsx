@@ -18,7 +18,7 @@ export const validatePassword = (password: string): string => {
     const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
 
     if (!regexPassword.test(password)) {
-        validation = "Invalid password format. Must be at least 8 characters, with at least one uppercase letter, one lowercase letter, one number, and one special character.";
+        validation = "Debe tener al menos 8 caracteres, con al menos una letra mayúscula, una letra minúscula, un número y un carácter especial.";
     } else {
         // validation = "Valid password";
         validation = "";
