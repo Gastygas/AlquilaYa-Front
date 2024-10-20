@@ -4,6 +4,8 @@ import { validatePassword, validateEmail } from '@/app/helpers/validation';
 //import { loginService } from '@/services/authServices'; PREGUNTAR A BACK
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { loginService } from '@/services/authServices';
+import Button from '../Button/Button';
 //import AuthContext from '@/contexts/authContext'; RUTA DEL ESTADO GLOBAL
 
 
@@ -23,16 +25,16 @@ const LoginForm = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    //     const response = await loginService(`${process.env.NEXT_PUBLIC_API_URL}/users/login`, data)
-    //     if (response.login) {
-    //       alert("Login success");
-    //       setUser(response);
-    //       router.back();
-    //     } else {
-    //       alert("User or credentials wrong!");
-    //     };
-    //   };
+    const response = await loginService(`${process.env.BACK_URL}/auth/signin`, data)
+    if (response.login) {
+      alert("Inicio de sesión exitoso");
+      // setUser(response);
+      // router.back();
+    } else {
+      alert("Usuario o credenciales incorrectas");
+    };
   };
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log("handleChange");
@@ -54,49 +56,45 @@ const LoginForm = () => {
   }, [data]);
 
   return (
-    <form onSubmit={handleSubmit} className='padding-section container bg-darkBlue text-lightBlue p-6 rounded-lg'>
-
-      <div className='flex justify-between items-center mb-4'>
+    <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center space-y-8 bg-darkBlue'>
+      <h2 className="text-3xl font-bold text-lightBlue mb-1 mt-14">Iniciar Sesión</h2>
+      <div className='flex flex-col items-start space-y-2 w-80'>
+        <label htmlFor='email' className='text-lightBlue'>Email</label>
         <input type='email'
           id='email'
           name='email'
           placeholder='email@ejemplo.com'
+          className="w-full p-3 rounded-lg bg-slate-100 text-darkBlue border-spacing-2"
           onChange={handleChange}
           value={data.email}
           onBlur={handleBlur}
-          className='w-3/4 border border-lightBlue p-3 rounded-md bg-lightBlue text-darkBlue'
+
         />
-        <label htmlFor='email' className='ml-4 text-cyan'>Email</label>
       </div>
       {dirty.email ? <p className='text-red-600'>{error.email}</p> : null}
 
-
-      <div className='flex justify-between items-center mb-4'>
+      <div className="flex flex-col items-start space-y-2 w-80">
+        <label htmlFor='password' className='text-lightBlue'>Contraseña</label>
         <input type='password'
           id='password'
           name='password'
-          placeholder='Al menos 8 caracteres'
+          placeholder='Mínimo 8 caracteres'
+          className="w-full p-3 rounded-lg bg-slate-100 text-darkBlue border-spacing-2 "
           onChange={handleChange}
           value={data.password}
           onBlur={handleBlur}
-          className='w-3/4 border border-lightBlue p-3 rounded-md bg-lightBlue text-darkBlue'
+         
         />
-        <label htmlFor='password' className='ml-4 text-cyan'>Contraseña</label>
-      </div>
-      {dirty.password ? <p className='text-red-600'>{error.password}</p> : null}
 
-      <div className='flex justify-between items-center mt-6'>
-        <button>
-          Ingresar
-        </button>
+        {dirty.password ? <p className='text-red-600'>{error.password}</p> : null}
+        </div>
 
-        <Link
-          href={"/register"}>
-          <button >
-            Registrate
-          </button>
-        </Link>
-      </div>
+        <div className='flex justify-between mt-6'>
+          <Button variant="primary">Ingresar</Button>
+          <Link href={"/RegisterForm"}>
+            <Button variant="secondary">Registrate</Button>
+          </Link>
+        </div>
     </form>
   );
 };

@@ -3,7 +3,7 @@ export const validateEmail = (email: string) => {
     const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     if (!regexEmail.test(email)) {
-        validation = "Invalid email format";
+        validation = "Formato de correo electrónico no válido";
     } else {
         // validation = "Valid email";
         validation = "";
@@ -33,7 +33,19 @@ export const validateAddress = (address: string): string => {
     const regexAddress = /^[a-zA-Z0-9\s,.'-]{5,}$/;
 
     if (!regexAddress.test(address)) {
-        validation = "Invalid address format. Must be at least 5 characters long and include letters and numbers.";
+        validation = "Formato de dirección no válido. Debe tener al menos 5 caracteres e incluir letras y números.";
+    }
+
+    return validation;
+};
+
+export const validateConfirmPassword = (password: string, confirmPassword: string): string => {
+    let validation = "";
+
+    if (confirmPassword !== password) {
+        validation = "Las contraseñas no coinciden";
+    } else {
+        validation = "";
     }
 
     return validation;
