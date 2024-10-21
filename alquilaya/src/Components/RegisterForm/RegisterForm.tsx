@@ -1,13 +1,13 @@
 "use client";
 import { FormEvent, useEffect, useState } from 'react';
-import { validatePassword, validateEmail, validateAddress, validateConfirmPassword } from '@/app/helpers/validation';
+import { validatePassword, validateEmail, validateAddress, validateConfirmPassword, validateCountry, validateDni, validateName, validatePhone } from '@/app/helpers/validation';
 import { useRouter } from 'next/navigation';
 import Button from '../Button/Button';
 import { registerService } from '@/services/authServices';
 
 
 const RegisterForm = () => {
-  const initialData = { email: "", password: "", address: "", name: "", phone: "", surname: "", confirmPassword: "" };
+  const initialData = { email: "", password: "", address: "",country: "",dni: "", name: "", phone: "", surname: "", confirmPassword: "" };
   const initialDirty = { email: false, password: false, address: false, name: false, phone: false, surname: false, confirmPassword: false  };
 
   const router = useRouter()
@@ -19,19 +19,20 @@ const RegisterForm = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    const response = await registerService(`${process.env.BACK_URL}/auth/`, data)
-    if (!response.message) {
+    const response = await registerService(`http://localhost:3001/auth/signup`, data)
+    
+    if (response.succes) {
       alert("Registro exitoso");
       router.back();
     } else {
-      alert(response.message);
+      alert(`Porfavor revisa los siguientes campos: ${response.error.map((err:any) => err.property )}`);
     }
 
 
   };
 
   const handleChange = (e: any) => {
-    console.log("handleChange");
+    // console.log("handleChange");
     setData({
       ...data, [e.target.name]: e.target.value
     });
@@ -46,9 +47,11 @@ const RegisterForm = () => {
       email: validateEmail(data.email),
       password: validatePassword(data.password),
       address: validateAddress(data.address),
-      name: validateAddress(data.name),
-      phone: validateAddress(data.phone),
-      surname: validateAddress(data.surname),
+      country:validateCountry(data.country),
+      dni:validateDni(data.dni),
+      name: validateName(data.name),
+      phone: validatePhone(data.phone),
+      surname: validateName(data.surname),
       confirmPassword: validateConfirmPassword(data.password, data.confirmPassword),
     });
   }, [data]);
@@ -100,6 +103,37 @@ const RegisterForm = () => {
         />
         {dirty.address ? <p className='text-red-600'>{error.address}</p> : null}
       </div>
+{/* Gaston Gonzalez */}
+      <div className='flex flex-col items-start space-y-2 w-80'>
+        <label htmlFor='country' className='text-lightBlue'>País</label>
+        <input
+          type='text'
+          id='country'
+          name='country'
+          placeholder='argentina'
+          className="w-full p-3 rounded-lg bg-slate-100 text-darkBlue border-spacing-2"
+          onChange={handleChange}
+          value={data.country}
+          onBlur={handleBlur}
+        />
+        {dirty.address ? <p className='text-red-600'>{error.country}</p> : null}
+      </div>
+      <div className='flex flex-col items-start space-y-2 w-80'>
+        <label htmlFor='dni' className='text-lightBlue'>Dni</label>
+        <input
+          type='text'
+          id='dni'
+          name='dni'
+          placeholder='sin puntos'
+          className="w-full p-3 rounded-lg bg-slate-100 text-darkBlue border-spacing-2"
+          onChange={handleChange}
+          value={data.dni}
+          onBlur={handleBlur}
+        />
+        {dirty.address ? <p className='text-red-600'>{error.dni}</p> : null}
+      </div>
+{/* Gaston Gonzalez */}
+
 
       <div className='flex flex-col items-start space-y-2 w-80'>
         <label htmlFor='phone' className='text-lightBlue'>Celular</label>
@@ -149,7 +183,7 @@ const RegisterForm = () => {
       <div className='flex flex-col items-start space-y-2 w-80'>
         <label htmlFor='confirmPassword' className='text-lightBlue'>Confirmar contraseña</label>
         <input
-          type='confirmPassword'
+          type='password'
           id='confirmPassword'
           name='confirmPassword'
           //placeholder='Mínimo 8 caracteres'

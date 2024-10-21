@@ -26,8 +26,8 @@ const LoginForm = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    const response = await loginService(`${process.env.BACK_URL}/auth/signin`, data)
-    if (response.login) {
+    const response = await loginService(`http://localhost:3001/auth/signin`, data)
+    if (response.succes) {
       alert("Inicio de sesión exitoso");
       // setUser(response);
       // router.back();
