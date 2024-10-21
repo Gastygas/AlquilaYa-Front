@@ -3,7 +3,7 @@ export const validateEmail = (email: string) => {
     const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     if (!regexEmail.test(email)) {
-        validation = "Invalid email format";
+        validation = "Formato de correo electrónico no válido";
     } else {
         // validation = "Valid email";
         validation = "";
@@ -12,13 +12,50 @@ export const validateEmail = (email: string) => {
     return validation;
 };
 
+//  Gaston Gonzalez
+
+export const validateCountry = (country:string): string => {
+    let validation = ""
+    const regexCountry = /^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s\-]{2,50}$/
+
+    if(!regexCountry.test(country)) validation = "Debe tener entre 2 y 50 caracteres"
+    return validation
+}
+
+export const validateDni = (dni:string): string => {
+    let validation = ""
+    const regexCountry = /^\d{7,10}$/
+
+    if(!regexCountry.test(dni)) validation = "Debe tener entre 7 y 10 numeros solamente."
+    return validation
+}
+
+export const validateName = (name:string): string => {
+    let validation = ""
+    const regexCountry = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{1,50}$/
+
+    if(!regexCountry.test(name)) validation = "Debe tener entre 1 y 50 letras solamente"
+    return validation
+}
+export const validatePhone = (name:string): string => {
+    let validation = ""
+    const regexCountry = /^\+?\d{1,3}?[-.\s]?(\(?\d{1,4}\)?)[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/
+
+    if(!regexCountry.test(name)) validation = "Solo numeros"
+    return validation
+}
+
+
+
+//  Gaston Gonzalez
+
 
 export const validatePassword = (password: string): string => {
     let validation = "";
     const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
 
     if (!regexPassword.test(password)) {
-        validation = "Invalid password format. Must be at least 8 characters, with at least one uppercase letter, one lowercase letter, one number, and one special character.";
+        validation = "Debe tener al menos 8 caracteres, con al menos una letra mayúscula, una letra minúscula, un número y un carácter especial.";
     } else {
         // validation = "Valid password";
         validation = "";
@@ -33,7 +70,20 @@ export const validateAddress = (address: string): string => {
     const regexAddress = /^[a-zA-Z0-9\s,.'-]{5,}$/;
 
     if (!regexAddress.test(address)) {
-        validation = "Invalid address format. Must be at least 5 characters long and include letters and numbers.";
+        validation = "Formato de dirección no válido. Debe tener al menos 5 caracteres e incluir letras y números.";
+    }
+
+    return validation;
+};
+
+export const validateConfirmPassword = (password: string, confirmPassword: string): string => {
+    let validation = "";
+
+    if (confirmPassword !== password) {
+        validation = "Las contraseñas no coinciden";
+    } else {
+       
+        validation = "";
     }
 
     return validation;

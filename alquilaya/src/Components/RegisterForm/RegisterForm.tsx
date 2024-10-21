@@ -1,13 +1,13 @@
 "use client";
 import { FormEvent, useEffect, useState } from 'react';
-import { validatePassword, validateEmail, validateAddress } from '@/app/helpers/validation';
-//import { registerService } from '@/services/authServices';
+import { validatePassword, validateEmail, validateAddress, validateConfirmPassword, validateCountry, validateDni, validateName, validatePhone } from '@/app/helpers/validation';
 import { useRouter } from 'next/navigation';
+import { registerService } from '@/services/authServices';
 
 
 const RegisterForm = () => {
-  const initialData = { email: "", password: "", address: "", name: "", phone: "" };
-  const initialDirty = { email: false, password: false, address: false, name: false, phone: false };
+  const initialData = { email: "", password: "", address: "",country: "",dni: "", name: "", phone: "", surname: "", confirmPassword: "" };
+  const initialDirty = { email: false, password: false, address: false, name: false, phone: false, surname: false, confirmPassword: false  };
 
   const router = useRouter()
   const [data, setData] = useState(initialData);
@@ -18,25 +18,26 @@ const RegisterForm = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    // const response = await registerService(`${process.env.NEXT_PUBLIC_API_URL}/users/register`, data)
-    // if (!response.message) {
-    //   alert("You are Registered!");
-    //   router.back();
-    // } else {
-    //   alert(response.message);
-    // }
+    const response = await registerService(`http://localhost:3001/auth/signup`, data)
+    
+    if (response.succes) {
+      alert("Registro exitoso");
+      router.back();
+    } else {
+      alert(`Porfavor revisa los siguientes campos: ${response.error.map((err:) => err.property )}`);
+    }
 
 
   };
 
-  const handleChange = (e: any) => {
-    console.log("handleChange");
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // console.log("handleChange");
     setData({
       ...data, [e.target.name]: e.target.value
     });
   };
 
-  const handleBlur = (e: any) => {
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     setDirty({ ...dirty, [e.target.name]: true });
   };
 
@@ -45,70 +46,155 @@ const RegisterForm = () => {
       email: validateEmail(data.email),
       password: validatePassword(data.password),
       address: validateAddress(data.address),
-      name: validateAddress(data.name),
-      phone: validateAddress(data.phone),
+      country:validateCountry(data.country),
+      dni:validateDni(data.dni),
+      name: validateName(data.name),
+      phone: validatePhone(data.phone),
+      surname: validateName(data.surname),
+      confirmPassword: validateConfirmPassword(data.password, data.confirmPassword),
     });
   }, [data]);
 
   return (
-    <form onSubmit={handleSubmit} >
-      <label htmlFor='email'>Email</label>
-      <input type='email'
-        id='email'
-        name='email'
-        placeholder='email@example.com'
-        onChange={handleChange}
-        value={data.email}
-        onBlur={handleBlur}
+    <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center space-y-8 bg-darkBlue min-h-screen overflow-y-auto'>
+      {/* <h2 className="text-3xl font-bold text-lightBlue mb-1 mt-14">Registrarse</h2> */}
+      <div className='flex flex-col items-start space-y-2 w-80'>
+        <label htmlFor='name' className='text-lightBlue'>Nombre</label>
+        <input
+          type='text'
+          id='name'
+          name='name'
+          placeholder='nombre'
+          className="w-full p-3 rounded-lg bg-slate-100 text-darkBlue border-spacing-2"
+          onChange={handleChange}
+          value={data.name}
+          onBlur={handleBlur}
         />
-      {dirty.email ? <p>{error.email}</p> : null}
+        {dirty.name ? <p className='text-red-600'>{error.name}</p> : null}
+      </div>
 
-      <label htmlFor='password'>Password</label>
-      <input type='password'
-        id='password'
-        name='password'
-        placeholder='At least 8 characters'
-        onChange={handleChange}
-        value={data.password}
-        onBlur={handleBlur}
+      <div className='flex flex-col items-start space-y-2 w-80'>
+        <label htmlFor='name' className='text-lightBlue'>Apellido</label>
+        <input
+          type='text'
+          id='surname'
+          name='surname'
+          placeholder='apellido'
+          className="w-full p-3 rounded-lg bg-slate-100 text-darkBlue border-spacing-2"
+          onChange={handleChange}
+          value={data.surname}
+          onBlur={handleBlur}
         />
-      {dirty.password ? <p>{error.password}</p> : null}
+        {dirty.surname ? <p className='text-red-600'>{error.surname}</p> : null}
+      </div>
 
-      <label htmlFor='address'>Address</label>
-      <input type='text'
-        id='address'
-        name='address'
-        placeholder='60 Wall Street'
-        onChange={handleChange}
-        value={data.address}
-        onBlur={handleBlur}
-         />
-      {dirty.address ? <p >{error.address}</p> : null}
-
-      <label htmlFor='name'>Name</label>
-      <input type='name'
-        id='name'
-        name='name'
-        placeholder='Name'
-        onChange={handleChange}
-        value={data.name}
-        onBlur={handleBlur}
-         />
-      {dirty.name ? <p >{error.name}</p> : null}
-
-      <label htmlFor='phone'>Phone</label>
-      <input type='phone'
-        id='phone'
-        name='phone'
-        placeholder='Phone'
-        onChange={handleChange}
-        value={data.phone}
-        onBlur={handleBlur}
+      <div className='flex flex-col items-start space-y-2 w-80'>
+        <label htmlFor='address' className='text-lightBlue'>Dirección</label>
+        <input
+          type='text'
+          id='address'
+          name='address'
+          placeholder='calle y altura'
+          className="w-full p-3 rounded-lg bg-slate-100 text-darkBlue border-spacing-2"
+          onChange={handleChange}
+          value={data.address}
+          onBlur={handleBlur}
         />
-      {dirty.phone ? <p>{error.phone}</p> : null}
+        {dirty.address ? <p className='text-red-600'>{error.address}</p> : null}
+      </div>
+{/* Gaston Gonzalez */}
+      <div className='flex flex-col items-start space-y-2 w-80'>
+        <label htmlFor='country' className='text-lightBlue'>País</label>
+        <input
+          type='text'
+          id='country'
+          name='country'
+          placeholder='argentina'
+          className="w-full p-3 rounded-lg bg-slate-100 text-darkBlue border-spacing-2"
+          onChange={handleChange}
+          value={data.country}
+          onBlur={handleBlur}
+        />
+        {dirty.address ? <p className='text-red-600'>{error.country}</p> : null}
+      </div>
+      <div className='flex flex-col items-start space-y-2 w-80'>
+        <label htmlFor='dni' className='text-lightBlue'>Dni</label>
+        <input
+          type='text'
+          id='dni'
+          name='dni'
+          placeholder='sin puntos'
+          className="w-full p-3 rounded-lg bg-slate-100 text-darkBlue border-spacing-2"
+          onChange={handleChange}
+          value={data.dni}
+          onBlur={handleBlur}
+        />
+        {dirty.address ? <p className='text-red-600'>{error.dni}</p> : null}
+      </div>
+{/* Gaston Gonzalez */}
 
 
-      <button>Register</button>
+      <div className='flex flex-col items-start space-y-2 w-80'>
+        <label htmlFor='phone' className='text-lightBlue'>Celular</label>
+        <input
+          type='phone'
+          id='phone'
+          name='phone'
+          placeholder='número de celular'
+          className="w-full p-3 rounded-lg bg-slate-100 text-darkBlue border-spacing-2"
+          onChange={handleChange}
+          value={data.phone}
+          onBlur={handleBlur}
+        />
+        {dirty.phone ? <p className='text-red-600'>{error.phone}</p> : null}
+      </div>
+
+      <div className='flex flex-col items-start space-y-2 w-80'>
+        <label htmlFor='email' className='text-lightBlue'>Email</label>
+        <input
+          type='email'
+          id='email'
+          name='email'
+          placeholder='email@ejemplo.com'
+          className="w-full p-3 rounded-lg bg-slate-100 text-darkBlue border-spacing-2"
+          onChange={handleChange}
+          value={data.email}
+          onBlur={handleBlur}
+        />
+        {dirty.email ? <p className='text-red-600'>{error.email}</p> : null}
+      </div>
+
+      <div className='flex flex-col items-start space-y-2 w-80'>
+        <label htmlFor='password' className='text-lightBlue'>Contraseña</label>
+        <input
+          type='password'
+          id='password'
+          name='password'
+          placeholder='mínimo 8 carácteres'
+          className="w-full p-3 rounded-lg bg-slate-100 text-darkBlue border-spacing-2"
+          onChange={handleChange}
+          value={data.password}
+          onBlur={handleBlur}
+        />
+        {dirty.password ? <p className='text-red-600'>{error.password}</p> : null}
+      </div>
+
+      <div className='flex flex-col items-start space-y-2 w-80'>
+        <label htmlFor='confirmPassword' className='text-lightBlue'>Confirmar contraseña</label>
+        <input
+          type='password'
+          id='confirmPassword'
+          name='confirmPassword'
+          //placeholder='Mínimo 8 caracteres'
+          className="w-full p-3 rounded-lg bg-slate-100 text-darkBlue border-spacing-2"
+          onChange={handleChange}
+          value={data.confirmPassword}
+          onBlur={handleBlur}
+        />
+        {dirty.confirmPassword ? <p className='text-red-600'>{error.confirmPassword}</p> : null}
+      </div>
+
+      <button className="mt-6 bg-[#190045] text-white font-bold py-2 px-4 rounded-lg">Registrate</button>
     </form>
   );
 };
