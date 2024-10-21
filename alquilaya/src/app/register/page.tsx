@@ -3,7 +3,12 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div><RegisterForm/></div>
+    <div className="container">
+    <div className="padding-section">
+      <h1 className="pb-12 text-primary">Regístrate</h1>
+<RegisterForm/>
+</div>
+</div>
   )
 }
 

@@ -1,0 +1,8 @@
+.input{
+    @apply rounded-md py-2 px-4 border-[1px] border-gray-300 hover:border-gray-500 transition-all w-full md:w-1/2 
+}
+
+.submitButton{
+    @apply mt-20 flex text-sm px-24 py-[7px] rounded-[20px] bg-primary text-secondary font-bold
+    cursor-pointer transition-all duration-300 hover:scale-90
+}
