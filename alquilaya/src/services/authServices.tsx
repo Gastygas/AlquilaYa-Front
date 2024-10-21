@@ -1,6 +1,3 @@
-//import { UserCredentials } from "@/app/interface";
-//import { UserDetails } from "@/app/interface";
-
 import { IUser } from "@/Interfaces/IUser";
 
 export const loginService = async (url: string, data: IUser ) => {    
@@ -14,7 +11,7 @@ export const loginService = async (url: string, data: IUser ) => {
     return await response.json();
 };
 
-export const registerService = async (url: string, data: any ) => { //SACAR ANY
+export const registerService = async (url: string, data: IUser ) => { 
     const response = await fetch(url, {
         method: "post",
         headers: {
