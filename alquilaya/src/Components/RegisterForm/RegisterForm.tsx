@@ -1,6 +1,6 @@
 "use client";
 import { FormEvent, useEffect, useState } from 'react';
-import { validatePassword, validateEmail, validateAddress } from '@/app/helpers/validation';
+import { validatePassword, validateEmail, validateAddress, validateConfirmPassword } from '@/app/helpers/validation';
 import { useRouter } from 'next/navigation';
 import Button from '../Button/Button';
 import { registerService } from '@/services/authServices';
@@ -49,7 +49,7 @@ const RegisterForm = () => {
       name: validateAddress(data.name),
       phone: validateAddress(data.phone),
       surname: validateAddress(data.surname),
-      confirmPassword: validateAddress(data.confirmPassword),
+      confirmPassword: validateConfirmPassword(data.password, data.confirmPassword),
     });
   }, [data]);
 

@@ -45,7 +45,8 @@ export const validateConfirmPassword = (password: string, confirmPassword: strin
     if (confirmPassword !== password) {
         validation = "Las contraseñas no coinciden";
     } else {
-        validation = "";
+       
+        validation = "Dirección no válida. Debe tener al menos 5 carácteres e incluir letras y números.";
     }
 
     return validation;

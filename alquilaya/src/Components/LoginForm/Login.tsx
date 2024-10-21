@@ -1,4 +1,5 @@
 "use client";
+import styles from "./login.module.css"
 import { FormEvent, useContext, useEffect, useState } from 'react';
 import { validatePassword, validateEmail } from '@/app/helpers/validation';
 //import { loginService } from '@/services/authServices'; PREGUNTAR A BACK
@@ -56,45 +57,35 @@ const LoginForm = () => {
   }, [data]);
 
   return (
-    <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center space-y-8 bg-darkBlue'>
-      <h2 className="text-3xl font-bold text-lightBlue mb-1 mt-14">Iniciar Sesión</h2>
-      <div className='flex flex-col items-start space-y-2 w-80'>
-        <label htmlFor='email' className='text-lightBlue'>Email</label>
+    <form onSubmit={handleSubmit} className='flex flex-col gap-4 w-full md:w-1/2 justify-center items-center'>
+            <p className="text-sm">Ingresa tu usuario y contraseña para acceder</p>
         <input type='email'
           id='email'
           name='email'
-          placeholder='email@ejemplo.com'
-          className="w-full p-3 rounded-lg bg-slate-100 text-darkBlue border-spacing-2"
+          placeholder='Usuario'
           onChange={handleChange}
           value={data.email}
           onBlur={handleBlur}
-
+          className={styles.input}
         />
-      </div>
-      {dirty.email ? <p className='text-red-600'>{error.email}</p> : null}
-
-      <div className="flex flex-col items-start space-y-2 w-80">
-        <label htmlFor='password' className='text-lightBlue'>Contraseña</label>
+      {dirty.email ? <p className='text-red-600 text-sm'>{error.email}</p> : null}
         <input type='password'
           id='password'
           name='password'
-          placeholder='Mínimo 8 caracteres'
-          className="w-full p-3 rounded-lg bg-slate-100 text-darkBlue border-spacing-2 "
+          placeholder='Contraseña'
           onChange={handleChange}
           value={data.password}
           onBlur={handleBlur}
-         
+          className={styles.input}
         />
-
-        {dirty.password ? <p className='text-red-600'>{error.password}</p> : null}
-        </div>
-
-        <div className='flex justify-between mt-6'>
-          <Button variant="primary">Ingresar</Button>
-          <Link href={"/RegisterForm"}>
-            <Button variant="secondary">Registrate</Button>
-          </Link>
-        </div>
+      {dirty.password ? <p className='text-red-600 text-sm'>{error.password}</p> : null}
+        <button className={styles.submitButton} /*onClick={handleSubmit}*/>
+          Ingresar
+        </button>
+        <Link
+          href={"/register"}>
+<Link href="/register"><p className=" pt-12 text-sm font-bold underline text-primary hover:text-secondary transition-all">No tienes una cuenta? Regístrate</p></Link>
+        </Link>
     </form>
   );
 };
