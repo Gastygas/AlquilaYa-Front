@@ -1,0 +1,4 @@
+.button{
+    @apply text-sm px-10 py-[7px] rounded-[20px]
+    cursor-pointer transition-all duration-300 hover:scale-90 text-primary bg-secondary font-semibold w-full
+}

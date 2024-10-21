@@ -5,7 +5,7 @@ import styles from "./Header.module.css"
 import NotLoggedButtons from "../NotLoggedButtons/NotLoggedButtons"
 
 
-const NavBar = () => {
+const Header = () => {
   return (
     <div className={ `${styles.navBg} py-6 z-20`}>
       <div className={`container flex justify-between`}>
@@ -26,4 +26,4 @@ const NavBar = () => {
   )
 }
 
-export default NavBar
+export default Header
