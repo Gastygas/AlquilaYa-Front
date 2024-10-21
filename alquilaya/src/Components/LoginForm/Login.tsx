@@ -1,12 +1,10 @@
 "use client";
 import styles from "./login.module.css"
-import { FormEvent, useContext, useEffect, useState } from 'react';
+import { FormEvent, /*useContext*/ useEffect, useState } from 'react';
 import { validatePassword, validateEmail } from '@/app/helpers/validation';
-//import { loginService } from '@/services/authServices'; PREGUNTAR A BACK
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { loginService } from '@/services/authServices';
-import Button from '../Button/Button';
 //import AuthContext from '@/contexts/authContext'; RUTA DEL ESTADO GLOBAL
 
 
@@ -30,7 +28,7 @@ const LoginForm = () => {
     if (response.succes) {
       alert("Inicio de sesión exitoso");
       // setUser(response);
-      // router.back();
+      router.back();
     } else {
       alert("Usuario o credenciales incorrectas");
     };

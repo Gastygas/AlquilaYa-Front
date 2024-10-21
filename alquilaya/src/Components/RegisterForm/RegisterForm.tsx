@@ -2,7 +2,6 @@
 import { FormEvent, useEffect, useState } from 'react';
 import { validatePassword, validateEmail, validateAddress, validateConfirmPassword, validateCountry, validateDni, validateName, validatePhone } from '@/app/helpers/validation';
 import { useRouter } from 'next/navigation';
-import Button from '../Button/Button';
 import { registerService } from '@/services/authServices';
 
 
@@ -25,20 +24,20 @@ const RegisterForm = () => {
       alert("Registro exitoso");
       router.back();
     } else {
-      alert(`Porfavor revisa los siguientes campos: ${response.error.map((err:any) => err.property )}`);
+      alert(`Porfavor revisa los siguientes campos: ${response.error.map((err:) => err.property )}`);
     }
 
 
   };
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // console.log("handleChange");
     setData({
       ...data, [e.target.name]: e.target.value
     });
   };
 
-  const handleBlur = (e: any) => {
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     setDirty({ ...dirty, [e.target.name]: true });
   };
 

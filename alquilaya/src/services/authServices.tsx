@@ -1,6 +1,7 @@
 import { IUser } from "@/Interfaces/IUser";
+import { IUserLogin } from "@/Interfaces/IUserLogin";
 
-export const loginService = async (url: string, data: IUser ) => {    
+export const loginService = async (url: string, data: IUserLogin ) => {    
     const response = await fetch(url, {
         method: "POST",
         headers: {
