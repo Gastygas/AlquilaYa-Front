@@ -1,15 +1,16 @@
 "use client";
+import styles from "./registerForm.module.css"
 import { FormEvent, useEffect, useState } from 'react';
 import { validatePassword, validateEmail, validateAddress } from '@/app/helpers/validation';
 //import { registerService } from '@/services/authServices';
-import { useRouter } from 'next/navigation';
+//import { useRouter } from 'next/navigation';
 
 
 const RegisterForm = () => {
   const initialData = { email: "", password: "", address: "", name: "", phone: "" };
   const initialDirty = { email: false, password: false, address: false, name: false, phone: false };
 
-  const router = useRouter()
+  //const router = useRouter()
   const [data, setData] = useState(initialData);
   const [error, setError] = useState(initialData);
   const [dirty, setDirty] = useState(initialDirty);
@@ -51,64 +52,62 @@ const RegisterForm = () => {
   }, [data]);
 
   return (
-    <form onSubmit={handleSubmit} >
-      <label htmlFor='email'>Email</label>
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full md:w-1/2 justify-center items-center" >
+            <p className="text-sm">Enter your username and password to access</p>
       <input type='email'
         id='email'
         name='email'
-        placeholder='email@example.com'
+        placeholder='Email'
         onChange={handleChange}
         value={data.email}
         onBlur={handleBlur}
-        />
-      {dirty.email ? <p>{error.email}</p> : null}
-
-      <label htmlFor='password'>Password</label>
+        className={styles.input}
+      />
+      {dirty.email ? <p className="text-red-600 text-sm text-center">{error.email}</p> : null}
       <input type='password'
         id='password'
         name='password'
-        placeholder='At least 8 characters'
+        placeholder='Contraseña'
         onChange={handleChange}
         value={data.password}
         onBlur={handleBlur}
-        />
-      {dirty.password ? <p>{error.password}</p> : null}
-
-      <label htmlFor='address'>Address</label>
+        className={styles.input}
+      />
+      {dirty.password ? <p className="text-red-600 text-sm text-center">{error.password}</p> : null}
       <input type='text'
         id='address'
         name='address'
-        placeholder='60 Wall Street'
+        placeholder='Dirección'
         onChange={handleChange}
         value={data.address}
         onBlur={handleBlur}
-         />
-      {dirty.address ? <p >{error.address}</p> : null}
-
-      <label htmlFor='name'>Name</label>
+        className={styles.input}
+      />
+      {dirty.address ? <p className="text-red-600 text-sm text-center">{error.address}</p> : null}
       <input type='name'
         id='name'
         name='name'
-        placeholder='Name'
+        placeholder='Nombre'
         onChange={handleChange}
         value={data.name}
         onBlur={handleBlur}
-         />
-      {dirty.name ? <p >{error.name}</p> : null}
+        className={styles.input}
+      />
+      {dirty.name ? <p className="text-red-600 text-sm text-center">{error.name}</p> : null}
 
-      <label htmlFor='phone'>Phone</label>
       <input type='phone'
         id='phone'
         name='phone'
-        placeholder='Phone'
+        placeholder='Teléfono'
         onChange={handleChange}
         value={data.phone}
         onBlur={handleBlur}
-        />
-      {dirty.phone ? <p>{error.phone}</p> : null}
+        className={styles.input}
+      />
+      {dirty.phone ? <p className="text-red-600 text-sm text-center">{error.phone}</p> : null}
 
 
-      <button>Register</button>
+      <button className={styles.submitButton} /*onClick={handleSubmit}*/>Register</button>
     </form>
   );
 };

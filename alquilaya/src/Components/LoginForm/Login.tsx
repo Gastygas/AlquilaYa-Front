@@ -1,4 +1,5 @@
 "use client";
+import styles from "./login.module.css"
 import { FormEvent, useContext, useEffect, useState } from 'react';
 import { validatePassword, validateEmail } from '@/app/helpers/validation';
 //import { loginService } from '@/services/authServices'; PREGUNTAR A BACK
@@ -54,49 +55,35 @@ const LoginForm = () => {
   }, [data]);
 
   return (
-    <form onSubmit={handleSubmit} className='padding-section container bg-darkBlue text-lightBlue p-6 rounded-lg'>
-
-      <div className='flex justify-between items-center mb-4'>
+    <form onSubmit={handleSubmit} className='flex flex-col gap-4 w-full md:w-1/2 justify-center items-center'>
+            <p className="text-sm">Ingresa tu usuario y contraseña para acceder</p>
         <input type='email'
           id='email'
           name='email'
-          placeholder='email@ejemplo.com'
+          placeholder='Usuario'
           onChange={handleChange}
           value={data.email}
           onBlur={handleBlur}
-          className='w-3/4 border border-lightBlue p-3 rounded-md bg-lightBlue text-darkBlue'
+          className={styles.input}
         />
-        <label htmlFor='email' className='ml-4 text-cyan'>Email</label>
-      </div>
-      {dirty.email ? <p className='text-red-600'>{error.email}</p> : null}
-
-
-      <div className='flex justify-between items-center mb-4'>
+      {dirty.email ? <p className='text-red-600 text-sm'>{error.email}</p> : null}
         <input type='password'
           id='password'
           name='password'
-          placeholder='Al menos 8 caracteres'
+          placeholder='Contraseña'
           onChange={handleChange}
           value={data.password}
           onBlur={handleBlur}
-          className='w-3/4 border border-lightBlue p-3 rounded-md bg-lightBlue text-darkBlue'
+          className={styles.input}
         />
-        <label htmlFor='password' className='ml-4 text-cyan'>Contraseña</label>
-      </div>
-      {dirty.password ? <p className='text-red-600'>{error.password}</p> : null}
-
-      <div className='flex justify-between items-center mt-6'>
-        <button>
+      {dirty.password ? <p className='text-red-600 text-sm'>{error.password}</p> : null}
+        <button className={styles.submitButton} /*onClick={handleSubmit}*/>
           Ingresar
         </button>
-
         <Link
           href={"/register"}>
-          <button >
-            Registrate
-          </button>
+<Link href="/register"><p className=" pt-12 text-sm font-bold underline text-primary hover:text-secondary transition-all">No tienes una cuenta? Regístrate</p></Link>
         </Link>
-      </div>
     </form>
   );
 };
