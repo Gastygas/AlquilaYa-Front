@@ -41,7 +41,7 @@ const mockProperties: IProperty[] = [
       heating: true,
       pool: true,
       parking: false,
-      description: "Cozy condo in the heart of Toronto with a shared pool.",
+      description: "Cozy condo in the heart of Toronto with a shared pool.Cozy condo in the heart of Toronto with a shared pool.Cozy condo in the heart of Toronto with a shared pool.",
       propertyStatus: "For Rent",
       photo: "https://img.freepik.com/fotos-premium/vision-vida-futura-materializa-forma-casa-ultramoderna-varios-pisos-horizontal_890329-4548.jpg",
     },
