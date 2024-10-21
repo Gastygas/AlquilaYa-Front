@@ -1,10 +1,10 @@
 "use client";
 import styles from "./login.module.css"
-import { FormEvent, useContext, useEffect, useState } from 'react';
+import { FormEvent, /*useContext*/ useEffect, useState } from 'react';
 import { validatePassword, validateEmail } from '@/app/helpers/validation';
-//import { loginService } from '@/services/authServices'; PREGUNTAR A BACK
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { loginService } from '@/services/authServices';
 //import AuthContext from '@/contexts/authContext'; RUTA DEL ESTADO GLOBAL
 
 
@@ -24,16 +24,16 @@ const LoginForm = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    //     const response = await loginService(`${process.env.NEXT_PUBLIC_API_URL}/users/login`, data)
-    //     if (response.login) {
-    //       alert("Login success");
-    //       setUser(response);
-    //       router.back();
-    //     } else {
-    //       alert("User or credentials wrong!");
-    //     };
-    //   };
+    const response = await loginService(`http://localhost:3001/auth/signin`, data)
+    if (response.succes) {
+      alert("Inicio de sesión exitoso");
+      // setUser(response);
+      router.back();
+    } else {
+      alert("Usuario o credenciales incorrectas");
+    };
   };
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log("handleChange");
