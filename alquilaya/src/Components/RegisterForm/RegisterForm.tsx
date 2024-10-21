@@ -55,7 +55,7 @@ const RegisterForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center space-y-8 bg-darkBlue min-h-screen overflow-y-auto'>
-      <h2 className="text-3xl font-bold text-lightBlue mb-1 mt-14">Registrarse</h2>
+      {/* <h2 className="text-3xl font-bold text-lightBlue mb-1 mt-14">Registrarse</h2> */}
       <div className='flex flex-col items-start space-y-2 w-80'>
         <label htmlFor='name' className='text-lightBlue'>Nombre</label>
         <input
@@ -161,7 +161,7 @@ const RegisterForm = () => {
         {dirty.confirmPassword ? <p className='text-red-600'>{error.confirmPassword}</p> : null}
       </div>
 
-      <button className="mt-6 bg-lightBlue text-white font-bold py-2 px-4 rounded-lg">Registrate</button>
+      <button className="mt-6 bg-[#190045] text-white font-bold py-2 px-4 rounded-lg">Registrate</button>
     </form>
   );
 };
