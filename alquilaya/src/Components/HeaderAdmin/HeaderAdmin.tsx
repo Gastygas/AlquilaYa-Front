@@ -19,7 +19,7 @@ const HeaderAdmin = () => {
           </ul>
         </div>
         <div className="flex flex-row justify-around items-center gap-6">
-          <p className="text-base">Hola, Admin</p> <button className={styles.button}>Cerrar Sesión</button>
+          <p className="text-base">Hola, Admin</p> <Link href="/"><button className={styles.button}>Cerrar Sesión</button></Link>
           </div>
       </div>
     </div>
