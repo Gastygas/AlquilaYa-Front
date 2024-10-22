@@ -8,10 +8,8 @@ const page = async () => {
     method: "GET",
     cache: "no-store",
   });
-  if (!res.ok) {
-    throw new Error('Error al obtener los usuarios');
-  }
-
+  if (!res.ok) throw new Error('Error al obtener los usuarios');
+  
   const users = await res.json();
   /*const url = "http://localhost:3001/users"
   
