@@ -63,20 +63,20 @@ const LoginForm = () => {
           placeholder='Usuario'
           onChange={handleChange}
           value={data.email}
-          onBlur={handleBlur}
+        
           className={styles.input}
         />
-      {dirty.email ? <p className='text-red-600 text-sm'>{error.email}</p> : null}
+      
         <input type='password'
           id='password'
           name='password'
           placeholder='Contraseña'
           onChange={handleChange}
           value={data.password}
-          onBlur={handleBlur}
+          
           className={styles.input}
         />
-      {dirty.password ? <p className='text-red-600 text-sm'>{error.password}</p> : null}
+      
         <button className={styles.submitButton} /*onClick={handleSubmit}*/>
           Ingresar
         </button>
