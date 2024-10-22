@@ -1,0 +1,20 @@
+.navBg{
+    background-color: var(--secondary-color);
+    box-shadow: 0px 0px 10px;
+}
+
+.itemsnav{
+@apply px-10 py-1 cursor-pointer transition duration-300
+}
+
+.itemsnav:hover{
+   @apply text-gray-600
+}
+
+.button{
+    @apply  flex text-sm px-10 py-[7px] rounded-[20px]
+    cursor-pointer transition-all duration-300 hover:scale-90 bg-primary text-secondary font-bold
+}
+
+
+
