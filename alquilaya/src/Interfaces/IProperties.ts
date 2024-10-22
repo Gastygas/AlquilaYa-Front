@@ -1,6 +1,6 @@
 export interface IProperty {
     id: string;     // Nuevo atributo para el identificador único
-    name: string;
+    propertyName: string;
     address: string;
     addressUrl: string;
     bill: string;

@@ -2,7 +2,6 @@ import Card from "@/Components/Card/Card"
 import Grid from "@/Components/Grid/Grid"
 import Header from "@/Components/Header/Header"
 import IProperty from "@/Interfaces/IProperties"
-import mockProperties from "@/mocks/properties"
 
 const propiedades = async() => {
 
