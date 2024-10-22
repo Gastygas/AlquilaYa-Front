@@ -1,8 +1,8 @@
 export interface IProperty {
     id: string;     // Nuevo atributo para el identificador único
     name: string;
-    adress: string;
-    adressUrl: string;
+    address: string;
+    addressUrl: string;
     bill: string;
     country: string;
     city: string;
@@ -18,7 +18,7 @@ export interface IProperty {
     parking: boolean;
     description: string;
     propertyStatus: string;
-    photo: string;
+    photos: string;
     //bookings: Booking[];
     //specialprice: SpecialPrice[];
 }

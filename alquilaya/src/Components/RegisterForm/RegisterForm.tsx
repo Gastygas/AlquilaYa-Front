@@ -26,7 +26,7 @@ const RegisterForm = () => {
       alert("Registro exitoso");
       router.back();
     } else {
-      alert(`Porfavor revisa los siguientes campos: ${response.error.map((err) => err.property)}`);
+      alert(`Porfavor revisa los siguientes campos: ${response.error.map((err:any) => err.property)}`);
     }
 
   };
