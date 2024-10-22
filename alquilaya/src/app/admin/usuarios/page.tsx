@@ -36,7 +36,7 @@ const page = async () => {
                 <th className="py-3 px-6 text-center">Dni</th>
                 <th className="py-3 px-6 text-center">Country</th>
                 <th className="py-3 px-6 text-center">Dirección</th>
-                <th className="py-3 px-6 text-center">Teléfomo</th>
+                <th className="py-3 px-6 text-center">Teléfono</th>
 
               </tr>
             </thead>
