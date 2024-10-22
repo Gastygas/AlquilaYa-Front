@@ -61,6 +61,13 @@ h6 {
   font-weight: 700;
 }
 
+th,
+tr, 
+td,
+tbody{
+  font-family: var(--font-primary);
+}
+
 h1 {
   font-size: 50px;
 }

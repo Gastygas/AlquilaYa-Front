@@ -1,4 +1,5 @@
 import HeaderAdmin from '@/Components/HeaderAdmin/HeaderAdmin'
+import styles from "./usuario.module.css"
 
 const page = async () => {
   const url = "http://localhost:3001/users";
@@ -7,13 +8,11 @@ const page = async () => {
     method: "GET",
     cache: "no-store",
   });
-
   if (!res.ok) {
     throw new Error('Error al obtener los usuarios');
   }
 
   const users = await res.json();
-
   /*const url = "http://localhost:3001/users"
   
    const getUsers = await fetch(url,{
@@ -28,15 +27,16 @@ const page = async () => {
       <div className='container'>
         <div className='padding-section'>
           <h1 className="pb-12 text-primary">Usuarios</h1>
-          <table className="min-w-full bg-white border border-gray-200">
+          <table className={styles.primary}>
             <thead>
-              <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+              <tr className="bg-gray-200 text-primary  uppercase text-sm leading-normal">
                 <th className="py-3 px-6 text-left">Nombre</th>
                 <th className="py-3 px-6 text-left">Email</th>
                 <th className="py-3 px-6 text-center">Dni</th>
                 <th className="py-3 px-6 text-center">Country</th>
                 <th className="py-3 px-6 text-center">Dirección</th>
                 <th className="py-3 px-6 text-center">Teléfono</th>
+                <th className="py-3 px-6 text-center">Favoritos</th>
 
               </tr>
             </thead>
@@ -49,14 +49,22 @@ const page = async () => {
                   <td className="py-3 px-6 text-center">{user.dni}</td>
                   <td className="py-3 px-6 text-center">{user.country}</td>
                   <td className="py-3 px-6 text-center">{user.address}</td>
-                  <td className="py-3 px-6 text-center">{user.role}</td>
+                  <td className="py-3 px-6 text-center">{user.phone}</td>
+                  <td className="border px-4 py-2 text-center">
+                    <div className="flex justify-center">
+                      <button className="bg-primary text-white px-4 py-2 rounded">
+                        Ver más
+                      </button>
+                    </div>
+                  </td>
+
                 </tr>
               )
             })}
-        </table>
+          </table>
+        </div>
       </div>
-    </div>
-</div >
+    </div >
   )
 }
 
