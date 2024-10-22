@@ -41,7 +41,7 @@ export const validatePhone = (name:string): string => {
     let validation = ""
     const regexCountry = /^\+?\d{1,3}?[-.\s]?(\(?\d{1,4}\)?)[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/
 
-    if(!regexCountry.test(name)) validation = "Solo numeros"
+    if(!regexCountry.test(name)) validation = "Sólo números"
     return validation
 }
 
@@ -55,7 +55,7 @@ export const validatePassword = (password: string): string => {
     const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
 
     if (!regexPassword.test(password)) {
-        validation = "Debe tener al menos 8 caracteres, con al menos una letra mayúscula, una letra minúscula, un número y un carácter especial.";
+        validation = "Debe tener al menos 8 carácteres, con al menos una letra mayúscula, una letra minúscula, un número y un carácter especial.";
     } else {
         // validation = "Valid password";
         validation = "";
