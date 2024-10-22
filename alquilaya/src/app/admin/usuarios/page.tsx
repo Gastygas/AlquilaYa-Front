@@ -57,7 +57,6 @@ const page = async () => {
                       </button>
                     </div>
                   </td>
-
                 </tr>
               )
             })}
