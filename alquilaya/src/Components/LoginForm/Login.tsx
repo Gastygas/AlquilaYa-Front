@@ -84,6 +84,8 @@ const LoginForm = () => {
           href={"/register"}>
 <Link href="/register"><p className=" pt-12 text-sm font-bold underline text-primary hover:text-secondary transition-all">No tienes una cuenta? Regístrate</p></Link>
         </Link>
+
+        <Link href="http://localhost:3001/auth/googleLogin">probando</Link>
     </form>
   );
 };
