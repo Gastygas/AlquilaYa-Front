@@ -1,0 +1,16 @@
+.card{
+    @apply z-10 w-1/3  p-8 flex flex-col items-center justify-center rounded-2xl shadow-xl transition-shadow duration-300 ease-in-out hover:shadow-lg
+}
+
+.parrafo{
+    @apply text-center text-base
+}
+
+.subtitle{
+    @apply py-4 text-xl
+}
+
+.button{
+   @apply  mt-20 flex text-sm px-10 py-[7px] rounded-[20px] bg-primary text-secondary font-bold
+cursor-pointer transition-all duration-300 hover:scale-90
+}

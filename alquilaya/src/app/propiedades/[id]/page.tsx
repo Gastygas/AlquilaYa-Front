@@ -1,28 +1,84 @@
-
-import Button from '@/Components/Button/Button';
 import mockProperties from '@/mocks/properties';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import React from 'react'
+import { FaMapLocationDot, FaPeopleRoof } from "react-icons/fa6";
+import { IoBed } from "react-icons/io5";
+import { LiaToiletSolid } from "react-icons/lia";
+import { FaWifi } from "react-icons/fa";
+import Header from '@/Components/Header/Header';
+import IProperty from '@/Interfaces/IProperties';
 
-const getProductById = (id: string) => {
-    return mockProperties.find((product) => product.id === id);
-  };
 
-  const ProductDetail =  ({params} : {params: {id: string}}) =>{
-    const product = getProductById(params.id)
-    if (!product) { notFound()} 
-    
+
+const getProductById = async(id: string) => {
+  const url = "http://localhost:3001/property"
+
+  const res = await fetch(url,{
+    method:"GET",
+    cache:"no-store"
+  })
+  const property = await res.json()
+  if (!property) { notFound() }
+
+  return property.find((product:IProperty) => product.id === id);
+};
+
+const ProductDetail = async({ params }: { params: { id: string } }) => {
+ 
+
+  const property = await getProductById(params.id)
+
   return (
-    <div className="container">
-      <div className='flex my-28'>
-        <div className='w-1/2'>
-          <Image src={product.photo} alt={product.name} width={400} height={400} className='rounded-xl' /></div>
-        <div className='w-1/2'>
-          <h1>{product.name}</h1>
-          <h3>{product.price}</h3>
-          <p className='my-8'>{product.description}</p>
-          <Button>Buy</Button>
+    <div><Header />
+      <div className="container">
+        <div className='flex mt-28'>
+          <div className='w-1/2'>
+            <Image src={property.photos[0]} alt={property.name} width={600} height={600} className='rounded-xl' />
+          </div>
+          <div className='w-1/2'>
+            <h1>{property.propertyName}</h1>
+            <h3>{property.price}</h3>
+            <h4 className='font-bold'>{property.address}</h4>
+            <div className='flex justify-start align-middle pt-4 gap-3'>
+              <FaMapLocationDot size={20} color="#2CFFDE" /><h4>{property.city} </h4>
+            </div>
+            <div className='flex justify-start  gap-6'>
+              <div className='flex justify-start align-middle pt-4 gap-3'>
+                <FaPeopleRoof size={20} color="#2CFFDE" /><h4>Capacidad: {property.capacity} Personas</h4>
+              </div>
+              <div className='flex justify-start align-middle pt-4 gap-3'>
+                <IoBed size={20} color="#2CFFDE" /><h4>Cuartos: {property.bedrooms} </h4>
+              </div>
+              <div className='flex justify-start align-middle pt-4 gap-3'>
+                <LiaToiletSolid size={20} color="#2CFFDE" /><h4>Baños: {property.bathrooms} </h4>
+              </div>
+            </div>
+            <p className='my-6 text-base'>{property.description}</p>
+            <div className='flex justify-start gap-6 flex-wrap'>
+              {property.wifi ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                <FaWifi size={20} color="#2CFFDE" /><h4>WiFi</h4>
+              </div> : <></>}
+              {property.petFriendly ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                <IoBed size={20} color="#2CFFDE" /><h4>Pet Friendly</h4>
+              </div> : <></>}
+              {property.airConditioning ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                <LiaToiletSolid size={20} color="#2CFFDE" /><h4>Aire acondicionado</h4>
+              </div> : <></>}
+              {property.airConditioning ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                <LiaToiletSolid size={20} color="#2CFFDE" /><h4>Aire acondicionado</h4>
+              </div> : <></>}
+              {property.heating ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                <LiaToiletSolid size={20} color="#2CFFDE" /><h4>Calefacción</h4>
+              </div> : <></>}
+              {property.pool ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                <LiaToiletSolid size={20} color="#2CFFDE" /><h4>Piscina</h4>
+              </div> : <></>}
+              {property.parking ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                <LiaToiletSolid size={20} color="#2CFFDE" /><h4>Parqueadero</h4>
+              </div> : <></>}
+            </div>
+          </div>
         </div>
       </div>
     </div>

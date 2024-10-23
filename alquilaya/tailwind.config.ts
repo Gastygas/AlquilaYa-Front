@@ -16,6 +16,9 @@ const config: Config = {
         tertiary: "var(--lightBlue)",
         transparent: "#00FF0000"
       },
+      fontFamily: {
+        primary: 'var(--font-primary)'
+      },
     },
   },
   plugins: [],
