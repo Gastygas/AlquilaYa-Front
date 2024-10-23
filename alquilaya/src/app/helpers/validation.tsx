@@ -18,7 +18,7 @@ export const validateCountry = (country:string): string => {
     let validation = ""
     const regexCountry = /^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s\-]{2,50}$/
 
-    if(!regexCountry.test(country)) validation = "Debe tener entre 2 y 50 caracteres"
+    if(!regexCountry.test(country)) validation = "Debe tener entre 2 y 50 carácteres"
     return validation
 }
 
@@ -26,7 +26,7 @@ export const validateDni = (dni:string): string => {
     let validation = ""
     const regexCountry = /^\d{7,10}$/
 
-    if(!regexCountry.test(dni)) validation = "Debe tener entre 7 y 10 numeros solamente."
+    if(!regexCountry.test(dni)) validation = "Debe tener entre 7 y 10 números."
     return validation
 }
 
@@ -34,7 +34,7 @@ export const validateName = (name:string): string => {
     let validation = ""
     const regexCountry = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{1,50}$/
 
-    if(!regexCountry.test(name)) validation = "Debe tener entre 1 y 50 letras solamente"
+    if(!regexCountry.test(name)) validation = "Debe tener entre 1 y 50 letras."
     return validation
 }
 export const validatePhone = (name:string): string => {

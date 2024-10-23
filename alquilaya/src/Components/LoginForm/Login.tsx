@@ -5,7 +5,7 @@ import { validatePassword, validateEmail } from '@/app/helpers/validation';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { loginService } from '@/services/authServices';
-//import AuthContext from '@/contexts/authContext'; RUTA DEL ESTADO GLOBAL
+//import AuthContext from '@/contexts/authContext'; //RUTA DEL ESTADO GLOBAL
 
 
 
@@ -27,8 +27,9 @@ const LoginForm = () => {
     const response = await loginService(`http://localhost:3001/auth/signin`, data)
     if (response.succes) {
       alert("Inicio de sesión exitoso");
-      // setUser(response);
-      router.back();
+       //setUser(response);
+      //router.back();
+      router.push('/');
     } else {
       alert("Usuario o credenciales incorrectas");
     };
@@ -56,34 +57,34 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className='flex flex-col gap-4 w-full md:w-1/2 justify-center items-center'>
-            <p className="text-sm">Ingresa tu usuario y contraseña para acceder</p>
-        <input type='email'
-          id='email'
-          name='email'
-          placeholder='Usuario'
-          onChange={handleChange}
-          value={data.email}
-        
-          className={styles.input}
-        />
+      <p className="text-sm">Ingresa tu usuario y contraseña para acceder</p>
+      <input type='email'
+        id='email'
+        name='email'
+        placeholder='Usuario'
+        onChange={handleChange}
+        value={data.email}
+
+        className={styles.input}
+      />
+
+      <input type='password'
+        id='password'
+        name='password'
+        placeholder='Contraseña'
+        onChange={handleChange}
+        value={data.password}
+
+        className={styles.input}
+      />
+
+      <button className={styles.submitButton} /*onClick={handleSubmit}*/>
+        Ingresar
+      </button>
       
-        <input type='password'
-          id='password'
-          name='password'
-          placeholder='Contraseña'
-          onChange={handleChange}
-          value={data.password}
-          
-          className={styles.input}
-        />
       
-        <button className={styles.submitButton} /*onClick={handleSubmit}*/>
-          Ingresar
-        </button>
-        <Link
-          href={"/register"}>
-<Link href="/register"><p className=" pt-12 text-sm font-bold underline text-primary hover:text-secondary transition-all">No tienes una cuenta? Regístrate</p></Link>
-        </Link>
+        <Link href="/register"><p className=" pt-12 text-sm font-bold underline text-primary hover:text-secondary transition-all">No tienes una cuenta? Regístrate</p></Link>
+      
     </form>
   );
 };
