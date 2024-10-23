@@ -9,11 +9,12 @@
   --lightBlue: #9AEDFF;
   --cyan: #2CFFDE;
   --black: #000000;
+  --font-primary: 'Figtree', sans-serif; 
 
 }
 
 body {
-  @apply flex flex-col min-h-[100vh];
+  @apply flex flex-col min-h-[100vh] font-primary;
 }
 
 footer {
@@ -59,13 +60,6 @@ h5,
 h6 {
   font-family: var(--font-primary);
   font-weight: 700;
-}
-
-th,
-tr, 
-td,
-tbody{
-  font-family: var(--font-primary);
 }
 
 h1 {

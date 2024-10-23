@@ -26,7 +26,7 @@ console.log(response)
       alert("Registro exitoso");
       router.back();
     } else {
-      alert(`Por favor revisá los siguientes campos: ${response.error.map((err: any) => err.property)}`);
+      alert(`Porfavor revisa los siguientes campos: ${response.error.map((err:any) => err.property)}`);
     }
 
   };

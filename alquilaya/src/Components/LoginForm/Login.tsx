@@ -57,6 +57,7 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className='flex flex-col gap-4 w-full md:w-1/2 justify-center items-center'>
+
       <p className="text-sm">Ingresa tu usuario y contraseña para acceder</p>
       <input type='email'
         id='email'
@@ -82,9 +83,7 @@ const LoginForm = () => {
         Ingresar
       </button>
       
-      
         <Link href="/register"><p className=" pt-12 text-sm font-bold underline text-primary hover:text-secondary transition-all">No tienes una cuenta? Regístrate</p></Link>
-      
     </form>
   );
 };
