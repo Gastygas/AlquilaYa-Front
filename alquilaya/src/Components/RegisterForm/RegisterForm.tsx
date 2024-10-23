@@ -20,8 +20,8 @@ const RegisterForm = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    const response = await registerService(`http://localhost:3001/auth/signup`, data)
-
+    const response: any = await registerService(`http://localhost:3001/auth/signup`, data)
+console.log(response)
     if (response.succes) {
       alert("Registro exitoso");
       router.back();
@@ -108,7 +108,7 @@ const RegisterForm = () => {
             type='text'
             id='dni'
             name='dni'
-            placeholder='Dni'
+            placeholder='DNI'
             className={styles.input}
             onChange={handleChange}
             value={data.dni}
