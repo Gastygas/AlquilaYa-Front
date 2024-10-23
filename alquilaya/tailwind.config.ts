@@ -12,8 +12,8 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
         primary: "var(--darkBlue)",
-        secondary: "var(--cyan)",
-        tertiary: "var(--lightBlue)",
+        secondary: "var(--lightBlue)",
+        tertiary: "var(--cyan)",
         transparent: "#00FF0000"
       },
       fontFamily: {
