@@ -6,7 +6,6 @@ import { validatePassword, validateEmail } from '@/app/helpers/validation';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { loginService } from '@/services/authServices';
-import Button from '../Button/Button';
 //import AuthContext from '@/contexts/authContext'; RUTA DEL ESTADO GLOBAL
 
 
