@@ -21,10 +21,10 @@ footer {
   @apply mt-auto;
   }
 
-@media (prefers-color-scheme: ligth) {
+@media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #190045;
+    --foreground: #ffffff;
     --darkBlue: #190045;
     --lightBlue: #9AEDFF;
     --cyan: #2CFFDE;
