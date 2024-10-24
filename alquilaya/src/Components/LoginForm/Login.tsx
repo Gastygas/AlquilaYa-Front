@@ -15,12 +15,9 @@ const LoginForm = () => {
   const {setUser} = useContext(AuthContext);
   const router = useRouter()
   const initialData = { email: "", password: "" };
-  const initialDirty = { email: false, password: false };
-
 
   const [data, setData] = useState(initialData);
   const [error, setError] = useState(initialData)
-  const [dirty, setDirty] = useState(initialDirty)
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -29,12 +26,16 @@ const LoginForm = () => {
     if (response.succes) {
       alert("Inicio de sesión exitoso");
        setUser(response);
-      router.push('/');
+
+       if (response.user.isAdmin) {
+        router.push('/admin'); // Redirigir a la página de administración
+      } else {
+        router.push('/'); // Redirigir a la página principal
+      }
     } else {
       alert("Usuario o credenciales incorrectas");
-    };
+    }
   };
-
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log("handleChange");
