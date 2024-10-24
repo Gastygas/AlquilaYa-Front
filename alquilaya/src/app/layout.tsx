@@ -3,6 +3,8 @@ import { Figtree } from "next/font/google";
 import "./globals.css";
 import Footer from "@/Components/Footer/Footer";
 import Header from "@/Components/Header/Header";
+import { AuthProvider } from "@/Components/contexts/authContext";
+
 
 const primaryFont = Figtree({
   subsets: ["latin"],
@@ -24,6 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <AuthProvider>
     <html lang="es" className={`${primaryFont.variable}`}>
       <body className={primaryFont.className}>
         <Header />
@@ -31,5 +34,6 @@ export default function RootLayout({
         <Footer />
       </body>
     </html>
+    </AuthProvider>
   );
 }

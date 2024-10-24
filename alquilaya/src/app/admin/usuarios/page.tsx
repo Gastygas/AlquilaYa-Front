@@ -1,5 +1,6 @@
 import HeaderAdmin from '@/Components/HeaderAdmin/HeaderAdmin'
 import styles from "./usuario.module.css"
+import Link from 'next/link';
 
 const page = async () => {
   const url = "http://localhost:3001/users";
@@ -8,18 +9,9 @@ const page = async () => {
     method: "GET",
     cache: "no-store",
   });
-  if (!res.ok) {
-    throw new Error('Error al obtener los usuarios');
-  }
-
-  const users = await res.json();
-  /*const url = "http://localhost:3001/users"
+  if (!res.ok) throw new Error('Error al obtener los usuarios');
   
-   const getUsers = await fetch(url,{
-        method: "GET",
-    }).then(users => users.json())
-      .catch(err => console.log(err))
-    */
+  const users = await res.json();
 
   return (
     <div>
@@ -40,7 +32,7 @@ const page = async () => {
 
               </tr>
             </thead>
-            <tbody className="text-gray-600 text-sm font-light"></tbody>
+            <tbody className="text-gray-600 text-sm font-light">
             {users.map((user: any, i: any) => {
               return (
                 <tr key={i} className="border-b border-gray-200 hover:bg-gray-100">
@@ -52,16 +44,17 @@ const page = async () => {
                   <td className="py-3 px-6 text-center">{user.phone}</td>
                   <td className="border px-4 py-2 text-center">
                     <div className="flex justify-center">
-                      <button className="bg-primary text-white px-4 py-2 rounded">
+                      <button className="bg-primary text-secondary px-4 py-2 rounded font-semibold">
                         Ver más
                       </button>
                     </div>
                   </td>
-
                 </tr>
               )
             })}
+            </tbody>
           </table>
+          <Link href="/admin"><button className={styles.button}>Volver</button></Link>
         </div>
       </div>
     </div >

@@ -9,23 +9,24 @@
   --lightBlue: #9AEDFF;
   --cyan: #2CFFDE;
   --black: #000000;
+  --font-primary: 'Figtree', sans-serif; 
 
 }
 
 body {
-  @apply flex flex-col min-h-[100vh];
+  @apply flex flex-col min-h-[100vh] font-primary;
 }
 
 footer {
   @apply mt-auto;
   }
 
-@media (prefers-color-scheme: ligth) {
+@media (prefers-color-scheme: light) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #190045;
+    --foreground: #ffffff;
     --darkBlue: #190045;
-    --lightBlue: #9AEDFF;
+    --lightBlue: #4DBDFF;
     --cyan: #2CFFDE;
     --black: #000000;
   }
@@ -59,13 +60,6 @@ h5,
 h6 {
   font-family: var(--font-primary);
   font-weight: 700;
-}
-
-th,
-tr, 
-td,
-tbody{
-  font-family: var(--font-primary);
 }
 
 h1 {

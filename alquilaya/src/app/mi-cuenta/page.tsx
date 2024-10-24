@@ -2,13 +2,13 @@ import Header from '@/Components/Header/Header'
 import ProtectedRoute from '@/Components/ProtectRoutes/ProtecRoutes'
 import React from 'react'
 
-const page = ({children}: any) => {
+const page = () => {
   return (
-
-   <ProtectedRoute>
-      <Header/>
-      <div>{children}</div>
-    </ProtectedRoute>
+    <ProtectedRoute>
+    <div>
+        <Header/>
+        Mi cuenta</div>
+        </ProtectedRoute>
   )
 }
 

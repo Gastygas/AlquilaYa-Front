@@ -1,0 +1,8 @@
+.button{
+   @apply  mt-4 flex text-sm px-10 py-[7px] rounded-[20px] bg-secondary text-primary font-bold
+cursor-pointer transition-all duration-300 hover:scale-90
+}
+
+.image{
+    @apply rounded-2xl shadow-lg
+}
