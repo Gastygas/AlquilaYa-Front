@@ -11,31 +11,32 @@ import IProperty from '@/Interfaces/IProperties';
 import { TbAirConditioning } from "react-icons/tb";
 import { GiHeatHaze } from "react-icons/gi";
 import { MdOutlinePool } from "react-icons/md";
+import BookForm from '@/Components/BookForm/BookForm';
 
 
 
-const getProductById = async(id: string) => {
+const getProductById = async (id: string) => {
   const url = "http://localhost:3001/property"
 
-  const res = await fetch(url,{
-    method:"GET",
-    cache:"no-store"
+  const res = await fetch(url, {
+    method: "GET",
+    cache: "no-store"
   })
   const property = await res.json()
   if (!property) { notFound() }
 
-  return property.find((product:IProperty) => product.id === id);
+  return property.find((product: IProperty) => product.id === id);
 };
 
-const ProductDetail = async({ params }: { params: { id: string } }) => {
- 
+const ProductDetail = async ({ params }: { params: { id: string } }) => {
+
 
   const property = await getProductById(params.id)
 
   return (
     <div><Header />
       <div className="container">
-        <div className='flex mt-28'>
+        <div className='flex my-28'>
           <div className='w-1/2'>
             <Image src={property.photos[0]} alt={property.name} width={600} height={600} className='rounded-xl' />
           </div>
@@ -75,10 +76,13 @@ const ProductDetail = async({ params }: { params: { id: string } }) => {
                 <MdOutlinePool size={20} color="var(--darkBlue)" /><h4>Piscina</h4>
               </div> : <></>}
               {property.parking ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
-                <FaParking  size={20} color="var(--darkBlue)" /><h4>Parqueadero</h4>
+                <FaParking size={20} color="var(--darkBlue)" /><h4>Parqueadero</h4>
               </div> : <></>}
             </div>
           </div>
+        </div>
+        <div className='bg-primary rounded-2xl mb-28'>
+          <BookForm/>
         </div>
       </div>
     </div>

@@ -43,11 +43,6 @@ const LoginForm = () => {
     });
   };
 
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    setDirty({ ...dirty, [e.target.name]: true });
-  };
-
-
   useEffect(() => {
     setError({
       email: validateEmail(data.email),
@@ -79,7 +74,7 @@ const LoginForm = () => {
         className={styles.input}
       />
 
-      <button className={styles.submitButton} /*onClick={handleSubmit}*/>
+      <button className={styles.submitButton} >
         Ingresar
       </button>
       
