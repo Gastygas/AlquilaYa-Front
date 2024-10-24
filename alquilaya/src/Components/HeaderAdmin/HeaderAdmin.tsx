@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import styles from "./HeaderAdmin.module.css"
+import LogOutButtonAdmin from "../LogOutButtonAdmin/LogOutButtonAdmin"
 
 const HeaderAdmin = () => {
   return (
@@ -18,9 +19,7 @@ const HeaderAdmin = () => {
             <Link href="/admin/solicitudes"><li className={styles.itemsnav}>Solicitudes</li></Link>
           </ul>
         </div>
-        <div className="flex flex-row justify-around items-center gap-6">
-          <p className="text-base">Hola, Admin</p> <Link href="/"><button className={styles.button}>Cerrar Sesión</button></Link>
-          </div>
+<LogOutButtonAdmin/>
       </div>
     </div>
   )

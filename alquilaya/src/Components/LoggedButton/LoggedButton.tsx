@@ -11,7 +11,7 @@ const LoggedButton = () => {
  if(user?.user) {
 return (
   <div className="flex flex-row justify-around items-center">
-          <Link href="/"><Button variant="primary" className="font-bold text-secondary">Mi cuenta</Button></Link>
+          <Link href="/mi-cuenta"><Button variant="primary" className="font-bold text-secondary">Mi cuenta</Button></Link>
       <Button variant="transparent" onClick={logout} className="text-primary font-semibold">Salir<MdLogout size={20} color="--var(--darkBlue)"/></Button>
   </div>
 )};return (<NotLoggedButtons/>)
