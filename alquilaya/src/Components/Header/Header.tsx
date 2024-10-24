@@ -12,7 +12,7 @@ const Header = () => {
         <div>
           <Link href="/"><Image src="/logo-hor.png" alt="logo" width={100} height={60} className=" transition-transform duration-300 hover:scale-95 w-auto h-auto"/></Link>
         </div>
-<MenuHeader/>
+        <MenuHeader/>
         <LoggedButton/>
       </div>
     </div>

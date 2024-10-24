@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { Figtree } from "next/font/google";
 import "./globals.css";
 import Footer from "@/Components/Footer/Footer";
+import Header from "@/Components/Header/Header";
 import { AuthProvider } from "@/Components/contexts/authContext";
+
 
 const primaryFont = Figtree({
   subsets: ["latin"],
@@ -27,8 +29,9 @@ export default function RootLayout({
     <AuthProvider>
     <html lang="es" className={`${primaryFont.variable}`}>
       <body className={primaryFont.className}>
-       <main>{children}</main> 
-       <Footer/>
+        <Header />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
     </AuthProvider>
