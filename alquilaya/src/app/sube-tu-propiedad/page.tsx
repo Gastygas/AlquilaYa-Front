@@ -1,11 +1,9 @@
 import Header from '@/Components/Header/Header'
 import React from 'react'
 
-const page = () => {
+const page = ({children}: any) => {
   return (
-    <div>
-      <Header/>page</div>
-
+    <div>{children}</div>
   )
 }
 

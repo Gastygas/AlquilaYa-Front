@@ -5,7 +5,7 @@ import Section2 from "@/Components/Section-2/Section-2";
 export default function Home() {
   return (
     <div>
-<Header/>
+{/* <Header/> */}
 <Hero/>
 <Section2/>
     </div>
