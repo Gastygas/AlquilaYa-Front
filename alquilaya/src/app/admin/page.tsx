@@ -1,6 +1,7 @@
 import HeaderAdmin from '@/Components/HeaderAdmin/HeaderAdmin'
 import styles from "./admin.module.css"
 import Link from 'next/link'
+import ProtectedRoute from '@/Components/ProtectRoutes/ProtecRoutes';
 
 const page = async() => {
 
@@ -18,6 +19,7 @@ const page = async() => {
         const propertiesData = await propertiesRes.json();
 
     return (
+        <ProtectedRoute adminOnly={true}>
         <div>
             <HeaderAdmin />
             <div className='container'>
@@ -47,6 +49,7 @@ const page = async() => {
                 </div>
             </div>
         </div>
+        </ProtectedRoute>
     )
 }
 
