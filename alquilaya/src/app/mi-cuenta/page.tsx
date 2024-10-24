@@ -6,9 +6,9 @@ const page = () => {
   return (
     <ProtectedRoute>
     <div>
-      <Header/>page
-      </div>
-</ProtectedRoute>
+        <Header/>
+        Mi cuenta</div>
+        </ProtectedRoute>
   )
 }
 
