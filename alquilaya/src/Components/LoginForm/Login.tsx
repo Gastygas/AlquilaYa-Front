@@ -1,18 +1,18 @@
 "use client";
 import styles from "./login.module.css"
-import { FormEvent, /*useContext*/ useEffect, useState } from 'react';
+import { FormEvent, useContext, /*useContext*/ useEffect, useState } from 'react';
 import { validatePassword, validateEmail } from '@/app/helpers/validation';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { loginService } from '@/services/authServices';
 import { FaGoogle } from "react-icons/fa";
-//import AuthContext from '@/contexts/authContext'; //RUTA DEL ESTADO GLOBAL
+import AuthContext from "../contexts/authContext";
+
 
 
 
 const LoginForm = () => {
-  //const {setUser} = useContext(AuthContext);
-
+  const {setUser} = useContext(AuthContext);
   const router = useRouter()
   const initialData = { email: "", password: "" };
   const initialDirty = { email: false, password: false };
@@ -24,12 +24,11 @@ const LoginForm = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-
-    const response = await loginService(`http://localhost:3001/auth/signin`, data)
+    const apiurl = process.env.NEXT_PUBLIC_BACK_URL;
+    const response = await loginService(apiurl + "/auth/signin", data)
     if (response.succes) {
       alert("Inicio de sesión exitoso");
-       //setUser(response);
-      //router.back();
+       setUser(response);
       router.push('/');
     } else {
       alert("Usuario o credenciales incorrectas");

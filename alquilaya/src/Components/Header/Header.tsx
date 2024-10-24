@@ -1,8 +1,8 @@
 import Link from "next/link"
 import Image from "next/image"
 import styles from "./Header.module.css"
-//import LoggedButton from "../LoggedButton/LoggedButton"
 import NotLoggedButtons from "../NotLoggedButtons/NotLoggedButtons"
+import LoggedButton from "../LoggedButton/LoggedButton"
 
 
 const Header = () => {
@@ -20,7 +20,7 @@ const Header = () => {
             <Link href="/sube-tu-propiedad"><li className={styles.itemsnav}>Sube tu propiedad</li></Link>
           </ul>
         </div>
-        <NotLoggedButtons/>
+        <LoggedButton/>
       </div>
     </div>
   )
