@@ -26,7 +26,7 @@ const Section2 = () => {
                         <p className={styles.parrafo}>Todo está listo para tu llegada. ¡Relájate y disfruta de tu estancia!</p>
                     </div>
                 </div>
-                <Link href="/propiedades"><button className={styles.button}>¡Comienza ahora!</button></Link>
+                <Link href="/login"><button className={styles.button}>¡Comienza ahora!</button></Link>
             </div>
         </div >
     )
