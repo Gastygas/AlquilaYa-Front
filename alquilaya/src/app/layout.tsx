@@ -29,7 +29,6 @@ export default function RootLayout({
     <AuthProvider>
     <html lang="es" className={`${primaryFont.variable}`}>
       <body className={primaryFont.className}>
-        <Header />
         <main>{children}</main>
         <Footer />
       </body>
