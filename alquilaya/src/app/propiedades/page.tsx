@@ -1,34 +1,18 @@
-import Card from "@/Components/Card/Card"
-import Grid from "@/Components/Grid/Grid"
+import GridProperties from "@/Components/GridProperties/GridProperties"
 import Header from "@/Components/Header/Header"
-import IProperty from "@/Interfaces/IProperties"
 
-const propiedades = async() => {
-
-  const url = "http://localhost:3001/property"
-
-  const res = await fetch(url,{
-      method:"GET",
-      cache:"no-store"
-    })
-    if(!res) throw new Error("Can not get all properties")
-  
-  const properties = await res.json()
+const propiedades = async () => {
 
   return (
-    <div><Header/>
-    <main className="container">
-    <div className="padding-section">
-      <h1 className="mb-20">Propiedades Disponibles</h1>
-      <Grid>
-        {properties.map((property: IProperty) => (
-          <Card key={properties.id} property={property} />
-        ))}
-      </Grid>
+    <div><Header />
+      <main className="container">
+        <div className="padding-section">
+          <h1 className="mb-20">Propiedades Disponibles</h1>
+          <GridProperties />
+        </div>
+      </main>
     </div>
-  </main>
-  </div>
   )
 }
 
-export default propiedades
+export default propiedades;

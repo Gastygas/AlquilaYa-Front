@@ -1,0 +1,3 @@
+.itemsnav{
+    @apply px-10 py-1 cursor-pointer transition duration-300
+    }

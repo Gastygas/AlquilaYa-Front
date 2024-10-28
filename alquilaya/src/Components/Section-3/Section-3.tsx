@@ -10,7 +10,7 @@ const Section3 = () => {
                     <div className="flex flex-col align-middle justify-center">
                         <h3 className="text-[50px] text-primary font-extrabold pb-8 leading-none">Descubre las mejores propiedades cerca de ti</h3>
                         <p className="text-justify text-base"> Desde cómodos apartamentos en la ciudad hasta lujosas villas en la playa, AlquilaYa tiene algo para todos. Echa un vistazo a nuestras propiedades más populares, elegidas por su ubicación, comodidad y excelentes reseñas de usuarios.</p>
-                        <Link href="/login"><button className={styles.button}>Ver Más</button></Link>
+                        <Link href="/propiedades"><button className={styles.button}>Ver Más</button></Link>
                     </div>
                     <div>
                     <Image src="/seccion3.jpg" alt="hero" height={500} width={500} className={styles.image}/>

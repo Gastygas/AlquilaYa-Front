@@ -6,7 +6,7 @@ import Section3 from "@/Components/Section-3/Section-3";
 export default function Home() {
   return (
     <div>
-<Header/>
+ <Header/> 
 <Hero/>
 <Section2/>
 <Section3/>

@@ -1,0 +1,3 @@
+.input{
+    @apply w-full p-3 rounded-lg bg-secondary opacity-60 text-primary border-spacing-2 my-2
+}
