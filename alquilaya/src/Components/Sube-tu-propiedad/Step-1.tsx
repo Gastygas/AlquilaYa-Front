@@ -1,23 +1,51 @@
 "use client"
-import React from 'react'
+import React, { useState } from 'react'
 import ButtonCyan from '../ButtonCyan/ButtonCyan'
+import Link from 'next/link'
+import IconSelector from '../IconSelector/IconSelector'
+import { FcHome } from "react-icons/fc";
+import { PiBuildingApartmentDuotone } from "react-icons/pi";
+import { useRouter } from 'next/navigation'
+
 
 const Step1 = () => {
+    const router = useRouter()
+    const [isSelected, setIsSelected] = useState(null)
+
+    const iconData = [
+        { icon: <FcHome size={72} />, text: "Casa" },
+        { icon: '/cabana.png', text: "Cabaña" },
+        { icon: <PiBuildingApartmentDuotone size={72} />, text: "Departamento" },
+        { icon: '/recurso.png', text: "Hotel" },
+        { icon: '/duplex.png', text: "Dúplex" },
+        { icon: '/casa-movil.png', text: "Casa Rodante" },
+        { icon: '/invernadero.png', text: "Domo" },
+        { icon: '/balcon.png', text: "Loft" },
+        { icon: '/casa-ecologica.png', text: "Casa Ecológica" },
+        { icon: '/casa-de-huespedes.png', text: "Casa de Húespedes" },
+        { icon: '/camping.png', text: "Carpa" },
+        { icon: '/carga.png', text: "Contenedor" },
+    ];
+
+    const saveDataPage = () => {
+        let data = sessionStorage.getItem('data') ? JSON.parse(sessionStorage.getItem('data')!) : {}
+        data.tipe = isSelected?.text
+        sessionStorage.setItem("data", JSON.stringify(data))
+        router.push('/sube-tu-propiedad/paso-2')
+    }
+
     return (
-
-        <div className="relative bg-gray-100 min-h-screen p-10">
-            <h1 className="mt-20 text-black  mb-4">Paso 1: Describir la propiedad</h1>
-            <textarea
-                placeholder="Máximo 500 caracteres"
-                className="mt-20 ml-60 w-full max-w-4xl h-44 p-4 bg-gray-50 border-2 border-[#aa31cf] focus:border-[#2CFFDE] hover:border-[#2CFFDE] focus:outline-none transition duration-200 rounded-lg resize-none"
-                maxLength={500}
-            />
-
-
+        <div>
+            <div className="relative bg-gray-100 min-h-screen p-10">
+                <h2 className="ml-10 mt-10 text-black mb-2">Paso 1:</h2>
+                <h1 className="mt-20 text-black text-center mb-4">Elige la opción que mejor describa tu espacio</h1>
+                <IconSelector numCols={4} data={iconData} isSelected={isSelected} setIsSelected={setIsSelected} />
+            </div>
 
             <div className="absolute bottom-6 right-6">
-                <ButtonCyan />
+                <ButtonCyan onClick={saveDataPage} />
             </div>
+
         </div>
     )
 }
