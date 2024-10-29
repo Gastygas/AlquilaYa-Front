@@ -23,7 +23,7 @@ const BookForm = () => {
         className={styles.input}
       /></div>
       </div>
-      <Button variant="primary" className="font-bold text-secondary">Reservar</Button>
+      <Button variant="primary" className="font-bold text-secondary flex justify-center">Reservar</Button>
           </form>
   )
 }
