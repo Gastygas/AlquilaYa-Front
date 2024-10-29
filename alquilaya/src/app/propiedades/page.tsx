@@ -1,25 +1,18 @@
-import Card from "@/Components/Card/Card"
-import Grid from "@/Components/Grid/Grid"
+import GridProperties from "@/Components/GridProperties/GridProperties"
 import Header from "@/Components/Header/Header"
-import IProperty from "@/Interfaces/IProperties"
-import mockProperties from "@/mocks/properties"
 
-const propiedades = () => {
+const propiedades = async () => {
 
   return (
-    <div><Header/>
-    <main className="container">
-    <div className="padding-section">
-      <h1 className="mb-20">Propiedades Disponibles</h1>
-      <Grid>
-        {mockProperties.map((property: IProperty, i:number) => (
-          <Card key={i} property={property} />
-        ))}
-      </Grid>
+    <div><Header />
+      <main className="container">
+        <div className="padding-section">
+          <h1 className="mb-20">Propiedades Disponibles</h1>
+          <GridProperties />
+        </div>
+      </main>
     </div>
-  </main>
-  </div>
   )
 }
 
-export default propiedades
+export default propiedades;
