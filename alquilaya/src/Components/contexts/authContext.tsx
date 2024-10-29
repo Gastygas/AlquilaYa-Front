@@ -10,17 +10,20 @@ interface AuthContextprops {
     user: IUserSession | null;
     setUser: (user: IUserSession | null) => void;
     logout:() => void;
+    loading: boolean;
 }
 
  const AuthContext = createContext<AuthContextprops>({
     user: null,
     setUser: () => {},
     logout: () => {},
+    loading: true
 });
 
 export const AuthProvider = ({ children }: AuthProviderProps
 ) => {
     const [user, setUser] = useState<IUserSession | null>(null);
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
         if (user) {
             localStorage.setItem("user", JSON.stringify(user));
@@ -33,6 +36,7 @@ export const AuthProvider = ({ children }: AuthProviderProps
         if (localUser) {
             setUser(JSON.parse(localUser));
         }
+        setLoading(false);
     }, []);
 
     const logout = () => {
@@ -41,7 +45,7 @@ export const AuthProvider = ({ children }: AuthProviderProps
     };
 
     return (
-        <AuthContext.Provider value={{ user, setUser, logout }}>
+        <AuthContext.Provider value={{ user, setUser, logout, loading}}>
             {children}
         </AuthContext.Provider>
     )
