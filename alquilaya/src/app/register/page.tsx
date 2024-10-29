@@ -5,7 +5,7 @@ import React from 'react'
 const page = () => {
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
 
       <div className="container">
         <div className="padding-section">
