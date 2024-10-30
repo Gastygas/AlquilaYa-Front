@@ -2,6 +2,7 @@
 import HeaderAdmin from '@/Components/HeaderAdmin/HeaderAdmin'
 import styles from "./propiedades.module.css"
 import Link from 'next/link';
+import IProperty from '@/Interfaces/IProperties';
 
 const page = async () => {
   const url = "http://localhost:3001/property";
@@ -39,7 +40,9 @@ const page = async () => {
             </tr>
           </thead>
           <tbody className="text-gray-600 text-sm font-light">
-            {properties.map((properties: any, i: any) => {
+            {properties.filter((prop: IProperty) => {
+              return prop.propertyStatus === 'approved'
+            }).map((properties: any, i: any) => {
               return (
                 <tr key={i} className="border-b border-gray-200 hover:bg-gray-100">
                   <td className="py-3 px-6 text-left text-primary">{properties.propertyName}</td>
