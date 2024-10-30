@@ -1,0 +1,12 @@
+.input{
+    @apply w-full p-3 rounded-lg bg-secondary opacity-60 text-primary border-spacing-2 my-2
+}
+
+.label {
+    @apply text-secondary font-semibold
+}
+
+.button{
+    @apply flex text-sm px-10 py-[20px] rounded-[20px]
+    cursor-pointer transition-all duration-300 hover:scale-90 font-bold text-primary justify-center bg-secondary w-1/2 mb-8
+}

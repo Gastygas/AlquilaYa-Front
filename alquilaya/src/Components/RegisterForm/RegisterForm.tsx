@@ -3,13 +3,14 @@ import { FormEvent, useEffect, useState } from 'react';
 import { validatePassword, validateEmail, validateAddress, validateConfirmPassword, validateCountry, validateDni, validateName, validatePhone } from '@/app/helpers/validation';
 import { useRouter } from 'next/navigation';
 import { registerService } from '@/services/authServices';
+import { FaGoogle } from "react-icons/fa";
 import styles from "./registerForm.module.css"
 import Link from 'next/link';
 
 
 const RegisterForm = () => {
   const initialData = { email: "", password: "", address: "", country: "", dni: "", name: "", phone: "", surname: "", confirmPassword: "" };
-  const initialDirty = { email: false, password: false, address: false, name: false, phone: false, surname: false, confirmPassword: false };
+  const initialDirty = { email: false, password: false, address: false,country: false, dni: false, name: false, phone: false, surname: false, confirmPassword: false };
 
   const router = useRouter()
   const [data, setData] = useState(initialData);
@@ -103,7 +104,7 @@ console.log(response)
             value={data.country}
             onBlur={handleBlur}
           />
-          {dirty.address ? <p className='text-red-600 text-sm'>{error.country}</p> : null}
+          {dirty.country ? <p className='text-red-600 text-sm'>{error.country}</p> : null}
           <input
             type='text'
             id='dni'
@@ -114,7 +115,7 @@ console.log(response)
             value={data.dni}
             onBlur={handleBlur}
           />
-          {dirty.address ? <p className='text-red-600 text-sm'>{error.dni}</p> : null}
+          {dirty.dni ? <p className='text-red-600 text-sm'>{error.dni}</p> : null}
         </div>
         <div className='gap-4 '>
           <input
@@ -166,8 +167,10 @@ console.log(response)
 
         </div>
       </div>
-      <button className={styles.submitButton}>Registrate</button>
+      <button className={styles.submitButton}>Regístrate</button>
+      <Link href="http://localhost:3001/auth/googleLogin"><button className={styles.googleButton}>Iniciar sesión con <FaGoogle color="secondary" size={15}/></button></Link>
       <Link href="/login"><p className=" pt-12 text-sm font-bold underline text-primary hover:text-secondary transition-all">¿Ya tienes una cuenta? Ingresa</p></Link>
+     
     </form>
   );
 };

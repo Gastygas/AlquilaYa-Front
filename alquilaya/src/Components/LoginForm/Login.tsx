@@ -1,41 +1,41 @@
 "use client";
 import styles from "./login.module.css"
-import { FormEvent, /*useContext*/ useEffect, useState } from 'react';
+import { FormEvent, useContext, /*useContext*/ useEffect, useState } from 'react';
 import { validatePassword, validateEmail } from '@/app/helpers/validation';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { loginService } from '@/services/authServices';
 import { FaGoogle } from "react-icons/fa";
-//import AuthContext from '@/contexts/authContext'; //RUTA DEL ESTADO GLOBAL
+import AuthContext from "../contexts/authContext";
+
 
 
 
 const LoginForm = () => {
-  //const {setUser} = useContext(AuthContext);
-
+  const {setUser} = useContext(AuthContext);
   const router = useRouter()
   const initialData = { email: "", password: "" };
-  const initialDirty = { email: false, password: false };
-
 
   const [data, setData] = useState(initialData);
   const [error, setError] = useState(initialData)
-  const [dirty, setDirty] = useState(initialDirty)
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-
-    const response = await loginService(`http://localhost:3001/auth/signin`, data)
+    const apiurl = process.env.NEXT_PUBLIC_BACK_URL;
+    const response = await loginService(apiurl + "/auth/signin", data)
     if (response.succes) {
       alert("Inicio de sesión exitoso");
-       //setUser(response);
-      //router.back();
-      router.push('/');
+       setUser(response);
+
+       if (response.user.isAdmin) {
+        router.push('/admin'); // Redirigir a la página de administración
+      } else {
+        router.push('/'); // Redirigir a la página principal
+      }
     } else {
       alert("Usuario o credenciales incorrectas");
-    };
+    }
   };
-
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log("handleChange");
@@ -43,11 +43,6 @@ const LoginForm = () => {
       ...data, [e.target.name]: e.target.value
     });
   };
-
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    setDirty({ ...dirty, [e.target.name]: true });
-  };
-
 
   useEffect(() => {
     setError({
@@ -80,7 +75,7 @@ const LoginForm = () => {
         className={styles.input}
       />
 
-      <button className={styles.submitButton} /*onClick={handleSubmit}*/>
+      <button className={styles.submitButton} >
         Ingresar
       </button>
       

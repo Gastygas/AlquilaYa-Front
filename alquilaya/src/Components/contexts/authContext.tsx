@@ -1,26 +1,29 @@
 "use client";
-import { IUserLogin } from "@/Interfaces/IUserLogin";
-import { Children, createContext, useEffect, useState } from "react";
+import { IUserSession } from "@/Interfaces/IUserSesion";
+import {createContext, useEffect, useState } from "react";
 
 interface AuthProviderProps {
     children: React.ReactNode;
 }
 
 interface AuthContextprops {
-    user: IUserLogin | null;
-    setUser: (user: IUserLogin | null) => void;
+    user: IUserSession | null;
+    setUser: (user: IUserSession | null) => void;
     logout:() => void;
+    loading: boolean;
 }
 
-const AuthContext = createContext<AuthContextprops>({
+ const AuthContext = createContext<AuthContextprops>({
     user: null,
     setUser: () => {},
     logout: () => {},
+    loading: true
 });
 
 export const AuthProvider = ({ children }: AuthProviderProps
 ) => {
-    const [user, setUser] = useState<IUserLogin | null>(null);
+    const [user, setUser] = useState<IUserSession | null>(null);
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
         if (user) {
             localStorage.setItem("user", JSON.stringify(user));
@@ -33,6 +36,7 @@ export const AuthProvider = ({ children }: AuthProviderProps
         if (localUser) {
             setUser(JSON.parse(localUser));
         }
+        setLoading(false);
     }, []);
 
     const logout = () => {
@@ -41,7 +45,7 @@ export const AuthProvider = ({ children }: AuthProviderProps
     };
 
     return (
-        <AuthContext.Provider value={{ user, setUser, logout }}>
+        <AuthContext.Provider value={{ user, setUser, logout, loading}}>
             {children}
         </AuthContext.Provider>
     )
