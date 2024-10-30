@@ -13,7 +13,7 @@ const MenuHeader = () => {
             <Link href="/nosotros"><li className={styles.itemsnav}> Sobre nosotros</li></Link>
             <Link href="/propiedades"><li className={styles.itemsnav}>Propiedades</li></Link>
             <Link href="/faq"><li className={styles.itemsnav}>FAQ</li></Link>
-            <Link href="/sube-tu-propiedad/step-1"><li className={styles.itemsnav}>Sube tu propiedad</li></Link>
+            <Link href="/sube-tu-propiedad/paso-1"><li className={styles.itemsnav}>Sube tu propiedad</li></Link>
           </ul>
         </div>
   )};return (
