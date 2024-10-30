@@ -4,7 +4,6 @@ import UserHistory from '@/Components/UserHistory/UserHistory'
 import UserInformationCard from '@/Components/UserInformationCard/UserInformationCard'
 import UserPropertiesFav from '@/Components/UserPropertiesFav/UserPropertiesFav'
 import UserPropertiesHistory from '@/Components/UserPropertiesHistory/UserPropertiesHistory'
-import Image from 'next/image'
 
 const page = () => {
   return (

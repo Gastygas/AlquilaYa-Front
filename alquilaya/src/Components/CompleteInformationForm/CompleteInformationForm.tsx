@@ -3,13 +3,14 @@ import { FormEvent, useEffect, useState } from 'react';
 import { validatePassword, validateEmail, validateAddress, validateConfirmPassword, validateCountry, validateDni, validateName, validatePhone } from '@/app/helpers/validation';
 import { useRouter } from 'next/navigation';
 import { registerService } from '@/services/authServices';
-import { FaGoogle } from "react-icons/fa";
-import styles from "./registerForm.module.css"
+import styles from "./complete.module.css"
 import Link from 'next/link';
+import { IUser } from '@/Interfaces/IUser';
+import { getUserData } from '@/services/dataUserService';
 
 
-const RegisterForm = () => {
-  const initialData = { email: "", password: "", address: "", country: "", dni: "", name: "", phone: "", surname: "", confirmPassword: "" };
+const CompleteInformationForm = () => {
+  const initialData = { email: "", password: "", address: "", country: "", dni: "", name: "", phone: "", surname: "", confirmPassword: ""};
   const initialDirty = { email: false, password: false, address: false,country: false, dni: false, name: false, phone: false, surname: false, confirmPassword: false };
 
   const router = useRouter()
@@ -20,7 +21,7 @@ const RegisterForm = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-
+//Lógica formulario
     const response: any = await registerService(`http://localhost:3001/auth/signup`, data)
 console.log(response)
     if (response.succes) {
@@ -33,7 +34,6 @@ console.log(response)
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // console.log("handleChange");
     setData({
       ...data, [e.target.name]: e.target.value
     });
@@ -57,6 +57,21 @@ console.log(response)
     });
   }, [data]);
 
+  //Logica fetch
+  const [userData, setUserData] = useState<IUser | null>(null);
+
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const data = await getUserData();
+      if (data) {
+        setUserData(data);
+      } 
+    };
+
+    fetchUserData();
+  }, []);
+
   return (
     <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center'>
       <div className='grid grid-cols-2 gap-4'>
@@ -65,7 +80,7 @@ console.log(response)
             type='text'
             id='name'
             name='name'
-            placeholder='Nombre'
+            placeholder={userData?.name}
             className={styles.input}
             onChange={handleChange}
             value={data.name}
@@ -76,7 +91,7 @@ console.log(response)
             type='text'
             id='surname'
             name='surname'
-            placeholder='Apellido'
+            placeholder={userData?.surname}
             className={styles.input}
             onChange={handleChange}
             value={data.surname}
@@ -133,7 +148,7 @@ console.log(response)
             type='email'
             id='email'
             name='email'
-            placeholder='Email'
+            placeholder={userData?.email}
             className={styles.input}
             onChange={handleChange}
             value={data.email}
@@ -167,12 +182,9 @@ console.log(response)
 
         </div>
       </div>
-      <button className={styles.submitButton}>Regístrate</button>
-      <Link href="http://localhost:3001/auth/googleLogin"><button className={styles.googleButton}>Iniciar sesión con <FaGoogle color="secondary" size={15}/></button></Link>
-      <Link href="/login"><p className=" pt-12 text-sm font-bold underline text-primary hover:text-secondary transition-all">¿Ya tienes una cuenta? Ingresa</p></Link>
-     
+      <button className={styles.submitButton}>Completa tus datos</button>
     </form>
   );
 };
 
-export default RegisterForm;
+export default CompleteInformationForm;
