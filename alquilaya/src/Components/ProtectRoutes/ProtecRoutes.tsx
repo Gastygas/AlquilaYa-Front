@@ -3,6 +3,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import AuthContext from "../contexts/authContext";
+import Loader from "../Loader/Loader";
 
 const ProtectedRoute = ({ children, adminOnly = false }: { children: React.ReactNode, adminOnly?: boolean }) => {
   const router = useRouter();
@@ -23,7 +24,7 @@ const ProtectedRoute = ({ children, adminOnly = false }: { children: React.React
   }, [user, loading, router, adminOnly]);
 
   if (isLoading || loading) {
-    return <p>Verificando autenticación...</p>;
+    return <Loader/>;
   }
   return <>{children}</>;
 };

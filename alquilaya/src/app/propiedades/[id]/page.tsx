@@ -82,7 +82,10 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
           </div>
         </div>
         <div className='bg-primary rounded-2xl mb-28'>
-          <BookForm/>
+          <BookForm
+            propertyId={property.id}
+            propertyName={property.propertyName}
+            unitPrice={property.price}/>
         </div>
       </div>
     </div>
