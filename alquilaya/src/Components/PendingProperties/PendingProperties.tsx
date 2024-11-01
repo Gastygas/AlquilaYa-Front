@@ -87,7 +87,7 @@ const PendingPropertiesTable: React.FC<PendingPropertiesTableProps> = ({ propert
             <td className="py-3 px-6 text-left text-primary">{property.propertyName}</td>
             <td className="py-3 px-6 text-left">{property.address}</td>
             <td className="py-3 px-6 text-center">{property.price}</td>
-            <td className="py-3 px-6 text-center">{property.propertyStatus}</td>
+            <td className="py-3 px-6 text-center">{property.propertyStatus === 'pending'? 'pendiente': ''}</td>
             <td className="border px-4 py-2 text-center">
               <button className="bg-primary text-secondary px-4 py-2 rounded font-semibold">
                 Ver más

@@ -23,14 +23,14 @@ const PropertiesHistory: React.FC<PropertyTableProps> = ({properties}) => {
             </tr>
           </thead>
           <tbody className="text-gray-600 text-sm font-light">
-            {properties.map((properties: IProperty, i: any) => {
+            {properties.filter((prop) => prop.propertyStatus !== 'pending').map((properties: IProperty, i: any) => {
               return (
                 <tr key={i} className="border-b border-gray-200 hover:bg-gray-100">
                   <td className="py-3 px-6 text-left text-primary">{properties.propertyName}</td>
                   <td className="py-3 px-6 text-left">{properties.address}</td>
                   <td className="py-3 px-6 text-center">{properties.city}</td>
                   <td className="py-3 px-6 text-center">{properties.price}</td>
-                  <td className="py-3 px-6 text-center">{properties.propertyStatus}</td>
+                  <td className="py-3 px-6 text-center">{properties.propertyStatus === 'approved'? "aprobado" : "cancelada" }</td>
                   <td className="border px-4 py-2 text-center">
                     <div className="flex justify-center">
                     <button className="bg-primary text-secondary px-4 py-2 rounded font-semibold">
