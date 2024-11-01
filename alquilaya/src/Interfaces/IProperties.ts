@@ -17,7 +17,7 @@ export interface IProperty {
     pool: boolean;
     parking: boolean;
     description: string;
-    propertyStatus: "pending" | "canceled" | "maintenance" | "approved";
+    propertyStatus: "pending" | "cancelled" | "maintenance" | "approved";
     photos: string;
     //bookings: Booking[];
     //specialprice: SpecialPrice[];
