@@ -22,7 +22,6 @@ const RegisterForm = () => {
     e.preventDefault()
 
     const response: any = await registerService(`http://localhost:3001/auth/signup`, data)
-console.log(response)
     if (response.succes) {
       alert("Registro exitoso");
       router.back();
