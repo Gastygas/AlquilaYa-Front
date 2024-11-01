@@ -18,7 +18,15 @@ const page = async() => {
     
         const usersData = await usersRes.json();
         const propertiesData:IProperty[] = await propertiesRes.json();
-        const properties:IProperty[] = propertiesData.filter(prop => prop.propertyStatus !== 'cancelled')
+        const properties:IProperty[] = propertiesData.filter(prop => { 
+            if( prop.propertyStatus !== 'pending'){
+                if(prop.propertyStatus !== 'cancelled'){
+                }
+                if(prop.propertyStatus !== 'maintenance'){
+                    return prop
+                }
+            }     
+        })
         
     return (
         <ProtectedRoute adminOnly={true}>
