@@ -1,5 +1,6 @@
 "use client"
 import IProperty from "@/Interfaces/IProperties";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa"
 
@@ -10,14 +11,13 @@ const FavButton = ({propertyId}:any) => {
     const [properties, setProperties] = useState<IProperty>();
     const [token, setToken] = useState<string | null>(null);
 
+
     useEffect(() => {
         const storedData = localStorage.getItem("user");
         if (storedData) {
           const parsedData = JSON.parse(storedData);
           setToken(parsedData.token);
-        } else {
-          alert("No tienes permiso para esto");
-        }
+        } 
       }, []);
 
     const fetchProperties = async (propertyId: string) => {
@@ -25,13 +25,15 @@ const FavButton = ({propertyId}:any) => {
           method: "GET",
           cache: 'no-store',
         });
-        if (!res.ok) throw new Error('Error al obtener las propiedades');
+        if (!res.ok) throw new Error('Error al obtener la propiedad');
         const data = await res.json();
         setProperties(data);
       };
     
       const handleFavProperty = async (e: React.MouseEvent, propertyId: string) => {
         e.preventDefault();
+
+
         const res = await fetch(`${url}/users/favourite/property/add/${propertyId}`, {
           method: "PATCH",
           headers: {
@@ -40,7 +42,7 @@ const FavButton = ({propertyId}:any) => {
           },
         });
         if (!res.ok) throw new Error('Error al cambiar el estado de la propiedad');
-        alert("Propiedad aprobada");
+        alert("Propiedad agregada");
         fetchProperties(propertyId);
       };
 

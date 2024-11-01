@@ -5,8 +5,7 @@ import React from 'react'
 const page = () => {
   return (
     <div>
-      {/* <Header /> */}
-
+       <Header /> 
       <div className="container">
         <div className="padding-section">
           <h1 className="pb-12 text-primary">Regístrate</h1>
