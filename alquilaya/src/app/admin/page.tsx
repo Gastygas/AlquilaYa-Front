@@ -21,9 +21,9 @@ const page = async() => {
         const properties:IProperty[] = propertiesData.filter(prop => { 
             if( prop.propertyStatus !== 'pending'){
                 if(prop.propertyStatus !== 'cancelled'){
-                }
-                if(prop.propertyStatus !== 'maintenance'){
-                    return prop
+                    if(prop.propertyStatus !== 'maintenance'){
+                        return prop
+                    }
                 }
             }     
         })
