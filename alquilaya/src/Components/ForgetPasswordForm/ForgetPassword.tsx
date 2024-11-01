@@ -8,6 +8,7 @@ import { forgotPasswordService, loginService } from '@/services/authServices';
 
 const ForgetPasswordForm = () => {
   const initialData = { email: ""};
+  const router = useRouter()
 
   const [data, setData] = useState(initialData);
   const [error, setError] = useState(initialData)
@@ -18,6 +19,7 @@ const ForgetPasswordForm = () => {
     const response = await forgotPasswordService(apiurl + `/auth/forgot/password/${data.email}`)
     if (response.success) {
       alert("Porfavor, revisa tu mail. Puede demorar unos minutos, sea paciente y no vuelva a mandar otro mail sino suspenderemos su cuenta");
+      router.push('/')
       }
     else {
       alert("Usuario o credenciales incorrectas");

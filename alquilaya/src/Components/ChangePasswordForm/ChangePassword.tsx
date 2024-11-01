@@ -4,15 +4,15 @@ import { FormEvent, useEffect, useState } from 'react';
 import { validatePassword, validateConfirmPassword } from '@/app/helpers/validation';
 import { useRouter, useSearchParams } from "next/navigation";
 import { changePasswordService, loginService } from '@/services/authServices';
-import { IUser } from "@/Interfaces/IUser";
 
 const ChangePasswordForm = () => {
   const apiurl = process.env.NEXT_PUBLIC_BACK_URL;
-  const initialUser = {name:'',surname:'',userPhoto:'',email:''}
+  const initialUserAndEmail = {name:'',surname:'',userPhoto:'',email:'',idEmail:''}
   const searchParams= useSearchParams()
   const email = searchParams.get('email')
+  const idEmail = searchParams.get('idEmail')
   const router = useRouter()
-  const [user, setUser] = useState(initialUser);
+  const [userAndEmail, setUserAndEmail] = useState(initialUserAndEmail);
 
   const initialData = {password: "",confirmPassword: "",email};
   const initialDirty = {password:false,confirmPassword:false}
@@ -20,23 +20,36 @@ const ChangePasswordForm = () => {
   const [error, setError] = useState(initialData)
   const [dirty, setDirty] = useState(initialDirty);
 
-  const fetchUserByEmail = async () => { 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/users/email/${email}`, {
+  const fetchEmailAndIdEmail = async () => { 
+    
+      const responseEmail = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/email/${idEmail}`, {
         method: "GET",
         cache: "no-store"
       });
-      if (!response.ok) {
+      if (!responseEmail.ok) {
         alert("No puedes acceder a esta ruta de esta manera");
         router.push('/');
         return;
       }
-      const userData = await response.json();
-      setUser(userData); // Almacena el usuario en el estado
+      const emailData = await responseEmail.json();
+
+      const responseUser = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/users/email/${email}`, {
+        method: "GET",
+        cache: "no-store"
+      });
+      if (!responseUser.ok) {
+        alert("No puedes acceder a esta ruta de esta manera");
+        router.push('/');
+        return;
+      }
+      const userData = await responseUser.json();
+
+      setUserAndEmail({...userData,emailData}); // Almacena el usuario e idEmail en el estado
     
   };
   useEffect(() => {
-    fetchUserByEmail(); // Llama a la función cuando el componente se monta
-  }, [email]);
+    fetchEmailAndIdEmail(); // Llama a la función cuando el componente se monta
+  }, [email,idEmail]);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -70,7 +83,7 @@ const ChangePasswordForm = () => {
   return (
     <form onSubmit={handleSubmit} className='flex flex-col gap-4 w-full md:w-1/2 justify-center items-center'>
 
-      <p className="text-sm">Que gusto verte de nuevo {user.name} {user.surname}. </p>
+      <p className="text-sm">Que gusto verte de nuevo {userAndEmail.name} {userAndEmail.surname}. </p>
       <p className="text-sm">Ingresa tu nueva contraseña en el formulario.</p>
 
       <input type='password'
