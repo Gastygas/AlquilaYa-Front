@@ -3,6 +3,7 @@ import { Figtree } from "next/font/google";
 import "./globals.css";
 import Footer from "@/Components/Footer/Footer";
 import { AuthProvider } from "@/Components/contexts/authContext";
+import { ToastContainer } from "react-toastify";
 
 
 const primaryFont = Figtree({
@@ -28,6 +29,7 @@ export default function RootLayout({
     <AuthProvider>
     <html lang="es" className={`${primaryFont.variable}`}>
       <body className={primaryFont.className}>
+      <ToastContainer />
         <main>{children}</main>
         <Footer />
       </body>

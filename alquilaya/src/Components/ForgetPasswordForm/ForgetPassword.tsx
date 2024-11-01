@@ -46,7 +46,7 @@ const ForgetPasswordForm = () => {
       <input type='email'
         id='email'
         name='email'
-        placeholder='mail'
+        placeholder='Email'
         onChange={handleChange}
         value={data.email}
 

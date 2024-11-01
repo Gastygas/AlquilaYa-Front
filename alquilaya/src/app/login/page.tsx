@@ -8,7 +8,7 @@ const page = () => {
       <Header/>
     <div className='container'>
       <div className='padding-section'>
-      <h1 className="pb-12 text-primary">Iniciar sesión</h1>
+      <h1 className="pb-6 text-primary">Iniciar sesión</h1>
         <LoginForm />
       </div>
     </div>
