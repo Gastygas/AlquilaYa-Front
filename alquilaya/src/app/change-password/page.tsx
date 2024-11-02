@@ -1,15 +1,17 @@
+import ChangePasswordForm from '@/Components/ChangePasswordForm/ChangePassword'
 import Header from '@/Components/Header/Header'
-import LoginForm from '@/Components/LoginForm/Login'
+import { useSearchParams } from 'next/navigation'
 import React from 'react'
 
 const page = () => {
+  
   return (
     <div>
       <Header/>
     <div className='container'>
       <div className='padding-section'>
-      <h1 className="pb-6 text-primary">Iniciar sesión</h1>
-        <LoginForm />
+      <h1 className="pb-12 text-primary">Cambia tu contraseña</h1>
+        <ChangePasswordForm/>
       </div>
     </div>
     </div>

@@ -2,6 +2,7 @@ import HeaderAdmin from '@/Components/HeaderAdmin/HeaderAdmin'
 import styles from "./admin.module.css"
 import Link from 'next/link'
 import ProtectedRoute from '@/Components/ProtectRoutes/ProtecRoutes';
+import IProperty from '@/Interfaces/IProperties';
 
 const page = async() => {
 
@@ -16,8 +17,17 @@ const page = async() => {
         if (!propertiesRes.ok) throw new Error("Error al obtener las propiedades");
     
         const usersData = await usersRes.json();
-        const propertiesData = await propertiesRes.json();
-
+        const propertiesData:IProperty[] = await propertiesRes.json();
+        const properties:IProperty[] = propertiesData.filter(prop => { 
+            if( prop.propertyStatus !== 'pending'){
+                if(prop.propertyStatus !== 'cancelled'){
+                    if(prop.propertyStatus !== 'maintenance'){
+                        return prop
+                    }
+                }
+            }     
+        })
+        
     return (
         <ProtectedRoute adminOnly={true}>
         <div>
@@ -33,7 +43,7 @@ const page = async() => {
                         </div>
                         <div className='bg-primary p-6 rounded-lg'>
                             <h3 className='text-white text-center'>Propiedades activas</h3>
-                            <h4 className='text-white py-4 text-center'>{propertiesData.length} Propiedades</h4>
+                            <h4 className='text-white py-4 text-center'>{properties.length} Propiedades</h4>
                             <Link href="/admin/propiedades"><button className={styles.button}>Ver Más</button></Link>
                         </div>
                         <div className='bg-primary p-6 rounded-lg'>
@@ -41,10 +51,6 @@ const page = async() => {
                             <h4 className='text-white py-4 text-center'>$500 USD</h4>
                             <Link href="/admin/transacciones"><button className={styles.button}>Ver Más</button></Link>
                         </div>
-                        
-                        
-
-
                     </div>
                 </div>
             </div>

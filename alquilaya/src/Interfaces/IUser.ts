@@ -12,4 +12,5 @@ export interface IUser{
     password:string,
     isAdmin: boolean,
     properties: IProperty[]; 
+    favoriteProperties: string[];
 }
