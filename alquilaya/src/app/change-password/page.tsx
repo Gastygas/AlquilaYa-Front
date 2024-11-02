@@ -1,3 +1,5 @@
+"use client";
+
 import ChangePasswordForm from '@/Components/ChangePasswordForm/ChangePassword'
 import Header from '@/Components/Header/Header'
 import React from 'react'
