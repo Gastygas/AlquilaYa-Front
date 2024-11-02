@@ -5,9 +5,12 @@ import { validatePassword, validateConfirmPassword } from '@/app/helpers/validat
 import { useRouter, useSearchParams } from "next/navigation";
 import { changePasswordService, loginService } from '@/services/authServices';
 
-const ChangePasswordForm = ({email,idEmail} : any) => {
+const ChangePasswordForm = () => {
   const apiurl = process.env.NEXT_PUBLIC_BACK_URL;
   const initialUserAndEmail = {name:'',surname:'',userPhoto:'',email:'',idEmail:''}
+  const searchParams= useSearchParams()
+  const email = searchParams.get('email')
+  const idEmail = searchParams.get('idEmail')
   const router = useRouter()
   const [userAndEmail, setUserAndEmail] = useState(initialUserAndEmail);
 
