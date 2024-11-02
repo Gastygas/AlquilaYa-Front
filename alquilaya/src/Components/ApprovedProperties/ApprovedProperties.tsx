@@ -76,7 +76,7 @@ const ApprovedProperties:  React.FC<PropertyTableProps> = ({ properties: initial
                   <td className="py-3 px-6 text-center">{properties.city}</td>
                   <td className="py-3 px-6 text-center">{properties.price}</td>
                   <td className="py-3 px-6 text-center">{properties.propertyStatus === 'approved' ? 
-                   <p className="text-green-600 rounded uppercase text-sm" >aprobada</p> : <p className=" text-sm text-red-600 rounded uppercase">cancelada</p>}</td>
+                   <p className="text-green-600 rounded uppercase text-sm" >activa</p> : <p className=" text-sm text-red-600 rounded uppercase">cancelada</p>}</td>
                   <td className="border px-4 py-2 text-center">
                     <div className="flex justify-center">
                       <button className="bg-primary text-secondary px-4 py-2 rounded font-semibold">

@@ -41,8 +41,11 @@ const FavButton = ({propertyId}:any) => {
             'Content-Type': 'application/json',
           },
         });
-        if (!res.ok) throw new Error('Error al cambiar el estado de la propiedad');
-        alert("Propiedad agregada");
+        if (!res.ok) {
+          const err = await res.json();
+          return alert(`${err.message === "This is your property, you can not do this with yours"? "No podes agregar a favoritos tu propia propiedad" : "Ya tenes esta propiedad en favoritos" }`)
+        };
+        alert("Propiedad agregada a favoritos");
         fetchProperties(propertyId);
       };
 

@@ -1,5 +1,5 @@
 "use client";
-import styles from "./forgetPass.module.css"
+import styles from "./ForgetPass.module.css"
 import { FormEvent, useContext, /*useContext*/ useEffect, useState } from 'react';
 import { validateEmail } from '@/app/helpers/validation';
 import { useRouter } from 'next/navigation';
