@@ -1,5 +1,6 @@
+import ForgetPasswordForm from '@/Components/ForgetPasswordForm/ForgetPassword'
 import Header from '@/Components/Header/Header'
-import LoginForm from '@/Components/LoginForm/Login'
+
 import React from 'react'
 
 const page = () => {
@@ -8,8 +9,8 @@ const page = () => {
       <Header/>
     <div className='container'>
       <div className='padding-section'>
-      <h1 className="pb-6 text-primary">Iniciar sesión</h1>
-        <LoginForm />
+      <h1 className="pb-12 text-primary">Recuperar contraseña</h1>
+        <ForgetPasswordForm/>
       </div>
     </div>
     </div>
