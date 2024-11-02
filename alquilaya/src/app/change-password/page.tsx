@@ -12,8 +12,9 @@ const page = () => {
     <div className='container'>
       <div className='padding-section'>
       <h1 className="pb-12 text-primary">Cambia tu contraseña</h1>
-      <Suspense fallback={<div>Loading...</div>}></Suspense>
+      <Suspense fallback={<div>Loading...</div>}>
         <ChangePasswordForm/>
+      </Suspense>
       </div>
     </div>
     </div>
