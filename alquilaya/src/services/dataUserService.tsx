@@ -34,3 +34,16 @@ export const getUserData = async (): Promise<IUser | null> => {
     return null;
   }
 };
+
+export const getPropertyById = async (id: string) => {
+  try {
+    const response = await fetch(`http://localhost:3001/property/${id}`); 
+    if (!response.ok) {
+      throw new Error('Error al obtener la propiedad'); 
+    }
+    return await response.json();
+  } catch (error) {
+    console.error(error); 
+    return null; 
+  }
+};

@@ -4,6 +4,8 @@
 import { useState, useEffect } from 'react';
 import styles from './Pending.module.css';
 import IProperty from '@/Interfaces/IProperties';
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 interface PendingPropertiesTableProps {
   properties: IProperty[];
@@ -14,6 +16,8 @@ const url = "http://localhost:3001/property";
 const PendingPropertiesTable: React.FC<PendingPropertiesTableProps> = ({ properties: initialProperties }) => {
   const [properties, setProperties] = useState<IProperty[]>(initialProperties);
   const [token, setToken] = useState<string | null>(null);
+  const notifyApproveProperty = () => toast.success("Propiedad aprobada", { autoClose: 3000 });
+  const notifydeclineProperty = () => toast.success("Propiedad Denegada exitosamente", { autoClose: 3000 });
 
   useEffect(() => {
     const storedData = localStorage.getItem("user");
@@ -45,7 +49,7 @@ const PendingPropertiesTable: React.FC<PendingPropertiesTableProps> = ({ propert
       },
     });
     if (!res.ok) throw new Error('Error al cambiar el estado de la propiedad');
-    alert("Propiedad aprobada");
+    notifyApproveProperty();
     fetchProperties();
   };
 
@@ -59,7 +63,7 @@ const PendingPropertiesTable: React.FC<PendingPropertiesTableProps> = ({ propert
       },
     });
     if (!res.ok) throw new Error('Error al cambiar el estado de la propiedad');
-    alert("Propiedad Denegada exitosamente");
+    notifydeclineProperty();
     fetchProperties();
   };
 
