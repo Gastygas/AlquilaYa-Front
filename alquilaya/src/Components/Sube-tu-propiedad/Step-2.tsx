@@ -6,8 +6,9 @@ import { useRouter } from "next/navigation";
 
 
 const Step2 = () => {
+    const selected: null|any = null
     const router = useRouter(); // Instanciamos el enrutador para poder navegar entre pasos
-    const [isSelected, setIsSelected] = useState(null);
+    const [isSelected, setIsSelected] = useState(selected);
 
     const serviceData = [
         { icon: '/llave-de-casa.png', text: "Una vivienda completa" },

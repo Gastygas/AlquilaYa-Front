@@ -1,7 +1,7 @@
 import React from 'react';
 import { TbArrowBadgeRightFilled, TbArrowBadgeRight } from "react-icons/tb";
 
-const ButtonCyan = ({ onClick }: { onClick: () => void }) => {
+const ButtonCyan:any = ({ onClick }: { onClick: () => void }) => {
     return (
         <button
             onClick={onClick}
