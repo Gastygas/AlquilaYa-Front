@@ -9,8 +9,9 @@ import { useRouter } from 'next/navigation'
 
 
 const Step1 = () => {
+    const selected: null|any = null
     const router = useRouter()
-    const [isSelected, setIsSelected] = useState(null)
+    const [isSelected, setIsSelected] = useState(selected)
 
     const iconData = [
         { icon: <FcHome size={72} />, text: "Casa" },

@@ -6,11 +6,11 @@ const Step5 = () => {
     const [selectedImages, setSelectedImages] = useState([]);
     const maxImages = 5; 
     const maxSize = 2 * 1024 * 1024; 
-    const handleImageChange = (event) => {
+    const handleImageChange = (event:any) => {
         const files = Array.from(event.target.files);
         
         
-        const validFiles = files.filter(file => file.size <= maxSize); // Filtra el tamaño de las fotos
+        const validFiles:any = files.filter((file:any) => file.size <= maxSize); // Filtra el tamaño de las fotos
 
         if (validFiles.length > maxImages) {
             alert(`Solo puedes subir un máximo de ${maxImages} imágenes.`);
