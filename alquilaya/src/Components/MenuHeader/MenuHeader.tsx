@@ -20,7 +20,7 @@ const MenuHeader = () => {
 
     <div className={styles.container}>
     <ul className={styles.menu}>
-      <Link href="/nosotros"><li className={styles.itemsnav}> Sobre nosotros</li></Link>
+      <Link href="/nosotros"><li className={styles.itemsnav}> Sobre Nosotros</li></Link>
       <Link href="/propiedades"><li className={styles.itemsnav}>Propiedades</li></Link>
       <Link href="/faq"><li className={styles.itemsnav}>FAQ</li></Link>
     </ul>
