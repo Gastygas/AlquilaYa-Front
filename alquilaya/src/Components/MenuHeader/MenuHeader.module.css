@@ -1,3 +1,11 @@
 .itemsnav{
     @apply px-10 py-1 cursor-pointer transition duration-300
     }
+
+    .container{
+        @apply flex flex-row justify-around items-center
+    }
+
+    .menu{
+       @apply text-sm inline-flex
+    }

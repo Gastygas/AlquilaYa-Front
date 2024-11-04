@@ -8,8 +8,8 @@ const MenuHeader = () => {
     const { user } = useContext(AuthContext);
     if(user?.user) {
   return (
-    <div className="flex flex-row justify-around items-center">
-          <ul className="text-sm inline-flex" style={{ color:'var(--primary-color)'}}>
+    <div className={styles.container}>
+          <ul className={styles.menu}>
             <Link href="/nosotros"><li className={styles.itemsnav}> Sobre nosotros</li></Link>
             <Link href="/propiedades"><li className={styles.itemsnav}>Propiedades</li></Link>
             <Link href="/faq"><li className={styles.itemsnav}>FAQ</li></Link>
