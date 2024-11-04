@@ -1,18 +1,17 @@
-import mockProperties from '@/mocks/properties';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import React from 'react'
 import { FaMapLocationDot, FaPeopleRoof } from "react-icons/fa6";
 import { IoBed } from "react-icons/io5";
 import { LiaToiletSolid } from "react-icons/lia";
-import { FaWifi, FaParking } from "react-icons/fa";
+import { FaWifi, FaParking, FaHeart } from "react-icons/fa";
 import Header from '@/Components/Header/Header';
 import IProperty from '@/Interfaces/IProperties';
 import { TbAirConditioning } from "react-icons/tb";
 import { GiHeatHaze } from "react-icons/gi";
 import { MdOutlinePool } from "react-icons/md";
 import BookForm from '@/Components/BookForm/BookForm';
-
+import FavButton from '@/Components/FavButton/FavButton';
 
 
 const getProductById = async (id: string) => {
@@ -29,7 +28,6 @@ const getProductById = async (id: string) => {
 };
 
 const ProductDetail = async ({ params }: { params: { id: string } }) => {
-
 
   const property = await getProductById(params.id)
 
@@ -79,6 +77,7 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
                 <FaParking size={20} color="var(--darkBlue)" /><h4>Parqueadero</h4>
               </div> : <></>}
             </div>
+            <FavButton propertyId={property.id} properties={property}/>
           </div>
         </div>
         <div className='bg-primary rounded-2xl mb-28'>

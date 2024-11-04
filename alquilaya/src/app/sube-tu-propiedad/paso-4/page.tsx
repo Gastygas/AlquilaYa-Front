@@ -1,5 +1,5 @@
 import React from 'react'
-import Step4 from '@/Components/Sube-tu-propiedad/Step-4'
+import Step4 from '@/Components/Sube-tu-propiedad/Step-5'
 
 const paso4 = () => {
   return (

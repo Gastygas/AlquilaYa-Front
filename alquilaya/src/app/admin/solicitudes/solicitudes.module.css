@@ -1,6 +1,4 @@
-.primary{
-    @apply min-w-full bg-white border border-gray-200 
-}
+
 
 .button{
     @apply  flex text-sm px-10 py-[7px] rounded-[20px]

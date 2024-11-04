@@ -2,22 +2,21 @@
 import React, { useState } from "react";
 import ButtonCyan from "../ButtonCyan/ButtonCyan";
 
-const Step5 = () => {
-    const [selectedImages, setSelectedImages] = useState([]);
+const Step5: React.FC = () => {
+    const [selectedImages, setSelectedImages] = useState<File[]>([]);
     const maxImages = 5; 
     const maxSize = 2 * 1024 * 1024; 
-    const handleImageChange = (event) => {
-        const files = Array.from(event.target.files);
-        
-        
-        const validFiles = files.filter(file => file.size <= maxSize); // Filtra el tamaño de las fotos
+    
+    const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const files = Array.from(event.target.files || []); 
+        const validFiles: File[] = files.filter(file => file.size <= maxSize); // Filtra el tamaño de las fotos
 
         if (validFiles.length > maxImages) {
             alert(`Solo puedes subir un máximo de ${maxImages} imágenes.`);
             return;
         }
 
-        setSelectedImages(validFiles);
+        setSelectedImages(validFiles); 
     };
 
     const handleUploadImages = () => {
@@ -54,3 +53,4 @@ const Step5 = () => {
 };
 
 export default Step5;
+
