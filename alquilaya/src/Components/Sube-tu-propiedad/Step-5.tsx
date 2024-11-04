@@ -1,52 +1,56 @@
 "use client";
-import React from 'react';
-import ButtonCyan from '../ButtonCyan/ButtonCyan';
+import React, { useState } from "react";
+import ButtonCyan from "../ButtonCyan/ButtonCyan";
 
 const Step5 = () => {
-    const handleFinalize = async () => {
-        const data = sessionStorage.getItem("data");  // Con esto se recupera los datos almacenados en sessionStorage
+    const [selectedImages, setSelectedImages] = useState([]);
+    const maxImages = 5; 
+    const maxSize = 2 * 1024 * 1024; 
+    const handleImageChange = (event) => {
+        const files = Array.from(event.target.files);
         
-        if (data) {
-            try {
-                const response = await fetch('/preguntar/a-luis y hugo', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.parse(data),
-                });
+        
+        const validFiles = files.filter(file => file.size <= maxSize); // Filtra el tamaño de las fotos
 
-                if (response.ok) {
-                    console.log("Datos enviados correctamente");
-                } else {
-                    console.error("Error al enviar los datos:", response.statusText);
-                }
-            } catch (error) {
-                console.error("Error al enviar los datos:", error);
-            }
-        } else {
-            console.error("No hay datos para enviar");
+        if (validFiles.length > maxImages) {
+            alert(`Solo puedes subir un máximo de ${maxImages} imágenes.`);
+            return;
         }
+
+        setSelectedImages(validFiles);
+    };
+
+    const handleUploadImages = () => {
+        console.log("Imágenes listas para enviar:", selectedImages);
+        // Falta la lógica de envío al backend
     };
 
     return (
         <div className="relative bg-gray-100 min-h-screen p-10">
-            <h2 className="ml-10 mt-10 text-black mb-2">Paso 6:</h2>
-            <h1 className="mt-20 text-black text-center mb-4">Describir la propiedad</h1>
-            <div className="w-full flex justify-center">
-                <textarea
-                    placeholder="Máximo 500 caracteres"
-                    className="mt-20 flex items-center justify-center w-full max-w-4xl h-44 p-4 bg-gray-50 border-2 border-[#aa31cf] focus:border-[#2CFFDE] hover:border-[#2CFFDE] focus:outline-none transition duration-200 rounded-lg resize-none"
-                    maxLength={500}
+            <h2 className="ml-10 mt-10 text-black mb-2">Paso 4:</h2>
+            <h1 className="mt-20 text-black text-center mb-4">Subí las fotos de la propiedad</h1>
+
+            <div className="w-full flex justify-center mt-10">
+                <input
+                    type="file"
+                    multiple
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    className="bg-gray-50 border-2 border-[#aa31cf] rounded-lg p-2"
                 />
             </div>
 
-            <div className="absolute bottom-20 right-6">
-                <ButtonCyan onClick={handleFinalize} />
+            <div className="flex justify-center mt-4">
+                {selectedImages.length > 0 && (
+                    <p>{selectedImages.length} imagen(es) seleccionada(s)</p>
+                )}
+            </div>
+
+            <div className="absolute bottom-6 right-6">
+                <ButtonCyan onClick={handleUploadImages}>Cargar</ButtonCyan>
             </div>
         </div>
     );
 };
 
-export default Step5; 
-
+export default Step5;
