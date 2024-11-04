@@ -10,7 +10,7 @@ const MenuHeader = () => {
   return (
     <div className={styles.container}>
           <ul className={styles.menu}>
-            <Link href="/nosotros"><li className={styles.itemsnav}> Sobre nosotros</li></Link>
+            <Link href="/nosotros"><li className={styles.itemsnav}>Sobre nosotros</li></Link>
             <Link href="/propiedades"><li className={styles.itemsnav}>Propiedades</li></Link>
             <Link href="/faq"><li className={styles.itemsnav}>FAQ</li></Link>
             <Link href="/sube-tu-propiedad/paso-1"><li className={styles.itemsnav}>Sube tu propiedad</li></Link>
@@ -19,7 +19,7 @@ const MenuHeader = () => {
   )};return (
     <div className="flex flex-row justify-around items-center">
     <ul className="text-sm inline-flex" style={{ color:'var(--primary-color)'}}>
-      <Link href="/nosotros"><li className={styles.itemsnav}> y nadie masnosotros</li></Link>
+      <Link href="/nosotros"><li className={styles.itemsnav}>Sobre nosotros</li></Link>
       <Link href="/propiedades"><li className={styles.itemsnav}>Propiedades</li></Link>
       <Link href="/faq"><li className={styles.itemsnav}>FAQ</li></Link>
     </ul>
