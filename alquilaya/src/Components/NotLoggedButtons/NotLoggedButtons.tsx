@@ -3,7 +3,7 @@ import Button from "../Button/Button"
 
 const NotLoggedButtons = () => {
   return (
-    <div className="flex">
+    <div className="flex align-middle">
     <Link href="/register"><Button variant="transparent" className="text-primary">Regístrate</Button></Link>
     <Link href="/login"><Button variant="primary" className="font-bold text-secondary">Inicia Sesión</Button></Link>
     </div>

@@ -8,10 +8,10 @@ import NotLoggedButtons from "../NotLoggedButtons/NotLoggedButtons"
 
 const Header = () => {
   return (
-    <div className={ `${styles.navBg} py-6 z-20`}>
-      <div className={`container flex justify-between`}>
+    <div className={styles.navBg}>
+      <div className={styles.container}>
         <div>
-          <Link href="/"><Image src="/logo-hor.png" alt="logo" width={100} height={60} className=" transition-transform duration-300 hover:scale-95 w-auto h-auto"/></Link>
+          <Link href="/"><Image src="/logo-hor.png" alt="logo" width={100} height={60} className={styles.logo}/></Link>
         </div>
         <MenuHeader/>
         <LoggedButton/>

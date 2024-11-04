@@ -9,3 +9,7 @@
     .menu{
        @apply text-sm inline-flex
     }
+
+    .logo{
+        @apply transition-transform duration-300 hover:scale-95 w-auto h-auto
+    }
