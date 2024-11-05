@@ -19,20 +19,35 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const requestData = {
-      id: propertyId,
-      title: propertyName,
-      quantity: 1,
-      unit_price: unitPrice,
+    const orderData = {
+      items: [
+        {
+          id: "1234",
+          title: "Producto de ejemplo",
+          quantity: 1,
+          unit_price: 1000,
+          // Precio en tu moneda local (en este caso 1000)
+        },
+      ],
+
+      newBooking: {
+        booking: {
+          propertyId: "c04855bc-06b9-4340-bd7e-b51d11293133",
+          dateEnd: "2025-30-04",
+          dateStart: "2022-05-05",
+        },
+
+        userId: "aab3d6e7-6468-47b2-8010-8f796fb305d6",
+      },
     };
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/mercadopago`, {
+      const response = await fetch(`http://localhost:3001/mercadopago`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(requestData),
+        body: JSON.stringify(orderData),
       });
 
       const data = await response.json();
