@@ -51,10 +51,6 @@ body {
   }
 }
 
-.padding-section{
-  @apply flex  flex-col items-center my-28;
-}
-
 .container {
   @apply py-0 px-16 max-w-screen-2xl my-0 mx-auto;
 }

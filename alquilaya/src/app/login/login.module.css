@@ -2,9 +2,9 @@
     @apply container
 }
 
- /*.bars{
+ .bars{
     @apply padding-section
-} */
+} 
 
 .title{
     @apply pb-6 text-primary
