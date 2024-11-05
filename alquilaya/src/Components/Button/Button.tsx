@@ -1,4 +1,4 @@
-
+import styles from "./Button.module.css"
 interface IButton {
     children: React.ReactNode;
     className?: string;
@@ -18,9 +18,7 @@ const Button = ({ children,
         ? "bg-secondary"
         : "bg-transparent";
 
-    return <button className={`
- flex text-sm px-10 py-[7px] rounded-[20px]
-cursor-pointer transition-all duration-300 hover:scale-90 ${variantClass} active:scale-105 ${className} `}
+    return <button className={`{styles.button} ${variantClass} ${className}`}
         onClick={onClick}
     >{children}</button>
 }

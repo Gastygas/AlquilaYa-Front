@@ -2,7 +2,8 @@
 import IProperty from "@/Interfaces/IProperties";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { FaHeart } from "react-icons/fa"
+import { FaHeart } from "react-icons/fa";
+import styles from "./FavButton.module.css"
 
 const FavButton = ({propertyId}:any) => {
 
@@ -48,8 +49,7 @@ const FavButton = ({propertyId}:any) => {
       };
 
   return (
-    <div><button onClick={(e: React.MouseEvent) => handleFavProperty(e, propertyId)}className='flex text-sm px-10 py-[7px] rounded-[20px]
-    cursor-pointer transition-all duration-300 hover:scale-90 text-secondary font-semibold bg-primary mt-10'>
+    <div><button onClick={(e: React.MouseEvent) => handleFavProperty(e, propertyId)}className={styles.favButton}>
        <FaHeart/>Añadir a favoritos</button></div>
   )
 }

@@ -13,8 +13,8 @@ const Card = ({property}: ProductProps) => {
 
   return (
     <Link href={`/propiedades/${property.id}`}>
-    <div key={property.id} className="p-6 rounded-xl shadow-xl transition-all duration-300 hover:shadow-2xl relative">
-    <button className="absolute top-4 right-4 w-10 h-10 bg-[--tertiary-color] rounded-full shadow-lg flex items-center justify-center z-50">
+    <div key={property.id} className={styles.cardGrid}>
+    <button className={styles.favButton}>
       <FaHeart/>
     </button>
         <Image src={property.photos[0]} alt={property.propertyName} className="rounded-md" width={300} height={300}/>

@@ -1,0 +1,7 @@
+.box{
+    @apply container
+}
+
+.title{
+    @apply pb-12 text-primary
+}
