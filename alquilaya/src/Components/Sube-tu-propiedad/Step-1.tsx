@@ -1,7 +1,6 @@
 "use client"
 import React, { useState } from 'react'
 import ButtonCyan from '../ButtonCyan/ButtonCyan'
-import Link from 'next/link'
 import IconSelector from '../IconSelector/IconSelector'
 import { FcHome } from "react-icons/fc";
 import { PiBuildingApartmentDuotone } from "react-icons/pi";
@@ -46,7 +45,6 @@ const Step1 = () => {
 
             <div className="absolute bottom-6 right-6">
                 <ButtonCyan onClick={saveDataPage} />
-
             </div>
 
         </div>

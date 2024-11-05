@@ -1,9 +1,17 @@
 import React from 'react'
 import Step5 from '@/Components/Sube-tu-propiedad/Step-5'
+import Header from '@/Components/Header/Header';
 
 const paso5 = () => {
   return (
-    <Step5/>
+    <div className='bg-gray-100'>
+    <Header />
+      <div className='container'>
+        <div className='padding-section'>
+        <Step5 />
+        </div>
+      </div>
+    </div>
   )
 }
 

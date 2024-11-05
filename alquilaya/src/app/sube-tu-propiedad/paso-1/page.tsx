@@ -12,7 +12,6 @@ const description = () => {
         </div>
       </div>
     </div>
-
   )
 }
 

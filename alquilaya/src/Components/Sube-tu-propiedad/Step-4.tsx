@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import ButtonCyan from "../ButtonCyan/ButtonCyan";
 import { useRouter } from "next/navigation";
+import ButtonCyanBack from "../ButtonCyan/ButtonCyanBack";
 
 const Step4: React.FC = () => {
     const router = useRouter();
@@ -20,6 +21,9 @@ const Step4: React.FC = () => {
         data.petFriendly = petFriendly;
         sessionStorage.setItem("data", JSON.stringify(data));
         router.push("/sube-tu-propiedad/paso-5");
+    };
+    const backPage = () => {
+        router.push('/sube-tu-propiedad/paso-3')
     };
 
     return (
@@ -98,6 +102,9 @@ const Step4: React.FC = () => {
 
                     <div className="absolute bottom-6 right-6">
                         <ButtonCyan onClick={saveDataPage}>Guardar y Continuar</ButtonCyan>
+                    </div>
+                    <div className="absolute bottom-6 left-6">
+                        <ButtonCyanBack onClick={backPage} />
                     </div>
                 </form>
             </div>

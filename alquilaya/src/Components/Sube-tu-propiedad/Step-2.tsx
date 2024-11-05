@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import ButtonCyan from "../ButtonCyan/ButtonCyan";
 import IconSelector from "../IconSelector/IconSelector";
 import { useRouter } from "next/navigation";
+import ButtonCyanBack from "../ButtonCyan/ButtonCyanBack";
 
 
 const Step2 = () => {
@@ -16,6 +17,10 @@ const Step2 = () => {
         { icon: '/compartir-el-hogar.png', text: "Habitación Compartida" },
         { icon: '/bano.png', text: "Habitación con Baño Privado" },
     ];
+    
+    const backPage = () => {
+        router.push('/sube-tu-propiedad/paso-1')
+    }
 
     // Función que guarda la selección en sessionStorage y navega al siguiente paso
     const saveDataPage = () => {
@@ -54,6 +59,10 @@ const Step2 = () => {
 
             <div className="absolute bottom-4 right-4">
                 <ButtonCyan onClick={saveDataPage} />
+            </div>
+            
+            <div className="absolute bottom-6 left-6">
+                <ButtonCyanBack onClick={backPage} />
             </div>
         </div>
     );

@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import ButtonCyan from "../ButtonCyan/ButtonCyan";
 import { useRouter } from "next/navigation";
+import ButtonCyanBack from "../ButtonCyan/ButtonCyanBack";
 
 const Step6: React.FC = () => {
     const [selectedImages, setSelectedImages] = useState<File[]>([]);
@@ -45,6 +46,10 @@ const Step6: React.FC = () => {
         }
     };
 
+    const backPage = () => {
+        router.push('/sube-tu-propiedad/paso-1')
+    };
+
     return (
         <div className="relative bg-gray-100 min-h-screen p-10">
             <h2 className="ml-10 mt-10 text-black mb-2">Paso 6:</h2>
@@ -68,6 +73,9 @@ const Step6: React.FC = () => {
 
             <div className="absolute bottom-6 right-6">
                 <ButtonCyan onClick={handleUploadImages}>Cargar</ButtonCyan>
+            </div>
+            <div className="absolute bottom-6 left-6">
+                <ButtonCyanBack onClick={backPage} />
             </div>
         </div>
     );

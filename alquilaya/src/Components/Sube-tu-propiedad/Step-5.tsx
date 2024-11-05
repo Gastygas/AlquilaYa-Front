@@ -3,6 +3,7 @@ import React, { useCallback, useState } from 'react';
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 import ButtonCyan from '../ButtonCyan/ButtonCyan';
 import { useRouter } from 'next/navigation';
+import ButtonCyanBack from '../ButtonCyan/ButtonCyanBack';
 
 interface PropertyData {
   name: string;
@@ -120,7 +121,7 @@ const Step5: React.FC = () => {
         formData.append('invoiceFile', propertyData.invoiceFile);
       }
 
-      const response = await fetch('http://3001/property/create', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property/create`, {
         method: 'POST',
         body: formData,
       });
@@ -135,6 +136,10 @@ const Step5: React.FC = () => {
       alert("Ocurrió un error al enviar los datos.");
     }
   };
+
+  const backPage = () => {
+    router.push('/sube-tu-propiedad/paso-4')
+}
 
   return (
     <div className="flex flex-col items-center p-8 bg-gray-100 rounded-lg shadow-md w-full max-w-lg mx-auto">
@@ -219,7 +224,11 @@ const Step5: React.FC = () => {
       <ButtonCyan onClick={handleSubmit} className="w-full">
         Siguiente
       </ButtonCyan>
+      <div className="absolute bottom-6 left-6">
+          <ButtonCyanBack onClick={backPage} />
+      </div>
     </div>
+    
   );
 };
 

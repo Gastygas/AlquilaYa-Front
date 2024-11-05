@@ -4,6 +4,7 @@ import ButtonCyan from '../ButtonCyan/ButtonCyan'
 import Link from 'next/link'
 import IconSelector from '../IconSelector/IconSelector'
 import { useRouter } from 'next/navigation'
+import ButtonCyanBack from '../ButtonCyan/ButtonCyanBack'
 
 
 const Step3 = () => {
@@ -26,6 +27,10 @@ const Step3 = () => {
         { icon: '/porcion-de-comida.png', text: "Catering" },
     ];
 
+    const backPage = () => {
+        router.push('/sube-tu-propiedad/paso-2')
+    }
+
     const saveDataPage = () => {
         let data = sessionStorage.getItem('data') ? JSON.parse(sessionStorage.getItem('data')!) : {}
         data.tipe = isSelected?.text
@@ -43,6 +48,10 @@ const Step3 = () => {
 
             <div className="absolute bottom-6 right-6">
                 <ButtonCyan onClick={saveDataPage} />
+            </div>
+            
+            <div className="absolute bottom-6 left-6">
+                <ButtonCyanBack onClick={backPage} />
             </div>
 
         </div>

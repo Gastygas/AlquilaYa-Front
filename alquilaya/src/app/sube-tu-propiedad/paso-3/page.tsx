@@ -1,9 +1,17 @@
 import React from 'react'
 import Step3 from '@/Components/Sube-tu-propiedad/Step-3'
+import Header from '@/Components/Header/Header';
 
 const paso3 = () => {
   return (
-    <Step3/>
+    <div className='bg-gray-100'>
+    <Header />
+      <div className='container'>
+        <div className='padding-section'>
+        <Step3 />
+        </div>
+      </div>
+    </div>
   )
 }
 
