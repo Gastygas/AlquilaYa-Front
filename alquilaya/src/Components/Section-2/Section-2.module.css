@@ -14,3 +14,11 @@
    @apply  mt-20 flex text-sm px-20 py-[15px] rounded-[20px] bg-secondary text-primary font-bold
 cursor-pointer transition-all duration-300 hover:scale-90 text-[18px]
 }
+
+.divider{
+    @apply container flex justify-between gap-5 mb-14
+}
+
+.title{
+    @apply text-center text-primary pb-14
+}

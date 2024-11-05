@@ -1,14 +1,15 @@
 import Header from '@/Components/Header/Header'
 import LoginForm from '@/Components/LoginForm/Login'
 import React from 'react'
+import styles from "./login.module.css"
 
 const page = () => {
   return (
     <div>
       <Header/>
-    <div className='container'>
-      <div className='padding-section'>
-      <h1 className="pb-6 text-primary">Iniciar sesión</h1>
+    <div className={styles.box}>
+      <div className={styles.bars}>
+      <h1 className={styles.title}>Iniciar sesión</h1>
         <LoginForm />
       </div>
     </div>

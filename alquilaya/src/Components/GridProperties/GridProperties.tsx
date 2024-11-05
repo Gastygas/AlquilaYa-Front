@@ -4,10 +4,8 @@ import Card from '../Card/Card'
 import IProperty from '@/Interfaces/IProperties'
 
 const GridProperties = async () => {
-    
-  const url = "http://localhost:3001/property"
 
-  const res = await fetch(url,{
+  const res = await fetch(`https://alquilaya-back-latest.onrender.com/property`,{
       method:"GET",
       cache:"no-store"
     })

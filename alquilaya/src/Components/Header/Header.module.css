@@ -1,6 +1,5 @@
 .navBg{
-    background-color: var(--secondary-color);
-    box-shadow: 0px 0px 10px;
+@apply shadow-xl py-6 z-20
 }
 
 .itemsnav{
@@ -9,6 +8,10 @@
 
 .itemsnav:hover{
    @apply text-gray-600
+}
+
+.container{
+    @apply flex justify-between
 }
 
 

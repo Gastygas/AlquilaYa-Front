@@ -37,7 +37,7 @@ export const getUserData = async (): Promise<IUser | null> => {
 
 export const getPropertyById = async (id: string) => {
   try {
-    const response = await fetch(`http://localhost:3001/property/${id}`); 
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property/${id}`); 
     if (!response.ok) {
       throw new Error('Error al obtener la propiedad'); 
     }

@@ -11,3 +11,19 @@
     @apply mt-5 flex text-sm px-16 py-[10px] rounded-[20px] bg-secondary text-primary font-bold
     cursor-pointer transition-all duration-300 hover:scale-90 gap-2
 }
+
+.formEstructure{
+    @apply flex flex-col gap-4 w-full md:w-1/2 justify-center items-center
+}
+
+.mail{
+    @apply text-sm pb-6
+}
+
+.register{
+    @apply pt-6 text-sm font-bold underline text-primary hover:text-secondary transition-all
+}
+
+.forgot{
+    @apply pt-4 text-sm font-bold underline text-primary hover:text-secondary transition-all
+}
