@@ -23,8 +23,7 @@ const LoginForm = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const apiurl = process.env.NEXT_PUBLIC_BACK_URL;
-    const response = await loginService(apiurl + "/auth/signin", data)
+    const response = await loginService(`${process.env.NEXT_PUBLIC_BACK_URL}/auth/signin`, data)
     if (response.succes) {
       notifyLoginTrue();
        setUser(response);
