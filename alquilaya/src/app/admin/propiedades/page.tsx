@@ -5,17 +5,13 @@ import ApprovedProperties from '@/Components/ApprovedProperties/ApprovedProperti
 
 const page = async () => {
 
-
-  const url = "http://localhost:3001";
-
-  const res = await fetch(url + "/property", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property`, {
     method: "GET",
     cache: 'no-store',
   });
   if (!res.ok) throw new Error('Error al obtener los usuarios');
 
   const properties = await res.json()
-
 
   return (
     <div>

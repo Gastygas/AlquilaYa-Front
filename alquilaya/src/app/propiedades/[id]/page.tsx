@@ -15,9 +15,8 @@ import FavButton from '@/Components/FavButton/FavButton';
 
 
 const getProductById = async (id: string) => {
-  const url = "http://localhost:3001/property"
 
-  const res = await fetch(url, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}`, {
     method: "GET",
     cache: "no-store"
   })

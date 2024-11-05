@@ -6,11 +6,9 @@ import IProperty from '@/Interfaces/IProperties';
 
 const page = async() => {
 
-    const url = "http://localhost:3001";
-
         const [usersRes, propertiesRes] = await Promise.all([
-          fetch(url + "/users", { method: "GET", cache: "no-store" }),
-          fetch(url + "/property", { method: "GET", cache: "no-store" })
+          fetch(`process.env.NEXT_PUBLIC_BACK_URL/users`, { method: "GET", cache: "no-store" }),
+          fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property`, { method: "GET", cache: "no-store" })
         ]);
     
         if (!usersRes.ok) throw new Error("Error al obtener los usuarios");

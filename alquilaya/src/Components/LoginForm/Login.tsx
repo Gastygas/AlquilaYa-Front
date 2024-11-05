@@ -23,8 +23,7 @@ const LoginForm = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const apiurl = process.env.NEXT_PUBLIC_BACK_URL;
-    const response = await loginService(apiurl + "/auth/signin", data)
+    const response = await loginService(`${process.env.NEXT_PUBLIC_BACK_URL}/auth/signin`, data)
     if (response.succes) {
       notifyLoginTrue();
        setUser(response);
@@ -78,9 +77,9 @@ const LoginForm = () => {
       <button className={styles.submitButton} >
         Ingresar
       </button>
-      <Link href="http://localhost:3001/auth/googleLogin"><button className={styles.googleButton}>Iniciar sesión con <FaGoogle color="secondary" size={15}/></button></Link>
-        <Link href="/register"><p className={styles.register}>No tienes una cuenta? Regístrate</p></Link>
-        <Link href="/forget-password"><p className={styles.forgot}>Olvidaste tu contraseña? Click Aquí </p></Link>
+      <Link href={`${process.env.NEXT_PUBLIC_BACK_URL}/auth/googleLogin`}><button className={styles.googleButton}>Iniciar sesión con <FaGoogle color="secondary" size={15}/></button></Link>
+      <Link href="/register"><p className={styles.register}>No tienes una cuenta? Regístrate</p></Link>
+      <Link href="/forget-password"><p className={styles.forgot}>Olvidaste tu contraseña? Click Aquí </p></Link>
     </form>
   );
 };

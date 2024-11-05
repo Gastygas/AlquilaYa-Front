@@ -4,10 +4,8 @@ import Card from '../Card/Card'
 import IProperty from '@/Interfaces/IProperties'
 
 const GridProperties = async () => {
-    
-  const url = "http://localhost:3001/property"
 
-  const res = await fetch(url,{
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}`,{
       method:"GET",
       cache:"no-store"
     })

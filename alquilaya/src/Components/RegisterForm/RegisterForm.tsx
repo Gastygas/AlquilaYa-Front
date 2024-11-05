@@ -165,7 +165,7 @@ const RegisterForm = () => {
         </div>
       </div>
       <button className={styles.submitButton}>Regístrate</button>
-      <Link href="http://localhost:3001/auth/googleLogin"><button className={styles.googleButton}>Iniciar sesión con <FaGoogle color="secondary" size={15}/></button></Link>
+      <Link href={`${process.env.NEXT_PUBLIC_BACK_URL}/auth/googleLogin`}><button className={styles.googleButton}>Iniciar sesión con <FaGoogle color="secondary" size={15}/></button></Link>
       <Link href="/login"><p className={styles.linkLogin}>¿Ya tienes una cuenta? Ingresa</p></Link>
      
     </form>
