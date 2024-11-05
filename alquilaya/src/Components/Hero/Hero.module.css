@@ -1,0 +1,15 @@
+.heroBg{
+    @apply relative h-screen bg-cover bg-center
+}
+
+.containerGrid{
+    @apply container absolute inset-0 flex justify-center
+}
+
+.textOrder{
+    @apply z-10 flex flex-col items-center justify-center
+}
+
+.text{
+    @apply text-white text-[70px] text-center transition-all duration-300 ease-in-out transform hover:scale-105 hover:text-secondary
+}

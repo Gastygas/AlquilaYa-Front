@@ -11,8 +11,6 @@ interface PendingPropertiesTableProps {
   properties: IProperty[];
 }
 
-const url = "http://localhost:3001/property";
-
 const PendingPropertiesTable: React.FC<PendingPropertiesTableProps> = ({ properties: initialProperties }) => {
   const [properties, setProperties] = useState<IProperty[]>(initialProperties);
   const [token, setToken] = useState<string | null>(null);
@@ -30,7 +28,7 @@ const PendingPropertiesTable: React.FC<PendingPropertiesTableProps> = ({ propert
   }, []);
 
   const fetchProperties = async () => {
-    const res = await fetch(url, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property`, {
       method: "GET",
       cache: 'no-store',
     });
@@ -41,7 +39,7 @@ const PendingPropertiesTable: React.FC<PendingPropertiesTableProps> = ({ propert
 
   const handleApprovedProperty = async (e: React.MouseEvent, id: string) => {
     e.preventDefault();
-    const res = await fetch(`${url}/approve/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property/approve/${id}`, {
       method: "PATCH",
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -55,7 +53,7 @@ const PendingPropertiesTable: React.FC<PendingPropertiesTableProps> = ({ propert
 
   const handleDisapprovedProperty = async (e: React.MouseEvent, id: string) => {
     e.preventDefault();
-    const res = await fetch(`${url}/deny/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property/deny/${id}`, {
       method: "PATCH",
       headers: {
         'Authorization': `Bearer ${token}`,

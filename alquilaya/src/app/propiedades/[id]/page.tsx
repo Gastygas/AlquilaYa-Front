@@ -15,16 +15,15 @@ import FavButton from '@/Components/FavButton/FavButton';
 
 
 const getProductById = async (id: string) => {
-  const url = "http://localhost:3001/property"
 
-  const res = await fetch(url, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property/${id}`, {
     method: "GET",
     cache: "no-store"
   })
   const property = await res.json()
   if (!property) { notFound() }
 
-  return property.find((product: IProperty) => product.id === id);
+  return property
 };
 
 const ProductDetail = async ({ params }: { params: { id: string } }) => {

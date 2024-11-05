@@ -2,9 +2,8 @@
 import IProperty from "@/Interfaces/IProperties";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { FaHeart } from "react-icons/fa"
-
-const url = "http://localhost:3001";
+import { FaHeart } from "react-icons/fa";
+import styles from "./FavButton.module.css"
 
 const FavButton = ({propertyId}:any) => {
 
@@ -21,7 +20,7 @@ const FavButton = ({propertyId}:any) => {
       }, []);
 
     const fetchProperties = async (propertyId: string) => {
-        const res = await fetch(url + `/property/${propertyId}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property/${propertyId}`, {
           method: "GET",
           cache: 'no-store',
         });
@@ -34,7 +33,7 @@ const FavButton = ({propertyId}:any) => {
         e.preventDefault();
 
 
-        const res = await fetch(`${url}/users/favourite/property/add/${propertyId}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/users/favourite/property/add/${propertyId}`, {
           method: "PATCH",
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -50,8 +49,7 @@ const FavButton = ({propertyId}:any) => {
       };
 
   return (
-    <div><button onClick={(e: React.MouseEvent) => handleFavProperty(e, propertyId)}className='flex text-sm px-10 py-[7px] rounded-[20px]
-    cursor-pointer transition-all duration-300 hover:scale-90 text-secondary font-semibold bg-primary mt-10'>
+    <div><button onClick={(e: React.MouseEvent) => handleFavProperty(e, propertyId)}className={styles.favButton}>
        <FaHeart/>Añadir a favoritos</button></div>
   )
 }

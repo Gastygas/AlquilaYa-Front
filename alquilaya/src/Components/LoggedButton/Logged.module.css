@@ -1,0 +1,11 @@
+.container{
+    @apply flex flex-row justify-around items-center
+}
+
+.account{
+    @apply font-bold text-secondary
+}
+
+.logout{
+    @apply text-primary font-semibold
+}

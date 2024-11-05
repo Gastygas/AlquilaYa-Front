@@ -36,3 +36,10 @@
     text-overflow: ellipsis;
 }
 
+.favButton{
+    @apply absolute top-4 right-4 w-10 h-10 bg-[--tertiary-color] rounded-full shadow-lg flex items-center justify-center z-50
+}
+
+.cardGrid{
+    @apply p-6 rounded-xl shadow-xl transition-all duration-300 hover:shadow-2xl relative
+}
