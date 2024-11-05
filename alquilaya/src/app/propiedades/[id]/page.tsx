@@ -23,7 +23,7 @@ const getProductById = async (id: string) => {
   const property = await res.json()
   if (!property) { notFound() }
 
-  return property.find((product: IProperty) => product.id === id);
+  return property
 };
 
 const ProductDetail = async ({ params }: { params: { id: string } }) => {
