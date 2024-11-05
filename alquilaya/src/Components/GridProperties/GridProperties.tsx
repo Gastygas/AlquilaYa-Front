@@ -5,7 +5,7 @@ import IProperty from '@/Interfaces/IProperties'
 
 const GridProperties = async () => {
 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}`,{
+  const res = await fetch(`https://alquilaya-back-latest.onrender.com/property`,{
       method:"GET",
       cache:"no-store"
     })
