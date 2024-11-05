@@ -9,8 +9,6 @@ interface PropertyTableProps {
     properties: IProperty[];
   }
 
-const url = "http://localhost:3001/property";
-
 const ApprovedProperties:  React.FC<PropertyTableProps> = ({ properties: initialProperties}) => {
   const [token, setToken] = useState<string | null>(null);
   const [properties, setProperties] = useState<IProperty[]>(initialProperties);
@@ -29,7 +27,7 @@ const ApprovedProperties:  React.FC<PropertyTableProps> = ({ properties: initial
   }, []);
 
   const fetchProperties = async () => {
-    const res = await fetch(url, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}`, {
       method: "GET",
       cache: 'no-store',
     });
@@ -41,7 +39,7 @@ const ApprovedProperties:  React.FC<PropertyTableProps> = ({ properties: initial
 
   const handleDisapprovedProperty = async (e: React.MouseEvent, id: string) => {
     e.preventDefault();
-    const res = await fetch(`${url}/deny/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/deny/${id}`, {
       method: "PATCH",
       headers: {
         'Authorization': `Bearer ${token}`,

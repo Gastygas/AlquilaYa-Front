@@ -4,8 +4,6 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa"
 
-const url = "http://localhost:3001";
-
 const FavButton = ({propertyId}:any) => {
 
     const [properties, setProperties] = useState<IProperty>();
@@ -21,7 +19,7 @@ const FavButton = ({propertyId}:any) => {
       }, []);
 
     const fetchProperties = async (propertyId: string) => {
-        const res = await fetch(url + `/property/${propertyId}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property/${propertyId}`, {
           method: "GET",
           cache: 'no-store',
         });
@@ -34,7 +32,7 @@ const FavButton = ({propertyId}:any) => {
         e.preventDefault();
 
 
-        const res = await fetch(`${url}/users/favourite/property/add/${propertyId}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/users/favourite/property/add/${propertyId}`, {
           method: "PATCH",
           headers: {
             'Authorization': `Bearer ${token}`,

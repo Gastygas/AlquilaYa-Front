@@ -78,7 +78,7 @@ const LoginForm = () => {
       <button className={styles.submitButton} >
         Ingresar
       </button>
-      <Link href="http://localhost:3001/auth/googleLogin"><button className={styles.googleButton}>Iniciar sesión con <FaGoogle color="secondary" size={15}/></button></Link>
+      <Link href={`${process.env.NEXT_PUBLIC_BACK_URL}/auth/googleLogin`}><button className={styles.googleButton}>Iniciar sesión con <FaGoogle color="secondary" size={15}/></button></Link>
         <Link href="/register"><p className=" pt-6 text-sm font-bold underline text-primary hover:text-secondary transition-all">No tienes una cuenta? Regístrate</p></Link>
         <Link href="/forget-password"><p className=" pt-4 text-sm font-bold underline text-primary hover:text-secondary transition-all">Olvidaste tu contraseña? Click Aquí </p></Link>
     </form>

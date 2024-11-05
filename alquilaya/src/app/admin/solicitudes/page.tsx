@@ -3,9 +3,8 @@ import PropertiesHistory from '@/Components/PropertiesHistory/PropertiesHistory'
 import PendingPropertiesTable from '@/Components/PendingProperties/PendingProperties';
 
 const SolicitudesPage = async () => {
-  const url = "http://localhost:3001/property";
   
-  const res = await fetch(url, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}`, {
     method: "GET",
     cache: 'no-store',
   });
