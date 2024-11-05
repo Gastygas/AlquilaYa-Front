@@ -11,7 +11,7 @@
 }
 
 .container{
-    @apply container flex justify-between
+    @apply flex justify-between
 }
 
 

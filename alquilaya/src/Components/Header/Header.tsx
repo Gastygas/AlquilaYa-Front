@@ -9,7 +9,7 @@ import NotLoggedButtons from "../NotLoggedButtons/NotLoggedButtons"
 const Header = () => {
   return (
     <div className={styles.navBg}>
-      <div className={styles.container}>
+      <div className={`${styles.container} container`}>
         <div>
           <Link href="/"><Image src="/logo-hor.png" alt="logo" width={100} height={60} className={styles.logo}/></Link>
         </div>
