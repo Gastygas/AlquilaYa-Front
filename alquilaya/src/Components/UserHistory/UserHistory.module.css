@@ -19,5 +19,5 @@
 }
 
 .item{
-    @apply flex align-middle gap-4 opacity-80 bg-cyan-200 p-4 rounded-2xl'
+    @apply flex align-middle gap-4 opacity-80 bg-cyan-200 p-4 rounded-2xl
 }
