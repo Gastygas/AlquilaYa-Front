@@ -4,14 +4,14 @@ import Card from '../Card/Card'
 import IProperty from '@/Interfaces/IProperties'
 
 const GridProperties = async () => {
-
-  const res = await fetch(`https://alquilaya-back-latest.onrender.com/property`,{
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property`,{
       method:"GET",
       cache:"no-store"
     })
-    if(!res) throw new Error("Can not get all properties")
+  if(!res) throw new Error("Can not get all properties")
   
   const properties = await res.json()
+  
   return (
     <Grid>
     {properties.filter((prop: IProperty) => prop.propertyStatus === "approved").map((property: IProperty) => (

@@ -4,7 +4,7 @@ import PendingPropertiesTable from '@/Components/PendingProperties/PendingProper
 
 const SolicitudesPage = async () => {
   
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property`, {
     method: "GET",
     cache: 'no-store',
   });
