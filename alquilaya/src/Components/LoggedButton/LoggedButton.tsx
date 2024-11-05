@@ -12,8 +12,8 @@ const LoggedButton = () => {
  if(user?.user) {
 return (
   <div className={styles.container}>
-          <Link href="/mi-cuenta"><Button variant="primary" className="font-bold text-secondary">Mi cuenta</Button></Link>
-      <Button variant="transparent" onClick={logout} className="text-primary font-semibold">Salir<MdLogout size={20} color="--var(--darkBlue)"/></Button>
+          <Link href="/mi-cuenta"><Button variant="primary" className={styles.account}>Mi cuenta</Button></Link>
+      <Button variant="transparent" onClick={logout} className={styles.logout}>Salir<MdLogout size={20} color="--var(--darkBlue)"/></Button>
   </div>
 )};return (<NotLoggedButtons/>)
 }

@@ -57,9 +57,9 @@ const RegisterForm = () => {
   }, [data]);
 
   return (
-    <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center'>
-      <div className='grid grid-cols-2 gap-4'>
-        <div className='gap-4 '>
+    <form onSubmit={handleSubmit} className={styles.form}>
+      <div className={styles.gridForm}>
+        <div className={styles.space}>
         <label htmlFor="name">Nombre de usuario:</label>
           <input
             type='text'
@@ -70,7 +70,7 @@ const RegisterForm = () => {
             onChange={handleChange}
             value={data.name}
           />
-          {dirty.name ? <p className='text-red-600 text-sm'>{error.name}</p> : null}
+          {dirty.name ? <p className={styles.errorText}>{error.name}</p> : null}
           <label htmlFor="surname">Apellido:</label>
           <input
             type='text'
@@ -81,7 +81,7 @@ const RegisterForm = () => {
             onChange={handleChange}
             value={data.surname}
           />
-          {dirty.surname ? <p className='text-red-600 text-sm'>{error.surname}</p> : null}
+          {dirty.surname ? <p className={styles.errorText}>{error.surname}</p> : null}
           <label htmlFor="address">Dirección:</label>
           <input
             type='text'
@@ -92,7 +92,7 @@ const RegisterForm = () => {
             onChange={handleChange}
             value={data.address}
           />
-          {dirty.address ? <p className='text-red-600 text-sm'>{error.address}</p> : null}
+          {dirty.address ? <p className={styles.errorText}>{error.address}</p> : null}
           <label htmlFor="country">País:</label>
           <input
             type='text'
@@ -103,7 +103,7 @@ const RegisterForm = () => {
             onChange={handleChange}
             value={data.country}
           />
-          {dirty.country ? <p className='text-red-600 text-sm'>{error.country}</p> : null}
+          {dirty.country ? <p className={styles.errorText}>{error.country}</p> : null}
           <label htmlFor="dni">DNI:</label>
           <input
             type='text'
@@ -114,9 +114,9 @@ const RegisterForm = () => {
             onChange={handleChange}
             value={data.dni}
           />
-          {dirty.dni ? <p className='text-red-600 text-sm'>{error.dni}</p> : null}
+          {dirty.dni ? <p className={styles.errorText}>{error.dni}</p> : null}
         </div>
-        <div className='gap-4 '>
+        <div className={styles.space}>
         <label htmlFor="phone">Teléfono:</label>
           <input
             type='phone'
@@ -127,7 +127,7 @@ const RegisterForm = () => {
             onChange={handleChange}
             value={data.phone}
           />
-          {dirty.phone ? <p className='text-red-600 text-sm'>{error.phone}</p> : null}
+          {dirty.phone ? <p className={styles.errorText}>{error.phone}</p> : null}
         <label htmlFor="email">Email:</label>
           <input
             type='email'
@@ -138,7 +138,7 @@ const RegisterForm = () => {
             onChange={handleChange}
             value={data.email}
           />
-          {dirty.email ? <p className='text-red-600 text-sm'>{error.email}</p> : null}
+          {dirty.email ? <p className={styles.errorText}>{error.email}</p> : null}
           <label htmlFor="password">Contraseña:</label>
           <input
             type='password'
@@ -149,7 +149,7 @@ const RegisterForm = () => {
             onChange={handleChange}
             value={data.password}
           />
-          {dirty.password ? <p className='text-red-600 text-sm'>{error.password}</p> : null}
+          {dirty.password ? <p className={styles.errorText}>{error.password}</p> : null}
           <label htmlFor="confirmPassword">Confirma tu contraseña:</label>
           <input
             type='password'
@@ -160,13 +160,13 @@ const RegisterForm = () => {
             onChange={handleChange}
             value={data.confirmPassword}
           />
-          {dirty.confirmPassword ? <p className='text-red-600 text-sm'>{error.confirmPassword}</p> : null}
+          {dirty.confirmPassword ? <p className={styles.errorText}>{error.confirmPassword}</p> : null}
 
         </div>
       </div>
       <button className={styles.submitButton}>Regístrate</button>
       <Link href="http://localhost:3001/auth/googleLogin"><button className={styles.googleButton}>Iniciar sesión con <FaGoogle color="secondary" size={15}/></button></Link>
-      <Link href="/login"><p className=" pt-8 text-sm font-bold underline text-primary hover:text-secondary transition-all">¿Ya tienes una cuenta? Ingresa</p></Link>
+      <Link href="/login"><p className={styles.linkLogin}>¿Ya tienes una cuenta? Ingresa</p></Link>
      
     </form>
   );

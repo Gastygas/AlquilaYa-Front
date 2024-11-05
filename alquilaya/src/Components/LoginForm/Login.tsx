@@ -30,9 +30,9 @@ const LoginForm = () => {
        setUser(response);
 
        if (response.user.isAdmin) {
-        router.push('/admin'); // Redirigir a la página de administración
+        router.push('/admin'); 
       } else {
-        router.push('/'); // Redirigir a la página principal
+        router.push('/'); 
       }
     } else {
       notifyLoginFalse();
@@ -54,8 +54,8 @@ const LoginForm = () => {
   }, [data]);
 
   return (
-    <form onSubmit={handleSubmit} className='flex flex-col gap-4 w-full md:w-1/2 justify-center items-center'>
-      <p className="text-sm pb-6">Ingresa tu email y contraseña para acceder</p>
+    <form onSubmit={handleSubmit} className={styles.formEstructure}>
+      <p className={styles.mail}>Ingresa tu email y contraseña para acceder</p>
       <label htmlFor="email">Correo electrónico</label>
       <input type='email'
         id='email'
@@ -79,8 +79,8 @@ const LoginForm = () => {
         Ingresar
       </button>
       <Link href="http://localhost:3001/auth/googleLogin"><button className={styles.googleButton}>Iniciar sesión con <FaGoogle color="secondary" size={15}/></button></Link>
-        <Link href="/register"><p className=" pt-6 text-sm font-bold underline text-primary hover:text-secondary transition-all">No tienes una cuenta? Regístrate</p></Link>
-        <Link href="/forget-password"><p className=" pt-4 text-sm font-bold underline text-primary hover:text-secondary transition-all">Olvidaste tu contraseña? Click Aquí </p></Link>
+        <Link href="/register"><p className={styles.register}>No tienes una cuenta? Regístrate</p></Link>
+        <Link href="/forget-password"><p className={styles.forgot}>Olvidaste tu contraseña? Click Aquí </p></Link>
     </form>
   );
 };

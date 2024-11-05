@@ -1,0 +1,12 @@
+.box{
+    @apply flex align-middle
+}
+
+.register{
+    @apply text-primary
+}
+
+.login{
+    @apply font-bold text-secondary
+}
+

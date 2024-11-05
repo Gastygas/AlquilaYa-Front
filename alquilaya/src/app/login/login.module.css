@@ -1,0 +1,11 @@
+.box{
+    @apply container
+}
+
+.bars{
+    @apply padding-section
+}
+
+.title{
+    @apply pb-6 text-primary
+}
