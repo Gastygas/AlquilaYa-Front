@@ -7,7 +7,7 @@ import IProperty from '@/Interfaces/IProperties';
 const page = async() => {
 
         const [usersRes, propertiesRes] = await Promise.all([
-          fetch(`process.env.NEXT_PUBLIC_BACK_URL/users`, { method: "GET", cache: "no-store" }),
+          fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/users`, { method: "GET", cache: "no-store" }),
           fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property`, { method: "GET", cache: "no-store" })
         ]);
     
