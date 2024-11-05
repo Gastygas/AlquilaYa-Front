@@ -24,7 +24,7 @@ const RegisterForm = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    const response: any = await registerService(`http://localhost:3001/auth/signup`, data)
+    const response: any = await registerService(`${process.env.NEXT_PUBLIC_BACK_URL}/auth/signup`, data)
     if (response.succes) {
       notifyRegisterTrue;
       router.back();

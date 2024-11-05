@@ -14,7 +14,7 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
   const [checkInDate, setCheckInDate] = useState<string>('');
   const [checkOutDate, setCheckOutDate] = useState<string>('');
   const [preferenceId, setPreferenceId] = useState<string | null>(null);
-  const router = useRouter();
+  // const router = useRouter();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

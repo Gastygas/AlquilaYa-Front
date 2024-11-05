@@ -27,7 +27,7 @@ const ApprovedProperties:  React.FC<PropertyTableProps> = ({ properties: initial
   }, []);
 
   const fetchProperties = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property`, {
       method: "GET",
       cache: 'no-store',
     });
@@ -39,7 +39,7 @@ const ApprovedProperties:  React.FC<PropertyTableProps> = ({ properties: initial
 
   const handleDisapprovedProperty = async (e: React.MouseEvent, id: string) => {
     e.preventDefault();
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/deny/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property/deny/${id}`, {
       method: "PATCH",
       headers: {
         'Authorization': `Bearer ${token}`,

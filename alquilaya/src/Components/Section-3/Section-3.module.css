@@ -6,3 +6,23 @@
 .image{
     @apply rounded-2xl shadow-lg
 }
+
+.box{
+    @apply bg-center container flex flex-col
+}
+
+.gridSection{
+    @apply grid grid-cols-2 justify-around gap-5 mb-14
+}
+
+.gridContainer{
+    @apply flex flex-col align-middle justify-center
+}
+
+.title{
+    @apply text-[50px] text-primary font-extrabold pb-8 leading-none
+}
+
+.description{
+    @apply text-justify text-base
+}
