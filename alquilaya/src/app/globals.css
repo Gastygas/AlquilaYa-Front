@@ -42,10 +42,13 @@ body {
   .text-balance {
     text-wrap: balance;
   }
-}
-
-.padding-section{
-  @apply flex  flex-col items-center my-28;
+  .padding-section{
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    margin-top: 7rem; 
+    margin-bottom: 7rem;
+  }
 }
 
 .container {
