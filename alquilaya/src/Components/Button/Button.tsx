@@ -18,7 +18,9 @@ const Button = ({ children,
         ? "bg-secondary"
         : "bg-transparent";
 
-    return <button className={`${styles.button} ${variantClass} ${className}`}
+    return <button className={`
+ flex text-sm px-10 py-[7px] rounded-[20px]
+cursor-pointer transition-all duration-300 hover:scale-90 active:scale-105 ${variantClass} ${className} `}
         onClick={onClick}
     >{children}</button>
 }
