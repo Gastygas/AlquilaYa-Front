@@ -1,52 +1,108 @@
 "use client";
-import React from 'react';
-import ButtonCyan from '../ButtonCyan/ButtonCyan';
+import React, { useState } from "react";
+import ButtonCyan from "../ButtonCyan/ButtonCyan";
+import { useRouter } from "next/navigation";
 
-const Step4 = () => {
-    const handleFinalize = async () => {
-        const data = sessionStorage.getItem("data");  // Con esto se recupera los datos almacenados en sessionStorage
-        
-        if (data) {
-            try {
-                const response = await fetch('http://localhost:3001/property/create', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.parse(data),
-                });
+const Step4: React.FC = () => {
+    const router = useRouter();
+    const [limitCapacity, setLimitCapacity] = useState<number | "">("");
+    const [bedrooms, setBedrooms] = useState<number | "">("");
+    const [bathrooms, setBathrooms] = useState<number | "">("");
+    const [price, setPrice] = useState<number | "">("");
+    const [petFriendly, setPetFriendly] = useState<boolean>(false);
 
-                if (response.ok) {
-                    console.log("Datos enviados correctamente");
-                } else {
-                    console.error("Error al enviar los datos:", response.statusText);
-                }
-            } catch (error) {
-                console.error("Error al enviar los datos:", error);
-            }
-        } else {
-            console.error("No hay datos para enviar");
-        }
+    const saveDataPage = () => {
+        let data = sessionStorage.getItem("data") ? JSON.parse(sessionStorage.getItem("data")!) : {};
+        data.limitCapacity = limitCapacity;
+        data.bedrooms = bedrooms;
+        data.bathrooms = bathrooms;
+        data.price = price;
+        data.petFriendly = petFriendly;
+        sessionStorage.setItem("data", JSON.stringify(data));
+        router.push("/sube-tu-propiedad/paso-5");
     };
 
     return (
-        <div className="relative bg-gray-100 min-h-screen p-10">
-            <h2 className="ml-10 mt-10 text-black mb-2">Paso 6:</h2>
-            <h1 className="mt-20 text-black text-center mb-4">Describir la propiedad</h1>
-            <div className="w-full flex justify-center">
-                <textarea
-                    placeholder="Máximo 500 caracteres"
-                    className="mt-20 flex items-center justify-center w-full max-w-4xl h-44 p-4 bg-gray-50 border-2 border-[#aa31cf] focus:border-[#2CFFDE] hover:border-[#2CFFDE] focus:outline-none transition duration-200 rounded-lg resize-none"
-                    maxLength={500}
-                />
-            </div>
+        <div className="relative bg-gray-100 min-h-screen p-10 flex flex-col justify-between text-black">
+            <div>
+                <h1 className="text-2xl font-bold mb-4 text-center">Paso 4: Detalles de la Propiedad</h1>
+                <form className="space-y-6">
+                    
+                    {/* Límite de Capacidad */}
+                    <div className="flex flex-col">
+                        <label htmlFor="limitCapacity" className="mb-1 font-medium">Límite de Capacidad de personas</label>
+                        <input
+                            type="number"
+                            id="limitCapacity"
+                            placeholder="Ingrese límite de capacidad"
+                            value={limitCapacity}
+                            onChange={(e) => setLimitCapacity(Number(e.target.value) || "")}
+                            className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#aa31cf]"
+                            required
+                        />
+                    </div>
 
-            <div className="absolute bottom-20 right-6">
-                <ButtonCyan onClick={handleFinalize} />
+                    {/* Dormitorios */}
+                    <div className="flex flex-col">
+                        <label htmlFor="bedrooms" className="mb-1 font-medium">Dormitorios</label>
+                        <input
+                            type="number"
+                            id="bedrooms"
+                            placeholder="Ingrese cantidad de dormitorios"
+                            value={bedrooms}
+                            onChange={(e) => setBedrooms(Number(e.target.value) || "")}
+                            className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#aa31cf]"
+                            required
+                        />
+                    </div>
+
+                    {/* Baños */}
+                    <div className="flex flex-col">
+                        <label htmlFor="bathrooms" className="mb-1 font-medium">Baños</label>
+                        <input
+                            type="number"
+                            id="bathrooms"
+                            placeholder="Ingrese cantidad de baños"
+                            value={bathrooms}
+                            onChange={(e) => setBathrooms(Number(e.target.value) || "")}
+                            className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#aa31cf]"
+                            required
+                        />
+                    </div>
+
+                    {/* Precio */}
+                    <div className="flex flex-col">
+                        <label htmlFor="price" className="mb-1 font-medium">Precio</label>
+                        <input
+                            type="number"
+                            id="price"
+                            placeholder="Ingrese el precio"
+                            value={price}
+                            onChange={(e) => setPrice(Number(e.target.value) || "")}
+                            className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#aa31cf]"
+                            required
+                        />
+                    </div>
+
+                    {/* Acepta Mascotas */}
+                    <div className="flex items-center mb-4">
+                        <input
+                            type="checkbox"
+                            id="petFriendly"
+                            checked={petFriendly}
+                            onChange={(e) => setPetFriendly(e.target.checked)}
+                            className="mr-2"
+                        />
+                        <label htmlFor="petFriendly" className="font-medium">Acepta Mascotas</label>
+                    </div>
+
+                    <div className="absolute bottom-6 right-6">
+                        <ButtonCyan onClick={saveDataPage}>Guardar y Continuar</ButtonCyan>
+                    </div>
+                </form>
             </div>
         </div>
     );
 };
 
-export default Step4; 
-
+export default Step4;

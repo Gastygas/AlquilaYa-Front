@@ -37,8 +37,8 @@ const Step1 = () => {
 
     return (
 
-        <div>
-            <div className="relative bg-gray-100 min-h-screen p-10">
+        <div className="relative bg-gray-100 min-h-screen p-10 flex flex-col justify-between text-black">
+            <div>
                 <h2 className="ml-10 mt-10 text-black mb-2">Paso 1:</h2>
                 <h1 className="mt-20 text-black text-center mb-4">Elige la opción que mejor describa tu espacio</h1>
                 <IconSelector numCols={4} data={iconData} isSelected={isSelected} setIsSelected={setIsSelected} />
