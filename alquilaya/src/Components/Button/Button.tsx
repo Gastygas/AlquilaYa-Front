@@ -18,7 +18,7 @@ const Button = ({ children,
         ? "bg-secondary"
         : "bg-transparent";
 
-    return <button className={`{styles.button} ${variantClass} ${className}`}
+    return <button className={`${styles.button} ${variantClass} ${className}`}
         onClick={onClick}
     >{children}</button>
 }
