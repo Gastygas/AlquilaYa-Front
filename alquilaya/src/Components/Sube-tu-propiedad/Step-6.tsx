@@ -53,7 +53,21 @@ const Step6: React.FC = () => {
     return (
         <div className="relative bg-gray-100 min-h-screen p-10">
             <h2 className="ml-10 mt-10 text-black mb-2">Paso 6:</h2>
+            <h1 className="mt-20 text-black text-center mb-4">Subí una factura de la propiedad</h1>
+     <div className="flex flex-col gap-2 text-gray-700"> 
+          <input
+            type="file"
+            name="invoiceFile"
+            onChange={handleUploadImages}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg cursor-pointer"
+          />
+        </div>
+
+              <h1 className="mt-20 text-black text-center mb-4">Subí las fotos de la propiedad</h1>
+
+
             <h1 className="mt-20 text-black text-center mb-4">Subí las fotos de la propiedad</h1>
+        
 
             <div className="w-full flex justify-center mt-10">
                 <input

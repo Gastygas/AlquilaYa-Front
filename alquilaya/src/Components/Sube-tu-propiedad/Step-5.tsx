@@ -123,7 +123,7 @@ const Step5: React.FC = () => {
 
       const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property/create`, {
         method: 'POST',
-        body: formData,
+        body: JSON.stringify(formData),
       });
 
       if (response.ok) {
@@ -184,7 +184,7 @@ const Step5: React.FC = () => {
           onChange={handleChange}
           className="w-full px-4 py-2 border border-gray-300 rounded-lg resize-y min-h-[100px]"
         />
-        <label className="flex flex-col gap-2 text-gray-700">
+        {/* <label className="flex flex-col gap-2 text-gray-700">
           Subir Factura para Justificación de Dirección
           <input
             type="file"
@@ -192,7 +192,7 @@ const Step5: React.FC = () => {
             onChange={handleFileChange}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg cursor-pointer"
           />
-        </label>
+        </label> */}
       </form>
 
       {/* Botón de búsqueda de dirección */}
