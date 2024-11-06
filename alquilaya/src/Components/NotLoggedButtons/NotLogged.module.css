@@ -7,6 +7,6 @@
 }
 
 .login{
-    @apply font-bold text-secondary
+    @apply font-bold text-secondary px-[10px]
 }
 
