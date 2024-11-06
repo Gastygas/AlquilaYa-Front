@@ -26,10 +26,12 @@ export const AuthProvider = ({ children }: AuthProviderProps
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         if (user) {
-            localStorage.setItem("user", JSON.stringify(user));
+          localStorage.setItem("user", JSON.stringify(user));
+        } else {
+          localStorage.removeItem("user");
         }
-
-    }, [user]);
+      }, [user]);
+    
 
     useEffect(() => {
         const localUser = localStorage.getItem("user");

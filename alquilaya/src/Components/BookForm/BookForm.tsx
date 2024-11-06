@@ -18,8 +18,8 @@ const BookForm: React.FC<BookFormProps> = ({
   const [checkOutDate, setCheckOutDate] = useState<string>("");
   const [preferenceId, setPreferenceId] = useState<string | null>(null);
   const [userId, setUserId] = useState<string | null>(null);
+  const [isMercadoPagoScriptLoaded, setMercadoPagoScriptLoaded] = useState(false);
 
-  
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
     setUserId(storedUser.id || null);
@@ -36,7 +36,7 @@ const BookForm: React.FC<BookFormProps> = ({
     const orderData = {
       items: [
         {
-          id: propertyId,
+          id: "1234",
           title: propertyName,
           quantity: daysDifference,
           unit_price: unitPrice,
@@ -73,14 +73,18 @@ const BookForm: React.FC<BookFormProps> = ({
     }
   };
 
+  // Función para cargar el script solo cuando sea necesario
+  const loadMercadoPagoScript = () => {
+    if (!isMercadoPagoScriptLoaded) {
+      setMercadoPagoScriptLoaded(true);
+    }
+  };
+
   useEffect(() => {
-    if (preferenceId && typeof window !== "undefined" && window.MercadoPago) {
-      const mp = new window.MercadoPago(
-        "TEST-fa93dbfd-43ff-4ad0-b01f-9fbd39faeafc",
-        {
-          locale: "es-AR",
-        }
-      );
+    if (preferenceId && isMercadoPagoScriptLoaded && typeof window !== "undefined" && window.MercadoPago) {
+      const mp = new window.MercadoPago("TEST-fa93dbfd-43ff-4ad0-b01f-9fbd39faeafc", {
+        locale: "es-AR",
+      });
 
       mp.checkout({
         preference: {
@@ -89,11 +93,11 @@ const BookForm: React.FC<BookFormProps> = ({
         autoOpen: true,
       });
     }
-  }, [preferenceId]);
+  }, [preferenceId, isMercadoPagoScriptLoaded]);
 
   return (
     <>
-      
+      {/* Carga dinámica del script solo cuando se hace clic en el botón de pago */}
       <Script
         src="https://sdk.mercadopago.com/js/v2"
         strategy="beforeInteractive"
@@ -132,7 +136,9 @@ const BookForm: React.FC<BookFormProps> = ({
           </div>
         </div>
         <div className={styles.centerButton}>
-          <button type="submit" className={styles.button}>Reservar</button>
+          <button type="submit" className={styles.button} onClick={loadMercadoPagoScript}>
+            Reservar
+          </button>
         </div>
       </form>
     </>
