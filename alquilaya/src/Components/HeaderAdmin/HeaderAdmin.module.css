@@ -1,6 +1,5 @@
 .navBg{
-    background-color: var(--secondary-color);
-    box-shadow: 0px 0px 10px;
+@apply py-6 z-20
 }
 
 .itemsnav{
@@ -16,5 +15,19 @@
     cursor-pointer transition-all duration-300 hover:scale-90 bg-primary text-secondary font-bold
 }
 
+.box{
+    @apply container flex justify-between
+}
 
+.logo{
+     @apply transition-transform duration-300 hover:scale-95 w-auto h-auto
+}
+
+.menu{
+    @apply flex flex-row justify-around items-center
+}
+
+.menuItems{
+    @apply text-sm inline-flex
+}
 

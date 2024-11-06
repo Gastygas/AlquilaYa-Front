@@ -1,0 +1,8 @@
+
+.title{
+    @apply text-center pb-2
+}
+
+.center{
+    @apply text-center
+}

@@ -65,8 +65,8 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
     <>
       <Script src="https://sdk.mercadopago.com/js/v2" strategy="beforeInteractive" />
 
-      <form className="flex flex-col justify-center" onSubmit={handleSubmit}>
-        <div className="grid grid-cols-2 gap-8 p-12">
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <div className={styles.boxGrid}>
           <div>
             <label htmlFor="checkInDate" className={styles.label}>Fecha de Entrada</label>
             <input
@@ -92,7 +92,7 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
             />
           </div>
         </div>
-        <div className="flex justify-center">
+        <div className={styles.centerButton}>
           <button type="submit" className={styles.button}>Reservar</button>
         </div>
       </form>

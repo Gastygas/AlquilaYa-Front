@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const Section3 = () => {
     return (
-        <div className={styles.box}>
+        <div className="bg-center container flex flex-col">
             <div className="padding-section">
                 <div className={styles.gridSection}>
                     <div className={styles.gridContainer}>

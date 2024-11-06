@@ -1,8 +1,10 @@
 "use client"
+import styles from "./UserPropertiesFav.module.css"
 import IProperty from '@/Interfaces/IProperties';
 import { IUser } from '@/Interfaces/IUser';
 import { getPropertyById, getUserData } from '@/services/dataUserService';
 import Image from 'next/image'
+import Link from "next/link";
 import React, { useEffect, useState } from 'react'
 
 const UserPropertiesFav = () => {
@@ -27,21 +29,21 @@ const UserPropertiesFav = () => {
   }, []);
 
   if (!userData || userData?.favoriteProperties.length === 0) {
-    return ( <div className='w-1/3 flex flex-col bg-cyan-100  p-4 rounded-2xl gap-3'>
-    <h3 className='text-center pb-2'>Favoritos</h3>
-    <h4 className="text-center">No tienes propiedades favoritas</h4>
+    return ( <div className={styles.box}>
+    <h3 className={styles.title}>Favoritos</h3>
+    <h4 className={styles.center}>No tienes propiedades favoritas</h4>
     </div>);
   }
 
   return (
-    <div className='w-1/3 flex flex-col bg-cyan-100  p-4 rounded-2xl gap-3'>
-    <h3 className='text-center pb-2'>Favoritos</h3>
-    {properties.map((property: IProperty, i) => (
-    <div  key={i} className='flex align-middle gap-4 opacity-80 bg-cyan-200 p-4 rounded-2xl'>
-        <Image src={property.photos} alt='property image' width={60} height={60}/>
+    <div className={styles.box}>
+    <h3 className={styles.title}>Favoritos</h3>
+    {properties.slice(0,3).map((property: IProperty, i) => (
+    <div  key={i} className={styles.singleBox}>
+        <Image src={property.photos[0]} alt='property image' width={60} height={60}/>
         <h4> {property.propertyName} <br/> {property.country}</h4>
     </div>))}
-    <button className='font-semibold underline'>Ver Más</button>
+    <Link href="/propiedades/favoritas"><button className={styles.seeMore}>Ver Más</button></Link>
     </div>
   )
 }

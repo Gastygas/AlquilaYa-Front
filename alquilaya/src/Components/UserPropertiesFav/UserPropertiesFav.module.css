@@ -1,0 +1,19 @@
+.box{
+    @apply w-1/3 flex flex-col bg-cyan-100  p-4 rounded-2xl gap-3
+}
+
+.title{
+    @apply text-center pb-2
+}
+
+.center{
+    @apply text-center
+}
+
+.singleBox{
+    @apply flex align-middle gap-4 opacity-80 bg-cyan-200 p-4 rounded-2xl
+}
+
+.seeMore{
+    @apply font-semibold underline text-center
+}
