@@ -1,5 +1,5 @@
 .heroBg{
-    @apply relative h-screen bg-cover bg-center
+    @apply relative h-screen bg-cover bg-center justify-center
 }
 
 .containerGrid{
