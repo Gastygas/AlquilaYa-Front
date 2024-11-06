@@ -1,0 +1,19 @@
+.box{
+    @apply w-full flex flex-col bg-cyan-100  p-4 rounded-2xl justify-start align-top gap-3
+}
+
+.title{
+    @apply text-primary text-center opacity-1 pb-4
+}
+
+.grid{
+    @apply flex flex-row justify-center py-4
+}
+
+.center{
+    @apply text-center pb-2
+}
+
+.singleBox{
+    @apply flex align-middle gap-4 opacity-80 bg-cyan-200 p-4 rounded-2xl
+}
