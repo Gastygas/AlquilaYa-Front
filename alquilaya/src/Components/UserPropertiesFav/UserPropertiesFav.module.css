@@ -15,5 +15,5 @@
 }
 
 .seeMore{
-    @apply font-semibold underline
+    @apply font-semibold underline text-center
 }

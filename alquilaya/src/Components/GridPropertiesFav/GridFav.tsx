@@ -31,16 +31,14 @@ const GridFav = () => {
       
         if (!userData || userData?.favoriteProperties.length === 0) {
           return ( <div>
-          <h3 className={styles.title}>Favoritos</h3>
           <h4 className={styles.center}>No tienes propiedades favoritas</h4>
           </div>);
         }
   
   return (
     <Grid>
-    {properties.filter((prop: IProperty) => prop.propertyStatus === "approved").map((property: IProperty, i) => (
-      <Card key={i} property={property} />
-    ))}
+{properties.map((property: IProperty, i) => (
+   <Card key={i} property={property} />))}
   </Grid>
   )
 }
