@@ -4,6 +4,7 @@ import IProperty from '@/Interfaces/IProperties';
 import { IUser } from '@/Interfaces/IUser';
 import { getPropertyById, getUserData } from '@/services/dataUserService';
 import Image from 'next/image'
+import Link from "next/link";
 import React, { useEffect, useState } from 'react'
 
 const UserPropertiesFav = () => {
@@ -37,12 +38,12 @@ const UserPropertiesFav = () => {
   return (
     <div className={styles.box}>
     <h3 className={styles.title}>Favoritos</h3>
-    {properties.map((property: IProperty, i) => (
+    {properties.slice(0,3).map((property: IProperty, i) => (
     <div  key={i} className={styles.singleBox}>
         <Image src={property.photos[0]} alt='property image' width={60} height={60}/>
         <h4> {property.propertyName} <br/> {property.country}</h4>
     </div>))}
-    <button className={styles.seeMore}>Ver Más</button>
+    <Link href="/propiedades/favoritas"><button className={styles.seeMore}>Ver Más</button></Link>
     </div>
   )
 }
