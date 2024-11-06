@@ -37,7 +37,7 @@
 }
 
 .favButton{
-    @apply absolute top-4 right-4 w-10 h-10 bg-[--tertiary-color] rounded-full shadow-lg flex items-center justify-center z-50
+    @apply absolute top-4 right-4 w-10 h-10 bg-primary rounded-full shadow-lg flex items-center justify-center z-50 hover:bg-secondary transition-all
 }
 
 .cardGrid{
