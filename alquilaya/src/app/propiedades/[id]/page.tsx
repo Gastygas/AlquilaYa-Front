@@ -38,7 +38,10 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
             <Image src={property.photos[0]} alt={property.name} width={600} height={600} className='rounded-xl' />
           </div>
           <div className='w-1/2'>
+            <div className='flex justify-between'>
             <h1>{property.propertyName}</h1>
+            <FavButton propertyId={property.id} propertiesInfo={property}/>
+            </div>
             <h3>${property.price}</h3>
             <h4 className='font-bold'>{property.address}</h4>
             <div className='flex justify-start align-middle pt-4 gap-3'>
@@ -76,7 +79,7 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
                 <FaParking size={20} color="var(--darkBlue)" /><h4>Parqueadero</h4>
               </div> : <></>}
             </div>
-            <FavButton propertyId={property.id} properties={property}/>
+            
           </div>
         </div>
         <div className='bg-primary rounded-2xl mb-28'>

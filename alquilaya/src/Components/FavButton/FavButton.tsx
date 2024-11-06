@@ -5,7 +5,13 @@ import { useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import styles from "./FavButton.module.css"
 
-const FavButton = ({propertyId}:any) => {
+interface IButton {
+  propertyId: string;
+  propertiesInfo: IProperty; 
+  className?: string;
+}
+
+const FavButton: React.FC<IButton> = ({propertyId, propertiesInfo, className = "",}) => {
 
     const [properties, setProperties] = useState<IProperty>();
     const [token, setToken] = useState<string | null>(null);
@@ -49,8 +55,8 @@ const FavButton = ({propertyId}:any) => {
       };
 
   return (
-    <div><button onClick={(e: React.MouseEvent) => handleFavProperty(e, propertyId)}className={styles.favButton}>
-       <FaHeart/>Añadir a favoritos</button></div>
+    <div><button onClick={(e: React.MouseEvent) => handleFavProperty(e, propertyId)}className={`${styles.favButton} ${className}`}>
+       <FaHeart size={25} color="white"/></button></div>
   )
 }
 
