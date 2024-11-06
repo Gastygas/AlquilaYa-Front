@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ButtonCyan from '../ButtonCyan/ButtonCyan'
 import IconSelector from '../IconSelector/IconSelector'
 import { FcHome } from "react-icons/fc";
@@ -11,6 +11,13 @@ const Step1 = () => {
     const selected: null | any = null
     const router = useRouter()
     const [isSelected, setIsSelected] = useState(selected)
+
+    useEffect(() => {
+        let data = sessionStorage.getItem('data') ? JSON.parse(sessionStorage.getItem('data')!) : {}
+        if (data.tipe) {
+            setIsSelected({text: data.tipe})
+        }
+    }, [])
 
     const iconData = [
         { icon: <FcHome size={72} />, text: "Casa" },
@@ -38,14 +45,19 @@ const Step1 = () => {
         <div className="box-content relative w-full bg-gray-100 min-h-screen p-10 flex flex-col justify-between text-black">
             <div>
                 <div>
-                    <h2 className="ml-10 mt-10 text-black mb-2">Paso 1:</h2>
-                    <h1 className="mt-8 text-black text-center mb-4">Elige la opción que mejor describa tu espacio</h1>
+                    <h2 className="ml-10 mt-1 text-black mb-2">Paso 1:</h2>
+                    <h1 className="mt-2 text-black text-center">Elige la opción que mejor describa tu espacio</h1>
                 </div>
-                <IconSelector numCols={4} data={iconData} isSelected={isSelected} setIsSelected={setIsSelected} />
+                <div className=' mb-1'>
+                    <IconSelector numCols={4} data={iconData} isSelected={isSelected} setIsSelected={setIsSelected} />
+                </div>
             </div>
 
             <div className="absolute bottom-6 right-6">
-                <ButtonCyan onClick={saveDataPage} />
+                <ButtonCyan
+                    onClick={saveDataPage}
+                    isDisabled={!isSelected}
+                />
             </div>
 
         </div>

@@ -1,0 +1,1 @@
+export type IsSelectedItem = {icon: string, text: string}

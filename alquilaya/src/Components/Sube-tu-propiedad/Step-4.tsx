@@ -1,8 +1,9 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ButtonCyan from "../ButtonCyan/ButtonCyan";
 import { useRouter } from "next/navigation";
 import ButtonCyanBack from "../ButtonCyan/ButtonCyanBack";
+
 
 const Step4: React.FC = () => {
     const router = useRouter();
@@ -11,6 +12,37 @@ const Step4: React.FC = () => {
     const [bathrooms, setBathrooms] = useState<number | "">("");
     const [price, setPrice] = useState<number | "">("");
     const [petFriendly, setPetFriendly] = useState<boolean>(false);
+
+    const checkInput = () => {
+
+        return !!limitCapacity && !!bedrooms && !!bathrooms && !!price
+    }
+    console.log(checkInput())
+
+    useEffect(() => {
+        let data = sessionStorage.getItem('data') ? JSON.parse(sessionStorage.getItem('data')!) : {}
+        if (data.limitCapacity) {
+            setLimitCapacity(data.limitCapacity)
+        }
+
+        if (data.bedrooms) {
+            setBedrooms(data.bedrooms)
+        }
+
+        if (data.bathrooms) {
+            setBathrooms(data.bathrooms)
+        }
+
+        if (data.price) {
+            setPrice(data.price)
+        }
+
+        if (data.petFriendly) {
+            setPetFriendly(data.petFriendly)
+        }
+    }, [])
+    console.log(limitCapacity, bedrooms, bathrooms, price, petFriendly)
+
 
     const saveDataPage = () => {
         let data = sessionStorage.getItem("data") ? JSON.parse(sessionStorage.getItem("data")!) : {};
@@ -23,6 +55,7 @@ const Step4: React.FC = () => {
         router.push("/sube-tu-propiedad/paso-5");
     };
 
+
     const backPage = () => {
         router.push('/sube-tu-propiedad/paso-3')
     }
@@ -32,18 +65,15 @@ const Step4: React.FC = () => {
 
             <div>
                 <div>
-                    <h2 className="ml-10 mt-10 text-black mb-2">Paso 4:</h2>
+                    <h2 className="ml-10 mt-1 text-black mb-2">Paso 4:</h2>
                     <h1 className="mt-8 text-black text-center mb-4">Detalles de la Propiedad</h1>
                 </div>
 
                 <div className="flex justify-center w-full">
                     <form className="space-y-6 w-[400px]">
 
-                        {/* Límite de Capacidad */}
                         <div className="flex flex-col">
-                            <label htmlFor="limitCapacity" className="mb-1 font-medium">Límite de Capacidad de personas
-
-
+                            <label htmlFor="limitCapacity" className="mb-1 font-medium">Límite de capacidad de personas
                             </label>
                             <input
                                 type="number"
@@ -56,9 +86,9 @@ const Step4: React.FC = () => {
                             />
                         </div>
 
-                        {/* Dormitorios */}
                         <div className="flex flex-col">
-                            <label htmlFor="bedrooms" className="mb-1 font-medium">Dormitorios</label>
+                            <label htmlFor="bedrooms" className="mb-1 font-medium">Dormitorios
+                            </label>
                             <input
                                 type="number"
                                 id="bedrooms"
@@ -70,7 +100,6 @@ const Step4: React.FC = () => {
                             />
                         </div>
 
-                        {/* Baños */}
                         <div className="flex flex-col">
                             <label htmlFor="bathrooms" className="mb-1 font-medium">Baños</label>
                             <input
@@ -90,7 +119,7 @@ const Step4: React.FC = () => {
                             <input
                                 type="number"
                                 id="price"
-                                placeholder="Ingrese el precio"
+                                placeholder="Ingrese sólo números"
                                 value={price}
                                 onChange={(e) => setPrice(Number(e.target.value) || "")}
                                 className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF]"
@@ -107,7 +136,7 @@ const Step4: React.FC = () => {
                                 onChange={(e) => setPetFriendly(e.target.checked)}
                                 className="mr-2"
                             />
-                            <label htmlFor="petFriendly" className="font-medium">Acepta Mascotas</label>
+                            <label htmlFor="petFriendly" className="font-medium">Acepta mascotas</label>
                         </div>
 
 
@@ -117,7 +146,10 @@ const Step4: React.FC = () => {
             </div>
 
             <div className="absolute bottom-6 right-6">
-                <ButtonCyan onClick={saveDataPage} />
+                <ButtonCyan
+                    onClick={saveDataPage}
+                    isDisabled={!checkInput()}
+                />
             </div>
 
             <div className="absolute bottom-6 left-6">

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ButtonCyan from "../ButtonCyan/ButtonCyan";
 import IconSelector from "../IconSelector/IconSelector";
 import { useRouter } from "next/navigation";
@@ -10,6 +10,13 @@ const Step2 = () => {
     const selected: null | any = null
     const router = useRouter(); // Instanciamos el enrutador para poder navegar entre pasos
     const [isSelected, setIsSelected] = useState(selected);
+
+    useEffect(() => {
+        let data = sessionStorage.getItem('data') ? JSON.parse(sessionStorage.getItem('data')!) : {}
+        if (data.tipe) {
+            setIsSelected({text: data.services})
+        }
+    }, [])
 
     const serviceData = [
         { icon: '/llave-de-casa.png', text: "Una vivienda completa" },
@@ -43,7 +50,7 @@ const Step2 = () => {
         <div className="box-content relative w-full bg-gray-100 min-h-screen p-10 flex flex-col justify-between text-black">
             <div>
                 <div>
-                    <h2 className="ml-10 mt-10 text-black mb-2">Paso 2:</h2>
+                    <h2 className="ml-10 mt-1 text-black mb-2">Paso 2:</h2>
                     <h1 className="mt-8 text-black text-center mb-4">Indicá qué tipo de alojamiento ofrecés a los huéspedes</h1>
                 </div>
                 <div className="flex justify-center mb-1">
@@ -58,11 +65,15 @@ const Step2 = () => {
             </div>
 
             <div className="absolute bottom-6 right-6">
-                <ButtonCyan onClick={saveDataPage} />
+                <ButtonCyan 
+                onClick={saveDataPage}
+                isDisabled={!isSelected}
+                 />
             </div>
 
             <div className="absolute bottom-6 left-6">
-                <ButtonCyanBack onClick={backPage} />
+                <ButtonCyanBack 
+                onClick={backPage}/>
             </div>
         </div>
     );

@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 import ButtonCyan from '../ButtonCyan/ButtonCyan';
 import { useRouter } from 'next/navigation';
@@ -19,6 +19,8 @@ const containerStyle = {
   width: '100%',
   height: '100%',
 };
+
+
 
 const Step5: React.FC = () => {
   const [propertyData, setPropertyData] = useState<PropertyData>({
@@ -123,7 +125,7 @@ const Step5: React.FC = () => {
 
       const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property/create`, {
         method: 'POST',
-        body: JSON.stringify(formData),
+        body: JSON.stringify(propertyData),
       });
 
       if (response.ok) {
@@ -269,7 +271,10 @@ const Step5: React.FC = () => {
         </div>
       </div>
       <div className="absolute bottom-6 right-6">
-        <ButtonCyan onClick={handleSubmit} />
+        <ButtonCyan 
+        onClick={handleSubmit}
+        isDisabled={false}
+         />
       </div>
 
       <div className="absolute bottom-6 left-6">
