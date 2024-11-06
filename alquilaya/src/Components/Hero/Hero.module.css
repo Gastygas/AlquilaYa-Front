@@ -3,7 +3,7 @@
 }
 
 .containerGrid{
-    @apply container absolute inset-0 flex justify-center
+    @apply container absolute inset-0 flex justify-center h-screen
 }
 
 .textOrder{
