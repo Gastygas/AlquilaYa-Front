@@ -129,7 +129,7 @@ const Step5: React.FC = () => {
       if (response.ok) {
         router.push('/sube-tu-propiedad/paso-6');
       } else {
-        alert("Error al enviar los datos. Por favor, inténtelo de nuevo.");
+        alert("Error al enviar los datos. Por favor, inténtalo de nuevo.");
       }
     } catch (error) {
       console.error("Error al enviar datos:", error);
@@ -139,96 +139,145 @@ const Step5: React.FC = () => {
 
   const backPage = () => {
     router.push('/sube-tu-propiedad/paso-4')
-}
+  }
 
   return (
-    <div className="flex flex-col items-center p-8 bg-gray-100 rounded-lg shadow-md w-full max-w-lg mx-auto">
-      <h2 className="text-2xl font-semibold text-center text-gray-800 mb-6">Complete la Información de la Propiedad</h2>
-      <form className="flex flex-col gap-4 w-full">
-        <input
-          type="text"
-          name="name"
-          placeholder="Nombre del Propietario"
-          value={propertyData.name}
-          onChange={handleChange}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-        />
-        <input
-          type="text"
-          name="address"
-          placeholder="Dirección"
-          value={propertyData.address}
-          onChange={handleChange}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-        />
-        <input
-          type="text"
-          name="city"
-          placeholder="Ciudad"
-          value={propertyData.city}
-          onChange={handleChange}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-        />
-        <input
-          type="text"
-          name="country"
-          placeholder="País"
-          value={propertyData.country}
-          onChange={handleChange}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-        />
-        <textarea
-          name="description"
-          placeholder="Descripción de la Propiedad"
-          value={propertyData.description}
-          onChange={handleChange}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg resize-y min-h-[100px]"
-        />
-        {/* <label className="flex flex-col gap-2 text-gray-700">
-          Subir Factura para Justificación de Dirección
-          <input
-            type="file"
-            name="invoiceFile"
-            onChange={handleFileChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg cursor-pointer"
-          />
-        </label> */}
-      </form>
+    <div className="box-content relative w-full bg-gray-100 min-h-screen p-10 flex flex-col justify-between text-black">
+      <div>
+        <div>
+          <h2 className="ml-10 mt-10 text-black mb-2">Paso 5:</h2>
+          <h1 className="mt-8 text-black text-center mb-4">Complete la Información de la propiedad</h1>
+        </div>
+        <div className="flex justify-center w-full">
+  <form className="space-y-6 w-[400px]">
 
-      {/* Botón de búsqueda de dirección */}
-      <button
-        onClick={searchAddress}
-        className="mt-4 w-full py-2 text-white bg-blue-500 hover:bg-blue-600 rounded-lg font-semibold"
-      >
-        Buscar dirección en el mapa
-      </button>
-
-      {/* Mapa de Google */}
-      <div className="w-full h-64 my-6 rounded-lg overflow-hidden">
-        {isLoaded ? (
-          <GoogleMap
-            mapContainerStyle={containerStyle}
-            center={propertyData.mapLocation}
-            zoom={10}
-            onLoad={onLoad}
-            onUnmount={onUnmount}
-            onClick={handleMapClick}
-          >
-            <Marker position={propertyData.mapLocation} />
-          </GoogleMap>
-        ) : (
-          <p className="text-center text-gray-500">Cargando mapa...</p>
-        )}
-      </div>
-
-      <ButtonCyan onClick={handleSubmit} className="w-full">
-        Siguiente
-      </ButtonCyan>
-      <div className="absolute bottom-6 left-6">
-          <ButtonCyanBack onClick={backPage} />
-      </div>
+    {/* Nombre del Propietario */}
+    <div className="flex flex-col">
+      <label htmlFor="name" className="mb-1 font-medium">Nombre</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Nombre del Propietario"
+        value={propertyData.name}
+        onChange={handleChange}
+        className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF]"
+        required
+      />
     </div>
-    
+
+    {/* Dirección */}
+    <div className="flex flex-col">
+      <label htmlFor="address" className="mb-1 font-medium">Dirección</label>
+      <input
+        type="text"
+        id="address"
+        name="address"
+        placeholder="Dirección"
+        value={propertyData.address}
+        onChange={handleChange}
+        className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF]"
+        required
+      />
+    </div>
+
+    {/* Ciudad */}
+    <div className="flex flex-col">
+      <label htmlFor="city" className="mb-1 font-medium">Ciudad</label>
+      <input
+        type="text"
+        id="city"
+        name="city"
+        placeholder="Ciudad"
+        value={propertyData.city}
+        onChange={handleChange}
+        className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF]"
+        required
+      />
+    </div>
+
+    {/* País */}
+    <div className="flex flex-col">
+      <label htmlFor="country" className="mb-1 font-medium">País</label>
+      <input
+        type="text"
+        id="country"
+        name="country"
+        placeholder="País"
+        value={propertyData.country}
+        onChange={handleChange}
+        className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF]"
+        required
+      />
+    </div>
+
+    {/* Descripción de la Propiedad */}
+    <div className="flex flex-col">
+      <label htmlFor="description" className="mb-1 font-medium">Descripción de la Propiedad</label>
+      <textarea
+        id="description"
+        name="description"
+        placeholder="Descripción de la Propiedad"
+        value={propertyData.description}
+        onChange={handleChange}
+        className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF] resize-y min-h-[100px]"
+        required
+      />
+    </div>
+
+    {/* Subir Factura para Justificación de Dirección */}
+    <div className="flex flex-col">
+      <label htmlFor="invoiceFile" className="mb-1 font-medium">Subir factura que coincida con la dirección</label>
+      <input
+        type="file"
+        id="invoiceFile"
+        name="invoiceFile"
+        onChange={handleFileChange}
+        className="bg-white border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] cursor-pointer hover:border-[#4DBDFF]"
+        required
+      />
+    </div>
+
+  </form>
+</div>
+
+
+        {/* Botón de búsqueda de dirección */}
+        <button
+          onClick={searchAddress}
+          className="mt-4 w-full py-2 text-white bg-blue-500 hover:bg-blue-600 rounded-lg font-semibold"
+        >
+          Buscar dirección en el mapa
+        </button>
+
+        {/* Mapa de Google */}
+        <div className="w-full h-64 my-6 rounded-lg overflow-hidden">
+          {isLoaded ? (
+            <GoogleMap
+              mapContainerStyle={containerStyle}
+              center={propertyData.mapLocation}
+              zoom={10}
+              onLoad={onLoad}
+              onUnmount={onUnmount}
+              onClick={handleMapClick}
+            >
+              <Marker position={propertyData.mapLocation} />
+            </GoogleMap>
+          ) : (
+            <p className="text-center text-gray-500">Cargando mapa...</p>
+          )}
+        </div>
+      </div>
+      <div className="absolute bottom-6 right-6">
+        <ButtonCyan onClick={handleSubmit} />
+      </div>
+
+      <div className="absolute bottom-6 left-6">
+        <ButtonCyanBack onClick={backPage} />
+      </div>
+
+    </div>
+
   );
 };
 

@@ -8,7 +8,7 @@ import ButtonCyanBack from '../ButtonCyan/ButtonCyanBack'
 
 
 const Step3 = () => {
-    const selected: null|any = null
+    const selected: null | any = null
     const router = useRouter(); // Instanciamos el enrutador para poder navegar entre pasos
     const [isSelected, setIsSelected] = useState(selected);
 
@@ -39,17 +39,19 @@ const Step3 = () => {
     }
 
     return (
-        <div className="relative bg-gray-100 min-h-screen p-10 flex flex-col justify-between text-black">
+        <div className="box-content relative w-full bg-gray-100 min-h-screen p-10 flex flex-col justify-between text-black">
             <div>
-                <h2 className="ml-10 mt-10 text-black mb-2">Paso 3:</h2>
-                <h1 className="mt-20 text-black text-center mb-4">Indicá qué servicios ofrecés</h1>
+                <div>
+                    <h2 className="ml-10 mt-10 text-black mb-2">Paso 3:</h2>
+                    <h1 className="mt-8 text-black text-center mb-4">Indicá qué servicios ofrecés</h1>
+                </div>
                 <IconSelector data={iconData} isSelected={isSelected} setIsSelected={setIsSelected} />
             </div>
 
             <div className="absolute bottom-6 right-6">
                 <ButtonCyan onClick={saveDataPage} />
             </div>
-            
+
             <div className="absolute bottom-6 left-6">
                 <ButtonCyanBack onClick={backPage} />
             </div>

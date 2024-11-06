@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation'
 
 
 const Step1 = () => {
-    const selected: null|any = null
+    const selected: null | any = null
     const router = useRouter()
     const [isSelected, setIsSelected] = useState(selected)
 
@@ -35,11 +35,12 @@ const Step1 = () => {
     }
 
     return (
-
-        <div className="relative bg-gray-100 min-h-screen p-10 flex flex-col justify-between text-black">
+        <div className="box-content relative w-full bg-gray-100 min-h-screen p-10 flex flex-col justify-between text-black">
             <div>
-                <h2 className="ml-10 mt-10 text-black mb-2">Paso 1:</h2>
-                <h1 className="mt-20 text-black text-center mb-4">Elige la opción que mejor describa tu espacio</h1>
+                <div>
+                    <h2 className="ml-10 mt-10 text-black mb-2">Paso 1:</h2>
+                    <h1 className="mt-8 text-black text-center mb-4">Elige la opción que mejor describa tu espacio</h1>
+                </div>
                 <IconSelector numCols={4} data={iconData} isSelected={isSelected} setIsSelected={setIsSelected} />
             </div>
 
@@ -48,7 +49,6 @@ const Step1 = () => {
             </div>
 
         </div>
-
     )
 }
 
