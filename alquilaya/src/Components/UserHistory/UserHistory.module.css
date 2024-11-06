@@ -1,0 +1,23 @@
+.booksGrid{
+    @apply w-full flex flex-col bg-cyan-100  p-4 rounded-2xl justify-start align-top
+}
+
+.title{
+    @apply text-primary text-center opacity-5 pb-4
+}
+
+.box{
+    @apply flex flex-row justify-center py-4
+}
+
+.center{
+    @apply text-center pb-2
+}
+
+.colorBox{
+    @apply w-full flex flex-col bg-cyan-100  p-4 rounded-2xl gap-3
+}
+
+.item{
+    @apply flex align-middle gap-4 opacity-80 bg-cyan-200 p-4 rounded-2xl
+}

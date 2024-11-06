@@ -2,3 +2,35 @@
     @apply mt-5 text-sm px-14 py-[10px] rounded-[16px] bg-primary text-secondary font-bold
     cursor-pointer transition-all duration-300 hover:scale-90 text-center 
 }
+
+.bigBox{
+    @apply w-2/3 flex flex-col bg-cyan-100  p-4 rounded-2xl justify-start align-top
+}
+
+.title{
+    @apply text-primary text-center opacity-5 pb-4
+}
+
+.grid{
+    @apply flex flex-row 
+}
+
+.center{
+    @apply text-center
+}
+
+.bigBoxContent{
+    @apply w-2/3 flex flex-col bg-cyan-100  p-4 rounded-2xl justify-center align-middle
+}
+
+.subtitle{
+    @apply pt-4 text-center font-bold
+}
+
+.singleItem{
+    @apply w-1/2 flex flex-col opacity-80
+}
+
+.content{
+    @apply pb-4 text-center
+}

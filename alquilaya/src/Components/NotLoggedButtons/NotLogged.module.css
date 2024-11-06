@@ -1,5 +1,5 @@
 .box{
-    @apply flex align-middle
+    @apply flex align-middle gap-4
 }
 
 .register{
@@ -7,6 +7,6 @@
 }
 
 .login{
-    @apply font-bold text-secondary
+    @apply font-bold text-secondary px-[10px]
 }
 
