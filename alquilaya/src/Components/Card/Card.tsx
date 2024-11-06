@@ -17,7 +17,7 @@ const Card = ({property}: ProductProps) => {
     <button className={styles.favButton}>
       <FaHeart/>
     </button>
-        <Image src={property.photos[0]} alt={property.propertyName} className="rounded-md" width={300} height={300}/>
+        <Image src={property.photos[0]} alt={property.propertyName} className="rounded-md" width={280} height={280}/>
         <h3 className={styles.title}>{property.propertyName}</h3>
         <h4>${property.price}</h4>
         <p className={styles.description}>{property.description}</p>
