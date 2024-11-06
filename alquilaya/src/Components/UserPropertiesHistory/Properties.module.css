@@ -3,7 +3,7 @@
 }
 
 .title{
-    @apply text-primary text-center opacity-10 pb-4;
+    @apply text-primary text-center pb-4
 }
 
 .grid{
