@@ -22,7 +22,8 @@ const BookForm: React.FC<BookFormProps> = ({
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
-    setUserId(storedUser.id || null);
+    setUserId(storedUser.user.id || null);
+    
   }, []);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -32,7 +33,9 @@ const BookForm: React.FC<BookFormProps> = ({
     const endDate = new Date(checkOutDate);
     const differenceInTime = endDate.getTime() - startDate.getTime();
     const daysDifference = Math.ceil(differenceInTime / (1000 * 3600 * 24));
-
+    console.log(userId);
+    
+    
     const orderData = {
       items: [
         {
@@ -100,7 +103,7 @@ const BookForm: React.FC<BookFormProps> = ({
       {/* Carga dinámica del script solo cuando se hace clic en el botón de pago */}
       <Script
         src="https://sdk.mercadopago.com/js/v2"
-        strategy="beforeInteractive"
+        strategy="lazyOnload"
         onLoad={() => console.log("Mercado Pago SDK cargado")}
       />
 
