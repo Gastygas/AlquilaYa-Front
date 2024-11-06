@@ -4,6 +4,7 @@ import IProperty from '@/Interfaces/IProperties';
 import { IUser } from '@/Interfaces/IUser';
 import { getUserData } from '@/services/dataUserService';
 import Image from 'next/image'
+import Link from "next/link";
 import React, { useEffect, useState } from 'react'
 
 const UserPropertiesHistory = () => {
@@ -36,10 +37,10 @@ const UserPropertiesHistory = () => {
     <h3 className={styles.center}>Tus Propiedades</h3>
 
  {userData?.properties.map((property: IProperty) => (
-    <div className={styles.singleBox}>
+    <Link href={`/propiedades/${property.id}`}><div className={styles.singleBox}>
       <Image src={property.photos[0]} alt='property image' width={60} height={60} />
       <h4>{property.propertyName}<br /> {property.country}</h4>
-    </div>
+    </div></Link>
     ))}
   </div>
   )
