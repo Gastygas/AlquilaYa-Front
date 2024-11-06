@@ -15,7 +15,7 @@ const Card = ({property}: ProductProps) => {
   return (
     <Link href={`/propiedades/${property.id}`}>
     <div key={property.id} className={styles.cardGrid}>
-<FavButton propertyId={property.id} propertiesInfo={property}/>
+<FavButton propertyId={property.id} propertiesInfo={property} className={styles.favButton}/>
         <div className={styles.imgContainer}>
         <Image src={property.photos[0]} alt={property.propertyName} className="rounded-md" width={300} height={300}/>
         </div>
