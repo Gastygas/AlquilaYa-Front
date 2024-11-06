@@ -55,7 +55,7 @@ const FavButton: React.FC<IButton> = ({propertyId, propertiesInfo, className = "
       };
 
   return (
-    <div><button onClick={(e: React.MouseEvent) => handleFavProperty(e, propertyId)}className={`${styles.favButton} ${className}`}>
+    <div><button onClick={(e: React.MouseEvent) => handleFavProperty(e, propertyId)}className={`${className}`}>
        <FaHeart size={25} color="white"/></button></div>
   )
 }

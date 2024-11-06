@@ -1,3 +1,0 @@
-.favButton{
-    @apply top-52 right-60 w-14 h-14 bg-primary rounded-full shadow-2xl flex items-center justify-center z-50 hover:bg-secondary hover:shadow-slate-700 transition-all
-}
