@@ -39,7 +39,7 @@ const UserPropertiesFav = () => {
     <h3 className={styles.title}>Favoritos</h3>
     {properties.map((property: IProperty, i) => (
     <div  key={i} className={styles.singleBox}>
-        <Image src={property.photos} alt='property image' width={60} height={60}/>
+        <Image src={property.photos[0]} alt='property image' width={60} height={60}/>
         <h4> {property.propertyName} <br/> {property.country}</h4>
     </div>))}
     <button className={styles.seeMore}>Ver Más</button>
