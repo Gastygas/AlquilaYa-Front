@@ -12,8 +12,11 @@ const Step4: React.FC = () => {
     const [price, setPrice] = useState<number | "">("");
     const [petFriendly, setPetFriendly] = useState<boolean>(false);
 
-    const saveDataPage = () => {
+    const saveDataPage = (e:any) => {
+        e.preventDefault()
         let data = sessionStorage.getItem("data") ? JSON.parse(sessionStorage.getItem("data")!) : {};
+        console.log(data);
+        
         data.limitCapacity = limitCapacity;
         data.bedrooms = bedrooms;
         data.bathrooms = bathrooms;
@@ -22,6 +25,7 @@ const Step4: React.FC = () => {
         sessionStorage.setItem("data", JSON.stringify(data));
         router.push("/sube-tu-propiedad/paso-5");
     };
+
     const backPage = () => {
         router.push('/sube-tu-propiedad/paso-3')
     };
@@ -101,7 +105,7 @@ const Step4: React.FC = () => {
                     </div>
 
                     <div className="absolute bottom-6 right-6">
-                        <ButtonCyan onClick={saveDataPage}>Guardar y Continuar</ButtonCyan>
+                        <ButtonCyan onClick={saveDataPage}></ButtonCyan>
                     </div>
                     <div className="absolute bottom-6 left-6">
                         <ButtonCyanBack onClick={backPage} />

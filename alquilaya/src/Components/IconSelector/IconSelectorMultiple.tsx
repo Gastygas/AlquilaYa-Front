@@ -12,7 +12,7 @@ interface IconSelectorProps {
     iconSize?: number;
 };
 
-const IconSelector: React.FC<IconSelectorProps> = ({ data, isSelected, setIsSelected, numCols = 4, iconSize = 48 }) => {
+const IconSelectorMultiple: React.FC<IconSelectorProps> = ({ data, isSelected, setIsSelected, numCols = 4, iconSize = 48 }) => {
     return (
         <div className="flex justify-center items-center min-h-screen">
             <div
@@ -23,7 +23,7 @@ const IconSelector: React.FC<IconSelectorProps> = ({ data, isSelected, setIsSele
                     <button
                         key={index}
                         className={`w-36 h-36 border border-gray-400 rounded-md m-1 flex flex-col items-center justify-center gap-2 ${
-                            isSelected && isSelected.text === d.text ? 'bg-purple-500 text-white' : 'bg-white'
+                            Array.isArray(isSelected) && isSelected.some((s: any) => s.text === d.text) ? 'bg-purple-500 text-white' : 'bg-white'
                         }`}
                         onClick={() => setIsSelected(d)}
                     >
@@ -40,4 +40,4 @@ const IconSelector: React.FC<IconSelectorProps> = ({ data, isSelected, setIsSele
     )
 }
 
-export default IconSelector;
+export default IconSelectorMultiple;

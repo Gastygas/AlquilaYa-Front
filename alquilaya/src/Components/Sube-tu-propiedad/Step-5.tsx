@@ -1,18 +1,30 @@
 "use client";
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 import ButtonCyan from '../ButtonCyan/ButtonCyan';
 import { useRouter } from 'next/navigation';
 import ButtonCyanBack from '../ButtonCyan/ButtonCyanBack';
 
-interface PropertyData {
-  name: string;
+interface IPropertyData {
+  mapLocation?: { lat: number; lng: number };
+  invoiceFile?: File | null;
+  propertyName: string;
   address: string;
-  city: string;
+  addressUrl: string;
+  bill: string;
   country: string;
-  description: string;
-  mapLocation: { lat: number; lng: number };
-  invoiceFile: File | null;
+  city: string;
+  price: number;
+  capacity: number;
+  bedrooms: number;
+  bathrooms: number;
+  wifi?: boolean;
+  petFriendly?: boolean;
+  airConditioning?: boolean;
+  heating?: boolean;
+  pool?: boolean;
+  parking?: boolean;
+  description:string;
 }
 
 const containerStyle = {
@@ -21,17 +33,23 @@ const containerStyle = {
 };
 
 const Step5: React.FC = () => {
-  const [propertyData, setPropertyData] = useState<PropertyData>({
-    name: '',
-    address: '',
-    city: '',
-    country: '',
-    description: '',
-    mapLocation: { lat: -34.6037, lng: -58.3816 },
-    invoiceFile: null,
-  });
-
+  const propertyToSend:any={}
+  
   const router = useRouter();
+  const [propertyData, setPropertyData] = useState(propertyToSend);
+  const [tokenUser, setTokenUser] = useState<string | null>(null);
+
+  useEffect(() => {
+    const storedData = localStorage.getItem("user");
+    if (storedData) {
+      const parsedData = JSON.parse(storedData);
+      setTokenUser(parsedData.token);
+    } 
+    else{
+      alert('algo fallo')
+    }
+  }, []);
+
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -54,7 +72,7 @@ const Step5: React.FC = () => {
     const latLng = event.latLng;
 
     if (latLng) {
-      setPropertyData((prevData) => ({
+      setPropertyData((prevData:any) => ({
         ...prevData,
         mapLocation: {
           lat: latLng.lat(),
@@ -66,7 +84,7 @@ const Step5: React.FC = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setPropertyData((prevData) => ({
+    setPropertyData((prevData:any) => ({
       ...prevData,
       [name]: value,
     }));
@@ -76,7 +94,7 @@ const Step5: React.FC = () => {
     const files = e.target.files;
 
     if (files && files.length > 0) {
-      setPropertyData((prevData) => ({
+      setPropertyData((prevData:any) => ({
         ...prevData,
         invoiceFile: files[0],
       }));
@@ -92,7 +110,7 @@ const Step5: React.FC = () => {
 
     if (data.results.length > 0) {
       const location = data.results[0].geometry.location;
-      setPropertyData((prevData) => ({
+      setPropertyData((prevData:any) => ({
         ...prevData,
         mapLocation: {
           lat: location.lat,
@@ -108,38 +126,46 @@ const Step5: React.FC = () => {
   };
 
   const handleSubmit = async () => {
-    try {
-      const formData = new FormData();
-      formData.append('name', propertyData.name);
-      formData.append('address', propertyData.address);
-      formData.append('city', propertyData.city);
-      formData.append('country', propertyData.country);
-      formData.append('description', propertyData.description);
-      formData.append('lat', String(propertyData.mapLocation.lat));
-      formData.append('lng', String(propertyData.mapLocation.lng));
-      if (propertyData.invoiceFile) {
-        formData.append('invoiceFile', propertyData.invoiceFile);
-      }
+    const formData = new FormData();
+    formData.append('propertyName', propertyData.name);
+    formData.append('address', propertyData.address);
+    formData.append('city', propertyData.city);
+    formData.append('country', propertyData.country);
+    formData.append('description', propertyData.description);
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property/create`, {
+    // formData.append('lat', String(propertyData.mapLocation.lat));
+    // formData.append('lng', String(propertyData.mapLocation.lng));
+    
+    console.log("hola soy formdata",formData);
+    
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property/create`, {
         method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${tokenUser}`,
+          'Content-Type': 'multipart/form-data',
+        },
         body: JSON.stringify(formData),
       });
+      const newProperty = await response.json()
+      console.log(newProperty);
+      
+      if (newProperty.name) {
 
-      if (response.ok) {
-        router.push('/sube-tu-propiedad/paso-6');
-      } else {
-        alert("Error al enviar los datos. Por favor, inténtelo de nuevo.");
+        alert("se creo")
+        // router.push('/sube-tu-propiedad/paso-6');
+      } 
+      if (newProperty.message === 'Invalid Token'){
+        return alert("Logeate de nuevo porfavor")
       }
-    } catch (error) {
-      console.error("Error al enviar datos:", error);
-      alert("Ocurrió un error al enviar los datos.");
-    }
+      else {
+        return alert(`Revista estos datos: ${newProperty.error.map((err:any) => err.property)}`);
+      }
+
   };
 
   const backPage = () => {
     router.push('/sube-tu-propiedad/paso-4')
-}
+  }
 
   return (
     <div className="flex flex-col items-center p-8 bg-gray-100 rounded-lg shadow-md w-full max-w-lg mx-auto">

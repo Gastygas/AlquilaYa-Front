@@ -2,17 +2,21 @@
 import React, { useState } from 'react'
 import ButtonCyan from '../ButtonCyan/ButtonCyan'
 import Link from 'next/link'
-import IconSelector from '../IconSelector/IconSelector'
 import { useRouter } from 'next/navigation'
 import ButtonCyanBack from '../ButtonCyan/ButtonCyanBack'
+import IconSelectorMultiple from '../IconSelector/IconSelectorMultiple'
 
+interface IconOption {
+    icon: string;
+    text: string;
+}
 
 const Step3 = () => {
-    const selected: null|any = null
-    const router = useRouter(); // Instanciamos el enrutador para poder navegar entre pasos
-    const [isSelected, setIsSelected] = useState(selected);
+    const router = useRouter()
+    const [selectedServices, setSelectedServices] = useState<IconOption[] | any>([])  // Cambiar a array de IconOptions
+    const [error, setError] = useState<string | null>(null)
 
-    const iconData = [
+    const iconData: IconOption[] = [
         { icon: '/wifi.png', text: "Wi-Fi" },
         { icon: '/transmision-en-vivo.png', text: "Streaming" },
         { icon: '/parrilla.png', text: "Parrilla" },
@@ -25,15 +29,33 @@ const Step3 = () => {
         { icon: '/lavadora.png', text: "Lavadora" },
         { icon: '/obrero.png', text: "Limpieza" },
         { icon: '/porcion-de-comida.png', text: "Catering" },
-    ];
+    ]
+
+    // Cambiar la función toggleService para manejar múltiples ítems seleccionados
+    const toggleService = (service: IconOption) => {
+        setSelectedServices((prevSelectedServices: any) => {
+            // Si el servicio ya está seleccionado, lo deseleccionamos
+            if (prevSelectedServices.some((s:any) => s.text === service.text)) {
+                return prevSelectedServices.filter((s:any) => s.text !== service.text)
+            }
+            // Si no está seleccionado, lo agregamos
+            return [...prevSelectedServices, service]
+        })
+        setError(null)  // Reset error if the user selects an option
+    }
 
     const backPage = () => {
         router.push('/sube-tu-propiedad/paso-2')
     }
 
     const saveDataPage = () => {
+        if (selectedServices.length === 0) {
+            setError("Debes seleccionar al menos un servicio.")
+            return
+        }
+
         let data = sessionStorage.getItem('data') ? JSON.parse(sessionStorage.getItem('data')!) : {}
-        data.tipe = isSelected?.text
+        data.services = selectedServices.map((service:any) => service.text)  // Guardar los servicios seleccionados
         sessionStorage.setItem("data", JSON.stringify(data))
         router.push('/sube-tu-propiedad/paso-4')
     }
@@ -43,7 +65,12 @@ const Step3 = () => {
             <div>
                 <h2 className="ml-10 mt-10 text-black mb-2">Paso 3:</h2>
                 <h1 className="mt-20 text-black text-center mb-4">Indicá qué servicios ofrecés</h1>
-                <IconSelector data={iconData} isSelected={isSelected} setIsSelected={setIsSelected} />
+                <IconSelectorMultiple 
+                    data={iconData} 
+                    isSelected={selectedServices}  // Pasar el array de servicios seleccionados
+                    setIsSelected={toggleService}  // Pasar la función toggleService
+                />
+                {error && <p className="text-red-500 text-center mt-4">{error}</p>}
             </div>
 
             <div className="absolute bottom-6 right-6">
@@ -53,9 +80,8 @@ const Step3 = () => {
             <div className="absolute bottom-6 left-6">
                 <ButtonCyanBack onClick={backPage} />
             </div>
-
         </div>
     )
 }
 
-export default Step3;
+export default Step3
