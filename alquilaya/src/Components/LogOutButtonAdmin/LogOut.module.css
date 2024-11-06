@@ -1,0 +1,8 @@
+.gridButtons{
+    @apply flex flex-row justify-around items-center gap-6
+}
+
+.button{
+    @apply flex text-sm px-10 py-[7px] rounded-[20px]
+    cursor-pointer transition-all duration-300 hover:scale-90 bg-primary text-secondary font-bold
+}

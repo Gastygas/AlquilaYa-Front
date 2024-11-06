@@ -39,7 +39,7 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
           </div>
           <div className='w-1/2'>
             <h1>{property.propertyName}</h1>
-            <h3>{property.price}</h3>
+            <h3>${property.price}</h3>
             <h4 className='font-bold'>{property.address}</h4>
             <div className='flex justify-start align-middle pt-4 gap-3'>
               <FaMapLocationDot size={20} color="var(--darkBlue)" /><h4>{property.city} </h4>
