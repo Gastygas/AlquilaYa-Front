@@ -1,8 +1,9 @@
 .navBg{
-    background-color: var(--secondary-color);
-    box-shadow: 0px 0px 10px;
+@apply py-6 z-20
 }
 
-
+.img{
+    @apply transition-transform duration-300 hover:scale-95 w-auto h-auto
+}
 
 

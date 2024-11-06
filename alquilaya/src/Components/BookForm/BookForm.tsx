@@ -100,8 +100,8 @@ const BookForm: React.FC<BookFormProps> = ({
         onLoad={() => console.log("Mercado Pago SDK cargado")}
       />
 
-      <form className="flex flex-col justify-center" onSubmit={handleSubmit}>
-        <div className="grid grid-cols-2 gap-8 p-12">
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <div className={styles.boxGrid}>
           <div>
             <label htmlFor="checkInDate" className={styles.label}>
               Fecha de Entrada
@@ -131,10 +131,8 @@ const BookForm: React.FC<BookFormProps> = ({
             />
           </div>
         </div>
-        <div className="flex justify-center">
-          <button type="submit" className={styles.button}>
-            Reservar
-          </button>
+        <div className={styles.centerButton}>
+          <button type="submit" className={styles.button}>Reservar</button>
         </div>
       </form>
     </>

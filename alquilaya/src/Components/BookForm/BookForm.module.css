@@ -10,3 +10,15 @@
     @apply flex text-sm px-10 py-[20px] rounded-[20px]
     cursor-pointer transition-all duration-300 hover:scale-90 font-bold text-primary justify-center bg-secondary w-1/2 mb-8
 }
+
+.form{
+    @apply flex flex-col justify-center
+}
+
+.boxGrid{
+    @apply grid grid-cols-2 gap-8 p-12
+}
+
+.centerButton{
+    @apply flex justify-center
+}

@@ -3,6 +3,7 @@ import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import { IUser } from '@/Interfaces/IUser'
 import { getUserData } from '@/services/dataUserService'
+import styles from "./UserHistory.module.css"
 
 const UserHistory = () => {
   const [userData, setUserData] = useState<IUser | null>(null);
@@ -21,19 +22,19 @@ const UserHistory = () => {
     fetchUserData();
   }, []);
 
-  if (userData?.properties.length === 0) return (    <div className='w-full flex flex-col bg-cyan-100  p-4 rounded-2xl justify-start align-top'>
-    <h3 className='text-primary text-center opacity-1 pb-4'>Tus Reservas</h3>
-    <div className='flex flex-row justify-center py-4'>
-      <h4 className="text-center ">No has realizado reservas aún</h4>
+  if (userData?.properties.length === 0) return (    <div className={styles.booksGrid}>
+    <h3 className={styles.title}>Tus Reservas</h3>
+    <div className={styles.box}>
+      <h4 className={styles.center}>No has realizado reservas aún</h4>
     </div>
   </div>
    
   );
   return (
-    <div className='w-full flex flex-col bg-cyan-100  p-4 rounded-2xl gap-3'>
-    <h3 className='text-center pb-2'>Tus Reservas</h3>
+    <div className={styles.colorBox}>
+    <h3 className={styles.title}>Tus Reservas</h3>
   
-    <div className='flex align-middle gap-4 opacity-80 bg-cyan-200 p-4 rounded-2xl'>
+    <div className={styles.item}>
       <Image src="/Herobg.jpg" alt='property image' width={60} height={60} />
       <h4>Nombre de la propiedad <br /> País de la propiedad</h4>
     </div>
