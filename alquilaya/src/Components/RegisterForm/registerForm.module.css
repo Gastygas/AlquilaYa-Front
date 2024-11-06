@@ -10,3 +10,23 @@
     @apply mt-5 flex text-sm px-16 py-[10px] rounded-[20px] bg-secondary text-primary font-bold
     cursor-pointer transition-all duration-300 hover:scale-90 gap-2
 }
+
+.form{
+    @apply flex flex-col items-center justify-center
+}
+
+.gridForm{
+    @apply grid grid-cols-2 gap-4
+}
+
+.space{
+    @apply gap-4
+}
+
+.errorText{
+    @apply text-red-600 text-sm
+}
+
+.linkLogin{
+    @apply  pt-8 text-sm font-bold underline text-primary hover:text-secondary transition-all
+}

@@ -3,9 +3,8 @@ import styles from "./usuario.module.css"
 import Link from 'next/link';
 
 const page = async () => {
-  const url = "http://localhost:3001/users";
 
-  const res = await fetch(url, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/users`, {
     method: "GET",
     cache: "no-store",
   });

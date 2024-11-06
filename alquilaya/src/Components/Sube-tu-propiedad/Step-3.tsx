@@ -7,8 +7,9 @@ import { useRouter } from 'next/navigation'
 
 
 const Step3 = () => {
-    const router = useRouter()
-    const [isSelected, setIsSelected] = useState(null)
+    const selected: null|any = null
+    const router = useRouter(); // Instanciamos el enrutador para poder navegar entre pasos
+    const [isSelected, setIsSelected] = useState(selected);
 
     const iconData = [
         { icon: '/wifi.png', text: "Wi-Fi" },

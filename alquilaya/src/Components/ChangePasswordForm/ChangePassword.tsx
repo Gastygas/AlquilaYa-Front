@@ -22,30 +22,30 @@ const ChangePasswordForm = () => {
 
   const fetchEmailAndIdEmail = async () => { 
     
-      const responseEmail = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/email/${idEmail}`, {
-        method: "GET",
-        cache: "no-store"
-      });
-      if (!responseEmail.ok) {
-        alert("No puedes acceder a esta ruta de esta manera");
-        router.push('/');
-        return;
+    if (!email || !idEmail) {
+      alert("Datos insuficientes para cambiar la contraseña.");
+      router.push("/");
+      return;
+    }
+
+    try {
+      const [responseEmail, responseUser] = await Promise.all([
+        fetch(`${apiurl}/email/${idEmail}`, { method: "GET", cache: "no-store" }),
+        fetch(`${apiurl}/users/email/${email}`, { method: "GET", cache: "no-store" })
+      ]);
+
+      if (!responseEmail.ok || !responseUser.ok) {
+        throw new Error("No puedes acceder a esta ruta de esta manera");
       }
+
       const emailData = await responseEmail.json();
-
-      const responseUser = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/users/email/${email}`, {
-        method: "GET",
-        cache: "no-store"
-      });
-      if (!responseUser.ok) {
-        alert("No puedes acceder a esta ruta de esta manera");
-        router.push('/');
-        return;
-      }
       const userData = await responseUser.json();
+      setUserAndEmail({ ...userData, ...emailData });
 
-      setUserAndEmail({...userData,emailData}); // Almacena el usuario e idEmail en el estado
-    
+    } catch (error:any) {
+      alert(error.message || "Error al obtener los datos");
+      router.push("/");
+    }
   };
   useEffect(() => {
     fetchEmailAndIdEmail(); // Llama a la función cuando el componente se monta
