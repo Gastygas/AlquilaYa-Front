@@ -1,5 +1,5 @@
 .container{
-    @apply flex flex-row justify-around items-center
+    @apply flex flex-row justify-around items-center gap-4
 }
 
 .account{
@@ -7,5 +7,5 @@
 }
 
 .logout{
-    @apply text-primary font-semibold
+    @apply text-primary font-semibold px-[10px]
 }
