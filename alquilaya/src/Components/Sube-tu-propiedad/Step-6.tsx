@@ -65,6 +65,10 @@ const Step6: React.FC = () => {
         }
     };
     const handleUploadPropertyImages = async (id:string | null) => {
+        if (!selectedBill || !id) {
+            alert("No se ha seleccionado una imagen o falta el ID de la propiedad.");
+            return;
+        }
         const formData = new FormData();
         Array.from(selectedImages).forEach((image) => {
             formData.append("file", image); // Usar el campo 'file' que espera el backend
