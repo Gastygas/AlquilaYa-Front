@@ -31,7 +31,7 @@ const GridFav = () => {
       
         if (!userData || userData?.favoriteProperties.length === 0) {
           return ( <div>
-          <h4 className={styles.center}>No tienes propiedades favoritas</h4>
+          <h4 className={styles.center}>No tienes Propiedades favoritas</h4>
           </div>);
         }
   

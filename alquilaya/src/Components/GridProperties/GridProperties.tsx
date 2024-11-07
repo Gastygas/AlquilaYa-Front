@@ -14,7 +14,7 @@ const GridProperties = async () => {
   
   return (
     <Grid>
-    {properties.filter((prop: IProperty) => prop.propertyStatus === "approved").map((property: IProperty) => (
+    {properties.filter((prop: IProperty) => prop.propertyStatus !== "approved").map((property: IProperty) => (
       <Card key={properties.id} property={property} />
     ))}
   </Grid>
