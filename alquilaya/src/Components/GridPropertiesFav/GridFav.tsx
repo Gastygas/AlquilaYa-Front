@@ -18,7 +18,7 @@ const GridFav = () => {
             const data = await getUserData();
             if (data) {
               setUserData(data);
-              const fetchedProperties = await Promise.all(data.favoriteProperties.map((id: string) => getPropertyById(id))); // Obtenemos cada propiedad por su ID
+              const fetchedProperties = await Promise.all(data.favoriteProperties.map((id: string) => getPropertyById(id))); 
               const validProperties = fetchedProperties.filter(property => property !== null) as IProperty[];
               setProperties(validProperties);
             } else {

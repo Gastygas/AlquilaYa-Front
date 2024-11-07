@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Figtree } from "next/font/google";
+import { Figtree } from "@next/font/google";
 import "./globals.css";
 import Footer from "@/Components/Footer/Footer";
 import { AuthProvider } from "@/Components/contexts/authContext";
