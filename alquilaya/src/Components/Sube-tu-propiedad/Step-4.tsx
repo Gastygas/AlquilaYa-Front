@@ -115,7 +115,7 @@ const Step4: React.FC = () => {
 
                         {/* Precio */}
                         <div className="flex flex-col">
-                            <label htmlFor="price" className="mb-1 font-medium">Precio</label>
+                            <label htmlFor="price" className="mb-1 font-medium">Precio por día</label>
                             <input
                                 type="number"
                                 id="price"

@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import ButtonCyanBack from '../ButtonCyan/ButtonCyanBack';
 
 interface PropertyData {
-  name: string;
+  propertyName: string;
   address: string;
   city: string;
   country: string;
@@ -23,8 +23,18 @@ const containerStyle = {
 
 
 const Step5: React.FC = () => {
+  const [token, setToken] = useState<string | null>(null);
+
+
+    useEffect(() => {
+        const storedData = localStorage.getItem("user");
+        if (storedData) {
+          const parsedData = JSON.parse(storedData);
+          setToken(parsedData.token);
+        } 
+      }, []);
   const [propertyData, setPropertyData] = useState<PropertyData>({
-    name: '',
+    propertyName: '',
     address: '',
     city: '',
     country: '',
@@ -111,30 +121,56 @@ const Step5: React.FC = () => {
 
   const handleSubmit = async () => {
     try {
-      const formData = new FormData();
-      formData.append('name', propertyData.name);
-      formData.append('address', propertyData.address);
-      formData.append('city', propertyData.city);
-      formData.append('country', propertyData.country);
-      formData.append('description', propertyData.description);
-      // formData.append('lat', String(propertyData.mapLocation.lat));
-      // formData.append('lng', String(propertyData.mapLocation.lng));
-      if (propertyData.invoiceFile) {
-        formData.append('invoiceFile', propertyData.invoiceFile);
+  
+      let data = sessionStorage.getItem('data') ? JSON.parse(sessionStorage.getItem('data')!) : {}
+      console.log(data);
+      
+
+      const formData = {
+        type: data.tipe,
+        propertyName: propertyData.propertyName,
+        description: propertyData.description,
+        address: propertyData.address,
+        city: propertyData.city,
+        country: propertyData.country,
+        bill:"luz",
+        price: data.price,
+        capacity: data.limitCapacity,
+        bedrooms: data.bedrooms,
+        bathrooms: data.bathrooms,
       }
+      console.log(formData);
+      
 
       const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property/create`, {
-        method: 'POST',
-        body: JSON.stringify(propertyData),
+        method: "post",
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData)
       });
 
-      if (response.ok) {
-        router.push('/sube-tu-propiedad/paso-6');
-      } else {
-        alert("Error al enviar los datos. Por favor, inténtalo de nuevo.");
+      const res = await response.json()
+      if (res.success) {
+        alert("Ahora busca una foto de tu propiedad y otra como una factura de luz o agua para que sepamos que te pertenece");
+        router.push(`/sube-tu-propiedad/paso-6?id=${res.property.property.id}`);
+        return
+
+      } if(res.message === "Invalid Token"){
+        alert("Logueate nuevamente porfavor")
+        router.push("/login")
+        return
       }
-    } catch (error) {
-      console.error("Error al enviar datos:", error);
+      if(res.message === "Address already used"){
+        alert("Ya existe una propiedad con la misma dirección")
+        return
+      }
+      else {
+        alert(`Faltan estos datos completos: ${res.error.map((err:any) => err.property)}`);
+      }
+    } catch (error:any) {
+      console.log(error);
       alert("Ocurrió un error al enviar los datos.");
     }
   };
@@ -155,13 +191,13 @@ const Step5: React.FC = () => {
 
     {/* Nombre del Propietario */}
     <div className="flex flex-col">
-      <label htmlFor="name" className="mb-1 font-medium">Nombre</label>
+      <label htmlFor="propertyName" className="mb-1 font-medium">Titulo de la propiedad</label>
       <input
         type="text"
-        id="name"
-        name="name"
-        placeholder="Nombre del Propietario"
-        value={propertyData.name}
+        id="propertyName"
+        name="propertyName"
+        placeholder="Hermoso departamento en ..."
+        value={propertyData.propertyName}
         onChange={handleChange}
         className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF]"
         required
