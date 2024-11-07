@@ -32,15 +32,15 @@ const page = async ({ params }: { params: { id: string } }) => {
     return (
         <div><Header />
             {property.propertyStatus === 'approved' ?
-                <div className='w-full bg-green-300 flex py-10 mt-0 mb-8 justify-center align-middle gap-8'>
+                <div className='w-full bg-green-300 flex flex-col py-10 mt-0 mb-8 justify-center align-middle gap-4'>
                     <h3 className='text-center'>Esta propiedad está aprobada</h3>
                     <button className={styles.button}>Ver aquí</button>
                 </div>
-             : property.propertyStatus === 'pending' ? (<div className='w-full bg-orange-300 flex py-10 mt-0 mb-8 justify-center align-middle'>
+             : property.propertyStatus === 'pending' ? (<div className='w-full bg-orange-300 flex flex-col py-10 mt-0 mb-8 justify-center align-middle'>
                     <h3 className='text-center'>Esta propiedad está Pendiente</h3>
                     <button className={styles.button}>Ver documento de respaldo</button>
                 </div>)
-             : (<div className='w-full bg-red-300 flex py-14 mt-0 mb-8 justify-center align-middle'>
+             : (<div className='w-full bg-red-300 flex flex-col py-14 mt-0 mb-8 justify-center align-middle'>
                         <h3 className='text-center'>Esta propiedad está Cancelada</h3>
                         <button className={styles.button}>Volver a aprobar</button>
                     </div>
