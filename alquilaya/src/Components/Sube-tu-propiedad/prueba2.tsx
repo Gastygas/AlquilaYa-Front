@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import ButtonCyanBack from "../ButtonCyan/ButtonCyanBack";
 
 const Prueba2: React.FC = () => {
-    const [selectedImages, setSelectedImages] = useState<File[]>([]);
+    const [selectedImages, setSelectedImages] = useState<FileList | null>();
     const maxImages = 5; 
     const maxSize = 2 * 1024 * 1024;
     const router = useRouter();
@@ -15,45 +15,42 @@ const Prueba2: React.FC = () => {
 
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const files = Array.from(event.target.files || []);
-        const validFiles: File[] = files.filter(file => file.size <= maxSize);
+        const validFiles = files.filter(file => file.size <= maxSize);
 
         if (validFiles.length > maxImages) {
             alert(`Solo puedes subir un máximo de ${maxImages} imágenes.`);
             return;
         }
 
-        setSelectedImages(validFiles);
+        setSelectedImages(event.target.files);
     };
 
     const handleUploadImages = async (id:string | null) => {
+
+        if (!selectedImages || !id) {
+            alert("No se ha seleccionado una imagen o falta el ID de la propiedad.");
+            return;
+        }
         const formData = new FormData();
-        selectedImages.forEach((image, index) => {
-        formData.append(`file`, image); // o puedes usar `images[]` para un array de imágenes
-        formData.append('name',"123")
-    }
-    );
-        console.log("hola",selectedImages);
-        console.log("aaa",formData);
-        formData.forEach((value, key) => {
-            console.log(`${key}:`, value);
+        Array.from(selectedImages).forEach((image) => {
+            formData.append("file", image); // Usar el campo 'file' que espera el backend
         });
         try {
             const response = await fetch(`http://localhost:3001/files/${id}`, {
                 method: "POST",
-                headers:{
-                    "Content-Type": "multipart/form-data"
-                },
-                body: JSON.stringify({}),
+                body: formData
                 // No configures `Content-Type`, ya que `fetch` lo gestiona cuando envías `FormData`
             });
 
             if (response.ok) {
                 console.log("Imágenes cargadas correctamente.");
-                router.push('/propiedades/page.tsx');
+                alert("imagen subida")
             } else {
+                alert("error")
                 console.error("Error al cargar las imágenes.");
             }
         } catch (error) {
+            alert("hola soy el catch")
             console.error("Error en la solicitud:", error);
         }
     };
@@ -65,17 +62,6 @@ const Prueba2: React.FC = () => {
     return (
         <div className="relative bg-gray-100 min-h-screen p-10">
             <h2 className="ml-10 mt-10 text-black mb-2">Paso 6:</h2>
-            {/* <h1 className="mt-20 text-black text-center mb-4">Subí una factura de la propiedad</h1>
-        <div className="flex flex-col gap-2 text-gray-700"> 
-          <input
-            type="file"
-            name="invoiceFile"
-            onChange={handleUploadImages}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg cursor-pointer"
-          />
-        </div> */}
-
-            {/* <h1 className="mt-20 text-black text-center mb-4">Subí las fotos de la propiedad</h1> */}
 
             <h1 className="mt-20 text-black text-center mb-4">Subí las fotos de la propiedad</h1>
 
@@ -90,9 +76,7 @@ const Prueba2: React.FC = () => {
             </div>
 
             <div className="flex justify-center mt-4">
-                {selectedImages.length > 0 && (
-                    <p>{selectedImages.length} imagen(es) seleccionada(s)</p>
-                )}
+                {selectedImages?.length && <p> {selectedImages.length} imagen(es) seleccionada(s)</p>}
             </div>
 
             <div className="absolute bottom-6 right-6">

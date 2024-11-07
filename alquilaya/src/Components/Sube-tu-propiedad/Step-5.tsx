@@ -134,7 +134,7 @@ const Step5: React.FC = () => {
     // formData.append('lng', String(propertyData.mapLocation.lng));
     let data = sessionStorage.getItem("data") ? JSON.parse(sessionStorage.getItem("data")!) : {};
     data.services.filter((a:string) => {return a }) 
-    const formularioGasty = {
+    const formData = {
       propertyName: propertyData.name,
       address:propertyData.address,
       city:propertyData.city,
@@ -143,7 +143,7 @@ const Step5: React.FC = () => {
       
     }
 
-    console.log("hola soy la data",{...data,...formularioGasty});
+    console.log("hola soy la data",{...data,...formData});
 
 
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property/create`, {
@@ -152,7 +152,7 @@ const Step5: React.FC = () => {
           'Authorization': `Bearer ${tokenUser}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({...formularioGasty,...data}),
+        body: JSON.stringify({...formData,...data}),
       });
       const newProperty = await response.json()
       console.log(newProperty);
