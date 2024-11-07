@@ -126,25 +126,33 @@ const Step5: React.FC = () => {
   };
 
   const handleSubmit = async () => {
-    const formData = new FormData();
-    formData.append('propertyName', propertyData.name);
-    formData.append('address', propertyData.address);
-    formData.append('city', propertyData.city);
-    formData.append('country', propertyData.country);
-    formData.append('description', propertyData.description);
+    console.log("propertydata",propertyData.address);
+    
+   
 
     // formData.append('lat', String(propertyData.mapLocation.lat));
     // formData.append('lng', String(propertyData.mapLocation.lng));
-    
-    console.log("hola soy formdata",formData);
-    
+    let data = sessionStorage.getItem("data") ? JSON.parse(sessionStorage.getItem("data")!) : {};
+    data.services.filter((a:string) => {return a }) 
+    const formularioGasty = {
+      propertyName: propertyData.name,
+      address:propertyData.address,
+      city:propertyData.city,
+      country: propertyData.country,
+      description: propertyData.description
+      
+    }
+
+    console.log("hola soy la data",{...data,...formularioGasty});
+
+
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property/create`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${tokenUser}`,
-          'Content-Type': 'multipart/form-data',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({...formularioGasty,...data}),
       });
       const newProperty = await response.json()
       console.log(newProperty);

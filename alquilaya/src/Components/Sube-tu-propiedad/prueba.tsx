@@ -6,6 +6,7 @@ import { createProperty } from '@/services/createPropertyService';
 
 
 const Prueba = () => {
+
 const initialData = { propertyName: "", bill: "", address: "", country: "", city: "", price: "", bedrooms: "", capacity: "", bathrooms: "",description:'' };
 const serviceesData = {wifi:false,petFriendly:false,airConditioning:false,heating:false,pool:false,parking:false}
   const initialDirty = { email: false, password: false, address: false,country: false, dni: false, name: false, phone: false, surname: false, confirmPassword: false };
@@ -30,9 +31,12 @@ const serviceesData = {wifi:false,petFriendly:false,airConditioning:false,heatin
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    const response: any = createProperty(`${process.env.NEXT_PUBLIC_BACK_URL}/property/create`,{...data,...dataServices},token)
-    if (response.ok) {
+    const response: any = await createProperty(`${process.env.NEXT_PUBLIC_BACK_URL}/property/create`,{...data,...dataServices},token)
+    if (response.success) {
       alert("se creooo")
+      console.log(response);
+      
+      router.push(`/sube-tu-propiedad/prueba2?id=${response.property.property.id}`)
     //   router.back();
     } else {
       alert(`Porfavor revisa los siguientes campos: ${response.error.map((err:any) => err.property)}`);
