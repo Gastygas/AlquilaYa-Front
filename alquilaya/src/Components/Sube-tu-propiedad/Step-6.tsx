@@ -53,8 +53,8 @@ const Step6: React.FC = () => {
                 method: "POST",
                 body: formData,
             });
-
-            if (response.status === 200) {
+            const res = await response.json()
+            if (res.success) {
                 alert("Tu factura se subio correctamente!")
                 
             } else {
@@ -82,7 +82,7 @@ const Step6: React.FC = () => {
 
             const res = await response.json()
 
-            if (res.photos) {
+            if (res.success) {
                 alert("Tu propiedad se subio correctamente, ahora espera hasta que un administrador la evalue. Te llegara un mail si fue aprobada o denegada tu propiedad. Muchas gracias, exitos!");
                 router.push("/");
             } else {

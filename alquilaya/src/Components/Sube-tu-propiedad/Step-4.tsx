@@ -61,7 +61,7 @@ const Step4: React.FC = () => {
     }
 
     return (
-        <div className="relative w-full bg-gray-100 min-h-screen p-10 flex flex-col justify-between text-black box-content">
+        <div className="relative w-full min-h-screen p-10 flex flex-col justify-between text-black box-content">
 
             <div>
                 <div>

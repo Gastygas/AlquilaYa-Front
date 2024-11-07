@@ -29,12 +29,12 @@ const Step3 = () => {
         { icon: '/piscina.png', text: "Piscina" },
         { icon: '/gimnasio.png', text: "Gimnasio" },
         { icon: '/aire-acondicionado.png', text: "Aire Acondicionado" },
+        // { icon: '/estufa.png', text: "estufa" },
         { icon: '/electrodomestico.png', text: "Electro-domésticos" },
-        { icon: '/lavadora.png', text: "Lavadora" },
+        // { icon: '/lavadora.png', text: "Lavadora" },
         { icon: '/obrero.png', text: "Limpieza" },
         { icon: '/porcion-de-comida.png', text: "Catering" },
     ];
-
     const backPage = () => {
         router.push('/sube-tu-propiedad/paso-2')
     }
@@ -52,7 +52,7 @@ const Step3 = () => {
 
     console.log(isSelected)
     return (
-        <div className="box-content relative w-full bg-gray-100 min-h-screen p-10 flex flex-col justify-between text-black">
+        <div className="box-content relative w-full min-h-screen p-10 flex flex-col justify-between text-black">
             <div>
                 <div>
                     <h2 className="ml-10 mt-1 text-black mb-2">Paso 3:</h2>
