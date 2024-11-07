@@ -6,6 +6,7 @@ import styles from './Pending.module.css';
 import IProperty from '@/Interfaces/IProperties';
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import Link from 'next/link';
 
 interface PendingPropertiesTableProps {
   properties: IProperty[];
@@ -91,9 +92,10 @@ const PendingPropertiesTable: React.FC<PendingPropertiesTableProps> = ({ propert
             <td className="py-3 px-6 text-center">{property.price}</td>
             <td className="py-3 px-6 text-center">{property.propertyStatus === 'pending'? 'pendiente': ''}</td>
             <td className="border px-4 py-2 text-center">
+            <Link href={`/admin/solicitudes/${property.id}`}>
               <button className="bg-primary text-secondary px-4 py-2 rounded font-semibold">
                 Ver más
-              </button>
+              </button></Link>
             </td>
             <td className="border px-4 py-2 text-center flex justify-center gap-4">
               <button
