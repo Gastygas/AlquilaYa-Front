@@ -1,15 +1,17 @@
 "use client";
 import React, { useState } from "react";
 import ButtonCyan from "../ButtonCyan/ButtonCyan";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import ButtonCyanBack from "../ButtonCyan/ButtonCyanBack";
 
 const Step6: React.FC = () => {
+    const searchParams = useSearchParams()
     const [selectedImages, setSelectedImages] = useState<File[]>([]);
+    const [selectedBill, setSelectedBill] = useState<FileList| null>();
     const maxImages = 5;
     const maxSize = 2 * 1024 * 1024;
     const router = useRouter();
-    const id = "some_id"; // Reemplaza esto con el ID real o pásalo como prop si es necesario.
+    const propertyId = searchParams.get('id'); // Reemplaza esto con el ID real o pásalo como prop si es necesario.
 
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const files = Array.from(event.target.files || []);
@@ -19,30 +21,71 @@ const Step6: React.FC = () => {
             alert(`Solo puedes subir un máximo de ${maxImages} imágenes.`);
             return;
         }
-
         setSelectedImages(validFiles);
     };
 
-    const handleUploadImages = async () => {
+    const handleBillChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const files = Array.from(event.target.files || []);
+        const validFiles = files.filter(file => file.size <= maxSize);
+
+        if (validFiles.length > maxImages) {
+            alert(`Solo puedes subir un máximo de ${maxImages} imágenes.`);
+            return;
+        }
+
+        setSelectedBill(event.target.files);
+    };
+
+    const handleUploadBillImage = async (id:string | null) => {
+
+        if (!selectedBill || !id) {
+            alert("No se ha seleccionado una imagen o falta el ID de la propiedad.");
+            return;
+        }
+
         const formData = new FormData();
-        selectedImages.forEach(image => {
-            formData.append("images", image);
+        Array.from(selectedBill).forEach((image) => {
+            formData.append("file", image); // Usar el campo 'file' que espera el backend
         });
 
         try {
-            const response = await fetch(`http://localhost:3001/files/${id}`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/files/bill/${id}`, {
                 method: "POST",
                 body: formData,
             });
 
-            if (response.ok) {
-                console.log("Imágenes cargadas correctamente.");
-                router.push('/propiedades/page.tsx');
+            if (response.status === 200) {
+                alert("Tu factura se subio correctamente!")
+                
             } else {
-                console.error("Error al cargar las imágenes.");
+                alert("Error al cargar las imágenes.");
             }
         } catch (error) {
-            console.error("Error en la solicitud:", error);
+            alert("Error en la solicitud");
+        }
+    };
+    const handleUploadPropertyImages = async (id:string | null) => {
+        const formData = new FormData();
+        Array.from(selectedImages).forEach((image) => {
+            formData.append("file", image); // Usar el campo 'file' que espera el backend
+        });
+
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/files/property/${id}`, {
+                method: "POST",
+                body: formData,
+            });
+
+            const res = await response.json()
+
+            if (res.photos) {
+                alert("Tu propiedad se subio correctamente, ahora espera hasta que un administrador la evalue. Te llegara un mail si fue aprobada o denegada tu propiedad. Muchas gracias, exitos!");
+                router.push("/");
+            } else {
+                alert("Error al cargar las imágenes.");
+            }
+        } catch (error) {
+            alert("Error en la solicitud:");
         }
     };
 
@@ -61,10 +104,12 @@ const Step6: React.FC = () => {
                     <input
                         type="file"
                         name="invoiceFile"
-                        onChange={handleUploadImages}
+                        onChange={handleBillChange}
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg cursor-pointer"
                     />
                 </div>
+
+                <button disabled={selectedBill === undefined} onClick={(e:any) => handleUploadBillImage(propertyId)}>Subir tu factura</button>
 
                 <div className="w-full flex justify-center mt-10">
                     <input
@@ -84,7 +129,7 @@ const Step6: React.FC = () => {
             </div>
 
             <div className="absolute bottom-6 right-6">
-                <ButtonCyan onClick={handleUploadImages}></ButtonCyan>
+                <ButtonCyan onClick={(e:any)=> handleUploadPropertyImages(propertyId)}></ButtonCyan>
             </div>
             <div className="absolute bottom-6 left-6">
                 <ButtonCyanBack onClick={backPage} />

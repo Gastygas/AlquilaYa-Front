@@ -133,7 +133,6 @@ const Step5: React.FC = () => {
         address: propertyData.address,
         city: propertyData.city,
         country: propertyData.country,
-        bill:"luz",
         price: data.price,
         capacity: data.limitCapacity,
         bedrooms: data.bedrooms,
