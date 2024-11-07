@@ -98,10 +98,10 @@ const PendingPropertiesTable: React.FC<PendingPropertiesTableProps> = ({ propert
             <td className="border px-4 py-2 text-center flex justify-center gap-4">
               <button
                 onClick={(e) => handleApprovedProperty(e, property.id)}
-                className="bg-green-400 text-white px-4 py-2 rounded">Aprobar</button>
+                className={styles.approve}>Aprobar</button>
               <button
                 onClick={(e) => handleDisapprovedProperty(e, property.id)}
-                className="bg-red-400 text-white px-4 py-2 rounded">Denegar</button>
+                className={styles.deny}>Denegar</button>
             </td>
           </tr>
         ))}
