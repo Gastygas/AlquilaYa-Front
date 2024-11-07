@@ -34,7 +34,9 @@ const page = async ({ params }: { params: { id: string } }) => {
             {property.propertyStatus === 'approved' ?
                 <div className='w-full bg-green-300 flex flex-col py-10 mt-0 mb-8 justify-center align-middle gap-4'>
                     <h3 className='text-center'>Esta propiedad está aprobada</h3>
+                    <div className='w-1/5'>
                     <button className={styles.button}>Ver aquí</button>
+                    </div>
                 </div>
              : property.propertyStatus === 'pending' ? (<div className='w-full bg-orange-300 flex flex-col py-10 mt-0 mb-8 justify-center align-middle'>
                     <h3 className='text-center'>Esta propiedad está Pendiente</h3>
