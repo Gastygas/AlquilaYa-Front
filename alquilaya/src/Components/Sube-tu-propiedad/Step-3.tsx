@@ -21,8 +21,8 @@ const Step3 = () => {
     }, [])
 
     const iconData = [
-        { icon: '/wifi.png', text: "Wi-Fi" },
-        { icon: '/transmision-en-vivo.png', text: "Streaming" },
+        { icon: '/wifi.png', text: "Wi-Fi", id:"" },
+        { icon: '/transmision-en-vivo.png', text: "Streaming", id:"" },
         { icon: '/parrilla.png', text: "Parrilla" },
         { icon: '/cochera.png', text: "Cochera" },
         { icon: '/patio-interior.png', text: "Patio" },

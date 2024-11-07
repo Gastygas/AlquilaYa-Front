@@ -1,123 +1,147 @@
 "use client";
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import ButtonCyan from '../ButtonCyan/ButtonCyanBack';
-import ButtonCyanBack from '../ButtonCyan/ButtonCyanBack';
+import React, { useState } from "react";
+import ButtonCyan from "../ButtonCyan/ButtonCyan";
+import { useRouter, useSearchParams } from "next/navigation";
+import ButtonCyanBack from "../ButtonCyan/ButtonCyanBack";
 
-interface PropertyData {
-  name: string;
-  address: string;
-  city: string;
-  country: string;
-  description: string;
-  mapLocation?: { lat: number; lng: number };
-  invoiceFile?: File | null;
-}
+const Step6: React.FC = () => {
+    const searchParams = useSearchParams()
+    const [selectedImages, setSelectedImages] = useState<File[]>([]);
+    const [selectedBill, setSelectedBill] = useState<FileList| null>();
+    const maxImages = 5;
+    const maxSize = 2 * 1024 * 1024;
+    const router = useRouter();
+    const propertyId = searchParams.get('id'); // Reemplaza esto con el ID real o pásalo como prop si es necesario.
 
-const Step5: React.FC = () => {
-  const router = useRouter();
-  const [propertyData, setPropertyData] = useState<PropertyData>({
-    name: '',
-    address: '',
-    city: '',
-    country: '',
-    description: '',
-  });
+    const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const files = Array.from(event.target.files || []);
+        const validFiles: File[] = files.filter(file => file.size <= maxSize);
 
-  // Cargar datos de sessionStorage usando la misma lógica que en Step1
-  useEffect(() => {
-    const data = sessionStorage.getItem('data') ? JSON.parse(sessionStorage.getItem('data')!) : {};
-    setPropertyData((prevData) => ({
-      ...prevData,
-      ...data, // Mezcla los datos previos con los datos actuales
-    }));
-  }, []);
+        if (validFiles.length > maxImages) {
+            alert(`Solo puedes subir un máximo de ${maxImages} imágenes.`);
+            return;
+        }
+        setSelectedImages(validFiles);
+    };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setPropertyData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
+    const handleBillChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const files = Array.from(event.target.files || []);
+        const validFiles = files.filter(file => file.size <= maxSize);
 
-  // Función para enviar todos los datos al backend
-  const handleSubmit = async () => {
-    try {
-      // Obtener el token de autenticación desde localStorage
-      const storedUserData = localStorage.getItem("user");
-      let token = "";
-      if (storedUserData) {
-        const parsedData = JSON.parse(storedUserData);
-        token = parsedData.token;
-      }
+        if (validFiles.length > maxImages) {
+            alert(`Solo puedes subir un máximo de ${maxImages} imágenes.`);
+            return;
+        }
 
-      // Guardar datos en sessionStorage antes de enviarlos
-      let data = sessionStorage.getItem('data') ? JSON.parse(sessionStorage.getItem('data')!) : {};
-      data = { ...data, ...propertyData }; // Combinar todos los datos
-      sessionStorage.setItem("data", JSON.stringify(data));
+        setSelectedBill(event.target.files);
+    };
 
-      // Enviar datos al backend
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property/create`, {
-        method: 'POST',
-        headers: {
-          "Content-Type": "application/json",
-          'Authorization': `Bearer ${token}`,
-        },
-        body: JSON.stringify(data),
-      });
+    const handleUploadBillImage = async (id:string | null) => {
 
-      if (response.ok) {
-        router.push('/sube-tu-propiedad/paso-6');
-      } else {
-        alert("Error al enviar los datos. Por favor, inténtalo de nuevo.");
-      }
-    } catch (error) {
-      console.error("Error al enviar datos:", error);
-      alert("Ocurrió un error al enviar los datos.");
-    }
-  };
+        if (!selectedBill || !id) {
+            alert("No se ha seleccionado una imagen o falta el ID de la propiedad.");
+            return;
+        }
 
-  const backPage = () => {
-    router.push('/sube-tu-propiedad/paso-4');
-  };
+        const formData = new FormData();
+        Array.from(selectedBill).forEach((image) => {
+            formData.append("file", image); // Usar el campo 'file' que espera el backend
+        });
 
-  return (
-    <div className="box-content relative w-full bg-gray-100 min-h-screen p-10 flex flex-col justify-between text-black">
-      <div>
-        <h2 className="ml-10 mt-10 text-black mb-2">Paso 5:</h2>
-        <h1 className="mt-8 text-black text-center mb-4">Complete la Información de la propiedad</h1>
-        <div className="flex justify-center w-full">
-          <form className="space-y-6 w-[400px]">
-            {/* Inputs para nombre, dirección, ciudad, país, descripción */}
-            <div className="flex flex-col">
-              <label htmlFor="name" className="mb-1 font-medium">Nombre</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Nombre del Propietario"
-                value={propertyData.name}
-                onChange={handleChange}
-                className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF]"
-                required
-              />
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/files/bill/${id}`, {
+                method: "POST",
+                body: formData,
+            });
+            const res = await response.json()
+            if (res.success) {
+                alert("Tu factura se subio correctamente!")
+                
+            } else {
+                alert("Error al cargar las imágenes.");
+            }
+        } catch (error) {
+            alert("Error en la solicitud");
+        }
+    };
+    const handleUploadPropertyImages = async (id:string | null) => {
+        if (!selectedBill || !id) {
+            alert("No se ha seleccionado una imagen o falta el ID de la propiedad.");
+            return;
+        }
+        const formData = new FormData();
+        Array.from(selectedImages).forEach((image) => {
+            formData.append("file", image); // Usar el campo 'file' que espera el backend
+        });
+
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/files/property/${id}`, {
+                method: "POST",
+                body: formData,
+            });
+
+            const res = await response.json()
+
+            if (res.success) {
+                alert("Tu propiedad se subio correctamente, ahora espera hasta que un administrador la evalue. Te llegara un mail si fue aprobada o denegada tu propiedad. Muchas gracias, exitos!");
+                router.push("/");
+            } else {
+                alert("Error al cargar las imágenes.");
+            }
+        } catch (error) {
+            alert("Error en la solicitud:");
+        }
+    };
+
+    const backPage = () => {
+        router.push('/sube-tu-propiedad/paso-5')
+    };
+
+    return (
+        <div className="box-content relative w-full min-h-screen p-10 flex flex-col justify-between text-black">
+            <div>
+                <div>
+                    <h2 className="ml-10 mt-10 text-black mb-2">Paso 6:</h2>
+                    <h3 className="mt-8 text-black text-center mb-4">Subí una factura de la propiedad</h3>
+                </div>
+                <div className="w-full flex justify-center mt-10">
+                    <input
+                        type="file"
+                        name="invoiceFile"
+                        onChange={handleBillChange}
+                        className="bg-gray-50 border-2 border-[#aa31cf] rounded-lg p-2"
+                    />
+                </div>
+
+                <button className="" disabled={selectedBill === undefined} onClick={(e:any) => handleUploadBillImage(propertyId)}>Subir tu factura</button>
+
+                <h3 className="mt-8 text-black text-center mb-4">Subi una foto de la propiedad</h3>
+
+                <div className="w-full flex justify-center mt-10">
+                    <input
+                        type="file"
+                        multiple
+                        accept="image/*"
+                        onChange={handleImageChange}
+                        className="bg-gray-50 border-2 border-[#aa31cf] rounded-lg p-2"
+                    />
+                </div>
+
+                <div className="flex justify-center mt-4">
+                    {selectedImages.length > 0 && (
+                        <p>{selectedImages.length} imagen(es) seleccionada(s)</p>
+                    )}
+                </div>
             </div>
 
-            {/* Otros campos de input para address, city, country, description */}
-            {/* ...similar structure... */}
-
-          </form>
+            <div className="absolute bottom-6 right-6">
+                <ButtonCyan onClick={(e:any)=> handleUploadPropertyImages(propertyId)}></ButtonCyan>
+            </div>
+            <div className="absolute bottom-6 left-6">
+                <ButtonCyanBack onClick={backPage} />
+            </div>
         </div>
-      </div>
-      <div className="absolute bottom-6 right-6">
-        <ButtonCyan onClick={handleSubmit} isDisabled={false} />
-      </div>
-      <div className="absolute bottom-6 left-6">
-        <ButtonCyanBack onClick={backPage} />
-      </div>
-    </div>
-  );
+    );
 };
 
-export default Step5;
+export default Step6;

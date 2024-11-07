@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import ButtonCyanBack from '../ButtonCyan/ButtonCyanBack';
 
 interface PropertyData {
-  name: string;
+  propertyName: string;
   address: string;
   city: string;
   country: string;
@@ -23,8 +23,18 @@ const containerStyle = {
 
 
 const Step5: React.FC = () => {
+  const [token, setToken] = useState<string | null>(null);
+
+
+    useEffect(() => {
+        const storedData = localStorage.getItem("user");
+        if (storedData) {
+          const parsedData = JSON.parse(storedData);
+          setToken(parsedData.token);
+        } 
+      }, []);
   const [propertyData, setPropertyData] = useState<PropertyData>({
-    name: '',
+    propertyName: '',
     address: '',
     city: '',
     country: '',
@@ -65,8 +75,6 @@ const Step5: React.FC = () => {
   //     }));
   //   }
   // };
-
-
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -113,37 +121,58 @@ const Step5: React.FC = () => {
 
   const handleSubmit = async () => {
     try {
-      const storedData = localStorage.getItem("user");
-      const sessionData = sessionStorage.getItem("data");
-      let token = ""
+  
+      let data = sessionStorage.getItem('data') ? JSON.parse(sessionStorage.getItem('data')!) : {}
+      console.log(data);
+      
+      const {services} = data
+      console.log(services);
+      
 
-      let data = {}
-      if (sessionData) {
-        const parsedData = JSON.parse(sessionData);
-        data = {...parsedData}
+      const formData = {
+        type: data.tipe,
+        propertyName: propertyData.propertyName,
+        description: propertyData.description,
+        address: propertyData.address,
+        city: propertyData.city,
+        country: propertyData.country,
+        price: data.price,
+        capacity: data.limitCapacity,
+        bedrooms: data.bedrooms,
+        bathrooms: data.bathrooms,
       }
-
-      if (storedData) {
-        const parsedData = JSON.parse(storedData);
-        token = parsedData.token;
-      }
+      console.log(formData);
+      
 
       const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property/create`, {
-        method: 'POST',
+        method: "post",
         headers: {
-          "Content-Type": "application/json",
-          'Authorization': `Bearer ${token}`,
+            'Authorization': `Bearer ${token}`,
+            "Content-Type": "application/json",
         },
-        body: JSON.stringify({...propertyData, ...data}),
+        body: JSON.stringify(formData)
       });
 
-      if (response.ok) {
-        router.push('/sube-tu-propiedad/paso-6');
-      } else {
-        alert("Error al enviar los datos. Por favor, inténtalo de nuevo.");
+      const res = await response.json()
+      if (res.success) {
+        alert("Ahora busca una foto de tu propiedad y otra como una factura de luz o agua para que sepamos que te pertenece");
+        router.push(`/sube-tu-propiedad/paso-6?id=${res.property.property.id}`);
+        return
+
+      } if(res.message === "Invalid Token"){
+        alert("Logueate nuevamente porfavor")
+        router.push("/login")
+        return
       }
-    } catch (error) {
-      console.error("Error al enviar datos:", error);
+      if(res.message === "Address already used"){
+        alert("Ya existe una propiedad con la misma dirección")
+        return
+      }
+      else {
+        alert(`Faltan estos datos completos: ${res.error.map((err:any) => err.property)}`);
+      }
+    } catch (error:any) {
+      console.log(error);
       alert("Ocurrió un error al enviar los datos.");
     }
   };
@@ -153,91 +182,91 @@ const Step5: React.FC = () => {
   }
 
   return (
-    <div className="box-content relative w-full bg-gray-100 min-h-screen p-10 flex flex-col justify-between text-black">
+    <div className="box-content relative w-full min-h-screen p-10 flex flex-col justify-between text-black">
       <div>
         <div>
           <h2 className="ml-10 mt-10 text-black mb-2">Paso 5:</h2>
           <h1 className="mt-8 text-black text-center mb-4">Complete la Información de la propiedad</h1>
         </div>
         <div className="flex justify-center w-full">
-          <form className="space-y-6 w-[400px]">
+  <form className="space-y-6 w-[400px]">
 
-            {/* Nombre del Propietario */}
-            <div className="flex flex-col">
-              <label htmlFor="name" className="mb-1 font-medium">Nombre</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Nombre del Propietario"
-                value={propertyData.name}
-                onChange={handleChange}
-                className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF]"
-                required
-              />
-            </div>
+    {/* Nombre del Propietario */}
+    <div className="flex flex-col">
+      <label htmlFor="propertyName" className="mb-1 font-medium">Titulo de la propiedad</label>
+      <input
+        type="text"
+        id="propertyName"
+        name="propertyName"
+        placeholder="Hermoso departamento en ..."
+        value={propertyData.propertyName}
+        onChange={handleChange}
+        className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF]"
+        required
+      />
+    </div>
 
-            {/* Dirección */}
-            <div className="flex flex-col">
-              <label htmlFor="address" className="mb-1 font-medium">Dirección</label>
-              <input
-                type="text"
-                id="address"
-                name="address"
-                placeholder="Dirección"
-                value={propertyData.address}
-                onChange={handleChange}
-                className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF]"
-                required
-              />
-            </div>
+    {/* Dirección */}
+    <div className="flex flex-col">
+      <label htmlFor="address" className="mb-1 font-medium">Dirección</label>
+      <input
+        type="text"
+        id="address"
+        name="address"
+        placeholder="Dirección"
+        value={propertyData.address}
+        onChange={handleChange}
+        className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF]"
+        required
+      />
+    </div>
 
-            {/* Ciudad */}
-            <div className="flex flex-col">
-              <label htmlFor="city" className="mb-1 font-medium">Ciudad</label>
-              <input
-                type="text"
-                id="city"
-                name="city"
-                placeholder="Ciudad"
-                value={propertyData.city}
-                onChange={handleChange}
-                className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF]"
-                required
-              />
-            </div>
+    {/* Ciudad */}
+    <div className="flex flex-col">
+      <label htmlFor="city" className="mb-1 font-medium">Ciudad</label>
+      <input
+        type="text"
+        id="city"
+        name="city"
+        placeholder="Ciudad"
+        value={propertyData.city}
+        onChange={handleChange}
+        className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF]"
+        required
+      />
+    </div>
 
-            {/* País */}
-            <div className="flex flex-col">
-              <label htmlFor="country" className="mb-1 font-medium">País</label>
-              <input
-                type="text"
-                id="country"
-                name="country"
-                placeholder="País"
-                value={propertyData.country}
-                onChange={handleChange}
-                className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF]"
-                required
-              />
-            </div>
+    {/* País */}
+    <div className="flex flex-col">
+      <label htmlFor="country" className="mb-1 font-medium">País</label>
+      <input
+        type="text"
+        id="country"
+        name="country"
+        placeholder="País"
+        value={propertyData.country}
+        onChange={handleChange}
+        className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF]"
+        required
+      />
+    </div>
 
-            {/* Descripción de la Propiedad */}
-            <div className="flex flex-col">
-              <label htmlFor="description" className="mb-1 font-medium">Descripción de la Propiedad</label>
-              <textarea
-                id="description"
-                name="description"
-                placeholder="Descripción de la Propiedad"
-                value={propertyData.description}
-                onChange={handleChange}
-                className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF] resize-y min-h-[100px]"
-                required
-              />
-            </div>
+    {/* Descripción de la Propiedad */}
+    <div className="flex flex-col">
+      <label htmlFor="description" className="mb-1 font-medium">Descripción de la Propiedad</label>
+      <textarea
+        id="description"
+        name="description"
+        placeholder="Descripción de la Propiedad"
+        value={propertyData.description}
+        onChange={handleChange}
+        className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF] resize-y min-h-[100px]"
+        required
+      />
+    </div>
 
-            {/* Subir Factura para Justificación de Dirección */}
-            {/* <div className="flex flex-col">
+    {/* Subir Factura para Justificación de Dirección */}
+    {/* <div className="flex flex-col">
       <label htmlFor="invoiceFile" className="mb-1 font-medium">Subir factura que coincida con la dirección</label>
       <input
         type="file"
@@ -249,8 +278,8 @@ const Step5: React.FC = () => {
       />
     </div> */}
 
-          </form>
-        </div>
+  </form>
+</div>
 
 
         {/* Botón de búsqueda de dirección */}
@@ -263,7 +292,7 @@ const Step5: React.FC = () => {
 
         {/* Mapa de Google */}
         {/* <div className="w-full h-64 my-6 rounded-lg overflow-hidden"> */}
-        {/* {isLoaded ? (
+          {/* {isLoaded ? (
             <GoogleMap
               mapContainerStyle={containerStyle}
               center={propertyData.mapLocation}
@@ -280,10 +309,10 @@ const Step5: React.FC = () => {
         {/* </div> */}
       </div>
       <div className="absolute bottom-6 right-6">
-        <ButtonCyan
-          onClick={handleSubmit}
-          isDisabled={false}
-        />
+        <ButtonCyan 
+        onClick={handleSubmit}
+        isDisabled={false}
+         />
       </div>
 
       <div className="absolute bottom-6 left-6">

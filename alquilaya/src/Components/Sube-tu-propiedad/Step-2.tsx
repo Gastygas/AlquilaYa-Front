@@ -47,7 +47,7 @@ const Step2 = () => {
     };
 
     return (
-        <div className="box-content relative w-full bg-gray-100 min-h-screen p-10 flex flex-col justify-between text-black">
+        <div className="box-content relative w-full min-h-screen p-10 flex flex-col justify-between text-black">
             <div>
                 <div>
                     <h2 className="ml-10 mt-1 text-black mb-2">Paso 2:</h2>
