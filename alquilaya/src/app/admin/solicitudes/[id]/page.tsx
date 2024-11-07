@@ -32,7 +32,7 @@ const page = async ({ params }: { params: { id: string } }) => {
     return (
         <div><Header />
             {property.propertyStatus === 'approved' ?
-                <div className='w-full bg-green-300 flex py-10 mt-0 mb-8 justify-center align-middle'>
+                <div className='w-full bg-green-300 flex py-10 mt-0 mb-8 justify-center align-middle gap-8'>
                     <h3 className='text-center'>Esta propiedad está aprobada</h3>
                     <button className={styles.button}>Ver aquí</button>
                 </div>
