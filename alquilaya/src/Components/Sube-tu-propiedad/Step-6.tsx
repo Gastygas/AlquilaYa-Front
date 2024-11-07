@@ -94,22 +94,24 @@ const Step6: React.FC = () => {
     };
 
     return (
-        <div className="box-content relative w-full bg-gray-100 min-h-screen p-10 flex flex-col justify-between text-black">
+        <div className="box-content relative w-full min-h-screen p-10 flex flex-col justify-between text-black">
             <div>
                 <div>
                     <h2 className="ml-10 mt-10 text-black mb-2">Paso 6:</h2>
-                    <h1 className="mt-8 text-black text-center mb-4">Subí una factura de la propiedad</h1>
+                    <h3 className="mt-8 text-black text-center mb-4">Subí una factura de la propiedad</h3>
                 </div>
-                <div className="flex flex-col gap-2 text-gray-700">
+                <div className="w-full flex justify-center mt-10">
                     <input
                         type="file"
                         name="invoiceFile"
                         onChange={handleBillChange}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg cursor-pointer"
+                        className="bg-gray-50 border-2 border-[#aa31cf] rounded-lg p-2"
                     />
                 </div>
 
-                <button disabled={selectedBill === undefined} onClick={(e:any) => handleUploadBillImage(propertyId)}>Subir tu factura</button>
+                <button className="" disabled={selectedBill === undefined} onClick={(e:any) => handleUploadBillImage(propertyId)}>Subir tu factura</button>
+
+                <h3 className="mt-8 text-black text-center mb-4">Subi una foto de la propiedad</h3>
 
                 <div className="w-full flex justify-center mt-10">
                     <input
