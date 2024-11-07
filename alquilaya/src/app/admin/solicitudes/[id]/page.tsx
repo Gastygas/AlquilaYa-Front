@@ -31,6 +31,14 @@ const page = async ({ params }: { params: { id: string } }) => {
 
   return (
     <div><Header />
+    {property.propertyStatus === 'approved' ? 
+                        <div className='w-full bg-primary flex padding-section py-14'>
+                        <h3>Esta propiedad está aprobada</h3>
+                    </div>
+                       : <div className='w-full bg-orange-300 flex padding-section py-14'>
+                       <h3>Esta propiedad está Pendiente</h3>
+                   </div>}
+
       <div className="container">
         <div className='flex my-28'>
           <div className='w-1/2'>
