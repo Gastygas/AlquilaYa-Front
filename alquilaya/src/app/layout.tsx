@@ -10,7 +10,7 @@ const primaryFont = Figtree({
   subsets: ["latin"],
   weight: ["400", "900"],
   display: "swap",
-  variable: "--font-primary"
+  //variable: "--font-primary"
 });
 
 export const metadata: Metadata = {
