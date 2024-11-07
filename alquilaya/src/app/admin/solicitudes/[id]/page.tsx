@@ -32,13 +32,13 @@ const page = async ({ params }: { params: { id: string } }) => {
     return (
         <div><Header />
             {property.propertyStatus === 'approved' ?
-                <div className='w-full bg-green-300 flex padding-section py-14 mt-0 mb-8'>
+                <div className='w-full bg-green-300 flex py-14 mt-0 mb-8'>
                     <h3>Esta propiedad está aprobada</h3>
                 </div>
-             : property.propertyStatus === 'pending' ? (<div className='w-full bg-orange-300 flex padding-section py-14 mt-0 mb-8'>
+             : property.propertyStatus === 'pending' ? (<div className='w-full bg-orange-300 flex py-14 mt-0 mb-8'>
                     <h3>Esta propiedad está Pendiente</h3>
                 </div>)
-             : (<div className='w-full bg-red-300 flex padding-section py-14 mt-0 mb-8'>
+             : (<div className='w-full bg-red-300 flex py-14 mt-0 mb-8'>
                         <h3>Esta propiedad está Cancelada</h3>
                     </div>
                     )}
