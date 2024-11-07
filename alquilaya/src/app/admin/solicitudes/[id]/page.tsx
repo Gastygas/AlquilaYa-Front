@@ -1,7 +1,7 @@
 import BookForm from '@/Components/BookForm/BookForm'
 import FavButton from '@/Components/FavButton/FavButton'
 import Header from '@/Components/Header/Header'
-import IProperty from '@/Interfaces/IProperties'
+import styles from "./single.module.css"
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import React from 'react'
@@ -32,14 +32,17 @@ const page = async ({ params }: { params: { id: string } }) => {
     return (
         <div><Header />
             {property.propertyStatus === 'approved' ?
-                <div className='w-full bg-green-300 flex py-14 mt-0 mb-8'>
-                    <h3>Esta propiedad está aprobada</h3>
+                <div className='w-full bg-green-300 flex py-10 mt-0 mb-8 justify-center align-middle'>
+                    <h3 className='text-center'>Esta propiedad está aprobada</h3>
+                    <button className={styles.button}>Ver aquí</button>
                 </div>
-             : property.propertyStatus === 'pending' ? (<div className='w-full bg-orange-300 flex py-14 mt-0 mb-8'>
-                    <h3>Esta propiedad está Pendiente</h3>
+             : property.propertyStatus === 'pending' ? (<div className='w-full bg-orange-300 flex py-10 mt-0 mb-8 justify-center align-middle'>
+                    <h3 className='text-center'>Esta propiedad está Pendiente</h3>
+                    <button className={styles.button}>Ver documento de respaldo</button>
                 </div>)
-             : (<div className='w-full bg-red-300 flex py-14 mt-0 mb-8'>
-                        <h3>Esta propiedad está Cancelada</h3>
+             : (<div className='w-full bg-red-300 flex py-14 mt-0 mb-8 justify-center align-middle'>
+                        <h3 className='text-center'>Esta propiedad está Cancelada</h3>
+                        <button className={styles.button}>Volver a aprobar</button>
                     </div>
                     )}
 
