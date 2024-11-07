@@ -27,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <AuthProvider>
-    <html lang="es" className={`${primaryFont.variable}`}>
+    <html lang="es" className={primaryFont.variable}>
       <body className={primaryFont.className}>
       <ToastContainer />
         <main>{children}</main>
