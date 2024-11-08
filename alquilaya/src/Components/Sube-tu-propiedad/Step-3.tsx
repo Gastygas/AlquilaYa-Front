@@ -55,8 +55,11 @@ const Step3 = () => {
     };
 
 
-    const selectServices = (services: IsSelectedItem[]) => {
-        setIsSelected(services);
+    const selectServices = (services: IsSelectedItem) => {
+       const exist = isSelected.some (s => s.id === services.id)
+       const newArr = exist ? isSelected.filter (s => s.id !== services.id): [...isSelected, services]
+        setIsSelected(newArr);
+
     };
 
     const recorreServicios = () => {
@@ -77,8 +80,8 @@ const Step3 = () => {
 
     const saveDataPage = () => {
         let data = sessionStorage.getItem('data') ? JSON.parse(sessionStorage.getItem('data')!) : {};
-        data.services = recorreServicios();
-        sessionStorage.setItem('data', JSON.stringify(data));
+        // data.services = recorreServicios();
+        sessionStorage.setItem('data', JSON.stringify({...data, ...recorreServicios()}));
         router.push('/sube-tu-propiedad/paso-4');
     };
 

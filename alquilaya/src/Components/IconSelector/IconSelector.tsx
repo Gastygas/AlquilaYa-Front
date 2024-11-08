@@ -3,8 +3,8 @@ import { IsSelectedItem } from '../Sube-tu-propiedad/types';
 
 interface IconSelectorProps {
     data: IsSelectedItem[];
-    isSelected: IsSelectedItem[];
-    setIsSelected: (service: IsSelectedItem[]) => void;
+    isSelected: IsSelectedItem[] | IsSelectedItem | null;
+    setIsSelected: (service: IsSelectedItem) => void;
     numCols?: number;
     iconSize?: number;
 }
@@ -18,17 +18,17 @@ const IconSelector: React.FC<IconSelectorProps> = ({ data,
 
     const checkSelected = (item: IsSelectedItem) => {
 
-        return Array.isArray(isSelected) && isSelected.some(d => d.id === item.id);
+        return Array.isArray(isSelected) ? isSelected.some(d => d.id === item.id): item.id === isSelected?.id
     };
 
 
-    const handleSelect = (item: IsSelectedItem) => {
-        const newSelectedItems = checkSelected(item)
-            ? isSelected.filter(service => service.id !== item.id)
-            : [...isSelected, item];
-
-        setIsSelected(newSelectedItems);
-    };
+//     const handleSelect = (item: IsSelectedItem) => {
+//         const newSelectedItems = checkSelected(item)
+//             ? isSelected?.filter((service: IsSelectedItem) => service.id !== item.id)
+//             : item;
+// console.log(newSelectedItems)
+//         setIsSelected(newSelectedItems);
+//     };
 
     return (
         <div className="flex justify-center items-center">
@@ -41,7 +41,7 @@ const IconSelector: React.FC<IconSelectorProps> = ({ data,
                         key={d.id}
                         className="w-36 h-36 border border-gray-400 rounded-md m-1 flex flex-col items-center justify-center gap-2"
                         style={{ backgroundColor: checkSelected(d) ? '#aa31cf' : 'white' }}
-                        onClick={() => handleSelect(d)}
+                        onClick={() => setIsSelected(d)}
                     >
                         {typeof d.icon === 'string' ? (
                             <img width={iconSize} height={iconSize} src={d.icon} alt="" />

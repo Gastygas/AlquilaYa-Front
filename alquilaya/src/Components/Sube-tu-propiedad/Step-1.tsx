@@ -36,9 +36,17 @@ const Step1 = () => {
         { icon: '/compartir-el-hogar.png', text: "Habitación Compartida", id: "habitación-compartida" },
     ];
 
+    const handleSelect = (item: IsSelectedItem) => {
+        setIsSelected(prevState => {
+            if (prevState?.id === item.id) {
+                return null;  // Desmarcar si es el mismo icono
+            }
+            return item;  // Marcar el icono seleccionado
+        });
+    };
 
     const saveDataPage = () => {
-        let data = sessionStorage.getItem('data') ? JSON.parse(sessionStorage.getItem('data')!) : {}
+        const data = sessionStorage.getItem('data') ? JSON.parse(sessionStorage.getItem('data')!) : {}
         data.tipe = isSelected?.text || '';
         data.tipeId = isSelected?.id || '';
         sessionStorage.setItem("data", JSON.stringify(data))
@@ -60,7 +68,7 @@ const Step1 = () => {
                         numCols={4}
                         data={iconData}
                         isSelected={isSelected}
-                        setIsSelected={setIsSelected}
+                        setIsSelected={handleSelect}
                     />
                 </div>
             </div>
