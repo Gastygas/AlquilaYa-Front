@@ -31,7 +31,7 @@ const BookFormMock = () => {
           </div>
         </div>
         <div className={styles.centerButton}>
-          <button type="submit" className={styles.button}>Reservar</button>
+          <button className={styles.button}>Reservar</button>
         </div>
       </form>
     </>
