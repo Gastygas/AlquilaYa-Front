@@ -35,7 +35,7 @@ footer {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-primary);
+  font-family: 'Figtree', sans-serif;
 }
 
 @layer utilities {
@@ -73,7 +73,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-primary);
+  font-family: 'Figtree', sans-serif;
   font-weight: 700;
 }
 
