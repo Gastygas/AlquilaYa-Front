@@ -31,9 +31,9 @@ const Step1 = () => {
         { icon: '/invernadero.png', text: "Domo", id: "domo" },
         { icon: '/balcon.png', text: "Loft", id: "loft" },
         { icon: '/camping.png', text: "Carpa", id: "carpa" },
-        { icon: '/casa-ecologica.png', text: "Habitación Privada", id: "habitación-privada" },
-        { icon: '/casa-de-huespedes.png', text: "Habitación con Baño Privado", id: "habitacion-baño-privado" },
-        { icon: '/carga.png', text: "Habitación Compartida", id: "habitación-compartida" },
+        { icon: '/llave-de-la-habitacion.png', text: "Habitación Privada", id: "habitación-privada" },
+        { icon: '/bano.png', text: "Habitación con Baño Privado", id: "habitacion-baño-privado" },
+        { icon: '/compartir-el-hogar.png', text: "Habitación Compartida", id: "habitación-compartida" },
     ];
 
 
@@ -42,7 +42,7 @@ const Step1 = () => {
         data.tipe = isSelected?.text || '';
         data.tipeId = isSelected?.id || '';
         sessionStorage.setItem("data", JSON.stringify(data))
-        router.push('/sube-tu-propiedad/paso-2')
+        router.push('/sube-tu-propiedad/paso-3')
 
 
     }
@@ -52,8 +52,8 @@ const Step1 = () => {
         <div className="box-content relative w-full min-h-screen p-10 flex flex-col justify-between text-black">
             <div>
                 <div>
-                    <h3 className="ml-10 mt-1 text-black mb-2">Paso 1:</h3>
-                    <h1 className="mt-2 text-black text-center">Elige la opción que mejor describa tu espacio</h1>
+                    {/* <h3 className="ml-10 mt-1 text-black mb-2">Paso 1:</h3> */}
+                    <h1 className="mt-2 text-black text-center mb-8">Elige la opción que mejor describa tu espacio</h1>
                 </div>
                 <div className=' mb-1'>
                     <IconSelector
@@ -65,7 +65,7 @@ const Step1 = () => {
                 </div>
             </div>
 
-            <div className="absolute bottom-6 right-6">
+            <div className="absolute bottom-1/2 right-6">
                 <ButtonCyan
                     onClick={saveDataPage}
                     isDisabled={!isSelected}

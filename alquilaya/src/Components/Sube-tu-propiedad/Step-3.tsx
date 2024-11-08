@@ -14,7 +14,7 @@ const Step3 = () => {
 
     useEffect(() => {
         let data = sessionStorage.getItem('data') ? JSON.parse(sessionStorage.getItem('data')!) : {};
-        if (data.services) {
+        if (Array.isArray(data.services)) {
             setIsSelected(data.services);
         }
     }, []);
@@ -45,13 +45,13 @@ const Step3 = () => {
         { icon: '/gimnasio.png', text: "Gimnasio", id: "gimnasio" },
         { icon: '/aire-acondicionado.png', text: "Aire Acondicionado", id: "aireAcondicionado" },
         { icon: '/electrodomestico.png', text: "Electro-domésticos", id: "electrodomesticos" },
-        { icon: '/lavadora.png', text: "Estufa", id: "estufa" },
+        { icon: '/estufa-electrica.png', text: "Estufa", id: "estufa" },
         { icon: '/obrero.png', text: "Limpieza", id: "limpieza" },
         { icon: '/porcion-de-comida.png', text: "Catering", id: "catering" },
     ];
 
     const backPage = () => {
-        router.push('/sube-tu-propiedad/paso-2');
+        router.push('/sube-tu-propiedad/paso-1');
     };
 
 
@@ -65,8 +65,11 @@ const Step3 = () => {
         iconData.forEach((service) => {
             if (isSelected.some((selected) => selected.id === service.id)) {
                 selectedServices[service.id] = true;
+            } else {
+                selectedServices[service.id] = false;
             }
         });
+
 
         return selectedServices;
     };
@@ -80,26 +83,26 @@ const Step3 = () => {
     };
 
     return (
-        <div className="box-content relative w-full bg-gray-100 min-h-screen p-10 flex flex-col justify-between text-black">
+        <div className="box-content relative w-full bg-gray-100  min-h-screen p-0 flex flex-col  text-black">
             <div>
-                <h3 className="ml-10 mt-1 text-black mb-2">Paso 3:</h3>
-                <h1 className="mt-8 text-black text-center mb-4">Indicá qué servicios ofrecés</h1>
+                {/* <h3 className="ml-10 mt-1 text-black mb-2">Paso 3:</h3> */}
+                <h1 className="mt-2 text-black text-center mb-8">Indicá qué servicios ofrecés</h1>
             </div>
-
-            <IconSelector
-                data={iconData}
-                isSelected={isSelected}
-                setIsSelected={selectServices}
-            />
-
-            <div className="absolute bottom-6 right-6">
+            <div className="-mt-4">
+                <IconSelector
+                    data={iconData}
+                    isSelected={isSelected}
+                    setIsSelected={selectServices}
+                />
+            </div>
+            <div className="absolute bottom-1/2 right-6">
                 <ButtonCyan
                     onClick={saveDataPage}
                     isDisabled={isSelected.length === 0}
                 />
             </div>
 
-            <div className="absolute bottom-6 left-6">
+            <div className="absolute bottom-1/2 left-6">
                 <ButtonCyanBack onClick={backPage} />
             </div>
         </div>

@@ -185,8 +185,8 @@ const Step5: React.FC = () => {
     <div className="box-content relative w-full min-h-screen p-10 flex flex-col justify-between text-black">
       <div>
         <div>
-          <h3 className="ml-10 mt-10 text-black mb-2">Paso 5:</h3>
-          <h1 className="mt-8 text-black text-center mb-4">Complete la Información de la propiedad</h1>
+          {/* <h3 className="ml-10 mt-10 text-black mb-2">Paso 5:</h3> */}
+          <h1 className="mt-2 text-black text-center mb-8">Complete la Información de la propiedad</h1>
         </div>
         <div className="flex justify-center w-full">
   <form className="space-y-6 w-[400px]">
@@ -308,14 +308,14 @@ const Step5: React.FC = () => {
           )} */}
         {/* </div> */}
       </div>
-      <div className="absolute bottom-6 right-6">
+      <div className="absolute bottom-1/2 right-6">
         <ButtonCyan 
         onClick={handleSubmit}
         isDisabled={false}
          />
       </div>
 
-      <div className="absolute bottom-6 left-6">
+      <div className="absolute bottom-1/2 left-6">
         <ButtonCyanBack onClick={backPage} />
       </div>
 

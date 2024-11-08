@@ -65,8 +65,8 @@ const Step4: React.FC = () => {
 
             <div>
                 <div>
-                    <h3 className="ml-10 mt-1 text-black mb-2">Paso 4:</h3>
-                    <h1 className="mt-8 text-black text-center mb-4">Detalles de la Propiedad</h1>
+                    {/* <h3 className="ml-10 mt-1 text-black mb-2">Paso 4:</h3> */}
+                    <h1 className="mt-2 text-black text-center mb-8">Detalles de la Propiedad</h1>
                 </div>
 
                 <div className="flex justify-center w-full">
@@ -145,14 +145,14 @@ const Step4: React.FC = () => {
 
             </div>
 
-            <div className="absolute bottom-6 right-6">
+            <div className="absolute bottom-1/2 right-6">
                 <ButtonCyan
                     onClick={saveDataPage}
                     isDisabled={!checkInput()}
                 />
             </div>
 
-            <div className="absolute bottom-6 left-6">
+            <div className="absolute bottom-1/2 left-6">
                 <ButtonCyanBack onClick={backPage} />
             </div>
 
