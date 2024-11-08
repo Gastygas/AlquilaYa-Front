@@ -7,7 +7,7 @@ const paso3 = () => {
     <div className='bg-gray-100'>
     <Header />
       <div className='container'>
-        <Step3/>
+        <Step3 />
       </div>
     </div>
   )

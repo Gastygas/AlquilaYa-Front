@@ -1,16 +1,16 @@
 import React from 'react'
-import Step5 from '@/Components/Sube-tu-propiedad/Step-5'
+import Step2 from '@/Components/Sube-tu-propiedad/Step-2'
 import Header from '@/Components/Header/Header';
 
-const paso5 = () => {
+const paso2 = () => {
   return (
     <div className='bg-gray-100'>
     <Header />
       <div className='container'>
-        <Step5/>
+        <Step2/>
       </div>
     </div>
   )
 }
 
-export default paso5;
+export default paso2;
