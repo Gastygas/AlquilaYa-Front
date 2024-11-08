@@ -50,9 +50,7 @@ const Step1 = () => {
         data.tipe = isSelected?.text || '';
         data.tipeId = isSelected?.id || '';
         sessionStorage.setItem("data", JSON.stringify(data))
-        router.push('/sube-tu-propiedad/paso-3')
-
-
+        router.push('/sube-tu-propiedad/paso-2')
     }
 
 

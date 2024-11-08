@@ -87,7 +87,6 @@ const Step5: React.FC = () => {
             const res = await response.json();
             if (res.success) {
                 alert("Imagen subida correctamente");
-                router.push("/");
             } else {
                 alert("Error al cargar las imágenes.");
             }
@@ -97,7 +96,7 @@ const Step5: React.FC = () => {
     };
 
     const backPage = () => {
-        router.push('/sube-tu-propiedad/paso-5');
+        router.push('/sube-tu-propiedad/paso-4');
     };
 
     const handleBackHome= () => {

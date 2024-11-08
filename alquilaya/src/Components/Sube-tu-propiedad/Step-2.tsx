@@ -65,7 +65,7 @@ const Step2 = () => {
         let data = sessionStorage.getItem('data') ? JSON.parse(sessionStorage.getItem('data')!) : {};
         // data.services = recorreServicios();
         sessionStorage.setItem('data', JSON.stringify({...data, ...recorreServicios()}));
-        router.push('/sube-tu-propiedad/paso-4');
+        router.push('/sube-tu-propiedad/paso-3');
     };
 
     return (

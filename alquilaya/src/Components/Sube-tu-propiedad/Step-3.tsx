@@ -52,12 +52,12 @@ const Step3: React.FC = () => {
         data.price = price;
         data.petFriendly = petFriendly;
         sessionStorage.setItem("data", JSON.stringify(data));
-        router.push("/sube-tu-propiedad/paso-5");
+        router.push("/sube-tu-propiedad/paso-4");
     };
 
 
     const backPage = () => {
-        router.push('/sube-tu-propiedad/paso-3')
+        router.push('/sube-tu-propiedad/paso-2')
     }
 
     return (

@@ -152,7 +152,7 @@ const Step4: React.FC = () => {
       const res = await response.json()
       if (res.success) {
         alert("Ahora busca una foto de tu propiedad y otra como una factura de luz o agua para que sepamos que te pertenece");
-        router.push(`/sube-tu-propiedad/paso-6?id=${res.property.property.id}`);
+        router.push(`/sube-tu-propiedad/paso-5?id=${res.property.property.id}`);
         return
 
       } if(res.message === "Invalid Token"){
@@ -174,7 +174,7 @@ const Step4: React.FC = () => {
   };
 
   const backPage = () => {
-    router.push('/sube-tu-propiedad/paso-4')
+    router.push('/sube-tu-propiedad/paso-3')
   }
 
   return (
