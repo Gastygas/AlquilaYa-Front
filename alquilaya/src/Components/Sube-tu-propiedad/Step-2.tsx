@@ -50,7 +50,7 @@ const Step2 = () => {
         <div className="box-content relative w-full min-h-screen p-10 flex flex-col justify-between text-black">
             <div>
                 <div>
-                    <h2 className="ml-10 mt-1 text-black mb-2">Paso 2:</h2>
+                    <h3 className="ml-10 mt-1 text-black mb-2">Paso 2:</h3>
                     <h1 className="mt-8 text-black text-center mb-4">Indicá qué tipo de alojamiento ofrecés a los huéspedes</h1>
                 </div>
                 <div className="flex justify-center mb-1">

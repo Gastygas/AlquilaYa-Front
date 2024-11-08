@@ -65,7 +65,7 @@ const Step4: React.FC = () => {
 
             <div>
                 <div>
-                    <h2 className="ml-10 mt-1 text-black mb-2">Paso 4:</h2>
+                    <h3 className="ml-10 mt-1 text-black mb-2">Paso 4:</h3>
                     <h1 className="mt-8 text-black text-center mb-4">Detalles de la Propiedad</h1>
                 </div>
 

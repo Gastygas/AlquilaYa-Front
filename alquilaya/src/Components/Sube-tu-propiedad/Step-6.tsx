@@ -55,7 +55,7 @@ const Step6: React.FC = () => {
             });
             const res = await response.json()
             if (res.success) {
-                alert("Tu factura se subio correctamente!")
+                alert("Tu factura se subió correctamente!")
                 
             } else {
                 alert("Error al cargar las imágenes.");
@@ -83,7 +83,7 @@ const Step6: React.FC = () => {
             const res = await response.json()
 
             if (res.success) {
-                alert("Tu propiedad se subio correctamente, ahora espera hasta que un administrador la evalue. Te llegara un mail si fue aprobada o denegada tu propiedad. Muchas gracias, exitos!");
+                alert("Tu propiedad se ha subido correctamente. Ahora, espera a que un administrador la evalúe. Recibirás un correo electrónico notificándote si tu propiedad fue aprobada o rechazada. ¡Muchas gracias y éxito!");
                 router.push("/");
             } else {
                 alert("Error al cargar las imágenes.");
@@ -101,10 +101,10 @@ const Step6: React.FC = () => {
         <div className="box-content relative w-full min-h-screen p-10 flex flex-col justify-between text-black">
             <div>
                 <div>
-                    <h2 className="ml-10 mt-10 text-black mb-2">Paso 6:</h2>
-                    <h3 className="mt-8 text-black text-center mb-4">Subí una factura de la propiedad</h3>
+                    <h3 className="ml-10 mt-10 text-black mb-2">Paso 6:</h3>
+                    <h1 className="mt-8 text-black text-center mb-4">Subí una factura de la propiedad</h1>
                 </div>
-                <div className="w-full flex justify-center mt-10">
+                <div className="w-full flex justify-center mt-1">
                     <input
                         type="file"
                         name="invoiceFile"
@@ -113,11 +113,11 @@ const Step6: React.FC = () => {
                     />
                 </div>
 
-                <button className="" disabled={selectedBill === undefined} onClick={(e:any) => handleUploadBillImage(propertyId)}>Subir tu factura</button>
+                <button className="" disabled={selectedBill === undefined} onClick={(e:any) => handleUploadBillImage(propertyId)}></button>
 
-                <h3 className="mt-8 text-black text-center mb-4">Subi una foto de la propiedad</h3>
+                <h1 className="mt-8 text-black text-center mb-1">Subi una foto de la propiedad</h1>
 
-                <div className="w-full flex justify-center mt-10">
+                <div className="w-full flex justify-center mt-1">
                     <input
                         type="file"
                         multiple
@@ -129,7 +129,7 @@ const Step6: React.FC = () => {
 
                 <div className="flex justify-center mt-4">
                     {selectedImages.length > 0 && (
-                        <p>{selectedImages.length} imagen(es) seleccionada(s)</p>
+                        <p>{selectedImages.length} imagen seleccionada</p>
                     )}
                 </div>
             </div>

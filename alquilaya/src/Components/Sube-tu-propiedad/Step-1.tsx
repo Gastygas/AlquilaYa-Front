@@ -5,51 +5,63 @@ import IconSelector from '../IconSelector/IconSelector'
 import { FcHome } from "react-icons/fc";
 import { PiBuildingApartmentDuotone } from "react-icons/pi";
 import { useRouter } from 'next/navigation'
+import { IsSelectedItem } from './types';
+
 
 
 const Step1 = () => {
-    const selected: null | any = null
+    // const selected: null | any = null
     const router = useRouter()
-    const [isSelected, setIsSelected] = useState(selected)
+    const [isSelected, setIsSelected] = useState<IsSelectedItem | null>(null);
 
     useEffect(() => {
         let data = sessionStorage.getItem('data') ? JSON.parse(sessionStorage.getItem('data')!) : {}
         if (data.tipe) {
-            setIsSelected({text: data.tipe})
+            setIsSelected({ icon: '', text: data.tipe, id: data.tipeId });
         }
     }, [])
 
     const iconData = [
-        { icon: <FcHome size={72} />, text: "Casa" },
-        { icon: '/cabana.png', text: "Cabaña" },
-        { icon: <PiBuildingApartmentDuotone size={72} />, text: "Departamento" },
-        { icon: '/recurso.png', text: "Hotel" },
-        { icon: '/duplex.png', text: "Dúplex" },
-        { icon: '/casa-movil.png', text: "Casa Rodante" },
-        { icon: '/invernadero.png', text: "Domo" },
-        { icon: '/balcon.png', text: "Loft" },
-        { icon: '/casa-ecologica.png', text: "Casa Ecológica" },
-        { icon: '/casa-de-huespedes.png', text: "Casa de Húespedes" },
-        { icon: '/camping.png', text: "Carpa" },
-        { icon: '/carga.png', text: "Contenedor" },
+        { icon: <FcHome size={72} />, text: "Casa", id: "casa" },
+        { icon: '/cabana.png', text: "Cabaña", id: "cabaña" },
+        { icon: <PiBuildingApartmentDuotone size={72} />, text: "Departamento", id: "departamento" },
+        { icon: '/recurso.png', text: "Hotel", id: "hotel" },
+        { icon: '/duplex.png', text: "Dúplex", id: "dúplex" },
+        { icon: '/casa-movil.png', text: "Casa Rodante", id: "casa-rodante" },
+        { icon: '/invernadero.png', text: "Domo", id: "domo" },
+        { icon: '/balcon.png', text: "Loft", id: "loft" },
+        { icon: '/camping.png', text: "Carpa", id: "carpa" },
+        { icon: '/casa-ecologica.png', text: "Habitación Privada", id: "habitación-privada" },
+        { icon: '/casa-de-huespedes.png', text: "Habitación con Baño Privado", id: "habitacion-baño-privado" },
+        { icon: '/carga.png', text: "Habitación Compartida", id: "habitación-compartida" },
     ];
+
 
     const saveDataPage = () => {
         let data = sessionStorage.getItem('data') ? JSON.parse(sessionStorage.getItem('data')!) : {}
-        data.tipe = isSelected?.text
+        data.tipe = isSelected?.text || '';
+        data.tipeId = isSelected?.id || '';
         sessionStorage.setItem("data", JSON.stringify(data))
         router.push('/sube-tu-propiedad/paso-2')
+
+
     }
+
 
     return (
         <div className="box-content relative w-full min-h-screen p-10 flex flex-col justify-between text-black">
             <div>
                 <div>
-                    <h2 className="ml-10 mt-1 text-black mb-2">Paso 1:</h2>
+                    <h3 className="ml-10 mt-1 text-black mb-2">Paso 1:</h3>
                     <h1 className="mt-2 text-black text-center">Elige la opción que mejor describa tu espacio</h1>
                 </div>
                 <div className=' mb-1'>
-                    <IconSelector numCols={4} data={iconData} isSelected={isSelected} setIsSelected={setIsSelected} />
+                    <IconSelector
+                        numCols={4}
+                        data={iconData}
+                        isSelected={isSelected}
+                        setIsSelected={setIsSelected}
+                    />
                 </div>
             </div>
 

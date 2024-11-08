@@ -1,1 +1,5 @@
-export type IsSelectedItem = {icon: string, text: string}
+export type IsSelectedItem = {
+    icon: string | React.ReactNode,
+    text: string,
+    id: string
+}

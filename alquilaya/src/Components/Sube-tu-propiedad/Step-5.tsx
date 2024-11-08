@@ -185,7 +185,7 @@ const Step5: React.FC = () => {
     <div className="box-content relative w-full min-h-screen p-10 flex flex-col justify-between text-black">
       <div>
         <div>
-          <h2 className="ml-10 mt-10 text-black mb-2">Paso 5:</h2>
+          <h3 className="ml-10 mt-10 text-black mb-2">Paso 5:</h3>
           <h1 className="mt-8 text-black text-center mb-4">Complete la Información de la propiedad</h1>
         </div>
         <div className="flex justify-center w-full">
@@ -253,7 +253,7 @@ const Step5: React.FC = () => {
 
     {/* Descripción de la Propiedad */}
     <div className="flex flex-col">
-      <label htmlFor="description" className="mb-1 font-medium">Descripción de la Propiedad</label>
+      <label htmlFor="description" className="mb-1 font-medium">Descripción de la propiedad</label>
       <textarea
         id="description"
         name="description"
