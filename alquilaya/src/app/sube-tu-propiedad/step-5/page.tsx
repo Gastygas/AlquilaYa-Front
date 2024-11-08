@@ -1,7 +1,8 @@
 import Header from '@/Components/Header/Header';
 import Step5 from '@/Components/Sube-tu-propiedad/Step-5'
-import React from 'react'
-import styles from './step6.module.css'
+import React, { Suspense } from 'react'
+import styles from './step5.module.css'
+import Loader from '@/Components/Loader/Loader';
 
 const paso5 = () => {
   return (
@@ -9,7 +10,9 @@ const paso5 = () => {
     <Header />
     {/* <div className={styles.container}> */}
       <div className='container' >
+      <Suspense fallback={<Loader/>}>
         <Step5/>
+      </Suspense>
       </div>
     </div>
   )
