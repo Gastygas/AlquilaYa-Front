@@ -1,5 +1,6 @@
 import IProperty from "@/Interfaces/IProperties"
 import styles from "./properties.module.css"
+import Link from "next/link";
 
 interface PropertyTableProps {
     properties: IProperty[];
@@ -34,9 +35,10 @@ const PropertiesHistory: React.FC<PropertyTableProps> = ({properties}) => {
                    <p className="text-green-600 rounded uppercase text-sm" >aprobado</p> : <p className=" text-sm text-red-600 rounded uppercase">cancelada</p>}</td>
                   <td className="border px-4 py-2 text-center">
                     <div className="flex justify-center">
+                    <Link href={`/admin/solicitudes/${properties.id}`}>
                     <button className="bg-primary text-secondary px-4 py-2 rounded font-semibold">
                         Ver más
-                      </button>
+                      </button></Link>
                     </div>
                   </td>
                 </tr>

@@ -6,12 +6,11 @@ import styles from './Pending.module.css';
 import IProperty from '@/Interfaces/IProperties';
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import Link from 'next/link';
 
 interface PendingPropertiesTableProps {
   properties: IProperty[];
 }
-
-const url = "http://localhost:3001/property";
 
 const PendingPropertiesTable: React.FC<PendingPropertiesTableProps> = ({ properties: initialProperties }) => {
   const [properties, setProperties] = useState<IProperty[]>(initialProperties);
@@ -30,7 +29,7 @@ const PendingPropertiesTable: React.FC<PendingPropertiesTableProps> = ({ propert
   }, []);
 
   const fetchProperties = async () => {
-    const res = await fetch(url, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property`, {
       method: "GET",
       cache: 'no-store',
     });
@@ -41,7 +40,7 @@ const PendingPropertiesTable: React.FC<PendingPropertiesTableProps> = ({ propert
 
   const handleApprovedProperty = async (e: React.MouseEvent, id: string) => {
     e.preventDefault();
-    const res = await fetch(`${url}/approve/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property/approve/${id}`, {
       method: "PATCH",
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -55,7 +54,7 @@ const PendingPropertiesTable: React.FC<PendingPropertiesTableProps> = ({ propert
 
   const handleDisapprovedProperty = async (e: React.MouseEvent, id: string) => {
     e.preventDefault();
-    const res = await fetch(`${url}/deny/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property/deny/${id}`, {
       method: "PATCH",
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -93,17 +92,18 @@ const PendingPropertiesTable: React.FC<PendingPropertiesTableProps> = ({ propert
             <td className="py-3 px-6 text-center">{property.price}</td>
             <td className="py-3 px-6 text-center">{property.propertyStatus === 'pending'? 'pendiente': ''}</td>
             <td className="border px-4 py-2 text-center">
+            <Link href={`/admin/solicitudes/${property.id}`}>
               <button className="bg-primary text-secondary px-4 py-2 rounded font-semibold">
                 Ver más
-              </button>
+              </button></Link>
             </td>
             <td className="border px-4 py-2 text-center flex justify-center gap-4">
               <button
                 onClick={(e) => handleApprovedProperty(e, property.id)}
-                className="bg-green-400 text-white px-4 py-2 rounded">Aprobar</button>
+                className={styles.approve}>Aprobar</button>
               <button
                 onClick={(e) => handleDisapprovedProperty(e, property.id)}
-                className="bg-red-400 text-white px-4 py-2 rounded">Denegar</button>
+                className={styles.deny}>Denegar</button>
             </td>
           </tr>
         ))}

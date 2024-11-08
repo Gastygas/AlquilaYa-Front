@@ -35,14 +35,21 @@ footer {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-primary);
+  font-family: 'Figtree', sans-serif;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
-}
+  .padding-section{
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    margin-top: 7rem; 
+    margin-bottom: 7rem;
+  }
+
 
 @layer base{
 input[type="number"]::-webkit-inner-spin-button,
@@ -54,11 +61,23 @@ input[type="number"]::-webkit-inner-spin-button,
 
 .padding-section{
   @apply flex  flex-col items-center my-28;
+  
+.container{
+    padding-top: 0;
+padding-bottom: 0;
+padding-left: 4rem;   /* 16 in Tailwind is 4rem */
+padding-right: 4rem;
+max-width: 1536px;    /* screen-2xl in Tailwind */
+margin-top: 0;
+margin-bottom: 0;
+margin-left: auto;
+margin-right: auto;
+  }
 }
 
-.container {
+/*.container {
   @apply py-0 px-16 max-w-screen-2xl my-0 mx-auto;
-}
+}*/
 
 h1,
 h2,
@@ -66,7 +85,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-primary);
+  font-family: 'Figtree', sans-serif;
   font-weight: 700;
 }
 

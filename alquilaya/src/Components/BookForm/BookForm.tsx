@@ -1,8 +1,7 @@
-"use client"
-import React, { useState, useEffect } from 'react';
-import Script from 'next/script';
-import { useRouter } from 'next/router';
-import styles from './BookForm.module.css';
+"use client";
+import React, { useState, useEffect } from "react";
+import Script from "next/script";
+import styles from "./BookForm.module.css";
 
 interface BookFormProps {
   propertyId: string;
@@ -10,29 +9,64 @@ interface BookFormProps {
   unitPrice: number;
 }
 
-const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice }) => {
-  const [checkInDate, setCheckInDate] = useState<string>('');
-  const [checkOutDate, setCheckOutDate] = useState<string>('');
+const BookForm: React.FC<BookFormProps> = ({
+  propertyId,
+  propertyName,
+  unitPrice,
+}) => {
+  const [checkInDate, setCheckInDate] = useState<string>("");
+  const [checkOutDate, setCheckOutDate] = useState<string>("");
   const [preferenceId, setPreferenceId] = useState<string | null>(null);
+
   // const router = useRouter();
+
+  const [userId, setUserId] = useState<string | null>(null);
+  const [isMercadoPagoScriptLoaded, setMercadoPagoScriptLoaded] = useState(false);
+
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
+    setUserId(storedUser.user.id || null);
+    
+  }, []);
+
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const requestData = {
-      id: propertyId,
-      title: propertyName,
-      quantity: 1,
-      unit_price: unitPrice,
+    const startDate = new Date(checkInDate);
+    const endDate = new Date(checkOutDate);
+    const differenceInTime = endDate.getTime() - startDate.getTime();
+    const daysDifference = Math.ceil(differenceInTime / (1000 * 3600 * 24));
+    console.log(userId);
+    
+    
+    const orderData = {
+      items: [
+        {
+          id: "1234",
+          title: propertyName,
+          quantity: daysDifference,
+          unit_price: unitPrice,
+        },
+      ],
+
+      newBooking: {
+        booking: {
+          propertyId: propertyId,
+          dateStart: checkInDate,
+          dateEnd: checkOutDate,
+        },
+        userId: userId,
+      },
     };
 
     try {
-      const response = await fetch("http://localhost:3001/mercadopago", {
+      const response = await fetch(`http://localhost:3001/mercadopago`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(requestData),
+        body: JSON.stringify(orderData),
       });
 
       const data = await response.json();
@@ -46,8 +80,15 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
     }
   };
 
+  // Función para cargar el script solo cuando sea necesario
+  const loadMercadoPagoScript = () => {
+    if (!isMercadoPagoScriptLoaded) {
+      setMercadoPagoScriptLoaded(true);
+    }
+  };
+
   useEffect(() => {
-    if (preferenceId && typeof window !== 'undefined' && window.MercadoPago) {
+    if (preferenceId && isMercadoPagoScriptLoaded && typeof window !== "undefined" && window.MercadoPago) {
       const mp = new window.MercadoPago("TEST-fa93dbfd-43ff-4ad0-b01f-9fbd39faeafc", {
         locale: "es-AR",
       });
@@ -59,16 +100,23 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
         autoOpen: true,
       });
     }
-  }, [preferenceId]);
+  }, [preferenceId, isMercadoPagoScriptLoaded]);
 
   return (
     <>
-      <Script src="https://sdk.mercadopago.com/js/v2" strategy="beforeInteractive" />
+      {/* Carga dinámica del script solo cuando se hace clic en el botón de pago */}
+      <Script
+        src="https://sdk.mercadopago.com/js/v2"
+        strategy="lazyOnload"
+        onLoad={() => console.log("Mercado Pago SDK cargado")}
+      />
 
-      <form className="flex flex-col justify-center" onSubmit={handleSubmit}>
-        <div className="grid grid-cols-2 gap-8 p-12">
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <div className={styles.boxGrid}>
           <div>
-            <label htmlFor="checkInDate" className={styles.label}>Fecha de Entrada</label>
+            <label htmlFor="checkInDate" className={styles.label}>
+              Fecha de Entrada
+            </label>
             <input
               type="date"
               id="checkInDate"
@@ -80,7 +128,9 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
             />
           </div>
           <div>
-            <label htmlFor="checkOutDate" className={styles.label}>Fecha de Salida</label>
+            <label htmlFor="checkOutDate" className={styles.label}>
+              Fecha de Salida
+            </label>
             <input
               type="date"
               id="checkOutDate"
@@ -92,8 +142,10 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
             />
           </div>
         </div>
-        <div className="flex justify-center">
-          <button type="submit" className={styles.button}>Reservar</button>
+        <div className={styles.centerButton}>
+          <button type="submit" className={styles.button} onClick={loadMercadoPagoScript}>
+            Reservar
+          </button>
         </div>
       </form>
     </>

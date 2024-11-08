@@ -9,7 +9,8 @@ import { ToastContainer } from "react-toastify";
 const primaryFont = Figtree({
   subsets: ["latin"],
   weight: ["400", "900"],
-  variable: "--font-primary"
+  display: "swap",
+  //variable: "--font-primary"
 });
 
 export const metadata: Metadata = {
@@ -27,8 +28,8 @@ export default function RootLayout({
 }>) {
   return (
     <AuthProvider>
-    <html lang="es" className={`${primaryFont.variable}`}>
-      <body className={primaryFont.className}>
+    <html lang="es" /*className={primaryFont.variable}*/>
+      <body /*className={primaryFont.className}*/>
       <ToastContainer />
         <main>{children}</main>
         <Footer />

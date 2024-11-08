@@ -36,3 +36,15 @@
     text-overflow: ellipsis;
 }
 
+.favButton{
+    @apply absolute top-4 right-4 w-10 h-10 bg-primary rounded-full shadow-lg flex items-center justify-center z-50 hover:bg-secondary transition-all
+}
+
+.cardGrid{
+    @apply p-6 rounded-xl shadow-xl transition-all duration-300 hover:shadow-2xl relative
+}
+
+.imgContainer{
+    width: 300px;
+    height: 200px;
+}

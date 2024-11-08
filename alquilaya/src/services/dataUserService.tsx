@@ -38,7 +38,7 @@ export const getUserData = async (): Promise<IUser | null> => {
 export const getPropertyById = async (id: string | null) => {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property/${id}`); 
-    
+
     if (!response.ok) {
       throw new Error("error en traer la propiedad")
     }
