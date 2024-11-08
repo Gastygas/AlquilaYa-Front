@@ -101,6 +101,7 @@ const Step5: React.FC = () => {
 
     const handleBackHome= () => {
         alert("Tu propiedad se ha subido correctamente. Ahora, espera a que un administrador la evalúe.Te llegara una notifiacion por mail si te fue aprobada o denegada. Gracias por llenar el formulario correctamente. Te enviaremos al home")
+        router.push("/")
     }
 
     return (

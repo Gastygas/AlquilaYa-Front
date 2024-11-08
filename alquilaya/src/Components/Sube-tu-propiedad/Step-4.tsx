@@ -11,6 +11,9 @@ interface PropertyData {
   city: string;
   country: string;
   description: string;
+  province: string;
+  floor?:string;
+  room?:string;
   mapLocation?: { lat: number; lng: number };
   invoiceFile?: File | null;
 }
@@ -39,6 +42,9 @@ const Step4: React.FC = () => {
     city: '',
     country: '',
     description: '',
+    province: '',
+    room:'',
+    floor:''
     // mapLocation: { lat: -34.6037, lng: -58.3816 },
     // invoiceFile: null,
   });
@@ -132,13 +138,14 @@ const Step4: React.FC = () => {
         address: propertyData.address.toLowerCase(),
         city: propertyData.city.toLowerCase(),
         country: propertyData.country.toLowerCase(),
+        province: propertyData.province.toLowerCase(),
+        floor: propertyData.floor ? propertyData.floor.toLowerCase() : "",
+        room: propertyData.room? propertyData.room.toLowerCase() : "",
         price: data.price,
         capacity: data.limitCapacity,
         bedrooms: data.bedrooms,
         bathrooms: data.bathrooms,
-      }
-      console.log(formData);
-      
+      }      
 
       const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property/create`, {
         method: "post",
@@ -217,6 +224,33 @@ const Step4: React.FC = () => {
       />
     </div>
 
+    <div className="flex flex-col">
+      <label htmlFor="floor" className="mb-1 font-medium">Piso (opcional)</label>
+      <input
+        type="text"
+        id="floor"
+        name="floor"
+        placeholder="3"
+        value={propertyData.floor}
+        onChange={handleChange}
+        className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF]"
+        required
+      />
+    </div>
+    <div className="flex flex-col">
+      <label htmlFor="room" className="mb-1 font-medium">Habitacion</label>
+      <input
+        type="text"
+        id="room"
+        name="room"
+        placeholder="A"
+        value={propertyData.room}
+        onChange={handleChange}
+        className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF]"
+        required
+      />
+    </div>
+
     {/* Ciudad */}
     <div className="flex flex-col">
       <label htmlFor="city" className="mb-1 font-medium">Ciudad</label>
@@ -226,6 +260,21 @@ const Step4: React.FC = () => {
         name="city"
         placeholder="Ciudad"
         value={propertyData.city}
+        onChange={handleChange}
+        className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF]"
+        required
+      />
+    </div>
+
+    {/* País */}
+    <div className="flex flex-col">
+      <label htmlFor="province" className="mb-1 font-medium">Provincia</label>
+      <input
+        type="text"
+        id="province"
+        name="province"
+        placeholder="Provincia"
+        value={propertyData.province}
         onChange={handleChange}
         className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF]"
         required
