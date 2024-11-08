@@ -81,6 +81,14 @@ const GridBooks = () => {
                 <strong>Fecha de fin:</strong> {booking.dateEnd}
               </p>
             </div>
+
+            <div className="text-center mt-4">
+              <button
+                className="bg-red-500 text-white font-medium py-3 px-8 rounded-xl border-2 border-red-600 hover:bg-red-600 focus:outline-none focus:ring-4 focus:ring-red-500 transition duration-200 ease-in-out"
+              >
+                Cancelar
+              </button>
+            </div>
           </div>
         ))}
       </div>
