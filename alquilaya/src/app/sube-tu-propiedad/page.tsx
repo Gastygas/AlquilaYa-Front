@@ -4,7 +4,6 @@ import React from 'react'
 
 const page = ({children}: any) => {
   return (
-
    <ProtectedRoute>
       <Header/>
       <div>{children}</div>

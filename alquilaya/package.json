@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-google-maps/api": "^2.20.3",
     "mercadopago": "^2.0.15",
     "next": "14.2.15",
     "react": "^18",
@@ -23,6 +24,7 @@
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.14",
-    "typescript": "^5"
+    "typescript": "^5",
+    "@types/google.maps": "^3.58.1"
   }
 }
