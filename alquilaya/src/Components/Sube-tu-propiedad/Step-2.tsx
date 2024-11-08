@@ -24,7 +24,7 @@ const Step2 = () => {
         { icon: '/transmision-en-vivo.png', text: "Streaming", id: "streaming" },
         { icon: '/parrilla.png', text: "Parrilla", id: "grill" },
         { icon: '/cochera.png', text: "Cochera", id: "parking" },
-        { icon: '/patio-interior.png', text: "Patio", id: "pyard" },
+        { icon: '/patio-interior.png', text: "Patio", id: "yard" },
         { icon: '/piscina.png', text: "Piscina", id: "pool" },
         { icon: '/gimnasio.png', text: "Gimnasio", id: "gym" },
         { icon: '/aire-acondicionado.png', text: "Aire Acondicionado", id: "airConditioning" },

@@ -129,7 +129,6 @@ const Step4: React.FC = () => {
     try {
   
       let data = sessionStorage.getItem('data') ? JSON.parse(sessionStorage.getItem('data')!) : {}
-      const {services} = data
 
       const formData = {
         type: data.tipe.toLowerCase(),
@@ -145,6 +144,19 @@ const Step4: React.FC = () => {
         capacity: data.limitCapacity,
         bedrooms: data.bedrooms,
         bathrooms: data.bathrooms,
+        petFriendly: data.petFriendly,
+        airConditioning: data.airConditioning,
+        heating: data.heating,
+        pool: data.pool,
+        parking: data.parking,
+        streaming: data.streaming,
+        yard: data.yard,
+        grill:data.grill,
+        gym: data.gym,
+        appliance: data.appliance,
+        cleaningService: data.cleaningService,
+        catering: data.catering,
+        wifi: data.wifi,
       }      
 
       const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property/create`, {
@@ -153,7 +165,7 @@ const Step4: React.FC = () => {
             'Authorization': `Bearer ${token}`,
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({...formData,...services})
+        body: JSON.stringify(formData)
       });
 
       const res = await response.json()
@@ -238,7 +250,7 @@ const Step4: React.FC = () => {
       />
     </div>
     <div className="flex flex-col">
-      <label htmlFor="room" className="mb-1 font-medium">Habitacion</label>
+      <label htmlFor="room" className="mb-1 font-medium">Habitación (opcional)</label>
       <input
         type="text"
         id="room"
