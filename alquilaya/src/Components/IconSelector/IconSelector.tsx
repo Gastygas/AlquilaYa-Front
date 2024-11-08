@@ -13,17 +13,17 @@ const IconSelector: React.FC<IconSelectorProps> = ({ data, isSelected, setIsSele
 
   
     const checkSelected = (item: IsSelectedItem) => {
-        // Verifica que isSelected sea un arreglo antes de intentar llamar a 'some'
+
         return Array.isArray(isSelected) && isSelected.some(d => d.id === item.id);  
     };
 
    
     const handleSelect = (item: IsSelectedItem) => {
         const newSelectedItems = checkSelected(item)
-            ? isSelected.filter(service => service.id !== item.id) // Desmarcar el servicio
-            : [...isSelected, item]; // Marcar el servicio
+            ? isSelected.filter(service => service.id !== item.id) 
+            : [...isSelected, item]; 
     
-        setIsSelected(newSelectedItems); // Pasar el nuevo arreglo al setter
+        setIsSelected(newSelectedItems);
     };
 
     return (

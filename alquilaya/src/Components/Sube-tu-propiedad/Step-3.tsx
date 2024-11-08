@@ -8,10 +8,10 @@ import ButtonCyanBack from '../ButtonCyan/ButtonCyanBack';
 import { IsSelectedItem } from './types';
 
 const Step3 = () => {
-    const router = useRouter(); // Instanciamos el enrutador para poder navegar entre pasos
+    const router = useRouter();
     const [isSelected, setIsSelected] = useState<IsSelectedItem[]>([]);
-    
-    // Cargar los datos del sessionStorage si existen
+
+
     useEffect(() => {
         let data = sessionStorage.getItem('data') ? JSON.parse(sessionStorage.getItem('data')!) : {};
         if (data.services) {
@@ -19,23 +19,22 @@ const Step3 = () => {
         }
     }, []);
 
-    // Estado inicial de los servicios (ServicesVoF)
+
     const ServicesVoF = {
         wifi: false,
         streaming: false,
-        parrilla: false,
-        cochera: false,
-        patio: false,
-        piscina: false,
-        gimnasio: false,
-        aireAcondicionado: false,
-        electrodomesticos: false,
-        estufa: false,
-        limpieza: false,
+        grill: false,
+        parking: false,
+        yard: false,
+        pool: false,
+        gym: false,
+        airConditioning: false,
+        appliance: false,
+        heating: false,
+        cleaningService: false,
         catering: false,
     };
 
-    // Los iconos y los servicios que se pueden seleccionar
     const iconData = [
         { icon: '/wifi.png', text: "Wi-Fi", id: "wifi" },
         { icon: '/transmision-en-vivo.png', text: "Streaming", id: "streaming" },
@@ -51,30 +50,31 @@ const Step3 = () => {
         { icon: '/porcion-de-comida.png', text: "Catering", id: "catering" },
     ];
 
-    // Función para navegar a la página anterior
     const backPage = () => {
         router.push('/sube-tu-propiedad/paso-2');
     };
 
-    // Función para manejar la selección y deselección de servicios
-   const selectServices = (services: IsSelectedItem[]) => {
+
+    const selectServices = (services: IsSelectedItem[]) => {
         setIsSelected(services);
     };
-    // Función para recorrer los servicios y guardar el estado final
+
     const recorreServicios = () => {
-        const selectedServices: { [key: string]: boolean } = { ...ServicesVoF };
+        const selectedServices: { [key: string]: boolean } = {};
 
         iconData.forEach((service) => {
-            selectedServices[service.id] = isSelected.some((selected) => selected.id === service.id);
+            if (isSelected.some((selected) => selected.id === service.id)) {
+                selectedServices[service.id] = true;
+            }
         });
 
         return selectedServices;
     };
 
-    // Función para guardar los datos seleccionados en sessionStorage
+
     const saveDataPage = () => {
         let data = sessionStorage.getItem('data') ? JSON.parse(sessionStorage.getItem('data')!) : {};
-        data.services = recorreServicios(); // Guardar los servicios seleccionados
+        data.services = recorreServicios();
         sessionStorage.setItem('data', JSON.stringify(data));
         router.push('/sube-tu-propiedad/paso-4');
     };
@@ -95,7 +95,7 @@ const Step3 = () => {
             <div className="absolute bottom-6 right-6">
                 <ButtonCyan
                     onClick={saveDataPage}
-                    isDisabled={isSelected.length === 0} // Habilitar el botón solo si hay servicios seleccionados
+                    isDisabled={isSelected.length === 0}
                 />
             </div>
 
