@@ -17,6 +17,9 @@ const BookForm: React.FC<BookFormProps> = ({
   const [checkInDate, setCheckInDate] = useState<string>("");
   const [checkOutDate, setCheckOutDate] = useState<string>("");
   const [preferenceId, setPreferenceId] = useState<string | null>(null);
+
+  // const router = useRouter();
+
   const [userId, setUserId] = useState<string | null>(null);
   const [isMercadoPagoScriptLoaded, setMercadoPagoScriptLoaded] = useState(false);
 
@@ -25,6 +28,7 @@ const BookForm: React.FC<BookFormProps> = ({
     setUserId(storedUser.user.id || null);
     
   }, []);
+
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

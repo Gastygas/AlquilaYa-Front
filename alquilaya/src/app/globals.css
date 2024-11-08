@@ -50,7 +50,19 @@ body {
     margin-bottom: 7rem;
   }
 
-  .container{
+
+@layer base{
+input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+.padding-section{
+  @apply flex  flex-col items-center my-28;
+  
+.container{
     padding-top: 0;
 padding-bottom: 0;
 padding-left: 4rem;   /* 16 in Tailwind is 4rem */
