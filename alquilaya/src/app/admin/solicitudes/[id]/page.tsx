@@ -13,6 +13,7 @@ import { LiaToiletSolid } from 'react-icons/lia'
 import { MdOutlinePool } from 'react-icons/md'
 import { TbAirConditioning } from 'react-icons/tb'
 import Link from 'next/link'
+import BookFormMock from '@/Components/BookFormMock/BookFormMock'
 
 const getProductById = async (id: string) => {
 
@@ -35,23 +36,23 @@ const page = async ({ params }: { params: { id: string } }) => {
             {property.propertyStatus === 'approved' ?
                 <div className='w-full bg-green-300 flex flex-col py-10 mt-0 mb-8 justify-center align-middle gap-4'>
                     <h3 className='text-center'>Esta propiedad está aprobada</h3>
-                    <div className='flex justify-center gap-8 '>
-                    <Link href={`/propiedades/${property.id}`}><button className={styles.button}>Ver aquí</button></Link>
+                    <div className='flex justify-center gap-8 pt-3'>
                     <Link href="/admin/solicitudes"><button className={styles.buttonBack}>Atrás</button></Link>
+                    <Link href={`/propiedades/${property.id}`}><button className={styles.button}>Ver aquí</button></Link>
                     </div>
                 </div>
              : property.propertyStatus === 'pending' ? (<div className='w-full bg-orange-300 flex flex-col py-10 mt-0 mb-8 justify-center align-middle'>
                     <h3 className='text-center'>Esta propiedad está Pendiente</h3>
-                    <div className='flex justify-center gap-8 '>
-                    <Link href="/#"><button className={styles.button}>Ver documento de respaldo</button></Link>
+                    <div className='flex justify-center gap-8 pt-3'>
                     <Link href="/admin/solicitudes"><button className={styles.buttonBack}>Atrás</button></Link>
+                    <Link href="/#"><button className={styles.button}>Ver documento de respaldo</button></Link>
                     </div>
                 </div>)
              : (<div className='w-full bg-red-300 flex flex-col py-14 mt-0 mb-8 justify-center align-middle'>
                         <h3 className='text-center'>Esta propiedad está Cancelada</h3>
-                        <div className='flex justify-center gap-8 '>
-                    <Link href="/#"><button className={styles.button}>Eliminar</button></Link>
+                        <div className='flex justify-center gap-8 pt-3'>
                     <Link href="/admin/solicitudes"><button className={styles.buttonBack}>Atrás</button></Link>
+                    <Link href="/#"><button className={styles.button}>Eliminar</button></Link>
                     </div>
                     </div>
                     )}
@@ -107,10 +108,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                     </div>
                 </div>
                 <div className='bg-primary rounded-2xl mb-28'>
-                    <BookForm
-                        propertyId={property.id}
-                        propertyName={property.propertyName}
-                        unitPrice={property.price} />
+                    <BookFormMock/>
                 </div>
                 <div className='grid grid-cols-2 mb-36'>
                     <div className='flex flex-col align-middle gap-4 mx-10'>
