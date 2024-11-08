@@ -12,6 +12,7 @@ import { IoBed } from 'react-icons/io5'
 import { LiaToiletSolid } from 'react-icons/lia'
 import { MdOutlinePool } from 'react-icons/md'
 import { TbAirConditioning } from 'react-icons/tb'
+import Link from 'next/link'
 
 const getProductById = async (id: string) => {
 
@@ -34,8 +35,9 @@ const page = async ({ params }: { params: { id: string } }) => {
             {property.propertyStatus === 'approved' ?
                 <div className='w-full bg-green-300 flex flex-col py-10 mt-0 mb-8 justify-center align-middle gap-4'>
                     <h3 className='text-center'>Esta propiedad está aprobada</h3>
-                    <div className='w-1/5'>
-                    <button className={styles.button}>Ver aquí</button>
+                    <div className='flex justify-center gap-8 '>
+                    <Link href={`/property/${property.id}`}><button className={styles.button}>Ver aquí</button></Link>
+                    <Link href="/admin/solicitudes"><button className={styles.buttonBack}>Atrás</button></Link>
                     </div>
                 </div>
              : property.propertyStatus === 'pending' ? (<div className='w-full bg-orange-300 flex flex-col py-10 mt-0 mb-8 justify-center align-middle'>

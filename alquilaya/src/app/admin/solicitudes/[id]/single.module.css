@@ -2,3 +2,8 @@
     @apply font-bold text-secondary px-[10px] flex justify-center text-sm py-[7px] rounded-[20px]
     cursor-pointer transition-all duration-300 hover:scale-90 active:scale-105 bg-primary
 }
+
+.buttonBack{
+    @apply font-bold text-primary px-[10px] flex justify-center text-sm py-[7px] rounded-[20px]
+    cursor-pointer transition-all duration-300 hover:scale-90 active:scale-105 bg-secondary
+}
