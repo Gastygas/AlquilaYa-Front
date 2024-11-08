@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import ButtonCyan from "../ButtonCyan/ButtonCyan";
 import { useRouter, useSearchParams } from "next/navigation";
 import ButtonCyanBack from "../ButtonCyan/ButtonCyanBack";
-import styles from "./Step-6.module.css"
+import styles from "./Step-5.module.css"
 import { getPropertyById} from "@/services/dataUserService";
 
 const Step5: React.FC = () => {
