@@ -123,11 +123,7 @@ const Step5: React.FC = () => {
     try {
   
       let data = sessionStorage.getItem('data') ? JSON.parse(sessionStorage.getItem('data')!) : {}
-      console.log(data);
-      
       const {services} = data
-      console.log(services);
-      
 
       const formData = {
         type: data.tipe,
@@ -150,7 +146,7 @@ const Step5: React.FC = () => {
             'Authorization': `Bearer ${token}`,
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({...formData,...services})
       });
 
       const res = await response.json()
@@ -186,7 +182,7 @@ const Step5: React.FC = () => {
       <div>
         <div>
           {/* <h3 className="ml-10 mt-10 text-black mb-2">Paso 5:</h3> */}
-          <h1 className="mt-2 text-black text-center mb-8">Complete la Información de la propiedad</h1>
+          <h2 className="mt-2 text-black text-center mb-8">Complete la Información de la propiedad</h2>
         </div>
         <div className="flex justify-center w-full">
   <form className="space-y-6 w-[400px]">

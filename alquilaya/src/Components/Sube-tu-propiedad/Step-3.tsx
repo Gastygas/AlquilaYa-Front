@@ -19,34 +19,18 @@ const Step3 = () => {
         }
     }, []);
 
-
-    const ServicesVoF = {
-        wifi: false,
-        streaming: false,
-        grill: false,
-        parking: false,
-        yard: false,
-        pool: false,
-        gym: false,
-        airConditioning: false,
-        appliance: false,
-        heating: false,
-        cleaningService: false,
-        catering: false,
-    };
-
     const iconData = [
         { icon: '/wifi.png', text: "Wi-Fi", id: "wifi" },
         { icon: '/transmision-en-vivo.png', text: "Streaming", id: "streaming" },
-        { icon: '/parrilla.png', text: "Parrilla", id: "parrilla" },
-        { icon: '/cochera.png', text: "Cochera", id: "cochera" },
-        { icon: '/patio-interior.png', text: "Patio", id: "patio" },
-        { icon: '/piscina.png', text: "Piscina", id: "piscina" },
-        { icon: '/gimnasio.png', text: "Gimnasio", id: "gimnasio" },
-        { icon: '/aire-acondicionado.png', text: "Aire Acondicionado", id: "aireAcondicionado" },
-        { icon: '/electrodomestico.png', text: "Electro-domésticos", id: "electrodomesticos" },
-        { icon: '/estufa-electrica.png', text: "Estufa", id: "estufa" },
-        { icon: '/obrero.png', text: "Limpieza", id: "limpieza" },
+        { icon: '/parrilla.png', text: "Parrilla", id: "grill" },
+        { icon: '/cochera.png', text: "Cochera", id: "parking" },
+        { icon: '/patio-interior.png', text: "Patio", id: "pyard" },
+        { icon: '/piscina.png', text: "Piscina", id: "pool" },
+        { icon: '/gimnasio.png', text: "Gimnasio", id: "gym" },
+        { icon: '/aire-acondicionado.png', text: "Aire Acondicionado", id: "airConditioning" },
+        { icon: '/electrodomestico.png', text: "Electro-domésticos", id: "appliance" },
+        { icon: '/estufa-electrica.png', text: "Estufa", id: "heating" },
+        { icon: '/obrero.png', text: "Limpieza", id: "cleaningService" },
         { icon: '/porcion-de-comida.png', text: "Catering", id: "catering" },
     ];
 
@@ -73,7 +57,6 @@ const Step3 = () => {
             }
         });
 
-
         return selectedServices;
     };
 
@@ -86,10 +69,11 @@ const Step3 = () => {
     };
 
     return (
-        <div className="box-content relative w-full bg-gray-100  min-h-screen p-0 flex flex-col  text-black">
+        <div className="box-content relative w-full min-h-screen p-0 flex flex-col  text-black">
             <div>
                 {/* <h3 className="ml-10 mt-1 text-black mb-2">Paso 3:</h3> */}
-                <h1 className="mt-2 text-black text-center mb-8">Indicá qué servicios ofrecés</h1>
+                <h2 className="mt-2 text-black text-center mb-5">Indicá qué servicios ofrecés</h2>
+                <p className="mt-2 text-black text-center mb-8">Selecciona una opcion como mínimo</p>
             </div>
             <div className="-mt-4">
                 <IconSelector

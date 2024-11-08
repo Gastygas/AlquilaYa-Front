@@ -1,21 +1,43 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ButtonCyan from "../ButtonCyan/ButtonCyan";
 import { useRouter, useSearchParams } from "next/navigation";
 import ButtonCyanBack from "../ButtonCyan/ButtonCyanBack";
+import styles from "./Step-6.module.css"
+import { getPropertyById} from "@/services/dataUserService";
 
 const Step6: React.FC = () => {
-    const searchParams = useSearchParams()
+    const searchParams = useSearchParams();
     const [selectedImages, setSelectedImages] = useState<File[]>([]);
-    const [selectedBill, setSelectedBill] = useState<FileList| null>();
+    const [selectedBill, setSelectedBill] = useState<FileList | null>();
+    const [userId, setUserId] = useState<string | null>(null);
     const maxImages = 5;
     const maxSize = 2 * 1024 * 1024;
     const router = useRouter();
-    const propertyId = searchParams.get('id'); // Reemplaza esto con el ID real o pásalo como prop si es necesario.
+    const propertyId = searchParams.get('id');
+
+    useEffect(() => {
+        const storedData = localStorage.getItem("user");
+        if (storedData) {
+          const parsedData = JSON.parse(storedData);
+          setUserId(parsedData.user.id);
+        } 
+      }, []);
+
+     const valid = async(propId:string | null,userId:string| null) => {
+        const property = await getPropertyById(propId)        
+        if(property.user.id !== userId){
+            alert("Esta propiedad no te pertenece")
+            router.push('/')
+        }
+    }
+    if(userId !== null && userId !== undefined){
+        valid(propertyId,userId)
+    }
 
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const files = Array.from(event.target.files || []);
-        const validFiles: File[] = files.filter(file => file.size <= maxSize);
+        const validFiles = files.filter(file => file.size <= maxSize);
 
         if (validFiles.length > maxImages) {
             alert(`Solo puedes subir un máximo de ${maxImages} imágenes.`);
@@ -25,38 +47,26 @@ const Step6: React.FC = () => {
     };
 
     const handleBillChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const files = Array.from(event.target.files || []);
-        const validFiles = files.filter(file => file.size <= maxSize);
-
-        if (validFiles.length > maxImages) {
-            alert(`Solo puedes subir un máximo de ${maxImages} imágenes.`);
-            return;
-        }
-
         setSelectedBill(event.target.files);
     };
 
-    const handleUploadBillImage = async (id:string | null) => {
-
+    const handleUploadBillImage = async (id: string | null) => {
         if (!selectedBill || !id) {
             alert("No se ha seleccionado una imagen o falta el ID de la propiedad.");
             return;
         }
 
         const formData = new FormData();
-        Array.from(selectedBill).forEach((image) => {
-            formData.append("file", image); // Usar el campo 'file' que espera el backend
-        });
+        Array.from(selectedBill).forEach(image => formData.append("file", image));
 
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/files/bill/${id}`, {
                 method: "POST",
                 body: formData,
             });
-            const res = await response.json()
+            const res = await response.json();
             if (res.success) {
-                alert("Tu factura se subió correctamente!")
-                
+                alert("Tu factura se subió correctamente!");
             } else {
                 alert("Error al cargar las imágenes.");
             }
@@ -64,26 +74,19 @@ const Step6: React.FC = () => {
             alert("Error en la solicitud");
         }
     };
-    const handleUploadPropertyImages = async (id:string | null) => {
-        if (!selectedBill || !id) {
-            alert("No se ha seleccionado una imagen o falta el ID de la propiedad.");
-            return;
-        }
+
+    const handleUploadPropertyImages = async (id: string | null) => {
         const formData = new FormData();
-        Array.from(selectedImages).forEach((image) => {
-            formData.append("file", image); // Usar el campo 'file' que espera el backend
-        });
+        Array.from(selectedImages).forEach(image => formData.append("file", image));
 
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/files/property/${id}`, {
                 method: "POST",
                 body: formData,
             });
-
-            const res = await response.json()
-
+            const res = await response.json();
             if (res.success) {
-                alert("Tu propiedad se ha subido correctamente. Ahora, espera a que un administrador la evalúe. Recibirás un correo electrónico notificándote si tu propiedad fue aprobada o rechazada. ¡Muchas gracias y éxito!");
+                alert("Imagen subida correctamente");
                 router.push("/");
             } else {
                 alert("Error al cargar las imágenes.");
@@ -94,48 +97,60 @@ const Step6: React.FC = () => {
     };
 
     const backPage = () => {
-        router.push('/sube-tu-propiedad/paso-5')
+        router.push('/sube-tu-propiedad/paso-5');
     };
 
+    const handleBackHome= () => {
+        alert("Tu propiedad se ha subido correctamente. Ahora, espera a que un administrador la evalúe.Te llegara una notifiacion por mail si te fue aprobada o denegada. Gracias por llenar el formulario correctamente. Te enviaremos al home")
+    }
+
     return (
-        <div className="box-content relative w-full min-h-screen p-10 flex flex-col justify-between text-black">
-            <div>
-                <div>
-                    {/* <h3 className="ml-10 mt-10 text-black mb-2">Paso 6:</h3> */}
-                    <h1 className="mt-2 text-black text-center mb-2">Subí una factura de la propiedad</h1>
-                </div>
-                <div className="w-full flex justify-center mt-1">
-                    <input
-                        type="file"
-                        name="invoiceFile"
-                        onChange={handleBillChange}
-                        className="bg-gray-50 border-2 border-[#aa31cf] rounded-lg p-2"
-                    />
-                </div>
+        <div className={styles.container}>
+            <h2 className={styles.heading}>Subí una factura de la propiedad</h2>
+            <div className={styles.inputContainer}>
+                <label className={styles.inputLabel}>Selecciona un archivo de factura (obligatorio)</label>
+                <input
+                    type="file"
+                    name="invoiceFile"
+                    onChange={handleBillChange}
+                    className={styles.fileInput}
+                />
+                <button
+                    className={styles.button}
+                    disabled={!selectedBill}
+                    onClick={() => handleUploadBillImage(propertyId)}
+                >
+                    Enviar Factura
+                </button>
+                {selectedBill === undefined && <p className={styles.instructions}>Por favor, sube una imagen de la factura.</p>}
+            </div>
 
-                <button className="" disabled={selectedBill === undefined} onClick={(e:any) => handleUploadBillImage(propertyId)}></button>
-
-                <h1 className="mt-2 text-black text-center mb-2">Subi una foto de la propiedad</h1>
-
-                <div className="w-full flex justify-center mt-1">
-                    <input
-                        type="file"
-                        multiple
-                        accept="image/*"
-                        onChange={handleImageChange}
-                        className="bg-gray-50 border-2 border-[#aa31cf] rounded-lg p-2"
-                    />
-                </div>
-
-                <div className="flex justify-center mt-4">
-                    {selectedImages.length > 0 && (
-                        <p>{selectedImages.length} imagen seleccionada</p>
-                    )}
-                </div>
+            <h2 className={styles.heading}>Subí una foto de la propiedad</h2>
+            <div className={styles.container}>
+                <label className={styles.inputLabel}>Solo puedes subir una foto a la vez. La primera sera la foto de portada asi que elige bien</label>
+                <label className={styles.inputLabel}>Recuerda que puedes subir hasta 5 fotos</label>
+                <input
+                    type="file"
+                    multiple
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    className={styles.fileInput}
+                />
+                 {selectedImages.length > 0 ? (
+                    <p className={styles.previewCount}>{selectedImages.length} imágenes seleccionadas</p>
+                ) : (<p className={styles.instructions}>Por favor, sube una foto de la propiedad</p>)}
+                
+                <button
+                    className={styles.button}
+                    onClick={() => handleUploadPropertyImages(propertyId)}
+                >
+                    Enviar Foto
+                </button>
+               
             </div>
 
             <div className="absolute bottom-1/2 right-6">
-                <ButtonCyan onClick={(e:any)=> handleUploadPropertyImages(propertyId)}></ButtonCyan>
+                <ButtonCyan onClick={() => handleBackHome()} isDisabled={selectedImages.length === 0} />
             </div>
             <div className="absolute bottom-1/2 left-6">
                 <ButtonCyanBack onClick={backPage} />

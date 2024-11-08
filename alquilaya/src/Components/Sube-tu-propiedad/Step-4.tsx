@@ -66,7 +66,7 @@ const Step4: React.FC = () => {
             <div>
                 <div>
                     {/* <h3 className="ml-10 mt-1 text-black mb-2">Paso 4:</h3> */}
-                    <h1 className="mt-2 text-black text-center mb-8">Detalles de la Propiedad</h1>
+                    <h2 className="mt-2 text-black text-center mb-8">Detalles de la Propiedad</h2>
                 </div>
 
                 <div className="flex justify-center w-full">
@@ -87,7 +87,7 @@ const Step4: React.FC = () => {
                         </div>
 
                         <div className="flex flex-col">
-                            <label htmlFor="bedrooms" className="mb-1 font-medium">Dormitorios
+                            <label htmlFor="bedrooms" className="mb-1 font-medium">Cantidad de dormitorios
                             </label>
                             <input
                                 type="number"
@@ -101,7 +101,7 @@ const Step4: React.FC = () => {
                         </div>
 
                         <div className="flex flex-col">
-                            <label htmlFor="bathrooms" className="mb-1 font-medium">Baños</label>
+                            <label htmlFor="bathrooms" className="mb-1 font-medium">Cantidad de baños</label>
                             <input
                                 type="number"
                                 id="bathrooms"
@@ -115,7 +115,7 @@ const Step4: React.FC = () => {
 
                         {/* Precio */}
                         <div className="flex flex-col">
-                            <label htmlFor="price" className="mb-1 font-medium">Precio por día</label>
+                            <label htmlFor="price" className="mb-1 font-medium">Precio por día en PESOS ARGENTINOS, sin puntos ni comas</label>
                             <input
                                 type="number"
                                 id="price"
