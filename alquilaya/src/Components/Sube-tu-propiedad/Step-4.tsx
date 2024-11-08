@@ -126,12 +126,12 @@ const Step4: React.FC = () => {
       const {services} = data
 
       const formData = {
-        type: data.tipe,
-        propertyName: propertyData.propertyName,
-        description: propertyData.description,
-        address: propertyData.address,
-        city: propertyData.city,
-        country: propertyData.country,
+        type: data.tipe.toLowerCase(),
+        propertyName: propertyData.propertyName.toLowerCase(),
+        description: propertyData.description.toLowerCase(),
+        address: propertyData.address.toLowerCase(),
+        city: propertyData.city.toLowerCase(),
+        country: propertyData.country.toLowerCase(),
         price: data.price,
         capacity: data.limitCapacity,
         bedrooms: data.bedrooms,
