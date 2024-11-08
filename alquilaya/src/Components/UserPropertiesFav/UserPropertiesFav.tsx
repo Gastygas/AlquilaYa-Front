@@ -24,6 +24,8 @@ const UserPropertiesFav = () => {
         setError("Failed to load user data");
       }
     };
+    console.log(userData?.favoriteProperties);
+    
 
     fetchUserData();
   }, []);
