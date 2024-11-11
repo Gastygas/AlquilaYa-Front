@@ -6,6 +6,7 @@ import { FcHome } from "react-icons/fc";
 import { PiBuildingApartmentDuotone } from "react-icons/pi";
 import { useRouter } from 'next/navigation'
 import { IsSelectedItem } from './types';
+import styles from "./Steps.module.css"
 
 
 
@@ -55,8 +56,8 @@ const Step1 = () => {
 
 
     return (
-        <div className="box-content relative w-full min-h-screen p-10 flex flex-col justify-between text-black">
-            <div>
+        <div className={styles.box}>
+            <div className='padding-section'>
                 <div>
                     {/* <h3 className="ml-10 mt-1 text-black mb-2">Paso 1:</h3> */}
                     <h1 className="mt-2 text-black text-center mb-8">Elige la opción que mejor describa tu espacio</h1>
