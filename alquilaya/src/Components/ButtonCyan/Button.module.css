@@ -1,3 +1,7 @@
 .buttonArrow{
     @apply disabled:bg-gray-200 disabled:scale-100 flex items-center justify-center border-2 border-primary bg-secondary text-black px-8 py-3 rounded-lg font-bold hover:scale-110 transition transform duration-200
 }
+
+.buttonArrowBack{
+    @apply flex items-center justify-center border-2 border-primary bg-secondary text-black px-8 py-3 rounded-lg font-bold hover:scale-110 transition transform duration-200
+}

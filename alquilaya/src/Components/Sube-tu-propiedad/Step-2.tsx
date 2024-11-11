@@ -70,7 +70,7 @@ const Step2 = () => {
 
     return (
         <div className={styles.box}>
-            <div className='pt-10'>
+            <div className='py-10'>
                 <h2 className="mt-2 text-black text-center mb-5">Indicá qué servicios ofrecés</h2>
                 <p className="mt-2 text-black text-center mb-8">Selecciona una opción como mínimo</p>
             </div>

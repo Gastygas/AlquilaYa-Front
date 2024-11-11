@@ -57,7 +57,7 @@ const Step1 = () => {
 
     return (
         <div className={styles.box}>
-            <div className='pt-10'>
+            <div className='py-10'>
                 <div>
                     <h2 className="mt-4 text-black text-center mb-4">Elige la opción que mejor describa tu espacio</h2>
                 </div>
