@@ -4,7 +4,7 @@ import Header from '@/Components/Header/Header';
 
 const paso2 = () => {
   return (
-    <div className='bg-gray-100'>
+    <div>
     <Header />
       <div className='container'>
         <Step2/>

@@ -5,3 +5,7 @@
 .nextStep{
     @apply absolute bottom-1/2 right-6
 }
+
+.backStep{
+    @apply absolute bottom-1/2 right-6
+}
