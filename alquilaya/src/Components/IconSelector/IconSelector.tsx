@@ -41,7 +41,7 @@ const IconSelector: React.FC<IconSelectorProps> = ({ data,
                     <button
                         key={d.id}
                         className={styles.button}
-                        style={{ backgroundColor: checkSelected(d) ? '#aa31cf' : 'white' }}
+                        style={{ backgroundColor: checkSelected(d) ? '#9AEDFF' : 'white' }}
                         onClick={() => setIsSelected(d)}
                     >
                         {typeof d.icon === 'string' ? (
