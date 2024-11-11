@@ -1,9 +1,10 @@
-"use client"
-import Image from 'next/image'
-import React, { useEffect, useState } from 'react'
-import { IUser } from '@/Interfaces/IUser'
-import { getUserData } from '@/services/dataUserService'
-import styles from "./UserHistory.module.css"
+"use client";
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import { IUser } from "@/Interfaces/IUser";
+import { getUserData } from "@/services/dataUserService";
+import styles from "./UserHistory.module.css";
+import Link from "next/link";
 
 const UserHistory = () => {
   const [userData, setUserData] = useState<IUser | null>(null);
@@ -22,24 +23,33 @@ const UserHistory = () => {
     fetchUserData();
   }, []);
 
-  if (userData?.properties.length === 0) return (    <div className={styles.booksGrid}>
-    <h3 className={styles.title}>Tus Reservas</h3>
-    <div className={styles.box}>
-      <h4 className={styles.center}>No has realizado reservas aún</h4>
-    </div>
-  </div>
-   
-  );
+  if (userData?.properties.length === 0)
+    return (
+      <div className={styles.booksGrid}>
+        <h3 className={styles.title}>Tus Reservas</h3>
+        <div className={styles.box}>
+          <h4 className={styles.center}>No has realizado reservas aún</h4>
+        </div>
+      </div>
+    );
   return (
     <div className={styles.colorBox}>
-    <h3 className={styles.title}>Tus Reservas</h3>
-  
-    <div className={styles.item}>
-      <Image src="/Herobg.jpg" alt='property image' width={60} height={60} />
-      <h4>Nombre de la propiedad <br /> País de la propiedad</h4>
-    </div>
-  </div>
-  )
-}
+      <h3 className={styles.title}>Tus Reservas</h3>
 
-export default UserHistory
+      {userData?.properties?.map((property, index) => (
+        <div key={index} className={styles.item}>
+          <Image src={property.photos[0]} alt="book" width={60} height={60} />
+          <h4>
+            {property.propertyName} <br /> {property.country}
+          </h4>
+        </div>
+      ))}
+
+      <Link href="propiedades/reservas">
+        <button className={styles.seeMore}>Ver Más</button>
+      </Link>
+    </div>
+  );
+};
+
+export default UserHistory;
