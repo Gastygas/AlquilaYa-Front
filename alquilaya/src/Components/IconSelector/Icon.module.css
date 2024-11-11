@@ -1,4 +1,4 @@
-.grid{
+.gridContainer{
     @apply grid gap-x-4 gap-y-2 p-0 items-center justify-center
 }
 

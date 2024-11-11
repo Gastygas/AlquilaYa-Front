@@ -34,7 +34,7 @@ const IconSelector: React.FC<IconSelectorProps> = ({ data,
     return (
         <div className="flex justify-center items-center">
             <div
-                className={styles.grid}
+                className={styles.gridContainer}
                 style={{ gridTemplateColumns: `repeat(${numCols}, minmax(0, 1fr))` }}
             >
                 {data.map((d) => (
