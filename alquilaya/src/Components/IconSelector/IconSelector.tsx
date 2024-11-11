@@ -49,7 +49,7 @@ const IconSelector: React.FC<IconSelectorProps> = ({ data,
                         ) : (
                             d.icon
                         )}
-                        <span className="text-xl">{d.text}</span>
+                        <span className="text-base">{d.text}</span>
                     </button>
                 ))}
             </div>

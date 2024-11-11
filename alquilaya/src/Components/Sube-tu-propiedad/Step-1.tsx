@@ -61,7 +61,7 @@ const Step1 = () => {
                 <div>
                     <h2 className="mt-4 text-black text-center mb-4">Elige la opción que mejor describa tu espacio</h2>
                 </div>
-                <div className=' mb-12'>
+                <div className=' my-12'>
                     <IconSelector
                         numCols={4}
                         data={iconData}
