@@ -1,3 +1,4 @@
+import { IBooking } from "./IBooking";
 import IProperty from "./IProperties";
 
 export interface IUser{
@@ -12,5 +13,6 @@ export interface IUser{
     password:string,
     isAdmin: boolean,
     properties: IProperty[]; 
+    bookings: IBooking[];
     favoriteProperties: string[];
 }
