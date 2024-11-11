@@ -1,11 +1,11 @@
 .box{
-    @apply box-content relative w-full p-10 flex flex-col justify-between text-black 
+    @apply box-content relative w-full py-20 flex flex-col justify-between text-black 
 }
 
 .nextStep{
-    @apply absolute bottom-1/2 right-6
+    @apply absolute bottom-1/2 right-8
 }
 
 .backStep{
-    @apply absolute bottom-1/2 left-6
+    @apply absolute bottom-1/2 left-8
 }
