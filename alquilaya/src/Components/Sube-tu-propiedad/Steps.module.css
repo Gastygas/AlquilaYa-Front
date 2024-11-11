@@ -7,5 +7,5 @@
 }
 
 .backStep{
-    @apply absolute bottom-1/2 right-6
+    @apply absolute bottom-1/2 left-6
 }
