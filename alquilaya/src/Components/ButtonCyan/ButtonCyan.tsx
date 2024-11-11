@@ -6,7 +6,9 @@ const ButtonCyan:any = ({ onClick, isDisabled}: { onClick: () => void, isDisable
     return (
         <button
             onClick={onClick}
+
             disabled= {isDisabled}
+            title={isDisabled ? "Selecciona un ítem para continuar" : ""}
             className={styles.buttonArrow}>
             <TbArrowBadgeRightFilled className='w-10 h-10 p-0 -ml-1' />
             <TbArrowBadgeRight className='w-10 h-10 p-0 -ml-5' />
