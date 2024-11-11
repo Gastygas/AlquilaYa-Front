@@ -72,7 +72,7 @@ const Step1 = () => {
                 </div>
             </div>
 
-            <div className="absolute bottom-1/2 right-6">
+            <div className={styles.nextStep}>
                 <ButtonCyan
                     onClick={saveDataPage}
                     isDisabled={!isSelected}

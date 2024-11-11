@@ -1,3 +1,7 @@
 .box{
     @apply box-content relative w-full min-h-screen p-10 flex flex-col justify-between text-black
 }
+
+.nextStep{
+    @apply absolute bottom-1/2 right-6
+}
