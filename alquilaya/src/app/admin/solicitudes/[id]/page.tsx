@@ -1,0 +1,138 @@
+import BookForm from '@/Components/BookForm/BookForm'
+import FavButton from '@/Components/FavButton/FavButton'
+import Header from '@/Components/Header/Header'
+import styles from "./single.module.css"
+import Image from 'next/image'
+import { notFound } from 'next/navigation'
+import React from 'react'
+import { FaParking, FaWifi } from 'react-icons/fa'
+import { FaMapLocationDot, FaPeopleRoof } from 'react-icons/fa6'
+import { GiHeatHaze } from 'react-icons/gi'
+import { IoBed } from 'react-icons/io5'
+import { LiaToiletSolid } from 'react-icons/lia'
+import { MdOutlinePool } from 'react-icons/md'
+import { TbAirConditioning } from 'react-icons/tb'
+import Link from 'next/link'
+import BookFormMock from '@/Components/BookFormMock/BookFormMock'
+
+const getProductById = async (id: string) => {
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property/${id}`, {
+        method: "GET",
+        cache: "no-store"
+    })
+    const property = await res.json()
+    if (!property) { notFound() }
+
+    return property
+};
+
+const page = async ({ params }: { params: { id: string } }) => {
+
+    const property = await getProductById(params.id)
+
+    return (
+        <div><Header />
+            {property.propertyStatus === 'approved' ?
+                <div className='w-full bg-green-300 flex flex-col py-10 mt-0 mb-8 justify-center align-middle gap-4'>
+                    <h3 className='text-center'>Esta propiedad está aprobada</h3>
+                    <div className='flex justify-center gap-8 pt-3'>
+                    <Link href="/admin/solicitudes"><button className={styles.buttonBack}>Atrás</button></Link>
+                    <Link href={`/propiedades/${property.id}`} target="_blank"><button className={styles.button}>Ver aquí</button></Link>
+                    </div>
+                </div>
+             : property.propertyStatus === 'pending' ? (<div className='w-full bg-orange-300 flex flex-col py-10 mt-0 mb-8 justify-center align-middle'>
+                    <h3 className='text-center'>Esta propiedad está Pendiente</h3>
+                    <div className='flex justify-center gap-8 pt-3'>
+                    <Link href="/admin/solicitudes"><button className={styles.buttonBack}>Atrás</button></Link>
+                    <Link href="/#" target="_blank"><button className={styles.button}>Ver documento de respaldo</button></Link>
+                    </div>
+                </div>)
+             : (<div className='w-full bg-red-300 flex flex-col py-14 mt-0 mb-8 justify-center align-middle'>
+                        <h3 className='text-center'>Esta propiedad está Cancelada</h3>
+                        <div className='flex justify-center gap-8 pt-3'>
+                    <Link href="/admin/solicitudes"><button className={styles.buttonBack}>Atrás</button></Link>
+                    <Link href="/#"><button className={styles.button}>Eliminar</button></Link>
+                    </div>
+                    </div>
+                    )}
+
+            <div className="container">
+                <div className='flex my-28'>
+                    <div className='w-1/2'>
+                        <Image src={property.photos[0]} alt={property.name} width={600} height={600} className='rounded-xl' />
+                    </div>
+                    <div className='w-1/2'>
+                        <div className='flex justify-between'>
+                            <h1>{property.propertyName}</h1>
+                            <FavButton propertyId={property.id} propertiesInfo={property} className="top-52 right-60 w-14 h-14 bg-primary rounded-full shadow-2xl flex items-center justify-center z-50 hover:bg-secondary hover:shadow-slate-700 transition-all" />
+                        </div>
+                        <h3>${property.price}</h3>
+                        <h4 className='font-bold'>{property.address}</h4>
+                        <div className='flex justify-start align-middle pt-4 gap-3'>
+                            <FaMapLocationDot size={20} color="var(--darkBlue)" /><h4>{property.city} </h4>
+                        </div>
+                        <div className='flex justify-start  gap-6'>
+                            <div className='flex justify-start align-middle pt-4 gap-3'>
+                                <FaPeopleRoof size={20} color="var(--darkBlue)" /><h4>Capacidad: {property.capacity} Personas</h4>
+                            </div>
+                            <div className='flex justify-start align-middle pt-4 gap-3'>
+                                <IoBed size={20} color="var(--darkBlue)" /><h4>Cuartos: {property.bedrooms} </h4>
+                            </div>
+                            <div className='flex justify-start align-middle pt-4 gap-3'>
+                                <LiaToiletSolid size={20} color="var(--darkBlue)" /><h4>Baños: {property.bathrooms} </h4>
+                            </div>
+                        </div>
+                        <p className='my-6 text-base'>{property.description}</p>
+                        <div className='flex justify-start gap-6 flex-wrap'>
+                            {property.wifi ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                                <FaWifi size={20} color="var(--darkBlue)" /><h4>WiFi</h4>
+                            </div> : <></>}
+                            {property.petFriendly ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                                <IoBed size={20} color="var(--darkBlue)" /><h4>Pet Friendly</h4>
+                            </div> : <></>}
+                            {property.airConditioning ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                                <TbAirConditioning size={20} color="var(--darkBlue)" /><h4>Aire acondicionado</h4>
+                            </div> : <></>}
+                            {property.heating ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                                <GiHeatHaze size={20} color="var(--darkBlue)" /><h4>Calefacción</h4>
+                            </div> : <></>}
+                            {property.pool ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                                <MdOutlinePool size={20} color="var(--darkBlue)" /><h4>Piscina</h4>
+                            </div> : <></>}
+                            {property.parking ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                                <FaParking size={20} color="var(--darkBlue)" /><h4>Parqueadero</h4>
+                            </div> : <></>}
+                        </div>
+
+                    </div>
+                </div>
+                <div className='bg-primary rounded-2xl mb-28'>
+                    <BookFormMock/>
+                </div>
+                <div className='grid grid-cols-2 mb-36'>
+                    <div className='flex flex-col align-middle gap-4 mx-10'>
+                        <h2 className='text-center'>¿Qué dicen los usuarios?</h2>
+                        <div className='bg-gray-200 p-4 rounded-md gap-4'>
+                            <h4 className='font-bold capitalize'>nombre de usuario</h4>
+                            <p className='text-base'>Lorem ipsum dolor sit amet consectetur adipisicing elit.e officia ea, est cumque eligendi minima dolorum? Explicabo, vel? Asperiores, quasi. Enim veritatis distinctio reprehenderit natus. Dolorem, quos?</p>
+                        </div>
+                        <div className='bg-gray-200  p-4 rounded-md gap-4'>
+                            <h4 className='font-bold capitalize'>nombre de usuario</h4>
+                            <p className='text-base'>Lorem ipsum dolor sit amet consectetur adipisicing elit.e officia ea, est cumque eligendi minima dolorum? Explicabo, vel? Asperiores, quasi. Enim veritatis distinctio reprehenderit natus. Dolorem, quos?</p>
+                        </div>
+                        <div className='bg-gray-200 p-4 rounded-md gap-4'>
+                            <h4 className='font-bold capitalize'>nombre de usuario</h4>
+                            <p className='text-base'>Lorem ipsum dolor sit amet consectetur adipisicing elit.e officia ea, est cumque eligendi minima dolorum? Explicabo, vel? Asperiores, quasi. Enim veritatis distinctio reprehenderit natus. Dolorem, quos?</p>
+                        </div>
+                    </div>
+                    <div className='flex justify-center items-center'>
+                        <Image src="/mapa.png" alt={property.name} width={600} height={600} className='rounded-xl' />
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default page

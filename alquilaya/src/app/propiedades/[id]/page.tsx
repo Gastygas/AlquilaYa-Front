@@ -78,6 +78,24 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
               {property.parking ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
                 <FaParking size={20} color="var(--darkBlue)" /><h4>Parqueadero</h4>
               </div> : <></>}
+              {property.streaming ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                <FaParking size={20} color="var(--darkBlue)" /><h4>Streaming</h4>
+              </div> : <></>}
+              {property.yard ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                <FaParking size={20} color="var(--darkBlue)" /><h4>Patio</h4>
+              </div> : <></>}
+              {property.grill ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                <FaParking size={20} color="var(--darkBlue)" /><h4>Parrilla</h4>
+              </div> : <></>}
+              {property.appliance ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                <FaParking size={20} color="var(--darkBlue)" /><h4>Electrodomésticos</h4>
+              </div> : <></>}
+              {property.cleaningService ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                <FaParking size={20} color="var(--darkBlue)" /><h4>Servicio de Limpieza</h4>
+              </div> : <></>}
+              {property.catering ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                <FaParking size={20} color="var(--darkBlue)" /><h4>Catering</h4>
+              </div> : <></>}
             </div>
             
           </div>
@@ -87,6 +105,26 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
             propertyId={property.id}
             propertyName={property.propertyName}
             unitPrice={property.price}/>
+        </div>
+        <div className='grid grid-cols-2 mb-36'>
+          <div className='flex flex-col align-middle gap-4 mx-10'>
+            <h2 className='text-center'>¿Qué dicen los usuarios?</h2>
+            <div className='bg-gray-200 p-4 rounded-md gap-4'>
+              <h4 className='font-bold capitalize'>nombre de usuario</h4>
+              <p className='text-base'>Lorem ipsum dolor sit amet consectetur adipisicing elit.e officia ea, est cumque eligendi minima dolorum? Explicabo, vel? Asperiores, quasi. Enim veritatis distinctio reprehenderit natus. Dolorem, quos?</p>
+            </div>
+            <div className='bg-gray-200  p-4 rounded-md gap-4'>
+              <h4 className='font-bold capitalize'>nombre de usuario</h4>
+              <p className='text-base'>Lorem ipsum dolor sit amet consectetur adipisicing elit.e officia ea, est cumque eligendi minima dolorum? Explicabo, vel? Asperiores, quasi. Enim veritatis distinctio reprehenderit natus. Dolorem, quos?</p>
+            </div>
+            <div className='bg-gray-200 p-4 rounded-md gap-4'>
+              <h4 className='font-bold capitalize'>nombre de usuario</h4>
+              <p className='text-base'>Lorem ipsum dolor sit amet consectetur adipisicing elit.e officia ea, est cumque eligendi minima dolorum? Explicabo, vel? Asperiores, quasi. Enim veritatis distinctio reprehenderit natus. Dolorem, quos?</p>
+            </div>
+          </div>
+          <div className='flex justify-center items-center'>
+          <Image src="/mapa.png" alt={property.name} width={600} height={600} className='rounded-xl' />
+          </div>
         </div>
       </div>
     </div>

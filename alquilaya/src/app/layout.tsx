@@ -5,6 +5,13 @@ import { AuthProvider } from "@/Components/contexts/authContext";
 import { ToastContainer } from "react-toastify";
 
 
+const primaryFont = Figtree({
+  subsets: ["latin"],
+  weight: ["400", "900"],
+  display: "swap",
+  //variable: "--font-primary"
+});
+
 export const metadata: Metadata = {
   title: "AlquilaYa",
   description: "Creado por Henry Students",

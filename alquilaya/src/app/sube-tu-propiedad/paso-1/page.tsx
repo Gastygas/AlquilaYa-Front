@@ -7,12 +7,9 @@ const description = () => {
     <div className='bg-gray-100'>
     <Header />
       <div className='container'>
-        <div className='padding-section'>
-        <Step1 />
-        </div>
+        <Step1 /> 
       </div>
     </div>
-
   )
 }
 

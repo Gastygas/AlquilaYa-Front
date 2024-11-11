@@ -1,6 +1,8 @@
 "use client"
 
+
 import React from 'react';
+import Script from 'next/script';
 import styles from './Book.module.css';
 
 const BookFormMock = () => {
