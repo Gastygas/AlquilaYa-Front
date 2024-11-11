@@ -57,10 +57,9 @@ const Step1 = () => {
 
     return (
         <div className={styles.box}>
-            <div>
+            <div className='pt-10'>
                 <div>
-                    {/* <h3 className="ml-10 mt-1 text-black mb-2">Paso 1:</h3> */}
-                    <h1 className="mt-4 text-black text-center mb-4">Elige la opción que mejor describa tu espacio</h1>
+                    <h2 className="mt-4 text-black text-center mb-4">Elige la opción que mejor describa tu espacio</h2>
                 </div>
                 <div className=' mb-12'>
                     <IconSelector

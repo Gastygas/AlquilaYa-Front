@@ -70,8 +70,7 @@ const Step2 = () => {
 
     return (
         <div className={styles.box}>
-            <div>
-                {/* <h3 className="ml-10 mt-1 text-black mb-2">Paso 3:</h3> */}
+            <div className='pt-10'>
                 <h2 className="mt-2 text-black text-center mb-5">Indicá qué servicios ofrecés</h2>
                 <p className="mt-2 text-black text-center mb-8">Selecciona una opción como mínimo</p>
             </div>
