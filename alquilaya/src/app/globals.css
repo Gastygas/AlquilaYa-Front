@@ -76,6 +76,7 @@ h5,
 h6 {
   font-family: var(--font-primary);
   font-weight: 700;
+  color: var(--darkBlue);
 }
 
 h1 {
