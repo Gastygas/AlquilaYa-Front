@@ -24,8 +24,8 @@ footer {
 
 @media (prefers-color-scheme: light) {
   :root {
-    --background: #190045;
-    --foreground: #ffffff;
+    --background: #ffffff;
+    --foreground: #190045;
     --darkBlue: #190045;
     --lightBlue: #4DBDFF;
     --cyan: #2CFFDE;
@@ -34,7 +34,7 @@ footer {
 }
 
 body {
-  color: var(--foreground);
+  color: var(--background);
   background: var(--background);
   font-family: var(--font-primary);
 }
