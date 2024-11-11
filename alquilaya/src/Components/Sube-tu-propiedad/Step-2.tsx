@@ -70,7 +70,7 @@ const Step2 = () => {
 
     return (
         <div className={styles.box}>
-            <div className='padding-section'>
+            <div>
                 {/* <h3 className="ml-10 mt-1 text-black mb-2">Paso 3:</h3> */}
                 <h2 className="mt-2 text-black text-center mb-5">Indicá qué servicios ofrecés</h2>
                 <p className="mt-2 text-black text-center mb-8">Selecciona una opción como mínimo</p>
@@ -82,14 +82,14 @@ const Step2 = () => {
                     setIsSelected={selectServices}
                 />
             </div>
-            <div className={styles.backStep}>
+            <div className={styles.nextStep}>
                 <ButtonCyan
                     onClick={saveDataPage}
                     isDisabled={isSelected.length === 0}
                 />
             </div>
 
-            <div className={styles.nextStep}>
+            <div className={styles.backStep}>
                 <ButtonCyanBack onClick={backPage} />
             </div>
         </div>

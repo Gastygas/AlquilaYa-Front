@@ -57,7 +57,7 @@ const Step1 = () => {
 
     return (
         <div className={styles.box}>
-            <div className='padding-section'>
+            <div>
                 <div>
                     {/* <h3 className="ml-10 mt-1 text-black mb-2">Paso 1:</h3> */}
                     <h1 className="mt-2 text-black text-center mb-8">Elige la opción que mejor describa tu espacio</h1>
