@@ -78,6 +78,24 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
               {property.parking ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
                 <FaParking size={20} color="var(--darkBlue)" /><h4>Parqueadero</h4>
               </div> : <></>}
+              {property.streaming ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                <FaParking size={20} color="var(--darkBlue)" /><h4>Streaming</h4>
+              </div> : <></>}
+              {property.yard ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                <FaParking size={20} color="var(--darkBlue)" /><h4>Patio</h4>
+              </div> : <></>}
+              {property.grill ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                <FaParking size={20} color="var(--darkBlue)" /><h4>Parrilla</h4>
+              </div> : <></>}
+              {property.appliance ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                <FaParking size={20} color="var(--darkBlue)" /><h4>Electrodomésticos</h4>
+              </div> : <></>}
+              {property.cleaningService ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                <FaParking size={20} color="var(--darkBlue)" /><h4>Servicio de Limpieza</h4>
+              </div> : <></>}
+              {property.catering ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                <FaParking size={20} color="var(--darkBlue)" /><h4>Catering</h4>
+              </div> : <></>}
             </div>
             
           </div>

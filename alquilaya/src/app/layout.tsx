@@ -1,17 +1,8 @@
 import type { Metadata } from "next";
-import { Figtree } from "next/font/google";
 import "./globals.css";
 import Footer from "@/Components/Footer/Footer";
 import { AuthProvider } from "@/Components/contexts/authContext";
 import { ToastContainer } from "react-toastify";
-
-
-const primaryFont = Figtree({
-  subsets: ["latin"],
-  weight: ["400", "900"],
-  display: "swap",
-  //variable: "--font-primary"
-});
 
 export const metadata: Metadata = {
   title: "AlquilaYa",
@@ -28,8 +19,8 @@ export default function RootLayout({
 }>) {
   return (
     <AuthProvider>
-    <html lang="es" /*className={primaryFont.variable}*/>
-      <body /*className={primaryFont.className}*/>
+    <html lang="es">
+      <body>
       <ToastContainer />
         <main>{children}</main>
         <Footer />
