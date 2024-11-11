@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import ButtonCyan from '../ButtonCyan/ButtonCyan';
-import Link from 'next/link';
+import styles from "./Steps.module.css"
 import IconSelector from '../IconSelector/IconSelector';
 import { useRouter } from 'next/navigation';
 import ButtonCyanBack from '../ButtonCyan/ButtonCyanBack';
@@ -69,11 +69,10 @@ const Step2 = () => {
     };
 
     return (
-        <div className="box-content relative w-full min-h-screen p-0 flex flex-col  text-black">
-            <div>
-                {/* <h3 className="ml-10 mt-1 text-black mb-2">Paso 3:</h3> */}
+        <div className={styles.box}>
+            <div className='py-10'>
                 <h2 className="mt-2 text-black text-center mb-5">Indicá qué servicios ofrecés</h2>
-                <p className="mt-2 text-black text-center mb-8">Selecciona una opcion como mínimo</p>
+                <p className="mt-2 text-black text-center mb-8">Selecciona una opción como mínimo</p>
             </div>
             <div className="-mt-4">
                 <IconSelector
@@ -82,14 +81,14 @@ const Step2 = () => {
                     setIsSelected={selectServices}
                 />
             </div>
-            <div className="absolute bottom-1/2 right-6">
+            <div className={styles.nextStep}>
                 <ButtonCyan
                     onClick={saveDataPage}
                     isDisabled={isSelected.length === 0}
                 />
             </div>
 
-            <div className="absolute bottom-1/2 left-6">
+            <div className={styles.backStep}>
                 <ButtonCyanBack onClick={backPage} />
             </div>
         </div>
