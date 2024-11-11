@@ -60,9 +60,9 @@ const Step1 = () => {
             <div>
                 <div>
                     {/* <h3 className="ml-10 mt-1 text-black mb-2">Paso 1:</h3> */}
-                    <h1 className="mt-2 text-black text-center mb-8">Elige la opción que mejor describa tu espacio</h1>
+                    <h1 className="mt-4 text-black text-center mb-4">Elige la opción que mejor describa tu espacio</h1>
                 </div>
-                <div className=' mb-1'>
+                <div className=' mb-12'>
                     <IconSelector
                         numCols={4}
                         data={iconData}

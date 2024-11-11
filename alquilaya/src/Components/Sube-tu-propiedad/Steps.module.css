@@ -1,5 +1,5 @@
 .box{
-    @apply box-content relative w-full p-10 flex flex-col justify-between text-black padding-section
+    @apply box-content relative w-full p-10 flex flex-col justify-between text-black 
 }
 
 .nextStep{
