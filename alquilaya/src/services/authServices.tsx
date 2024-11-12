@@ -41,3 +41,25 @@ export const changePasswordService = async (url: string, data:IChangePassword) =
         });
     return await response.json();
 };
+
+export const getUserByEmailService = async (url: string ) => {    
+    const response = await fetch(url, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            }
+        });
+    return await response.json();
+};
+
+export const updateUserService = async (url: string, data: Partial<IUser>, token: string) => { 
+    const response = await fetch(url, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify(data)
+    });
+    return await response.json();
+};
