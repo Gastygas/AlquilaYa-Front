@@ -35,7 +35,7 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
       <div className="container">
         <div className='flex my-28'>
           <div className='w-1/2'>
-            <Image src={property.photos[0]} alt={property.name} width={600} height={600} className='rounded-xl' />
+            <Image src={property.photos[0]} alt={"/imgdefault.webp"} width={600} height={600} className='rounded-xl' />
           </div>
           <div className='w-1/2'>
             <div className='flex justify-between'>

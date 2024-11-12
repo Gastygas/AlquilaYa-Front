@@ -212,9 +212,10 @@ const Step4: React.FC = () => {
                   value={propertyData.addressMaps}
                   placeholder="Dirección"
                   className={styles.inputStyle} />
+                  <div id="map" style={{ height: '350px', width: '400px' }}></div>
             <div className="grid grid-cols-2 gap-6">
               <div className='flex flex-col'>
-                <div id="map" style={{ height: '350px', width: '400px' }}></div>
+
                 <label htmlFor="country" className="mb-1 font-medium">País</label>
                 <input
                   type="text"
