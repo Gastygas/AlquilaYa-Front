@@ -1,3 +1,5 @@
+import { IUser } from "./IUser";
+
 export interface IProperty {
     id: string;     // Nuevo atributo para el identificador único
     propertyName: string;
@@ -29,6 +31,7 @@ export interface IProperty {
     lng: string;
     //bookings: Booking[];
     //specialprice: SpecialPrice[];
+    user:IUser
 }
 
 export default IProperty;
