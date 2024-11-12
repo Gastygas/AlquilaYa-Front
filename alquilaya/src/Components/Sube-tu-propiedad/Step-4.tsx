@@ -26,6 +26,17 @@ const Step4: React.FC = () => {
   const [map, setMap] = useState<google.maps.Map | null>(null);
   const [marker, setMarker] = useState<google.maps.Marker | null>(null);
   const router = useRouter();
+  const notifySuccess = () => toast.info('Ahora busca una foto de tu propiedad y otra como una factura de luz o agua para que sepamos que te pertenece', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    transition: Bounce,
+    });
 
   useEffect(() => {
     const loader = new Loader({
@@ -165,17 +176,7 @@ const Step4: React.FC = () => {
 
       const res = await response.json()
       if (res.success) {
-        toast.info('Ahora busca una foto de tu propiedad y otra como una factura de luz o agua para que sepamos que te pertenece', {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-          });
+        notifySuccess()
         router.push(`/sube-tu-propiedad/paso-5?id=${res.property.property.id}`);
         return
 
