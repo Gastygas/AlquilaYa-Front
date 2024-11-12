@@ -1,21 +1,21 @@
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaMapLocationDot, FaPeopleRoof } from "react-icons/fa6";
 import { IoBed } from "react-icons/io5";
 import { LiaToiletSolid } from "react-icons/lia";
-import { FaWifi, FaParking, FaHeart } from "react-icons/fa";
+import { FaWifi, FaParking, FaHeart, FaStream } from "react-icons/fa";
 import Header from '@/Components/Header/Header';
 import IProperty from '@/Interfaces/IProperties';
 import { TbAirConditioning } from "react-icons/tb";
-import { GiHeatHaze } from "react-icons/gi";
-import { MdOutlinePool } from "react-icons/md";
+import { GiBroom, GiHeatHaze, GiWashingMachine } from "react-icons/gi";
+import { MdDinnerDining, MdOutdoorGrill, MdOutlinePool, MdYard } from "react-icons/md";
 import BookForm from '@/Components/BookForm/BookForm';
 import FavButton from '@/Components/FavButton/FavButton';
 import CreateCarousel from '@/Components/CarouselPhotos';
-
-
-
+import { Loader } from '@googlemaps/js-api-loader';
+import Maps from '@/Components/Maps/Maps';
+import { PiVideoFill } from 'react-icons/pi';
 
 
 const getProductById = async (id: string) => {
@@ -32,15 +32,15 @@ const getProductById = async (id: string) => {
 
 const ProductDetail = async ({ params }: { params: { id: string } }) => {
 
-  const property = await getProductById(params.id)
-
+  const property: IProperty = await getProductById(params.id)
   return (
     <div><Header />
       <div className="container">
         <div className='flex my-28'>
           <div className='w-1/2'>
-          
-            <Image src={property.photos[0]} alt={property.name} width={600} height={600} className='rounded-xl' />
+
+            <Image src={property.photos[0]} alt={property.propertyName} width={600} height={600} className='rounded-xl' />
+
           </div>
           <div className='w-1/2'>
             <div className='flex justify-between'>
@@ -84,22 +84,22 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
                 <FaParking size={20} color="var(--darkBlue)" /><h4>Parqueadero</h4>
               </div> : <></>}
               {property.streaming ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
-                <FaParking size={20} color="var(--darkBlue)" /><h4>Streaming</h4>
+                <PiVideoFill size={20} color="var(--darkBlue)" /><h4>Streaming</h4>
               </div> : <></>}
               {property.yard ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
-                <FaParking size={20} color="var(--darkBlue)" /><h4>Patio</h4>
+                <MdYard size={20} color="var(--darkBlue)" /><h4>Patio</h4>
               </div> : <></>}
               {property.grill ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
-                <FaParking size={20} color="var(--darkBlue)" /><h4>Parrilla</h4>
+                <MdOutdoorGrill size={20} color="var(--darkBlue)" /><h4>Parrilla</h4>
               </div> : <></>}
               {property.appliance ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
-                <FaParking size={20} color="var(--darkBlue)" /><h4>Electrodomésticos</h4>
+                <GiWashingMachine size={20} color="var(--darkBlue)" /><h4>Electrodomésticos</h4>
               </div> : <></>}
               {property.cleaningService ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
-                <FaParking size={20} color="var(--darkBlue)" /><h4>Servicio de Limpieza</h4>
+                <GiBroom size={20} color="var(--darkBlue)" /><h4>Servicio de Limpieza</h4>
               </div> : <></>}
               {property.catering ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
-                <FaParking size={20} color="var(--darkBlue)" /><h4>Catering</h4>
+                <MdDinnerDining size={20} color="var(--darkBlue)" /><h4>Catering</h4>
               </div> : <></>}
             </div>
 
@@ -128,7 +128,10 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
             </div>
           </div>
           <div className='flex justify-center items-center'>
-            <Image src="/mapa.png" alt={property.name} width={600} height={600} className='rounded-xl' />
+
+          <Maps propertyLat={property.lat} propertyLng={property.lng} />
+          {/* <Image src="/mapa.png" alt={property.propertyName} width={600} height={600} className='rounded-xl' /> */}
+
           </div>
         </div>
       </div>
