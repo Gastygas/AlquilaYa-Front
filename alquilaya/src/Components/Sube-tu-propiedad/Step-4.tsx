@@ -213,9 +213,8 @@ const Step4: React.FC = () => {
          value={propertyData.addressMaps}
           placeholder="Dirección"
           className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF]" />
-
-      </div>
       <div id="map" style={{ height: '350px', width: '400px' }}></div>
+      </div>
       </div>
     {/* Nombre de la propiedad */}
     <div className="flex flex-col">
@@ -230,11 +229,8 @@ const Step4: React.FC = () => {
         className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF]"
         required
       />
-    </div>
 
-    {/* Dirección */}
-    <div className="flex flex-col">
-      <label htmlFor="address" className="mb-1 font-medium">Dirección</label>
+<label htmlFor="address" className="mb-1 font-medium">Dirección</label>
       <input
         type="text"
         id="address"
@@ -246,10 +242,8 @@ const Step4: React.FC = () => {
         disabled={true}
         required
       />
-    </div>
 
-    <div className="flex flex-col">
-      <label htmlFor="floor" className="mb-1 font-medium">Piso (opcional)</label>
+<label htmlFor="floor" className="mb-1 font-medium">Piso (opcional)</label>
       <input
         type="text"
         id="floor"
@@ -260,9 +254,8 @@ const Step4: React.FC = () => {
         className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF]"
         required
       />
-    </div>
-    <div className="flex flex-col">
-      <label htmlFor="room" className="mb-1 font-medium">Habitación (opcional)</label>
+
+<label htmlFor="room" className="mb-1 font-medium">Habitación (opcional)</label>
       <input
         type="text"
         id="room"
@@ -273,11 +266,8 @@ const Step4: React.FC = () => {
         className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF]"
         required
       />
-    </div>
 
-    {/* Ciudad */}
-    <div className="flex flex-col">
-      <label htmlFor="city" className="mb-1 font-medium">Ciudad</label>
+<label htmlFor="city" className="mb-1 font-medium">Ciudad</label>
       <input
         type="text"
         id="city"
@@ -289,11 +279,8 @@ const Step4: React.FC = () => {
         className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf]"
         required
       />
-    </div>
 
-    {/* País */}
-    <div className="flex flex-col">
-      <label htmlFor="province" className="mb-1 font-medium">Provincia</label>
+<label htmlFor="province" className="mb-1 font-medium">Provincia</label>
       <input
         type="text"
         id="province"
@@ -305,11 +292,8 @@ const Step4: React.FC = () => {
         className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf]"
         required
       />
-    </div>
 
-    {/* País */}
-    <div className="flex flex-col">
-      <label htmlFor="country" className="mb-1 font-medium">País</label>
+<label htmlFor="country" className="mb-1 font-medium">País</label>
       <input
         type="text"
         id="country"
@@ -321,11 +305,8 @@ const Step4: React.FC = () => {
         className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf]"
         required
       />
-    </div>
 
-    {/* Descripción de la Propiedad */}
-    <div className="flex flex-col">
-      <label htmlFor="description" className="mb-1 font-medium">Descripción de la propiedad</label>
+<label htmlFor="description" className="mb-1 font-medium">Descripción de la propiedad</label>
       <textarea
         id="description"
         name="description"
