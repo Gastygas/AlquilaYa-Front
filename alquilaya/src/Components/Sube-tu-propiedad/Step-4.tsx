@@ -203,9 +203,7 @@ const Step4: React.FC = () => {
         </div>
         <div className="flex justify-center w-full gap-6">
           <form className="space-y-6">
-            <div className="grid grid-cols-2 gap-6">
-              <div className='flex flex-col'>
-                <label htmlFor="addresMaps" className='mb-6'>Busca tu direccion aquí</label>
+          <label htmlFor="addresMaps" className='mb-6'>Busca tu direccion aquí</label>
                 <input
                   type="text"
                   id="addressMaps"
@@ -214,6 +212,8 @@ const Step4: React.FC = () => {
                   value={propertyData.addressMaps}
                   placeholder="Dirección"
                   className={styles.inputStyle} />
+            <div className="grid grid-cols-2 gap-6">
+              <div className='flex flex-col'>
                 <div id="map" style={{ height: '350px', width: '400px' }}></div>
                 <label htmlFor="country" className="mb-1 font-medium">País</label>
                 <input
