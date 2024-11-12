@@ -6,6 +6,7 @@ import ButtonCyan from '../ButtonCyan/ButtonCyan';
 import { useRouter } from 'next/navigation';
 import ButtonCyanBack from '../ButtonCyan/ButtonCyanBack';
 import styles from "./Steps.module.css"
+import { Bounce, toast } from 'react-toastify';
 
 interface IPropertyData {
   propertyName: string;
@@ -164,7 +165,17 @@ const Step4: React.FC = () => {
 
       const res = await response.json()
       if (res.success) {
-        alert("Ahora busca una foto de tu propiedad y otra como una factura de luz o agua para que sepamos que te pertenece");
+        toast.info('Ahora busca una foto de tu propiedad y otra como una factura de luz o agua para que sepamos que te pertenece', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+          });
         router.push(`/sube-tu-propiedad/paso-5?id=${res.property.property.id}`);
         return
 
@@ -208,7 +219,7 @@ const Step4: React.FC = () => {
                   placeholder="Dirección"
                   className={styles.inputStyle} />
                   <div id="map" style={{ height: '400px', width: '800px' }}></div>
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-6 pt-8">
               <div className='flex flex-col'>
 
                 <label htmlFor="country" className="mb-1 font-medium">País</label>
