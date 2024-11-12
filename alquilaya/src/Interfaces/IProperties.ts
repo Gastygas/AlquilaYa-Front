@@ -26,7 +26,7 @@ export interface IProperty {
     catering: boolean;
     description: string;
     propertyStatus: "pending" | "cancelled" | "maintenance" | "approved";
-    photos: string;
+    photos: string [];
     lat: string;
     lng: string;
     //bookings: Booking[];

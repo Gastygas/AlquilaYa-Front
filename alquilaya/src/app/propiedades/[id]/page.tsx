@@ -12,10 +12,11 @@ import { GiBroom, GiHeatHaze, GiWashingMachine } from "react-icons/gi";
 import { MdDinnerDining, MdOutdoorGrill, MdOutlinePool, MdYard } from "react-icons/md";
 import BookForm from '@/Components/BookForm/BookForm';
 import FavButton from '@/Components/FavButton/FavButton';
-import CreateCarousel from '@/Components/CarouselPhotos';
+// import CreateCarousel from '@/Components/CarouselPhotos';
 import { Loader } from '@googlemaps/js-api-loader';
 import Maps from '@/Components/Maps/Maps';
 import { PiVideoFill } from 'react-icons/pi';
+import CreateCarousel from '@/Components/CarouselPhotos/CarouselPhotos';
 
 
 const getProductById = async (id: string) => {
@@ -38,9 +39,8 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
       <div className="container">
         <div className='flex my-28'>
           <div className='w-1/2'>
-
-            <Image src={property.photos[0]} alt={property.propertyName} width={600} height={600} className='rounded-xl' />
-
+            <CreateCarousel photos={property.photos} />
+            {/* <Image src={property.photos[0]} alt={property.propertyName} width={600} height={600} className='rounded-xl' /> */}
           </div>
           <div className='w-1/2'>
             <div className='flex justify-between'>
@@ -129,8 +129,8 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
           </div>
           <div className='flex justify-center items-center'>
 
-          <Maps propertyLat={property.lat} propertyLng={property.lng} />
-          {/* <Image src="/mapa.png" alt={property.propertyName} width={600} height={600} className='rounded-xl' /> */}
+            <Maps propertyLat={property.lat} propertyLng={property.lng} />
+            {/* <Image src="/mapa.png" alt={property.propertyName} width={600} height={600} className='rounded-xl' /> */}
 
           </div>
         </div>
