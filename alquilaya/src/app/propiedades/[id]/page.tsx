@@ -12,6 +12,10 @@ import { GiHeatHaze } from "react-icons/gi";
 import { MdOutlinePool } from "react-icons/md";
 import BookForm from '@/Components/BookForm/BookForm';
 import FavButton from '@/Components/FavButton/FavButton';
+import CreateCarousel from '@/Components/CarouselPhotos';
+
+
+
 
 
 const getProductById = async (id: string) => {
@@ -35,12 +39,13 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
       <div className="container">
         <div className='flex my-28'>
           <div className='w-1/2'>
+          
             <Image src={property.photos[0]} alt={property.name} width={600} height={600} className='rounded-xl' />
           </div>
           <div className='w-1/2'>
             <div className='flex justify-between'>
-            <h1>{property.propertyName}</h1>
-            <FavButton propertyId={property.id} propertiesInfo={property} className="top-52 right-60 w-14 h-14 bg-primary rounded-full shadow-2xl flex items-center justify-center z-50 hover:bg-secondary hover:shadow-slate-700 transition-all"/>
+              <h1>{property.propertyName}</h1>
+              <FavButton propertyId={property.id} propertiesInfo={property} className="top-52 right-60 w-14 h-14 bg-primary rounded-full shadow-2xl flex items-center justify-center z-50 hover:bg-secondary hover:shadow-slate-700 transition-all" />
             </div>
             <h3>${property.price}</h3>
             <h4 className='font-bold'>{property.address}</h4>
@@ -97,14 +102,14 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
                 <FaParking size={20} color="var(--darkBlue)" /><h4>Catering</h4>
               </div> : <></>}
             </div>
-            
+
           </div>
         </div>
         <div className='bg-primary rounded-2xl mb-28'>
           <BookForm
             propertyId={property.id}
             propertyName={property.propertyName}
-            unitPrice={property.price}/>
+            unitPrice={property.price} />
         </div>
         <div className='grid grid-cols-2 mb-36'>
           <div className='flex flex-col align-middle gap-4 mx-10'>
@@ -123,7 +128,7 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
             </div>
           </div>
           <div className='flex justify-center items-center'>
-          <Image src="/mapa.png" alt={property.name} width={600} height={600} className='rounded-xl' />
+            <Image src="/mapa.png" alt={property.name} width={600} height={600} className='rounded-xl' />
           </div>
         </div>
       </div>

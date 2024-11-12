@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import ButtonCyan from "../ButtonCyan/ButtonCyan";
 import { useRouter, useSearchParams } from "next/navigation";
 import ButtonCyanBack from "../ButtonCyan/ButtonCyanBack";
-import styles from "./Step-5.module.css"
+import styles from "./Steps.module.css"
 import { getPropertyById} from "@/services/dataUserService";
 
 const Step5: React.FC = () => {
@@ -149,10 +149,10 @@ const Step5: React.FC = () => {
                
             </div>
 
-            <div className="absolute bottom-1/2 right-6">
+            <div className={styles.nextStep}>
                 <ButtonCyan onClick={() => handleBackHome()} isDisabled={selectedImages.length === 0} />
             </div>
-            <div className="absolute bottom-1/2 left-6">
+            <div className={styles.backStep}>
                 <ButtonCyanBack onClick={backPage} />
             </div>
         </div>

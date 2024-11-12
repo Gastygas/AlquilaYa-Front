@@ -7,13 +7,15 @@ import { notFound } from 'next/navigation'
 import React from 'react'
 import { FaParking, FaWifi } from 'react-icons/fa'
 import { FaMapLocationDot, FaPeopleRoof } from 'react-icons/fa6'
-import { GiHeatHaze } from 'react-icons/gi'
+import { GiBroom, GiHeatHaze, GiWashingMachine } from 'react-icons/gi'
 import { IoBed } from 'react-icons/io5'
 import { LiaToiletSolid } from 'react-icons/lia'
-import { MdOutlinePool } from 'react-icons/md'
+import { MdDinnerDining, MdOutdoorGrill, MdOutlinePool, MdYard } from 'react-icons/md'
 import { TbAirConditioning } from 'react-icons/tb'
 import Link from 'next/link'
 import BookFormMock from '@/Components/BookFormMock/BookFormMock'
+import { PiVideoFill } from 'react-icons/pi'
+import Maps from '@/Components/Maps/Maps'
 
 const getProductById = async (id: string) => {
 
@@ -103,8 +105,25 @@ const page = async ({ params }: { params: { id: string } }) => {
                             {property.parking ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
                                 <FaParking size={20} color="var(--darkBlue)" /><h4>Parqueadero</h4>
                             </div> : <></>}
+                            {property.streaming ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                <PiVideoFill size={20} color="var(--darkBlue)" /><h4>Streaming</h4>
+              </div> : <></>}
+              {property.yard ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                <MdYard size={20} color="var(--darkBlue)" /><h4>Patio</h4>
+              </div> : <></>}
+              {property.grill ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                <MdOutdoorGrill size={20} color="var(--darkBlue)" /><h4>Parrilla</h4>
+              </div> : <></>}
+              {property.appliance ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                <GiWashingMachine size={20} color="var(--darkBlue)" /><h4>Electrodomésticos</h4>
+              </div> : <></>}
+              {property.cleaningService ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                <GiBroom size={20} color="var(--darkBlue)" /><h4>Servicio de Limpieza</h4>
+              </div> : <></>}
+              {property.catering ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                <MdDinnerDining size={20} color="var(--darkBlue)" /><h4>Catering</h4>
+              </div> : <></>}
                         </div>
-
                     </div>
                 </div>
                 <div className='bg-primary rounded-2xl mb-28'>
@@ -127,7 +146,8 @@ const page = async ({ params }: { params: { id: string } }) => {
                         </div>
                     </div>
                     <div className='flex justify-center items-center'>
-                        <Image src="/mapa.png" alt={property.name} width={600} height={600} className='rounded-xl' />
+                        {/* <Image src="/mapa.png" alt={property.name} width={600} height={600} className='rounded-xl' /> */}
+                        <Maps propertyLat={property.lat} propertyLng={property.lng} />
                     </div>
                 </div>
             </div>

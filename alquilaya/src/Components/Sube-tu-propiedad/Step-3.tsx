@@ -115,7 +115,7 @@ const Step3: React.FC = () => {
                         </div>
 
                         {/* Precio */}
-                        <div className="flex flex-col">
+                        <div className="flex flex-col gap-4">
                             <label htmlFor="price" className="mb-1 font-medium">Precio por día en PESOS ARGENTINOS, sin puntos ni comas</label>
                             <input
                                 type="number"
@@ -146,14 +146,14 @@ const Step3: React.FC = () => {
 
             </div>
 
-            <div className="absolute bottom-1/2 right-6">
+            <div className={styles.nextStep}>
                 <ButtonCyan
                     onClick={saveDataPage}
                     isDisabled={!checkInput()}
                 />
             </div>
 
-            <div className="absolute bottom-1/2 left-6">
+            <div className={styles.backStep}>
                 <ButtonCyanBack onClick={backPage} />
             </div>
 

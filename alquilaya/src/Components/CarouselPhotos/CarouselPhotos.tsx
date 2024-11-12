@@ -1,3 +1,4 @@
+// components/CreateCarousel.js
 "use client";
 import React from 'react';
 import ImageGallery from 'react-image-gallery';

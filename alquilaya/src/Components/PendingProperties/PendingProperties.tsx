@@ -7,12 +7,14 @@ import IProperty from '@/Interfaces/IProperties';
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 interface PendingPropertiesTableProps {
   properties: IProperty[];
 }
 
 const PendingPropertiesTable: React.FC<PendingPropertiesTableProps> = ({ properties: initialProperties }) => {
+  const router = useRouter()
   const [properties, setProperties] = useState<IProperty[]>(initialProperties);
   const [token, setToken] = useState<string | null>(null);
   const notifyApproveProperty = () => toast.success("Propiedad aprobada", { autoClose: 3000 });
@@ -33,8 +35,13 @@ const PendingPropertiesTable: React.FC<PendingPropertiesTableProps> = ({ propert
       method: "GET",
       cache: 'no-store',
     });
-    if (!res.ok) throw new Error('Error al obtener las propiedades');
     const data = await res.json();
+
+    if(data.message === "Invalid Token"){
+      alert("Logueate nuevamente porfavor")
+      router.push("/login")
+      return
+    }else if (!res.ok) throw new Error('Error al obtener las propiedades');
     setProperties(data);
   };
 
