@@ -17,3 +17,74 @@
 .inputStyleDisabled{
     @apply  border border-primary p-2 my-4 rounded-lg focus:outline-none focus:ring-1 focus:ring-secondary 
 }
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+  }
+  
+  .heading {
+    color: #190045;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .inputContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .inputLabel {
+    font-size: 0.9rem;
+    color: #171717;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+  
+  .fileInput {
+    padding: 1rem;
+    border: 2px dashed #9AEDFF;
+    border-radius: 8px;
+    background-color: #2CFFDE;
+    color: #000000;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .fileInput:hover {
+    background-color: #9AEDFF;
+  }
+  
+  .button {
+    margin-top: 1rem;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    background-color: #190045;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #9AEDFF;
+    transform: scale(1.05);
+  }
+  
+  .instructions {
+    color: #941010;
+    font-size: 0.85rem;
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+  
+  .previewCount {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #171717;
+  }
