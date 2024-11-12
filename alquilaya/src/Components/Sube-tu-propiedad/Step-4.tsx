@@ -197,7 +197,7 @@ const Step4: React.FC = () => {
           <h2 className="mt-2 text-black text-center mb-8">Complete la Información de la propiedad</h2>
         </div>
         <div className="flex justify-center w-full gap-6">
-          <form className='w-4/5 flex flex-col'>
+          <form className='w-[1000px] flex flex-col'>
           <label htmlFor="addresMaps" className='mb-6'>Busca tu direccion aquí</label>
                 <input
                   type="text"
@@ -207,7 +207,7 @@ const Step4: React.FC = () => {
                   value={propertyData.addressMaps}
                   placeholder="Dirección"
                   className={styles.inputStyle} />
-                  <div id="map" style={{ height: '350px', width: '400px' }}></div>
+                  <div id="map" style={{ height: '400px', width: '800px' }}></div>
             <div className="grid grid-cols-2 gap-6">
               <div className='flex flex-col'>
 
