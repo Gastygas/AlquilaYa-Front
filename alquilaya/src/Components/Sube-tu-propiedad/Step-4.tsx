@@ -197,7 +197,7 @@ const Step4: React.FC = () => {
           <h2 className="mt-2 text-black text-center mb-8">Complete la Información de la propiedad</h2>
         </div>
         <div className="flex justify-center w-full gap-6">
-          <form className='w-full flex flex-col'>
+          <form className='w-4/5 flex flex-col'>
           <label htmlFor="addresMaps" className='mb-6'>Busca tu direccion aquí</label>
                 <input
                   type="text"
