@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import ButtonCyanBack from '../ButtonCyan/ButtonCyanBack';
 import styles from "./Steps.module.css"
 import { Bounce, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface IPropertyData {
   propertyName: string;
