@@ -202,7 +202,7 @@ const Step4: React.FC = () => {
           <h2 className="mt-2 text-black text-center mb-8">Complete la Información de la propiedad</h2>
         </div>
         <div className="flex justify-center w-full gap-6">
-          <form className="space-y-6">
+          <form>
           <label htmlFor="addresMaps" className='mb-6'>Busca tu direccion aquí</label>
                 <input
                   type="text"
