@@ -213,7 +213,7 @@ const Step4: React.FC = () => {
          onChange={ handleChange} 
          value={propertyData.addressMaps}
           placeholder="Dirección"
-          className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF]" />
+          className={styles.inputStyle} />
       <div id="map" style={{ height: '350px', width: '400px' }}></div>
       </div>
     {/* Nombre de la propiedad */}
@@ -226,7 +226,7 @@ const Step4: React.FC = () => {
         placeholder="Hermoso departamento en ..."
         value={propertyData.propertyName}
         onChange={handleChange}
-        className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF]"
+        className={styles.inputStyle}
         required
       />
 
@@ -238,7 +238,7 @@ const Step4: React.FC = () => {
         placeholder="Dirección"
         value={propertyData.address}
         onChange={handleChange}
-        className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf]"
+        className={styles.inputStyle}
         disabled={true}
         required
       />
@@ -251,7 +251,7 @@ const Step4: React.FC = () => {
         placeholder="3"
         value={propertyData.floor}
         onChange={handleChange}
-        className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF]"
+        className={styles.inputStyle}
         required
       />
 
@@ -263,7 +263,7 @@ const Step4: React.FC = () => {
         placeholder="A"
         value={propertyData.room}
         onChange={handleChange}
-        className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF]"
+        className={styles.inputStyle}
         required
       />
 
@@ -276,7 +276,7 @@ const Step4: React.FC = () => {
         value={propertyData.city}
         onChange={handleChange}
         disabled={true}
-        className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf]"
+        className={styles.inputStyle}
         required
       />
 
@@ -289,7 +289,7 @@ const Step4: React.FC = () => {
         value={propertyData.province}
         onChange={handleChange}
         disabled={true}
-        className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf]"
+        className={styles.inputStyle}
         required
       />
 
@@ -302,7 +302,7 @@ const Step4: React.FC = () => {
         value={propertyData.country}
         onChange={handleChange}
         disabled={true}
-        className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf]"
+        className={styles.inputStyle}
         required
       />
 
@@ -313,7 +313,7 @@ const Step4: React.FC = () => {
         placeholder="Descripción de la Propiedad"
         value={propertyData.description}
         onChange={handleChange}
-        className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF] resize-y min-h-[100px]"
+        className={styles.inputStyle}
         required
       />
     </div>
@@ -321,14 +321,14 @@ const Step4: React.FC = () => {
   </form>
 </div>
       </div>
-      <div className="absolute bottom-1/2 right-6">
+      <div className={styles.nextStep}>
         <ButtonCyan 
         onClick={handleSubmit}
         isDisabled={propertyData.address === "" || propertyData.description === "" || propertyData.propertyName === ""}
          />
       </div>
 
-      <div className="absolute bottom-1/2 left-6">
+      <div className={styles.backStep}>
         <ButtonCyanBack onClick={backPage} />
       </div>
 
