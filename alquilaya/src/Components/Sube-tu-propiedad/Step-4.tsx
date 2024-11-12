@@ -20,11 +20,6 @@ interface IPropertyData {
   addressMaps: string;
 }
 
-const containerStyle = {
-  width: '100%',
-  height: '100%',
-};
-
 const Step4: React.FC = () => {
   const [token, setToken] = useState<string | null>(null);
   const [map, setMap] = useState<google.maps.Map | null>(null);
