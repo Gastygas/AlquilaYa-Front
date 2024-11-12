@@ -11,5 +11,5 @@
 }
 
 .inputStyle{
-    @apply  border border-primary p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary hover:border-[#4DBDFF]
+    @apply  border border-primary p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-secondary hover:border-[#4DBDFF]
 }

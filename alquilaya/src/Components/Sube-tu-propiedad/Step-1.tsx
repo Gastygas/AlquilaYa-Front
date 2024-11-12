@@ -59,9 +59,9 @@ const Step1 = () => {
         <div className={styles.box}>
             <div className='py-10'>
                 <div>
-                    <h2 className="mt-4 text-black text-center mb-4">Elige la opción que mejor describa tu espacio</h2>
+                    <h2 className="my-8 text-black text-center">Elige la opción que mejor describa tu espacio</h2>
                 </div>
-                <div className=' my-12'>
+                <div className='my-12'>
                     <IconSelector
                         numCols={4}
                         data={iconData}
