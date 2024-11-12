@@ -198,12 +198,12 @@ const Step4: React.FC = () => {
     <div className="box-content relative w-full min-h-screen p-10 flex flex-col justify-between text-black">
       <div>
         <div>
-          {/* <h3 className="ml-10 mt-10 text-black mb-2">Paso 5:</h3> */}
           <h2 className="mt-2 text-black text-center mb-8">Complete la Información de la propiedad</h2>
         </div>
         <div className="flex justify-center w-full">
   <form className="space-y-6 w-[400px]">
-    <div className="flex flex-col">
+    <div className="grid grid-cols-2">
+      <div>
       <label htmlFor="addresMaps">Busca tu direccion aquí</label>
         <input
          type="text"
@@ -216,7 +216,7 @@ const Step4: React.FC = () => {
 
       </div>
       <div id="map" style={{ height: '350px', width: '400px' }}></div>
-
+      </div>
     {/* Nombre de la propiedad */}
     <div className="flex flex-col">
       <label htmlFor="propertyName" className="mb-1 font-medium">Titulo de la propiedad</label>
