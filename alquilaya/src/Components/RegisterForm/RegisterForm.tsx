@@ -65,7 +65,7 @@ const RegisterForm = () => {
             type='text'
             id='name'
             name='name'
-            placeholder='Nombre'
+            // placeholder='Nombre'
             className={styles.input}
             onChange={handleChange}
             value={data.name}
@@ -76,7 +76,7 @@ const RegisterForm = () => {
             type='text'
             id='surname'
             name='surname'
-            placeholder='Apellido'
+            // placeholder='Apellido'
             className={styles.input}
             onChange={handleChange}
             value={data.surname}
@@ -87,7 +87,7 @@ const RegisterForm = () => {
             type='text'
             id='address'
             name='address'
-            placeholder='Calle y altura'
+            // placeholder='Calle y altura'
             className={styles.input}
             onChange={handleChange}
             value={data.address}
@@ -98,7 +98,7 @@ const RegisterForm = () => {
             type='text'
             id='country'
             name='country'
-            placeholder='País'
+            // placeholder='País'
             className={styles.input}
             onChange={handleChange}
             value={data.country}
@@ -109,7 +109,7 @@ const RegisterForm = () => {
             type='text'
             id='dni'
             name='dni'
-            placeholder='DNI'
+            // placeholder='DNI'
             className={styles.input}
             onChange={handleChange}
             value={data.dni}
@@ -122,7 +122,7 @@ const RegisterForm = () => {
             type='phone'
             id='phone'
             name='phone'
-            placeholder='Número de celular'
+            // placeholder='Número de celular'
             className={styles.input}
             onChange={handleChange}
             value={data.phone}
@@ -133,7 +133,7 @@ const RegisterForm = () => {
             type='email'
             id='email'
             name='email'
-            placeholder='Email'
+            // placeholder='Email'
             className={styles.input}
             onChange={handleChange}
             value={data.email}
@@ -144,7 +144,7 @@ const RegisterForm = () => {
             type='password'
             id='password'
             name='password'
-            placeholder='Contraseña'
+            // placeholder='Contraseña'
             className={styles.input}
             onChange={handleChange}
             value={data.password}
@@ -155,7 +155,7 @@ const RegisterForm = () => {
             type='password'
             id='confirmPassword'
             name='confirmPassword'
-            placeholder='Confirma tu contraseña'
+            // placeholder='Confirma tu contraseña'
             className={styles.input}
             onChange={handleChange}
             value={data.confirmPassword}

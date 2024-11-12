@@ -1,6 +1,7 @@
 "use client";
 import { IUserSession } from "@/Interfaces/IUserSesion";
 import {createContext, useEffect, useState } from "react";
+import Cookies from 'js-cookie';
 
 interface AuthProviderProps {
     children: React.ReactNode;
@@ -42,6 +43,7 @@ export const AuthProvider = ({ children }: AuthProviderProps
     const logout = () => {
         localStorage.removeItem("user");
         setUser(null);
+        Cookies.remove('auth_token');
     };
 
     return (
