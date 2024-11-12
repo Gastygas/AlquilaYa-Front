@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import ButtonCyan from "../ButtonCyan/ButtonCyan";
 import { useRouter } from "next/navigation";
 import ButtonCyanBack from "../ButtonCyan/ButtonCyanBack";
+import styles from "./Steps.module.css"
 
 
 const Step3: React.FC = () => {
@@ -61,9 +62,9 @@ const Step3: React.FC = () => {
     }
 
     return (
-        <div className="relative w-full min-h-screen p-10 flex flex-col justify-between text-black box-content">
+        <div className={styles.box}>
 
-            <div>
+            <div className='py-10'>
                 <div>
                     {/* <h3 className="ml-10 mt-1 text-black mb-2">Paso 4:</h3> */}
                     <h2 className="mt-2 text-black text-center mb-8">Detalles de la Propiedad</h2>
@@ -81,7 +82,7 @@ const Step3: React.FC = () => {
                                 placeholder="Ingrese límite de capacidad"
                                 value={limitCapacity}
                                 onChange={(e) => setLimitCapacity(Number(e.target.value) || "")}
-                                className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF]"
+                                className={styles.inputStyle}
                                 required
                             />
                         </div>
@@ -95,7 +96,7 @@ const Step3: React.FC = () => {
                                 placeholder="Ingrese cantidad de dormitorios"
                                 value={bedrooms}
                                 onChange={(e) => setBedrooms(Number(e.target.value) || "")}
-                                className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF]"
+                                className={styles.inputStyle}
                                 required
                             />
                         </div>
@@ -108,13 +109,13 @@ const Step3: React.FC = () => {
                                 placeholder="Ingrese cantidad de baños"
                                 value={bathrooms}
                                 onChange={(e) => setBathrooms(Number(e.target.value) || "")}
-                                className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF]"
+                                className={styles.inputStyle}
                                 required
                             />
                         </div>
 
                         {/* Precio */}
-                        <div className="flex flex-col">
+                        <div className="flex flex-col gap-4">
                             <label htmlFor="price" className="mb-1 font-medium">Precio por día en PESOS ARGENTINOS, sin puntos ni comas</label>
                             <input
                                 type="number"
@@ -122,7 +123,7 @@ const Step3: React.FC = () => {
                                 placeholder="Ingrese sólo números"
                                 value={price}
                                 onChange={(e) => setPrice(Number(e.target.value) || "")}
-                                className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF]"
+                                className={styles.inputStyle}
                                 required
                             />
                         </div>
@@ -136,7 +137,7 @@ const Step3: React.FC = () => {
                                 onChange={(e) => setPetFriendly(e.target.checked)}
                                 className="mr-2"
                             />
-                            <label htmlFor="petFriendly" className="font-medium">Acepta mascotas</label>
+                            <label htmlFor="petFriendly" className="font-medium pl-2">Acepta mascotas</label>
                         </div>
 
 
@@ -145,14 +146,14 @@ const Step3: React.FC = () => {
 
             </div>
 
-            <div className="absolute bottom-1/2 right-6">
+            <div className={styles.nextStep}>
                 <ButtonCyan
                     onClick={saveDataPage}
                     isDisabled={!checkInput()}
                 />
             </div>
 
-            <div className="absolute bottom-1/2 left-6">
+            <div className={styles.backStep}>
                 <ButtonCyanBack onClick={backPage} />
             </div>
 

@@ -4,7 +4,7 @@ import React from 'react'
 
 const description = () => {
   return (
-    <div className='bg-gray-100'>
+    <div>
     <Header />
       <div className='container'>
         <Step1 /> 

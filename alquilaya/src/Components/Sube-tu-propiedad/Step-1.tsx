@@ -6,6 +6,7 @@ import { FcHome } from "react-icons/fc";
 import { PiBuildingApartmentDuotone } from "react-icons/pi";
 import { useRouter } from 'next/navigation'
 import { IsSelectedItem } from './types';
+import styles from "./Steps.module.css"
 
 
 
@@ -55,13 +56,12 @@ const Step1 = () => {
 
 
     return (
-        <div className="box-content relative w-full min-h-screen p-10 flex flex-col justify-between text-black">
-            <div>
+        <div className={styles.box}>
+            <div className='py-10'>
                 <div>
-                    {/* <h3 className="ml-10 mt-1 text-black mb-2">Paso 1:</h3> */}
-                    <h1 className="mt-2 text-black text-center mb-8">Elige la opción que mejor describa tu espacio</h1>
+                    <h2 className="my-8 text-black text-center">Elige la opción que mejor describa tu espacio</h2>
                 </div>
-                <div className=' mb-1'>
+                <div className='my-12'>
                     <IconSelector
                         numCols={4}
                         data={iconData}
@@ -71,7 +71,7 @@ const Step1 = () => {
                 </div>
             </div>
 
-            <div className="absolute bottom-1/2 right-6">
+            <div className={styles.nextStep}>
                 <ButtonCyan
                     onClick={saveDataPage}
                     isDisabled={!isSelected}

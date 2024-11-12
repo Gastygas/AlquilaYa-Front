@@ -1,5 +1,6 @@
 import React from 'react';
 import { IsSelectedItem } from '../Sube-tu-propiedad/types';
+import styles from "./Icon.module.css"
 
 interface IconSelectorProps {
     data: IsSelectedItem[];
@@ -33,14 +34,14 @@ const IconSelector: React.FC<IconSelectorProps> = ({ data,
     return (
         <div className="flex justify-center items-center">
             <div
-                className="grid gap-x-4 gap-y-2 p-0 items-center justify-center"
+                className={styles.gridContainer}
                 style={{ gridTemplateColumns: `repeat(${numCols}, minmax(0, 1fr))` }}
             >
                 {data.map((d) => (
                     <button
                         key={d.id}
-                        className="w-36 h-36 border border-gray-400 rounded-md m-1 flex flex-col items-center justify-center gap-2"
-                        style={{ backgroundColor: checkSelected(d) ? '#aa31cf' : 'white' }}
+                        className={styles.button}
+                        style={{ backgroundColor: checkSelected(d) ? '#9AEDFF' : 'white' }}
                         onClick={() => setIsSelected(d)}
                     >
                         {typeof d.icon === 'string' ? (
@@ -48,7 +49,7 @@ const IconSelector: React.FC<IconSelectorProps> = ({ data,
                         ) : (
                             d.icon
                         )}
-                        <span className="text-xl">{d.text}</span>
+                        <span className="text-base">{d.text}</span>
                     </button>
                 ))}
             </div>

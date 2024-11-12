@@ -47,7 +47,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                     <h3 className='text-center'>Esta propiedad está Pendiente</h3>
                     <div className='flex justify-center gap-8 pt-3'>
                     <Link href="/admin/solicitudes"><button className={styles.buttonBack}>Atrás</button></Link>
-                    <Link href="/#" target="_blank"><button className={styles.button}>Ver documento de respaldo</button></Link>
+                    <Link href={property.bill} target="_blank"><button className={styles.button}>Ver documento de respaldo</button></Link>
                     </div>
                 </div>)
              : (<div className='w-full bg-red-300 flex flex-col py-14 mt-0 mb-8 justify-center align-middle'>

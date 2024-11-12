@@ -10,7 +10,7 @@
   --lightBlue: #9AEDFF;
   --cyan: #2CFFDE;
   --black: #000000;
-  --font-primary: 'Figtree', sans-serif; 
+  --font-primary: "Figtree", serif;
 
 }
 
@@ -24,8 +24,8 @@ footer {
 
 @media (prefers-color-scheme: light) {
   :root {
-    --background: #190045;
-    --foreground: #ffffff;
+    --background: #ffffff;
+    --foreground: #190045;
     --darkBlue: #190045;
     --lightBlue: #4DBDFF;
     --cyan: #2CFFDE;
@@ -36,7 +36,7 @@ footer {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: 'Figtree', sans-serif;
+  font-family: var(--font-primary);
 }
 
 @layer utilities {
@@ -74,8 +74,9 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Figtree', sans-serif;
+  font-family: var(--font-primary);
   font-weight: 700;
+  color: var(--darkBlue);
 }
 
 h1 {
