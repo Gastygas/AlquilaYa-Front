@@ -16,9 +16,17 @@ export interface IProperty {
     heating: boolean;
     pool: boolean;
     parking: boolean;
+    streaming: boolean;
+    yard: boolean;
+    grill: boolean;
+    appliance: boolean;
+    cleaningService: boolean;
+    catering: boolean;
     description: string;
     propertyStatus: "pending" | "cancelled" | "maintenance" | "approved";
     photos: string;
+    lat: string;
+    lng: string;
     //bookings: Booking[];
     //specialprice: SpecialPrice[];
 }
