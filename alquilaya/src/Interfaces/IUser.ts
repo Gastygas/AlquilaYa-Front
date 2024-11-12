@@ -15,4 +15,5 @@ export interface IUser{
     properties: IProperty[]; 
     bookings: IBooking[];
     favoriteProperties: string[];
+    status: boolean;
 }
