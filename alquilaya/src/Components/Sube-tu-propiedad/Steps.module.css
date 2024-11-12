@@ -13,3 +13,7 @@
 .inputStyle{
     @apply  border border-primary p-2 my-4 rounded-lg focus:outline-none focus:ring-1 focus:ring-secondary hover:border-[#4DBDFF]
 }
+
+.inputStyleDisabled{
+    @apply  border border-primary p-2 my-4 rounded-lg focus:outline-none focus:ring-1 focus:ring-secondary 
+}

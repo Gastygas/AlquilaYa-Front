@@ -196,9 +196,9 @@ const Step4: React.FC = () => {
         <div>
           <h2 className="mt-2 text-black text-center mb-8">Complete la Información de la propiedad</h2>
         </div>
-        <div className="flex justify-center w-full gap-6">
+        <div className="flex justify-center w-full gap-6 pb-12">
           <form className='w-[1000px] flex flex-col'>
-          <label htmlFor="addresMaps" className='mb-6'>Busca tu direccion aquí</label>
+          <label htmlFor="addresMaps" className='mb-6 text-center'>Busca tu direccion aquí</label>
                 <input
                   type="text"
                   id="addressMaps"
@@ -220,7 +220,7 @@ const Step4: React.FC = () => {
                   value={propertyData.country}
                   onChange={handleChange}
                   disabled={true}
-                  className={styles.inputStyle}
+                  className={styles.inputStyleDisabled}
                   required
                 />
 
@@ -233,7 +233,7 @@ const Step4: React.FC = () => {
                   value={propertyData.province}
                   onChange={handleChange}
                   disabled={true}
-                  className={styles.inputStyle}
+                  className={styles.inputStyleDisabled}
                   required
                 />
 
@@ -246,7 +246,7 @@ const Step4: React.FC = () => {
                   value={propertyData.city}
                   onChange={handleChange}
                   disabled={true}
-                  className={styles.inputStyle}
+                  className={styles.inputStyleDisabled}
                   required
                 />
 
@@ -258,7 +258,7 @@ const Step4: React.FC = () => {
                   placeholder="Dirección"
                   value={propertyData.address}
                   onChange={handleChange}
-                  className={styles.inputStyle}
+                  className={styles.inputStyleDisabled}
                   disabled={true}
                   required
                 />
