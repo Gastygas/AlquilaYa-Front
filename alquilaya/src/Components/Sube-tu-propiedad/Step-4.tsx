@@ -5,6 +5,7 @@ import { Loader } from '@googlemaps/js-api-loader'
 import ButtonCyan from '../ButtonCyan/ButtonCyan';
 import { useRouter } from 'next/navigation';
 import ButtonCyanBack from '../ButtonCyan/ButtonCyanBack';
+import styles from "./Steps.module.css"
 
 interface IPropertyData {
   propertyName: string;
@@ -195,16 +196,16 @@ const Step4: React.FC = () => {
   }
 
   return (
-    <div className="box-content relative w-full min-h-screen p-10 flex flex-col justify-between text-black">
-      <div>
+    <div className={styles.box}>
+      <div className='py-10'>
         <div>
           <h2 className="mt-2 text-black text-center mb-8">Complete la Información de la propiedad</h2>
         </div>
-        <div className="flex justify-center w-full">
-  <form className="space-y-6 w-[400px]">
-    <div className="grid grid-cols-2">
-      <div>
-      <label htmlFor="addresMaps">Busca tu direccion aquí</label>
+        <div className="flex justify-center w-full gap-6">
+  <form className="space-y-6">
+    <div className="grid grid-cols-2 gap-6">
+      <div className='flex flex-col'>
+      <label htmlFor="addresMaps" className='mb-6'>Busca tu direccion aquí</label>
         <input
          type="text"
          id="addressMaps" 
