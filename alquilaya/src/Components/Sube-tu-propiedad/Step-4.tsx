@@ -215,7 +215,6 @@ const Step4: React.FC = () => {
           className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF]" />
       <div id="map" style={{ height: '350px', width: '400px' }}></div>
       </div>
-      </div>
     {/* Nombre de la propiedad */}
     <div className="flex flex-col">
       <label htmlFor="propertyName" className="mb-1 font-medium">Titulo de la propiedad</label>
@@ -316,6 +315,7 @@ const Step4: React.FC = () => {
         className="border border-[#aa31cf] p-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#aa31cf] hover:border-[#4DBDFF] resize-y min-h-[100px]"
         required
       />
+    </div>
     </div>
   </form>
 </div>
