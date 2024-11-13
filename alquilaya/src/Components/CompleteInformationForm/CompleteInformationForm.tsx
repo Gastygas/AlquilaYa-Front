@@ -116,7 +116,7 @@ const CompleteInformationForm = () => {
             onChange={handleChange}
             value={data?.name}
           />
-          {dirty.name ? <p className='text-red-600 text-sm'>{error.name}</p> : null}
+          {dirty.name ? <p className={styles.errorText}>{error.name}</p> : null}
           <label htmlFor="surname">Apellido:</label>
           <input
             type='text'
@@ -127,7 +127,7 @@ const CompleteInformationForm = () => {
             onChange={handleChange}
             value={data.surname}
           />
-          {dirty.surname ? <p className='text-red-600 text-sm'>{error.surname}</p> : null}
+          {dirty.surname ? <p className={styles.errorText}>{error.surname}</p> : null}
           <label htmlFor="address">Dirección:</label>
           <input
             type='text'
@@ -138,7 +138,7 @@ const CompleteInformationForm = () => {
             onChange={handleChange}
             value={data.address}
           />
-          {dirty.address ? <p className='text-red-600 text-sm'>{error.address}</p> : null}
+          {dirty.address ? <p className={styles.errorText}>{error.address}</p> : null}
           <label htmlFor="country">País:</label>
           <input
             type='text'
@@ -149,7 +149,7 @@ const CompleteInformationForm = () => {
             onChange={handleChange}
             value={data.country}
           />
-          {dirty.country ? <p className='text-red-600 text-sm'>{error.country}</p> : null}
+          {dirty.country ? <p className={styles.errorText}>{error.country}</p> : null}
           
         </div>
         <div className='gap-4 '>
@@ -163,7 +163,7 @@ const CompleteInformationForm = () => {
             onChange={handleChange}
             value={data.dni}
           />
-          {dirty.dni ? <p className='text-red-600 text-sm'>{error.dni}</p> : null}
+          {dirty.dni ? <p className={styles.errorText}>{error.dni}</p> : null}
         <label htmlFor="phone">Teléfono:</label> 
           <input
             type='phone'
@@ -174,7 +174,7 @@ const CompleteInformationForm = () => {
             onChange={handleChange}
             value={data.phone}
           />
-          {dirty.phone ? <p className='text-red-600 text-sm'>{error.phone}</p> : null}
+          {dirty.phone ? <p className={styles.errorText}>{error.phone}</p> : null}
           <label htmlFor="email">Email:</label>
           <input
             type='email'
@@ -185,7 +185,7 @@ const CompleteInformationForm = () => {
             onChange={handleChange}
             value={data.email}
           />
-          {dirty.email ? <p className='text-red-600 text-sm'>{error.email}</p> : null}
+          {dirty.email ? <p className={styles.errorText}>{error.email}</p> : null}
           {/* <label htmlFor="password">Contraseña:</label>
           <input
             type='password'
