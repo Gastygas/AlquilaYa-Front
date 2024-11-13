@@ -11,6 +11,8 @@
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.16.8",
     "@react-google-maps/api": "^2.20.3",
+    "js-cookie": "^3.0.5",
+    "jwt-decode": "^4.0.0",
     "mercadopago": "^2.0.15",
     "next": "14.2.15",
     "react": "^18",

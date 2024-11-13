@@ -9,8 +9,10 @@ import { getPropertyById} from "@/services/dataUserService";
 const Step5: React.FC = () => {
     const searchParams = useSearchParams();
     const [selectedImages, setSelectedImages] = useState<File[]>([]);
-    const [selectedBill, setSelectedBill] = useState<FileList | null>();
+    const [selectedBill, setSelectedBill] = useState<File[]>([]);
     const [userId, setUserId] = useState<string | null>(null);
+    const [billUpdated, setBillUpdated] = useState<string | undefined>(undefined)
+    const [imagesUploaded, setImagesUploaded] = useState<string[]>([])
     const maxImages = 5;
     const maxSize = 2 * 1024 * 1024;
     const router = useRouter();
@@ -22,7 +24,15 @@ const Step5: React.FC = () => {
           const parsedData = JSON.parse(storedData);
           setUserId(parsedData.user.id);
         } 
-      }, []);
+        if (selectedBill.length > 0) {
+            handleUploadBillImage(propertyId);
+            setSelectedBill([])
+        }
+        if(selectedImages.length > 0){
+            handleUploadPropertyImages(propertyId)
+            setSelectedImages([])
+        }
+      }, [selectedBill, propertyId,selectedImages]);
 
      const valid = async(propId:string | null,userId:string| null) => {
         const property = await getPropertyById(propId)        
@@ -46,26 +56,30 @@ const Step5: React.FC = () => {
         setSelectedImages(validFiles);
     };
 
-    const handleBillChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSelectedBill(event.target.files);
+    const handleBillChange = (event: React.ChangeEvent<HTMLInputElement>,propertyId:string | null) => {
+        const files = Array.from(event.target.files || []);
+        const validFiles = files.filter(file => file.size <= maxSize);
+
+        if (validFiles.length > maxImages) {
+            alert(`Solo puedes subir un máximo de 1 imágenes.`);
+            return;
+        }
+        setSelectedBill(validFiles);
     };
 
     const handleUploadBillImage = async (id: string | null) => {
-        if (!selectedBill || !id) {
-            alert("No se ha seleccionado una imagen o falta el ID de la propiedad.");
-            return;
-        }
 
-        const formData = new FormData();
-        Array.from(selectedBill).forEach(image => formData.append("file", image));
-
-        try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/files/bill/${id}`, {
+            const formData = new FormData();
+            selectedBill.forEach(image => formData.append("file", image));
+            
+            try {
+                const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/files/bill/${id}`, {
                 method: "POST",
                 body: formData,
             });
             const res = await response.json();
             if (res.success) {
+                setBillUpdated(res.property.bill)
                 alert("Tu factura se subió correctamente!");
             } else {
                 alert("Error al cargar las imágenes.");
@@ -74,25 +88,29 @@ const Step5: React.FC = () => {
             alert("Error en la solicitud");
         }
     };
-
+    
     const handleUploadPropertyImages = async (id: string | null) => {
-        const formData = new FormData();
-        Array.from(selectedImages).forEach(image => formData.append("file", image));
-
-        try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/files/property/${id}`, {
-                method: "POST",
-                body: formData,
-            });
-            const res = await response.json();
-            if (res.success) {
-                alert("Imagen subida correctamente");
-            } else {
-                alert("Error al cargar las imágenes.");
-            }
-        } catch (error) {
-            alert("Error en la solicitud:");
-        }
+        await Promise.all(
+            selectedImages.map(async(image) =>{
+                const formData = new FormData();
+                formData.append("file", image)
+                try {
+                    const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/files/property/${id}`, {
+                        method: "POST",
+                        body: formData,
+                    });
+                    const res = await response.json();
+                    if (res.success) {
+                        setImagesUploaded(res.property.photos)
+                        alert(`Imagen ${res.property.photos.length} subida correctamente`);
+                    } else {
+                        alert("Error al cargar las imágenes.");
+                    }
+                } catch (error) {
+                    alert("Error en la solicitud");
+                }
+            })
+        )
     };
 
     const backPage = () => {
@@ -112,17 +130,10 @@ const Step5: React.FC = () => {
                 <input
                     type="file"
                     name="invoiceFile"
-                    onChange={handleBillChange}
+                    onChange={(e) => handleBillChange(e,propertyId)}
                     className={styles.fileInput}
                 />
-                <button
-                    className={styles.button}
-                    disabled={!selectedBill}
-                    onClick={() => handleUploadBillImage(propertyId)}
-                >
-                    Enviar Factura
-                </button>
-                {selectedBill === undefined && <p className={styles.instructions}>Por favor, sube una imagen de la factura.</p>}
+                {billUpdated === undefined ? (<p className={styles.instructions}>Por favor, sube una imagen de la factura.</p>) : ( <div className={styles.divImagesUploaded}><a target="blank" href={billUpdated}> <img className={styles.imagesUploaded} src={billUpdated} alt="url" /></a> </div> )}
             </div>
 
             <h2 className={styles.heading}>Subí una foto de la propiedad</h2>
@@ -136,21 +147,15 @@ const Step5: React.FC = () => {
                     onChange={handleImageChange}
                     className={styles.fileInput}
                 />
-                 {selectedImages.length > 0 ? (
-                    <p className={styles.previewCount}>{selectedImages.length} imágenes seleccionadas</p>
+                 {imagesUploaded.length > 0 ? (
+                    <div>
+                        <div className={styles.divImagesUploaded} >{imagesUploaded.map((image) =><a target="blank" href={image}> <img className={styles.imagesUploaded} src={image} alt="url" /></a>)}</div>
+                    </div>
                 ) : (<p className={styles.instructions}>Por favor, sube una foto de la propiedad</p>)}
-                
-                <button
-                    className={styles.button}
-                    onClick={() => handleUploadPropertyImages(propertyId)}
-                >
-                    Enviar Foto
-                </button>
-               
             </div>
 
             <div className={styles.nextStep}>
-                <ButtonCyan onClick={() => handleBackHome()} isDisabled={selectedImages.length === 0} />
+                <ButtonCyan onClick={() => handleBackHome()} isDisabled={imagesUploaded.length === 0 || billUpdated === undefined} />
             </div>
             <div className={styles.backStep}>
                 <ButtonCyanBack onClick={backPage} />
