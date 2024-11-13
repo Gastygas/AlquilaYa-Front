@@ -1,4 +1,4 @@
-"use client";
+'use client'
 import Header from "@/Components/Header/Header";
 import Hero from "@/Components/Hero/Hero";
 import Section2 from "@/Components/Section-2/Section-2";
@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
 import { IUser } from '@/Interfaces/IUser';
+import Chat from "@/Components/ChatBot/Chatbot";
+
 
 export default function Home() {
 
@@ -43,6 +45,7 @@ export default function Home() {
 <Hero/>
 <Section2/>
 <Section3/>
+<Chat/>
     </div>
   );
 }

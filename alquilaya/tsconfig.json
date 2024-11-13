@@ -28,6 +28,7 @@
       ]
     }
   },
+<<<<<<< HEAD
   "include": [
     "next-env.d.ts",
     "**/*.ts",
@@ -37,4 +38,8 @@
   "exclude": [
     "node_modules"
   ]
+=======
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/Components/ChatButton/chatbot.js"],
+  "exclude": ["node_modules"],
+>>>>>>> origin/chatbot
 }
