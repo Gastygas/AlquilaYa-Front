@@ -17,7 +17,7 @@ const ProtectedRoute = ({ children, adminOnly = false }: { children: React.React
     if (!loading) {
       if (!user?.user) {
         notifyLogOutTrue()
-        router.push("/login");
+        router.push("/");
       } else if (adminOnly && !user?.user.isAdmin) {
         router.push("/");
       } else {
