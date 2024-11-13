@@ -8,7 +8,7 @@ import ProtectedRoute from '@/Components/ProtectRoutes/ProtecRoutes';
 const paso5 = () => {
   return (
     <ProtectedRoute>
-    <div className='bg-gray-100'>
+    <div>
     <Header />
     {/* <div className={styles.container}> */}
       <div className='container' >
