@@ -10,9 +10,7 @@ import { getUserData } from '@/services/dataUserService';
 // import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
 import AuthContext from '../contexts/authContext';
-import { config as dotenvConfig } from 'dotenv';
 
-dotenvConfig({ path: '.env' });
 
 
 const CompleteInformationForm = () => {
