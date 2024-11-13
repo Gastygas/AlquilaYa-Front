@@ -56,7 +56,7 @@ const Step5: React.FC = () => {
     const valid = async (propId: string | null, userId: string | null) => {
         const property = await getPropertyById(propId)
         if (property.user.id !== userId) {
-            alert("Esta propiedad no te pertenece")
+            notifyErrorsolicitud()
             router.push('/')
         }
     }
