@@ -45,6 +45,7 @@ export const changePasswordService = async (url: string, data:IChangePassword) =
 export const getUserByEmailService = async (url: string ) => {    
     const response = await fetch(url, {
         method: "GET",
+        credentials: 'include',
         headers: {
             "Content-Type": "application/json",
             }
@@ -55,6 +56,7 @@ export const getUserByEmailService = async (url: string ) => {
 export const updateUserService = async (url: string, data: Partial<IUser>, token: string) => { 
     const response = await fetch(url, {
         method: "PUT",
+        credentials: 'include',
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${token}`
