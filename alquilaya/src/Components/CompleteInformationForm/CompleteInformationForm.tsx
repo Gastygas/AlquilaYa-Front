@@ -44,12 +44,8 @@ const CompleteInformationForm = () => {
     setData({
       ...data, [e.target.name]: e.target.value
     });
-  };
-
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     setDirty({ ...dirty, [e.target.name]: true });
   };
-
 
   useEffect(() => {
     setError({
