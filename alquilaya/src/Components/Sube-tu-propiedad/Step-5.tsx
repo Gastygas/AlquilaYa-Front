@@ -18,7 +18,7 @@ const Step5: React.FC = () => {
     const maxImages = 5;
     const maxSize = 2 * 1024 * 1024;
     const router = useRouter();
-    const propertyId = searchParams.get('id');
+    const propertyId = searchParams ? searchParams.get('id') : null;
     const notifyUploadTrue = () => toast.success("Imagen cargada exitosamente", { autoClose: 3000 });
     const notifyUploadFalse = () => toast.error("Error al cargar las imágenes, revisa su formato o peso", { autoClose: 3000 });
     const notifyMaxImg = () => toast.error("Solo puedes subir un máximo de 5 imágenes.", { autoClose: 3000 });

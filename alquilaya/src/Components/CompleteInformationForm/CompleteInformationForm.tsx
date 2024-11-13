@@ -7,9 +7,10 @@ import styles from "./complete.module.css"
 import Link from 'next/link';
 import { IUser } from '@/Interfaces/IUser';
 import { getUserData } from '@/services/dataUserService';
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
 import AuthContext from '../contexts/authContext';
+
 
 
 const CompleteInformationForm = () => {
@@ -26,11 +27,16 @@ const CompleteInformationForm = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
+    console.log("token: ", token);
+    
+    // const response = await updateUserService(`http://localhost:3001/users/edit`, data, token)
     const response = await updateUserService(`${process.env.NEXT_PUBLIC_BACK_URL}/users/edit`, data, token)
     response.token = token;//agrego el token al objeto response
     console.log("response: ", response);
     if (response.success) {
-        localStorage.setItem("user", JSON.stringify(response));
+      setUser(response);  
+      //localStorage.setItem("user", JSON.stringify(response));
       
       alert("Registro exitoso");
       //router.push('/');
@@ -67,10 +73,20 @@ const CompleteInformationForm = () => {
   //--------------------------------------------------------------------------
   
   useEffect(() => {
-    const token = Cookies.get('auth_token');
-    if (token) {
-      setToken(token);
-      const userGoogle : IUser = jwtDecode(token);
+//--------------Comienza agregado para obtener token por param-----------------
+    const params = new URLSearchParams(window.location.search);
+    const auth_token = params.get('auth_token');
+    if (auth_token) {
+      localStorage.setItem('auth_token', auth_token);
+      setToken(auth_token);
+    }
+//--------------Finaliza agregado para obtener token por param-----------------
+
+
+//    const token = Cookies.get('auth_token');
+    if (auth_token) {
+  //    setToken(token);
+      const userGoogle : IUser = jwtDecode(auth_token);
       console.log("userGoogle: ", userGoogle);
       const userData = {
         id: userGoogle.id,

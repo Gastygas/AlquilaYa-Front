@@ -1,0 +1,46 @@
+.chatIcon {
+  @apply fixed bottom-4 right-4 bg-blue-500 text-white p-3 rounded-full text-3xl cursor-pointer;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.chatbotContainer {
+  @apply fixed bottom-20 right-4 w-80 bg-gray-400 p-4 rounded-lg shadow-lg flex flex-col max-h-96 overflow-y-auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  @apply text-xl font-semibold text-center mb-2;
+}
+
+.optionContainer {
+  @apply mb-2;
+}
+
+.mainOptionButton {
+  @apply w-full bg-blue-500 text-black py-2 px-4 rounded-lg text-left hover:bg-blue-600;
+}
+
+.subOptions {
+  @apply flex flex-col mt-2;
+}
+
+.subOptionButton {
+  @apply w-full bg-gray-300 text-black py-1 px-3 rounded-lg text-left hover:bg-blue-300 mb-1;
+}
+
+.chatMessages {
+  @apply mt-4 flex flex-col space-y-2;
+}
+
+.message {
+  @apply p-2 rounded-lg;
+}
+
+.userMessage {
+  @apply self-end bg-blue-500 text-white;
+}
+
+.botMessage {
+  @apply self-start bg-gray-300 text-black;
+}
