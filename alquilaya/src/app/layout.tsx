@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <AuthProvider>
     <html lang="es" className={figtree.className}>
-      <body>
+      <body className={figtree.className}>
       <ToastContainer />
         <main>{children}</main>
         <Footer />
