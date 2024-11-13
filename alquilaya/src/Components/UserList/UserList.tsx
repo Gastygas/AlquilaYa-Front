@@ -13,8 +13,8 @@ interface UserHistoryProps {
 
 const UserList: React.FC<UserHistoryProps> = ({ users: initialUsers }) => {
     const notifydeclineProperty = () => toast.success("Usuario Eliminado exitosamente", { autoClose: 3000 });
-    const router = useRouter()
-    const [token, setToken] = useState<string | null>(null);
+    //const router = useRouter()
+    //const [token, setToken] = useState<string | null>(null);
     const [dataUsers, setDataUsers] = useState<IUser[]>(initialUsers);
 
       const fetchUsers = async () => {
@@ -29,7 +29,7 @@ const UserList: React.FC<UserHistoryProps> = ({ users: initialUsers }) => {
       }
 
 
-  const handleDenyUser = async (e: React.MouseEvent, id: string) => {
+ /* const handleDenyUser = async (e: React.MouseEvent, id: string) => {
     e.preventDefault();
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/users/disable/${id}`, {
       method: "PUT",
@@ -40,7 +40,7 @@ const UserList: React.FC<UserHistoryProps> = ({ users: initialUsers }) => {
     if (!res.ok) throw new Error('Error al cambiar el estado del usuario');
     notifydeclineProperty();
     fetchUsers()
-  };
+  };*/
 
 
   return (
@@ -79,7 +79,7 @@ const UserList: React.FC<UserHistoryProps> = ({ users: initialUsers }) => {
                   </td>
                   <td className="border px-4 py-2 text-center flex justify-center gap-4">
               <button
-               onClick={(e) => handleDenyUser(e, user.id)}
+               /*onClick={(e) => handleDenyUser(e, user.id)}*/
                 className={styles.deny}>Eliminar</button>
             </td>
                 </tr>
