@@ -1,14 +1,12 @@
-'use client'
+"use client";
 import Header from "@/Components/Header/Header";
 import Hero from "@/Components/Hero/Hero";
 import Section2 from "@/Components/Section-2/Section-2";
 import Section3 from "@/Components/Section-3/Section-3";
 import { useEffect, useState } from "react";
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
 import { IUser } from '@/Interfaces/IUser';
-import Chat from "@/Components/ChatBot/Chatbot";
-
 
 export default function Home() {
 
@@ -17,10 +15,12 @@ export default function Home() {
 
 
   useEffect(() => {
-    const token = Cookies.get('auth_token');
-    if (token) {
-      setToken(token);
-      const userGoogle : IUser = jwtDecode(token);
+    const params = new URLSearchParams(window.location.search);
+    const auth_token = params.get('auth_token');
+//    const token = Cookies.get('auth_token');
+    if (auth_token) {
+      setToken(auth_token);
+      const userGoogle : IUser = jwtDecode(auth_token);
       console.log("userGoogle: ", userGoogle); 
   
       const user ={
@@ -45,7 +45,6 @@ export default function Home() {
 <Hero/>
 <Section2/>
 <Section3/>
-<Chat/>
     </div>
   );
 }
