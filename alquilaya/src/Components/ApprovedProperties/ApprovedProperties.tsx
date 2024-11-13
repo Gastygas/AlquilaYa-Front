@@ -77,17 +77,18 @@ const ApprovedProperties:  React.FC<PropertyTableProps> = ({ properties: initial
                    <p className="text-green-600 uppercase text-sm" >activa</p> : <p className=" text-sm text-red-600 rounded uppercase">cancelada</p>}</td>
                   <td className="border px-4 py-2 text-center">
                     <div className="flex justify-center">
+                    <Link href={`/admin/propiedades/${properties.id}`}>
                       <button className="bg-primary text-secondary px-4 py-2 rounded font-semibold">
                         Ver más
-                      </button>
+                      </button></Link>
                     </div>
                   </td>
                   <td className="border px-4 py-2 text-center">
                     <div className="flex justify-center">
-                    <Link href={`/admin/propiedades/${properties.id}`}>
+
                       <button onClick={(e) => handleDisapprovedProperty(e, properties.id)} className={styles.deleteButton}>
                         Eliminar
-                      </button></Link>
+                      </button>
                     </div>
                   </td>
                 </tr>
