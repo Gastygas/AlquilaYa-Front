@@ -24,7 +24,7 @@ const page = async () => {
                 <th className="py-3 px-6 text-left">Nombre</th>
                 <th className="py-3 px-6 text-left">Email</th>
                 <th className="py-3 px-6 text-center">Dni</th>
-                <th className="py-3 px-6 text-center">Country</th>
+                <th className="py-3 px-6 text-center">País</th>
                 <th className="py-3 px-6 text-center">Dirección</th>
                 <th className="py-3 px-6 text-center">Teléfono</th>
                 <th className="py-3 px-6 text-center">Favoritos</th>
@@ -40,7 +40,11 @@ const page = async () => {
                   <td className="py-3 px-6 text-center">{user.dni}</td>
                   <td className="py-3 px-6 text-center">{user.country}</td>
                   <td className="py-3 px-6 text-center">{user.address}</td>
-                  <td className="py-3 px-6 text-center">{user.phone}</td>
+                  <td className="border px-4 py-2 text-center flex justify-center gap-4">
+              <button
+               /* onClick={(e) => handleDisapprovedProperty(e, property.id)}*/
+                className={styles.deny}>Eliminar</button>
+            </td>
                   <td className="border px-4 py-2 text-center">
                     <div className="flex justify-center">
                     <Link href={`/admin/usuarios/${user.id}`}>

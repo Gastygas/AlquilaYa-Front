@@ -55,7 +55,7 @@ const page = async ({ params }: { params: { id: string } }) => {
               <span className="text-gray-600">{user.dni}</span>
             </div>
             <div className="flex items-center justify-between border-b border-gray-200 py-2">
-              <span className="text-primary font-semibold">Country:</span>
+              <span className="text-primary font-semibold">País:</span>
               <span className="text-gray-600">{user.country}</span>
             </div>
             <div className="flex items-center justify-between border-b border-gray-200 py-2">
@@ -65,9 +65,6 @@ const page = async ({ params }: { params: { id: string } }) => {
             <div className="flex items-center justify-between border-b border-gray-200 py-2">
               <span className="text-primary font-semibold">Teléfono:</span>
               <span className="text-gray-600">{user.phone}</span>
-            </div>
-            <div className="flex items-center justify-between py-2">
-              <span className="text-primary font-semibold">Favoritos:</span>
             </div>
           </div>
           <Link href="/admin/usuarios"><button className={styles.button}>Volver</button></Link>
