@@ -17,16 +17,6 @@ const UserList: React.FC<UserHistoryProps> = ({ users: initialUsers }) => {
     const [token, setToken] = useState<string | null>(null);
     const [dataUsers, setDataUsers] = useState<IUser[]>(initialUsers);
 
-    useEffect(() => {
-        const storedData = localStorage.getItem("user");
-        if (storedData) {
-          const parsedData = JSON.parse(storedData);
-          setToken(parsedData.token);
-        } else {
-          alert("No tienes permiso para esto");
-        }
-      }, []);
-
       const fetchUsers = async () => {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/users`, {
             method: "GET",
@@ -34,11 +24,7 @@ const UserList: React.FC<UserHistoryProps> = ({ users: initialUsers }) => {
           });
           const data = await res.json();
 
-          if(data.message === "Invalid Token"){
-            alert("Logueate nuevamente porfavor")
-            router.push("/login")
-            return
-          }else if (!res.ok) throw new Error('Error al obtener las propiedades');
+          if(!res.ok) throw new Error('Error al obtener las propiedades');
           setDataUsers(data);
       }
 
@@ -93,7 +79,7 @@ const UserList: React.FC<UserHistoryProps> = ({ users: initialUsers }) => {
                   </td>
                   <td className="border px-4 py-2 text-center flex justify-center gap-4">
               <button
-               /* onClick={(e) => handleDisapprovedProperty(e, property.id)}*/
+               onClick={(e) => handleDenyUser(e, user.id)}
                 className={styles.deny}>Eliminar</button>
             </td>
                 </tr>
