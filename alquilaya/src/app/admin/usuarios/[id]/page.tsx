@@ -1,8 +1,11 @@
+"use client"
 import styles from "./single.module.css"
 import { notFound } from 'next/navigation'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import HeaderAdmin from '@/Components/HeaderAdmin/HeaderAdmin'
 import Link from 'next/link'
+import { toast } from "react-toastify"
+
 
 const getUsersById = async (id: string) => {
 
@@ -19,6 +22,32 @@ const getUsersById = async (id: string) => {
 const page = async ({ params }: { params: { id: string } }) => {
 
   const user = await getUsersById(params.id)
+  const [token, setToken] = useState<string | null>(null);
+  const notifydeclineProperty = () => toast.success("Usuario Eliminado exitosamente", { autoClose: 3000 });
+
+  useEffect(() => {
+    const storedData = localStorage.getItem("user");
+    if (storedData) {
+      const parsedData = JSON.parse(storedData);
+      setToken(parsedData.token);
+    } else {
+      alert("No tienes permiso para esto");
+    }
+  }, []);
+
+  const handleDenyUser = async (e: React.MouseEvent, id: string) => {
+    e.preventDefault();
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/users/disable/${id}`, {
+      method: "PUT",
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    });
+    if (!res.ok) throw new Error('Error al cambiar el estado de la propiedad');
+    notifydeclineProperty();
+  };
+
 
   return (
     <div>
@@ -54,7 +83,7 @@ const page = async ({ params }: { params: { id: string } }) => {
             <div className="flex items-center justify-between py-2">
               <span className="text-primary font-semibold">Favoritos:</span>
               <div className="text-center">
-                <button className="bg-primary text-secondary px-4 py-2 rounded font-semibold">
+                <button  onClick={(e) => handleDenyUser(e, user.id)} className="bg-primary text-secondary px-4 py-2 rounded font-semibold">
                   Eliminar Usuario
                 </button>
               </div>
