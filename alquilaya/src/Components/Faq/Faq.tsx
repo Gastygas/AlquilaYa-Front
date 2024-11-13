@@ -33,7 +33,8 @@ const Faq = () => {
   };
 
   return (
-    <div className="faq-container padding-section">
+    <div className="container">
+      <div className='padding-section'>
       <h2 className="faq-title text-4xl text-center mb-8">Preguntas Frecuentes</h2>
       <div className="faq-list">
         {faqs.map((faq, index) => (
@@ -44,6 +45,7 @@ const Faq = () => {
             {openIndex === index && <p className="faq-answer mt-2">{faq.answer}</p>}
           </div>
         ))}
+      </div>
       </div>
     </div>
   );
