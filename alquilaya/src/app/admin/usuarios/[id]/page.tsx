@@ -1,7 +1,4 @@
-import FavButton from '@/Components/FavButton/FavButton'
-import Header from '@/Components/Header/Header'
 import styles from "./single.module.css"
-import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import React from 'react'
 import HeaderAdmin from '@/Components/HeaderAdmin/HeaderAdmin'
@@ -56,7 +53,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                         <button className="bg-primary text-secondary px-4 py-2 rounded font-semibold">
                           Ver más
                         </button>
-                        
+
                       </div>
                     </td>
                   </tr>
