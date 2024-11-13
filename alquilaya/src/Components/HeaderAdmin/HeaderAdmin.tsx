@@ -15,7 +15,6 @@ const HeaderAdmin = () => {
             <Link href="/admin"><li className={styles.itemsnav}> Dashboard</li></Link>
             <Link href="/admin/usuarios"><li className={styles.itemsnav}>Usuarios</li></Link>
             <Link href="/admin/propiedades"><li className={styles.itemsnav}>Propiedades</li></Link>
-            <Link href="/admin/transacciones"><li className={styles.itemsnav}>Transacciones</li></Link>
             <Link href="/admin/solicitudes"><li className={styles.itemsnav}>Solicitudes</li></Link>
           </ul>
         </div>

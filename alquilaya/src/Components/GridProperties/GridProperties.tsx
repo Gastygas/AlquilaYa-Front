@@ -15,7 +15,7 @@ const GridProperties = async () => {
   return (
     <Grid>
     {properties.filter((prop: IProperty) => {
-      if(prop.propertyStatus === "approved" && prop.user.status === true) return prop
+      if(prop.propertyStatus === "approved" /*&& prop.user.status === true*/) return prop
     }).map((property: IProperty) => (
       <Card key={properties.id} property={property} />
     ))}

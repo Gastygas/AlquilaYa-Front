@@ -7,10 +7,7 @@ interface PropertyTableProps {
   }
 
 const PropertiesHistory: React.FC<PropertyTableProps> = ({properties}) => {
-    const handleInfoProperty = async (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault();
-        // Aquí manejas la lógica para el botón "Eliminar"
-      };
+   
   return (
 <table className={styles.primary}>
           <thead>

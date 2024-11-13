@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import React, { useEffect, useState } from 'react'
 import { FaMapLocationDot, FaPeopleRoof } from "react-icons/fa6";
 import { IoBed } from "react-icons/io5";
 import { LiaToiletSolid } from "react-icons/lia";
