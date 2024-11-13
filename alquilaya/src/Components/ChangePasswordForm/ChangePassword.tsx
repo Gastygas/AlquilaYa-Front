@@ -9,8 +9,8 @@ const ChangePasswordForm = () => {
   const apiurl = process.env.NEXT_PUBLIC_BACK_URL;
   const initialUserAndEmail = {name:'',surname:'',userPhoto:'',email:'',idEmail:''}
   const searchParams= useSearchParams()
-  const email = searchParams.get('email')
-  const idEmail = searchParams.get('idEmail')
+  const email = searchParams ? searchParams.get('email') : null;
+  const idEmail = searchParams ? searchParams.get('idEmail') : null;
   const router = useRouter()
   const [userAndEmail, setUserAndEmail] = useState(initialUserAndEmail);
 
