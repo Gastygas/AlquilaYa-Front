@@ -5,10 +5,24 @@ import { validateEmail } from '@/app/helpers/validation';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { forgotPasswordService, loginService } from '@/services/authServices';
+import { Bounce, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const ForgetPasswordForm = () => {
   const initialData = { email: ""};
-  const router = useRouter()
+  const router = useRouter();
+  const notifySuccess = () => toast.info('Por favor, revisa tu mail. Puede demorar unos minutos, sea paciente y no vuelva a mandar otro mail sino suspenderemos su cuenta', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    transition: Bounce,
+    });
+    const notifyLoginFalse = () => toast.error("Inicio de sesión fallido, revisá tus datos", { autoClose: 3000 });
 
   const [data, setData] = useState(initialData);
   const [error, setError] = useState(initialData)
@@ -18,11 +32,11 @@ const ForgetPasswordForm = () => {
     const apiurl = process.env.NEXT_PUBLIC_BACK_URL;
     const response = await forgotPasswordService(apiurl + `/auth/forgot/password/${data.email}`)
     if (response.success) {
-      alert("Porfavor, revisa tu mail. Puede demorar unos minutos, sea paciente y no vuelva a mandar otro mail sino suspenderemos su cuenta");
+      notifySuccess()
       router.push('/')
       }
     else {
-      alert("Usuario o credenciales incorrectas");
+      notifyLoginFalse()
     }
   };
 
