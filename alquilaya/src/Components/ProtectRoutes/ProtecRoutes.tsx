@@ -11,7 +11,7 @@ const ProtectedRoute = ({ children, adminOnly = false }: { children: React.React
   const router = useRouter();
   const { user, loading } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(true);
-  const notifyLogOutTrue = () => toast.success("Has Cerrado Sesión exitosamente", { autoClose: 3000 });
+  const notifyLogOutTrue = () => toast.info("Necesitas iniciar sesión para acceder a esta página.", { autoClose: 3000 });
 
   useEffect(() => {
     if (!loading) {
