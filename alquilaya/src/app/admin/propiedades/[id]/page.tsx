@@ -38,7 +38,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                 <div className='w-full bg-green-300 flex flex-col py-10 mt-0 mb-8 justify-center align-middle gap-4'>
                     <h3 className='text-center'>Esta propiedad está aprobada</h3>
                     <div className='flex justify-center gap-8 pt-3'>
-                    <Link href="/admin/solicitudes"><button className={styles.buttonBack}>Atrás</button></Link>
+                    <Link href="/admin/propiedades"><button className={styles.buttonBack}>Atrás</button></Link>
                     <Link href={property.bill} target="_blank"><button className={styles.button}>Ver documento de respaldo</button></Link>
                     <Link href={`/propiedades/${property.id}`} target="_blank"><button className={styles.button}>Ver Propiedad aquí</button></Link>
                     </div>
@@ -46,14 +46,14 @@ const page = async ({ params }: { params: { id: string } }) => {
              : property.propertyStatus === 'pending' ? (<div className='w-full bg-orange-300 flex flex-col py-10 mt-0 mb-8 justify-center align-middle'>
                     <h3 className='text-center'>Esta propiedad está Pendiente</h3>
                     <div className='flex justify-center gap-8 pt-3'>
-                    <Link href="/admin/solicitudes"><button className={styles.buttonBack}>Atrás</button></Link>
+                    <Link href="/admin/propiedades"><button className={styles.buttonBack}>Atrás</button></Link>
                     <Link href={property.bill} target="_blank"><button className={styles.button}>Ver documento de respaldo</button></Link>
                     </div>
                 </div>)
              : (<div className='w-full bg-red-300 flex flex-col py-14 mt-0 mb-8 justify-center align-middle'>
                         <h3 className='text-center'>Esta propiedad está Cancelada</h3>
                         <div className='flex justify-center gap-8 pt-3'>
-                    <Link href="/admin/solicitudes"><button className={styles.buttonBack}>Atrás</button></Link>
+                    <Link href="/admin/propiedades"><button className={styles.buttonBack}>Atrás</button></Link>
                     <Link href={property.bill} target="_blank"><button className={styles.button}>Ver documento de respaldo</button></Link>
                     <Link href="/#"><button className={styles.button}>Eliminar</button></Link>
                     </div>

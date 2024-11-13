@@ -43,9 +43,10 @@ const page = async () => {
                   <td className="py-3 px-6 text-center">{user.phone}</td>
                   <td className="border px-4 py-2 text-center">
                     <div className="flex justify-center">
+                    <Link href={`/admin/usuarios/${user.id}`}>
                       <button className="bg-primary text-secondary px-4 py-2 rounded font-semibold">
                         Ver más
-                      </button>
+                      </button></Link>
                     </div>
                   </td>
                 </tr>
