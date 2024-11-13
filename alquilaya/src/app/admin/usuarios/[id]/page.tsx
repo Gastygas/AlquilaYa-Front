@@ -2,7 +2,7 @@ import styles from "./single.module.css"
 import { notFound } from 'next/navigation'
 import HeaderAdmin from '@/Components/HeaderAdmin/HeaderAdmin'
 import Link from 'next/link'
-import { toast } from "react-toastify"
+
 
 
 const getUsersById = async (id: string) => {
@@ -20,7 +20,7 @@ const getUsersById = async (id: string) => {
 const page = async ({ params }: { params: { id: string } }) => {
 
   const user = await getUsersById(params.id)
-  const notifydeclineProperty = () => toast.success("Usuario Eliminado exitosamente", { autoClose: 3000 });
+  /*const notifydeclineProperty = () => toast.success("Usuario Eliminado exitosamente", { autoClose: 3000 });
 
   const handleDenyUser = async (e: React.MouseEvent, id: string) => {
     e.preventDefault();
@@ -32,7 +32,7 @@ const page = async ({ params }: { params: { id: string } }) => {
     });
     if (!res.ok) throw new Error('Error al cambiar el estado de la propiedad');
     notifydeclineProperty();
-  };
+  };*/
 
 
   return (
@@ -68,11 +68,6 @@ const page = async ({ params }: { params: { id: string } }) => {
             </div>
             <div className="flex items-center justify-between py-2">
               <span className="text-primary font-semibold">Favoritos:</span>
-              <div className="text-center">
-                <button  onClick={(e) => handleDenyUser(e, user.id)} className="bg-primary text-secondary px-4 py-2 rounded font-semibold">
-                  Eliminar Usuario
-                </button>
-              </div>
             </div>
           </div>
           <Link href="/admin/usuarios"><button className={styles.button}>Volver</button></Link>
