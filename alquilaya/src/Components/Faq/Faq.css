@@ -1,0 +1,45 @@
+.faq-container {
+    @apply container bg-white rounded-lg shadow-lg p-8;
+    background-color: var(--background);
+}
+
+.faq-title {
+    font-family: var(--font-primary);
+    color: var(--darkBlue);
+    font-weight: 700;
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.faq-item {
+    @apply border-b-2 border-[#9AEDFF] pb-4 mb-4;
+    /* Usamos el código hexadecimal para lightBlue */
+    transition: background-color 0.3s ease;
+}
+
+.faq-item:hover {
+    background-color: rgba(156, 237, 255, 0.1);
+    /* Efecto de fondo al pasar el cursor */
+}
+
+.faq-question {
+    @apply text-primary font-semibold focus:outline-none;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.5rem 0;
+    text-align: left;
+}
+
+.faq-question:hover {
+    color: var(--cyan);
+}
+
+.faq-answer {
+    @apply text-lg text-foreground mt-2 pl-4;
+    line-height: 1.5;
+}
