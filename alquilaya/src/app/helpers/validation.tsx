@@ -47,8 +47,6 @@ export const validatePhone = (name:string): string => {
 
 
 
-//  Gaston Gonzalez
-
 
 export const validatePassword = (password: string): string => {
     let validation = "";

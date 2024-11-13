@@ -5,6 +5,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 import ButtonCyanBack from "../ButtonCyan/ButtonCyanBack";
 import styles from "./Steps.module.css"
 import { getPropertyById} from "@/services/dataUserService";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Step5: React.FC = () => {
     const searchParams = useSearchParams();
@@ -17,6 +19,8 @@ const Step5: React.FC = () => {
     const maxSize = 2 * 1024 * 1024;
     const router = useRouter();
     const propertyId = searchParams.get('id');
+    const notifyUploadTrue = () => toast.success("Imagen cargada exitosamente", { autoClose: 3000 });
+    const notifyUploadFalse = () => toast.error("Error al cargar las imágenes, revisa su formato o peso", { autoClose: 3000 });
 
     useEffect(() => {
         const storedData = localStorage.getItem("user");
@@ -80,7 +84,7 @@ const Step5: React.FC = () => {
             const res = await response.json();
             if (res.success) {
                 setBillUpdated(res.property.bill)
-                alert("Tu factura se subió correctamente!");
+                notifyUploadTrue()
             } else {
                 alert("Error al cargar las imágenes.");
             }
@@ -126,7 +130,7 @@ const Step5: React.FC = () => {
         <div className={styles.container}>
             <h2 className={styles.heading}>Subí una factura de la propiedad</h2>
             <div className={styles.inputContainer}>
-                <label className={styles.inputLabel}>Selecciona un archivo de factura (obligatorio)</label>
+                <label className={styles.inputLabel}>Selecciona un archivo de factura <strong>(obligatorio)</strong><br/>Tamaño máximo 2mb</label>
                 <input
                     type="file"
                     name="invoiceFile"

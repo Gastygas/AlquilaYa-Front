@@ -3,10 +3,12 @@ import Step5 from '@/Components/Sube-tu-propiedad/Step-5'
 import React, { Suspense } from 'react'
 import styles from './step5.module.css'
 import Loader from '@/Components/Loader/Loader';
+import ProtectedRoute from '@/Components/ProtectRoutes/ProtecRoutes';
 
 const paso5 = () => {
   return (
-    <div className='bg-gray-100'>
+    <ProtectedRoute>
+    <div>
     <Header />
     {/* <div className={styles.container}> */}
       <div className='container' >
@@ -15,6 +17,7 @@ const paso5 = () => {
       </Suspense>
       </div>
     </div>
+    </ProtectedRoute>
   )
 }
 

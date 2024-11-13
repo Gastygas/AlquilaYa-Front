@@ -26,11 +26,10 @@ const RegisterForm = () => {
 
     const response: any = await registerService(`${process.env.NEXT_PUBLIC_BACK_URL}/auth/signup`, data)
     if (response.succes) {
-      notifyRegisterTrue;
+      notifyRegisterTrue();
       router.back();
     } else {
       notifyRegisterFalse();
-      //alert(`Porfavor revisa los siguientes campos: ${response.error.map((err:any) => err.property)}`);
     }
 
   };
