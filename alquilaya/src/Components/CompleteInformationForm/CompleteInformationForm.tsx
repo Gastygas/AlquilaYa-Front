@@ -119,7 +119,6 @@ const CompleteInformationForm = () => {
             className={styles.input}
             onChange={handleChange}
             value={data?.name}
-            onBlur={handleBlur}
           />
           {dirty.name ? <p className='text-red-600 text-sm'>{error.name}</p> : null}
           <label htmlFor="surname">Apellido:</label>
@@ -131,7 +130,6 @@ const CompleteInformationForm = () => {
             className={styles.input}
             onChange={handleChange}
             value={data.surname}
-            onBlur={handleBlur}
           />
           {dirty.surname ? <p className='text-red-600 text-sm'>{error.surname}</p> : null}
           <label htmlFor="address">Dirección:</label>
@@ -143,7 +141,6 @@ const CompleteInformationForm = () => {
             className={styles.input}
             onChange={handleChange}
             value={data.address}
-            onBlur={handleBlur}
           />
           {dirty.address ? <p className='text-red-600 text-sm'>{error.address}</p> : null}
           <label htmlFor="country">País:</label>
@@ -155,7 +152,6 @@ const CompleteInformationForm = () => {
             className={styles.input}
             onChange={handleChange}
             value={data.country}
-            onBlur={handleBlur}
           />
           {dirty.country ? <p className='text-red-600 text-sm'>{error.country}</p> : null}
           
@@ -170,7 +166,6 @@ const CompleteInformationForm = () => {
             className={styles.input}
             onChange={handleChange}
             value={data.dni}
-            onBlur={handleBlur}
           />
           {dirty.dni ? <p className='text-red-600 text-sm'>{error.dni}</p> : null}
         <label htmlFor="phone">Teléfono:</label> 
@@ -182,7 +177,6 @@ const CompleteInformationForm = () => {
             className={styles.input}
             onChange={handleChange}
             value={data.phone}
-            onBlur={handleBlur}
           />
           {dirty.phone ? <p className='text-red-600 text-sm'>{error.phone}</p> : null}
           <label htmlFor="email">Email:</label>
@@ -194,7 +188,6 @@ const CompleteInformationForm = () => {
             className={styles.input}
             onChange={handleChange}
             value={data.email}
-            onBlur={handleBlur}
           />
           {dirty.email ? <p className='text-red-600 text-sm'>{error.email}</p> : null}
           {/* <label htmlFor="password">Contraseña:</label>
