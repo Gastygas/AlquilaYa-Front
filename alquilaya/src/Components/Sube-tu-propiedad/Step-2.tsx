@@ -10,6 +10,7 @@ import { IsSelectedItem } from './types';
 const Step2 = () => {
     const router = useRouter();
     const [isSelected, setIsSelected] = useState<IsSelectedItem[]>([]);
+    //const [isLoading, setIsLoading] = useState(false);
 
 
     useEffect(() => {
@@ -69,6 +70,20 @@ const Step2 = () => {
         sessionStorage.setItem('data', JSON.stringify({ ...data, services: isSelected }));
         router.push('/sube-tu-propiedad/paso-3');
     };
+
+    // setIsLoading(true); // Activar estado de carga
+    // try {
+    //     let data = sessionStorage.getItem('data') ? JSON.parse(sessionStorage.getItem('data')!) : {};
+    //     sessionStorage.setItem('data', JSON.stringify({ ...data, services: isSelected }));
+
+    //     setTimeout(() => {
+    //         router.push('/sube-tu-propiedad/paso-3'); // Redirige después de guardar
+    //     }, 500); // Agrega un pequeño retraso para mejorar la UX
+    // } catch (error) {
+    //     alert("Hubo un error al guardar los datos. Intenta nuevamente.");
+    //     setIsLoading(false); // Desactivar el estado de carga en caso de error
+    // }
+
 
     return (
         <div className={styles.box}>
