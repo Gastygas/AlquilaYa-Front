@@ -10,6 +10,8 @@ import { getUserData } from '@/services/dataUserService';
 // import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
 import AuthContext from '../contexts/authContext';
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -18,12 +20,13 @@ const CompleteInformationForm = () => {
   const initialDirty = { id: false, email: false, address: false,country: false, dni: false, name: false, phone: false, surname: false};
   const initialToken = "Nada";
   const {setUser} = useContext(AuthContext);
-
   const router = useRouter()
   const [data, setData] = useState(initialData);
   const [error, setError] = useState(initialData);
   const [dirty, setDirty] = useState(initialDirty);
   const [token, setToken] = useState(initialToken);
+  const notifyLoginTrue = () => toast.success("Registro exitoso", { autoClose: 3000 });
+  const notifyLoginFalse = () => toast.error("Registro fallido, revisá tus datos", { autoClose: 3000 });
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -36,13 +39,11 @@ const CompleteInformationForm = () => {
     console.log("response: ", response);
     if (response.success) {
       setUser(response);  
-      //localStorage.setItem("user", JSON.stringify(response));
-      
-      alert("Registro exitoso");
+notifyLoginTrue();
       //router.push('/');
       window.location.href = '/';
     } else {
-      alert(`Porfavor revisa los siguientes campos: ${response.error.map((err:any) => err.property)}`);
+notifyLoginFalse()
     }
   };
 
@@ -68,10 +69,6 @@ const CompleteInformationForm = () => {
     });
   }, [data]);
  
-  //--------------------------------------------------------------------------
-  //------------Cookie--------------------------------------------------------
-  //--------------------------------------------------------------------------
-  
   useEffect(() => {
 //--------------Comienza agregado para obtener token por param-----------------
     const params = new URLSearchParams(window.location.search);
