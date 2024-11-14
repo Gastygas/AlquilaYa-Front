@@ -30,6 +30,12 @@ const BookForm: React.FC<BookFormProps> = ({
     
   }, []);
 
+  const handleGoToLogin = async(e:any) =>{
+    e.preventDefault()
+    alert("Para reservar tenes que loguearte primero")
+    return;
+  }
+
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -144,11 +150,20 @@ const BookForm: React.FC<BookFormProps> = ({
             />
           </div>
         </div>
-        <div className={styles.centerButton}>
+        {userId === null? (
+          <div className={styles.centerButton}>
+          <button type="submit" className={styles.button} onClick={handleGoToLogin}>
+            Reservar
+          </button>
+        </div>
+        ):(
+          <div className={styles.centerButton}>
           <button type="submit" className={styles.button} onClick={loadMercadoPagoScript}>
             Reservar
           </button>
         </div>
+        )}
+        
       </form>
     </>
   );
