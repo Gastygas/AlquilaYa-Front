@@ -33,9 +33,10 @@ const Faq = () => {
   };
 
   return (
-    <div className="faq-container padding-section">
+    <div className="container">
+      <div className='padding-section'>
       <h2 className="faq-title text-4xl text-center mb-8">Preguntas Frecuentes</h2>
-      <div className="faq-list">
+      <div className="faq-list w-full">
         {faqs.map((faq, index) => (
           <div key={index} className="faq-item">
             <button className="faq-question text-2xl" onClick={() => toggleFaq(index)}>
@@ -44,6 +45,7 @@ const Faq = () => {
             {openIndex === index && <p className="faq-answer mt-2">{faq.answer}</p>}
           </div>
         ))}
+      </div>
       </div>
     </div>
   );

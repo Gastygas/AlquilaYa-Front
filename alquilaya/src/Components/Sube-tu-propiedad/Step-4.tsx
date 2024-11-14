@@ -27,6 +27,11 @@ const Step4: React.FC = () => {
   const [map, setMap] = useState<google.maps.Map | null>(null);
   const [marker, setMarker] = useState<google.maps.Marker | null>(null);
   const router = useRouter();
+  const notifyLoginAgain = () => toast.error("Por favor logueate de nuevo", { autoClose: 3000 });
+  const notifyErrorAddress = () => toast.error("Ya existe una propiedad con esa direccion o habitacion", { autoClose: 3000 });
+  // const notifyErrorAddress = () => toast.error(`Faltan estos datos completos: ${res.error.map((err: any) => err.property)}`, { autoClose: 3000 });
+  const notifyErrorSendProperty= () => toast.error(`Faltan datos a completar`, { autoClose: 3000 });
+  const notifyErrorDatabase= () => toast.error(`Error en la solicitud`, { autoClose: 3000 });
   const notifySuccess = () => toast.info('Ahora busca una foto de tu propiedad y otra como una factura de luz o agua para que sepamos que te pertenece', {
     position: "top-center",
     autoClose: 5000,
@@ -182,20 +187,20 @@ const Step4: React.FC = () => {
         return
 
       } if (res.message === "Invalid Token") {
-        alert("Logueate nuevamente porfavor")
+        notifyLoginAgain()
         router.push("/login")
         return
       }
       if (res.message === "Address already used") {
-        alert("Ya existe una propiedad con la misma dirección y/o misma habitacion ")
+        notifyErrorAddress()
         return
       }
       else {
-        alert(`Faltan estos datos completos: ${res.error.map((err: any) => err.property)}`);
+        notifyErrorSendProperty()
       }
     } catch (error: any) {
       console.log(error);
-      alert("Ocurrió un error al enviar los datos.");
+      notifyErrorDatabase()
     }
   };
 

@@ -3,6 +3,13 @@ import "./globals.css";
 import Footer from "@/Components/Footer/Footer";
 import { AuthProvider } from "@/Components/contexts/authContext";
 import { ToastContainer } from "react-toastify";
+import { Figtree } from 'next/font/google';
+
+const figtree = Figtree({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'], 
+  display: 'swap', 
+});
 
 export const metadata: Metadata = {
   title: "AlquilaYa",
@@ -19,8 +26,8 @@ export default function RootLayout({
 }>) {
   return (
     <AuthProvider>
-    <html lang="es">
-      <body>
+    <html lang="es" className={figtree.className}>
+      <body className={figtree.className}>
       <ToastContainer />
         <main>{children}</main>
         <Footer />

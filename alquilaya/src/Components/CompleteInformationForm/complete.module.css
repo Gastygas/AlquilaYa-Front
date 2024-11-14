@@ -6,3 +6,7 @@
     @apply mt-20 flex text-sm px-28 py-[10px] rounded-[20px] bg-primary text-secondary font-bold
     cursor-pointer transition-all duration-300 hover:scale-90
 }
+
+.errorText{
+    @apply text-red-600 text-sm
+}

@@ -125,3 +125,28 @@
   appearance: none; /* Añade soporte estándar */
   margin: 0;
 }
+
+  .imagesUploaded{
+    transition: 0.4s;
+    margin-top: 15px;
+    width: 200px;
+    height: 200px;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  .imagesUploaded:hover{
+    transition: 0.4s;
+    width: 220px;
+    height: 220px;;
+  }
+
+  .divImagesUploaded{
+    transition: 0.4s;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }

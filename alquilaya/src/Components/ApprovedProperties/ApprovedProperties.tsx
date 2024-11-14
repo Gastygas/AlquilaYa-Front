@@ -4,6 +4,7 @@ import styles from "./Approve.module.css"
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import Link from "next/link";
 
 interface PropertyTableProps {
     properties: IProperty[];
@@ -12,7 +13,6 @@ interface PropertyTableProps {
 const ApprovedProperties:  React.FC<PropertyTableProps> = ({ properties: initialProperties}) => {
   const [token, setToken] = useState<string | null>(null);
   const [properties, setProperties] = useState<IProperty[]>(initialProperties);
-  const notifyApproveProperty = () => toast.success("Propiedad aprobada", { autoClose: 3000 });
   const notifydeclineProperty = () => toast.success("Propiedad Denegada exitosamente", { autoClose: 3000 });
 
 
@@ -77,13 +77,15 @@ const ApprovedProperties:  React.FC<PropertyTableProps> = ({ properties: initial
                    <p className="text-green-600 uppercase text-sm" >activa</p> : <p className=" text-sm text-red-600 rounded uppercase">cancelada</p>}</td>
                   <td className="border px-4 py-2 text-center">
                     <div className="flex justify-center">
+                    <Link href={`/admin/propiedades/${properties.id}`}>
                       <button className="bg-primary text-secondary px-4 py-2 rounded font-semibold">
                         Ver más
-                      </button>
+                      </button></Link>
                     </div>
                   </td>
                   <td className="border px-4 py-2 text-center">
                     <div className="flex justify-center">
+
                       <button onClick={(e) => handleDisapprovedProperty(e, properties.id)} className={styles.deleteButton}>
                         Eliminar
                       </button>
