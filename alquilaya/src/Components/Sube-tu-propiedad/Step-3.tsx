@@ -18,7 +18,6 @@ const Step3: React.FC = () => {
 
         return !!limitCapacity && !!bedrooms && !!bathrooms && !!price
     }
-    console.log(checkInput())
 
     useEffect(() => {
         let data = sessionStorage.getItem('data') ? JSON.parse(sessionStorage.getItem('data')!) : {}
@@ -42,7 +41,6 @@ const Step3: React.FC = () => {
             setPetFriendly(data.petFriendly)
         }
     }, [])
-    console.log(limitCapacity, bedrooms, bathrooms, price, petFriendly)
 
 
     const saveDataPage = () => {
@@ -60,6 +58,12 @@ const Step3: React.FC = () => {
     const backPage = () => {
         router.push('/sube-tu-propiedad/paso-2')
     }
+
+    const handleNumberInput = (setter: React.Dispatch<React.SetStateAction<number | "">>) => 
+        (e: React.ChangeEvent<HTMLInputElement>) => {
+            const value = e.target.value.replace(/[^0-9]/g, ""); 
+            setter(value === "" ? "" : Number(value));
+        };
 
     return (
         <div className={styles.box}>
@@ -81,9 +85,11 @@ const Step3: React.FC = () => {
                                 id="limitCapacity"
                                 placeholder="Ingrese límite de capacidad"
                                 value={limitCapacity}
-                                onChange={(e) => setLimitCapacity(Number(e.target.value) || "")}
+                                // onChange={(e) => setLimitCapacity(Number(e.target.value) || "")}
+                                onChange={handleNumberInput(setLimitCapacity)}
                                 className={styles.inputStyle}
                                 required
+                                style={{ MozAppearance: "textfield" }}
                             />
                         </div>
 
@@ -95,7 +101,8 @@ const Step3: React.FC = () => {
                                 id="bedrooms"
                                 placeholder="Ingrese cantidad de dormitorios"
                                 value={bedrooms}
-                                onChange={(e) => setBedrooms(Number(e.target.value) || "")}
+                                // onChange={(e) => setBedrooms(Number(e.target.value) || "")}
+                                onChange={handleNumberInput(setBedrooms)}
                                 className={styles.inputStyle}
                                 required
                             />
@@ -108,9 +115,12 @@ const Step3: React.FC = () => {
                                 id="bathrooms"
                                 placeholder="Ingrese cantidad de baños"
                                 value={bathrooms}
-                                onChange={(e) => setBathrooms(Number(e.target.value) || "")}
+                                // onChange={(e) => setBathrooms(Number(e.target.value) || "")}
+                                onChange={handleNumberInput(setBathrooms)}
                                 className={styles.inputStyle}
                                 required
+                                style={{ MozAppearance: "textfield" }}
+                                
                             />
                         </div>
 
@@ -122,9 +132,11 @@ const Step3: React.FC = () => {
                                 id="price"
                                 placeholder="Ingrese sólo números"
                                 value={price}
-                                onChange={(e) => setPrice(Number(e.target.value) || "")}
+                                // onChange={(e) => setPrice(Number(e.target.value) || "")}
+                                onChange={handleNumberInput(setPrice)}
                                 className={styles.inputStyle}
                                 required
+                                style={{ MozAppearance: "textfield" }}
                             />
                         </div>
 

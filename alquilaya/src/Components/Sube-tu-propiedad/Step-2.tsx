@@ -50,11 +50,12 @@ const Step2 = () => {
         const selectedServices: { [key: string]: boolean } = {};
 
         iconData.forEach((service) => {
-            if (isSelected.some((selected) => selected.id === service.id)) {
-                selectedServices[service.id] = true;
-            } else {
-                selectedServices[service.id] = false;
-            }
+            // if (isSelected.some((selected) => selected.id === service.id)) {
+            //     selectedServices[service.id] = true;
+            // } else {
+            //     selectedServices[service.id] = false;
+            // }
+            selectedServices[service.id] = isSelected.some((selected) => selected.id === service.id);
         });
 
         return selectedServices;
@@ -64,7 +65,8 @@ const Step2 = () => {
     const saveDataPage = () => {
         let data = sessionStorage.getItem('data') ? JSON.parse(sessionStorage.getItem('data')!) : {};
         // data.services = recorreServicios();
-        sessionStorage.setItem('data', JSON.stringify({...data, ...recorreServicios()}));
+        // sessionStorage.setItem('data', JSON.stringify({...data, ...recorreServicios()}));
+        sessionStorage.setItem('data', JSON.stringify({ ...data, services: isSelected }));
         router.push('/sube-tu-propiedad/paso-3');
     };
 
