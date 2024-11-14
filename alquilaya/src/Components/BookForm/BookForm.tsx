@@ -62,6 +62,7 @@ const BookForm: React.FC<BookFormProps> = ({
 
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/mercadopago`, {
+
         method: "POST",
         headers: {
           "Content-Type": "application/json",
