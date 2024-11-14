@@ -61,7 +61,7 @@ const BookForm: React.FC<BookFormProps> = ({
     };
 
     try {
-      const response = await fetch(`https://alquilaya.vercel.app/`, {
+      const response = await fetch(`https://alquilaya.vercel.app/mercadoPago`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
