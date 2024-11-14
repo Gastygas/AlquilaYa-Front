@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Script from "next/script";
 import styles from "./BookForm.module.css";
+import { IUser } from "@/Interfaces/IUser";
 
 interface BookFormProps {
   propertyId: string;
@@ -25,9 +26,15 @@ const BookForm: React.FC<BookFormProps> = ({
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
-    setUserId(storedUser.user.id || null);
+    setUserId(storedUser.user?.id || null);
     
   }, []);
+
+  const handleGoToLogin = async(e:any) =>{
+    e.preventDefault()
+    alert("Para reservar tenes que loguearte primero")
+    return;
+  }
 
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -62,7 +69,6 @@ const BookForm: React.FC<BookFormProps> = ({
 
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/mercadopago`, {
-
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -102,6 +108,7 @@ const BookForm: React.FC<BookFormProps> = ({
       });
     }
   }, [preferenceId, isMercadoPagoScriptLoaded]);
+  
 
   return (
     <>
@@ -143,11 +150,20 @@ const BookForm: React.FC<BookFormProps> = ({
             />
           </div>
         </div>
-        <div className={styles.centerButton}>
+        {userId === null? (
+          <div className={styles.centerButton}>
+          <button type="submit" className={styles.button} onClick={handleGoToLogin}>
+            Reservar
+          </button>
+        </div>
+        ):(
+          <div className={styles.centerButton}>
           <button type="submit" className={styles.button} onClick={loadMercadoPagoScript}>
             Reservar
           </button>
         </div>
+        )}
+        
       </form>
     </>
   );
