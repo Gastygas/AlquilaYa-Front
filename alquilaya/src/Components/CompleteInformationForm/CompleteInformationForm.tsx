@@ -119,7 +119,7 @@ notifyLoginFalse()
     <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center'>
       <div className='grid grid-cols-2 gap-4'>
         <div className='gap-4 '>
-        <label htmlFor="name">Nombre de usuario:</label>
+        <label htmlFor="name">Nombre:</label>
           <input
             type='text'
             id='name'
@@ -128,6 +128,7 @@ notifyLoginFalse()
             className={styles.input}
             onChange={handleChange}
             value={data?.name}
+            disabled={true}
           />
           {dirty.name ? <p className={styles.errorText}>{error.name}</p> : null}
           <label htmlFor="surname">Apellido:</label>
@@ -139,6 +140,7 @@ notifyLoginFalse()
             className={styles.input}
             onChange={handleChange}
             value={data.surname}
+            disabled={true}
           />
           {dirty.surname ? <p className={styles.errorText}>{error.surname}</p> : null}
           <label htmlFor="address">Dirección:</label>
@@ -197,6 +199,7 @@ notifyLoginFalse()
             className={styles.input}
             onChange={handleChange}
             value={data.email}
+            disabled={true}
           />
           {dirty.email ? <p className={styles.errorText}>{error.email}</p> : null}
           {/* <label htmlFor="password">Contraseña:</label>
