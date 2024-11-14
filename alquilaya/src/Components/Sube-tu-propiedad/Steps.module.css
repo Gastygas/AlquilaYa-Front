@@ -89,7 +89,7 @@
     color: #171717;
   }
 
-  /* para que no aparezca la flecha del input */
+  /* para que no aparezca la flecha del input es todo el código de abajo */
 .numberInput {
   -webkit-appearance: none;
   -moz-appearance: textfield;
@@ -118,7 +118,7 @@
   appearance: none; /* Remueve las flechas en navegadores compatibles */
 }
 
-/* Para ocultar las flechas en Chrome y Safari */
+/* Para ocultar las flechas en Chrome */
 .inputStyle[type="number"]::-webkit-outer-spin-button,
 .inputStyle[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
