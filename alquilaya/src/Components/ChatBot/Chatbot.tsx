@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import styles from './ChatBot.module.css';
 
 interface Message {
@@ -11,12 +11,15 @@ function Chatbot() {
   const initialOptions = [
     { text: 'Consulta de propiedades', subOptions: ['Ver todas'], isOpen: false },
     { text: 'Precios de alquileres', subOptions: ['Todos'], isOpen: false },
-    { text: 'Formas de pago', subOptions: ['pago'], isOpen: false },
+    { text: '¿Cuáles son las opciones de pago disponibles?', subOptions: ['Ver forma de pago'], isOpen: false },
+    { text: '¿Las propiedades están amuebladas?', subOptions: ['Ver opciones de propiedades'], isOpen: false },
   ];
 
   const [options, setOptions] = useState(initialOptions);
   const [messages, setMessages] = useState<Message[]>([]);
   const [isOpen, setIsOpen] = useState(false);
+
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   const toggleChat = () => setIsOpen(!isOpen);
 
@@ -47,6 +50,10 @@ function Chatbot() {
       ]);
     }
   };
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
 
   return (
     <>
@@ -96,6 +103,7 @@ function Chatbot() {
                 )}
               </div>
             ))}
+            <div ref={messagesEndRef} />
           </div>
         </div>
       )}
