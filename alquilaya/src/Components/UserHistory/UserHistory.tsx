@@ -23,7 +23,7 @@ const UserHistory = () => {
     fetchUserData();
   }, []);
 
-  if (userData?.properties.length === 0)
+  if (userData?.bookings.length === 0)
     return (
       <div className={styles.booksGrid}>
         <h3 className={styles.title}>Tus Reservas</h3>
@@ -36,11 +36,11 @@ const UserHistory = () => {
     <div className={styles.colorBox}>
       <h3 className={styles.title}>Tus Reservas</h3>
 
-      {userData?.properties?.map((property, index) => (
+      {userData?.bookings?.map((property, index) => (
         <div key={index} className={styles.item}>
-          <Image src={property.photos[0]} alt="book" width={60} height={60} />
+          <Image src={userData.bookings[index].property.photos[0]} alt="book" width={60} height={60} />
           <h4>
-            {property.propertyName} <br /> {property.country}
+            {userData.bookings[index].property.propertyName} <br /> {userData.bookings[index].property.price}
           </h4>
         </div>
       ))}
