@@ -28,6 +28,10 @@ const GridFav = () => {
       
           fetchUserData();
         }, []);
+
+        const handleRemoveFavorite = (propertyId: string) => {
+          setProperties(prevProperties => prevProperties.filter(property => property.id !== propertyId));
+        };
       
         if (!userData || userData?.favoriteProperties.length === 0) {
           return ( <div>
@@ -37,8 +41,11 @@ const GridFav = () => {
   
   return (
     <Grid>
-{properties.map((property: IProperty, i) => (
-   <Card key={i} property={property} />))}
+    {properties.filter((property) => {
+        return userData.favoriteProperties.includes(property.id);
+      }).map((property: IProperty, i) => (
+        <Card key={i} property={property} onRemoveFavorite={handleRemoveFavorite} />
+      ))}
   </Grid>
   )
 }
