@@ -64,7 +64,7 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
     );
     console.log(
       "Fechas excluidas actualizadas (DD/MM/YYYY):",
-      excludedDates.map((date) => date.toLocaleDateString("en-GB"))
+      excludedDates.map((date) => date.toLocaleDateString("en-AR"))
     );
   }, [excludedDates]);
 
