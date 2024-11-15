@@ -45,7 +45,8 @@ function Chatbot() {
       return; 
     }
 
-    const url =  'https://alquilaya-back-latest.onrender.com';
+    // const url =  'https://alquilaya-back-latest.onrender.com';
+    const url = 'http://localhost:3001';
     const response = await fetch(`${url}/chatbot/response`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
