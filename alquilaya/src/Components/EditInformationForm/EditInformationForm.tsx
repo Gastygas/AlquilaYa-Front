@@ -17,7 +17,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { getUserData } from "@/services/dataUserService";
 import { IUser } from "@/Interfaces/IUser";
 
-const CompleteInformationForm = () => {
+const EditInformationForm = () => {
   // Estados iniciales
   const initialData = {
     id: "",
@@ -216,4 +216,4 @@ const CompleteInformationForm = () => {
   );
 };
 
-export default CompleteInformationForm;
+export default EditInformationForm;

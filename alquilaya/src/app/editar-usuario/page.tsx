@@ -1,4 +1,5 @@
 import CompleteInformationForm from '@/Components/CompleteInformationForm/CompleteInformationForm'
+import EditInformationForm from '@/Components/EditInformationForm/EditInformationForm'
 import Header from '@/Components/Header/Header'
 import React from 'react'
 
@@ -9,7 +10,7 @@ const page = () => {
     <div className='container'>
       <div className='padding-section'>
 <h1>Edita tu información</h1>
-<CompleteInformationForm/>
+<EditInformationForm/>
       </div>
     </div>
     </div>
