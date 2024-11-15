@@ -39,7 +39,7 @@ const GridProperties = () => {
       {properties
         .filter((prop: IProperty) => 
           prop.propertyStatus === "approved" && 
-          prop.user.status === true &&
+          // prop.user.status === true &&
           (!userId || prop.user.id !== userId) // Filtra si el usuario no es el propietario
         )
         .map((property: IProperty) => (
