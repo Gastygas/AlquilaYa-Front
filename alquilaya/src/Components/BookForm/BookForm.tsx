@@ -149,7 +149,7 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
 
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.boxGrid}>
-          <div>
+          <div className={styles.boxInput}>
             <label htmlFor="checkInDate" className={styles.label}>
               Fecha de Entrada
             </label>
@@ -163,8 +163,8 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
               className={styles.input}
               placeholderText="Selecciona la fecha de entrada"
             />
-          </div>
-          <div>
+          </div >
+          <div className={styles.boxInput}>
             <label htmlFor="checkOutDate" className={styles.label}>
               Fecha de Salida
             </label>
@@ -182,7 +182,7 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
         </div>
         <div className={styles.centerButton}>
           <button type="submit" className={styles.button} onClick={loadMercadoPagoScript}>
-            Reservar3
+            Reservar
           </button>
         </div>
       </form>

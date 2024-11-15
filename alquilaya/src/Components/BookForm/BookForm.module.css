@@ -22,3 +22,7 @@
 .centerButton{
     @apply flex justify-center
 }
+
+.boxInput{
+    @apply flex justify-center align-middle gap-4
+}

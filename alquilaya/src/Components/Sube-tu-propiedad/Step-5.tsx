@@ -24,7 +24,7 @@ const Step5: React.FC = () => {
     const notifyMaxImg = () => toast.error("Solo puedes subir un máximo de 5 imágenes.", { autoClose: 3000 });
     const notifyMaxImg2 = () => toast.error("Solo puedes subir una (1) imagen.", { autoClose: 3000 });
     const notifyErrorsolicitud = () => toast.error("Error en la solicitud", { autoClose: 3000 });
-    const notifySuccess = () => toast.info('Tu propiedad se ha subido correctamente. Ahora, espera a que un administrador la evalúe.Te llegara una notifiacion por mail si te fue aprobada o denegada. Gracias por llenar el formulario correctamente.', {
+    const notifySuccess = () => toast.info('Tu propiedad se ha subido correctamente. Ahora, espera a que un administrador la evalúe.Te llegara una notificación por mail si te fue aprobada o denegada. Gracias por llenar el formulario correctamente.', {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
