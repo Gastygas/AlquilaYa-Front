@@ -36,39 +36,39 @@ const SuccessPage = () => {
             <h2 className="text-xl font-bold mb-4">Detalles de la Reserva</h2>
             <p>
               <strong>ID de la reserva:</strong>{" "}
-              {userData?.bookings[userData.bookings.length - 1].id}
+              {userData?.bookings[userData.bookings.length - 1]?.id}
             </p>
             <p>
               <strong>Método de pago:</strong>
-              {userData?.bookings[userData.bookings.length - 1].payment
+              {userData?.bookings[userData.bookings.length - 1]?.payment
                 ?.method === "credit_card"
                 ? "Tarjeta de crédito"
-                : userData?.bookings[userData.bookings.length - 1].payment
+                : userData?.bookings[userData.bookings.length - 1]?.payment
                     ?.method === "debit_card"
                 ? "Tarjeta de débito"
                 : "Otro método de pago"}
             </p>
             <p>
               <strong>Monto: $</strong>{" "}
-              {userData?.bookings[userData.bookings.length - 1].payment.amount}
+              {userData?.bookings[userData.bookings.length - 1]?.payment.amount}
             </p>
             <p>
               <strong>Fecha de inicio:</strong>{" "}
-              {userData?.bookings[userData.bookings.length - 1].dateStart}
+              {userData?.bookings[userData.bookings.length - 1]?.dateStart}
             </p>
             <p>
               <strong>Fecha de fin:</strong>{" "}
-              {userData?.bookings[userData.bookings.length - 1].dateEnd}
+              {userData?.bookings[userData.bookings.length - 1]?.dateEnd}
             </p>
           </div>
 
           <div className="bg-white p-6 rounded-lg shadow-lg flex flex-col justify-center items-start space-y-4">
             <h2 className="text-xl font-bold mb-4">Foto de la Propiedad</h2>
-            {userData?.bookings[userData.bookings.length - 1].property
+            {userData?.bookings[userData.bookings.length - 1]?.property
               .photos ? (
               <img
                 src={
-                  userData?.bookings[userData.bookings.length - 1].property
+                  userData?.bookings[userData.bookings.length - 1]?.property
                     .photos[0]
                 }
                 alt="Foto de la propiedad"

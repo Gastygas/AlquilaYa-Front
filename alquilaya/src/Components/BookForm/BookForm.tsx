@@ -57,6 +57,28 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
     setUserId(storedUser.user?.id || null);
   }, [propertyId]);
 
+  useEffect(() => {
+    const fetchProperty = async () => {
+      try {
+        console.log(propertyId);
+        
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property/${propertyId}`);
+        const data = await response.json();
+        console.log(data);
+        
+        if (data && data.reservedDays) {
+          // Convertir las fechas reservadas en el formato requerido para DatePicker
+          const formattedDates = data.reservedDays.map((dateString: string) => new Date(dateString));
+          setExcludedDates(formattedDates);
+        }
+      } catch (error) {
+        console.error("Error al obtener la propiedad:", error);
+      }
+    };
+
+    fetchProperty();
+  }, [propertyId]);
+
   const handleGoToLogin = async (e: any) => {
     e.preventDefault();
     notifyNoUserLogin();
@@ -71,7 +93,7 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
     event.preventDefault();
 
     if (!checkInDate || !checkOutDate) {
-      console.error("Por favor, selecciona ambas fechas.");
+      console.error("Por favor, selecciona ambas fechas."); // alert
       return;
     }
 
@@ -79,6 +101,7 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
     const endDate = new Date(checkOutDate);
     const differenceInTime = endDate.getTime() - startDate.getTime();
     const daysDifference = Math.ceil(differenceInTime / (1000 * 3600 * 24));
+    // const daysDifference = Math.ceil((checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 3600 * 24));
 
     const orderData = {
       items: [
@@ -147,7 +170,7 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
       <Script
         src="https://sdk.mercadopago.com/js/v2"
         strategy="lazyOnload"
-        onLoad={() => setMercadoPagoScriptLoaded(true)}
+        onLoad={() => console.log("Mercado Pago SDK cargado")}
       />
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.boxGrid}>
