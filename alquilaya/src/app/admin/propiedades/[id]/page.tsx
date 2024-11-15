@@ -129,29 +129,11 @@ const page = async ({ params }: { params: { id: string } }) => {
                         </div>
                     </div>
                 </div>
-                <div className='bg-primary rounded-2xl mb-28'>
-                    <BookFormMock />
-                </div>
-                <div className='grid grid-cols-2 mb-36'>
-                    <div className='flex flex-col align-middle gap-4 mx-10'>
-                        <h2 className='text-center'>¿Qué dicen los usuarios?</h2>
-                        <div className='bg-gray-200 p-4 rounded-md gap-4'>
-                            <h4 className='font-bold capitalize'>nombre de usuario</h4>
-                            <p className='text-base'>Lorem ipsum dolor sit amet consectetur adipisicing elit.e officia ea, est cumque eligendi minima dolorum? Explicabo, vel? Asperiores, quasi. Enim veritatis distinctio reprehenderit natus. Dolorem, quos?</p>
-                        </div>
-                        <div className='bg-gray-200  p-4 rounded-md gap-4'>
-                            <h4 className='font-bold capitalize'>nombre de usuario</h4>
-                            <p className='text-base'>Lorem ipsum dolor sit amet consectetur adipisicing elit.e officia ea, est cumque eligendi minima dolorum? Explicabo, vel? Asperiores, quasi. Enim veritatis distinctio reprehenderit natus. Dolorem, quos?</p>
-                        </div>
-                        <div className='bg-gray-200 p-4 rounded-md gap-4'>
-                            <h4 className='font-bold capitalize'>nombre de usuario</h4>
-                            <p className='text-base'>Lorem ipsum dolor sit amet consectetur adipisicing elit.e officia ea, est cumque eligendi minima dolorum? Explicabo, vel? Asperiores, quasi. Enim veritatis distinctio reprehenderit natus. Dolorem, quos?</p>
-                        </div>
-                    </div>
-                    <div className='flex justify-center items-center'>
-                        {/* <Image src="/mapa.png" alt={property.name} width={600} height={600} className='rounded-xl' /> */}
+                <div className='w-full flex mb-28 justify-center items-center'>
                         <Maps propertyLat={property.lat} propertyLng={property.lng} />
                     </div>
+                <div className='bg-primary rounded-2xl mb-28'>
+                    <BookFormMock/>
                 </div>
             </div>
         </div>

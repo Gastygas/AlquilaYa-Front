@@ -1,0 +1,12 @@
+.input{
+    @apply w-full p-3 rounded-lg bg-slate-100 text-primary border-spacing-2 my-2
+}
+
+.submitButton{
+    @apply mt-20 flex text-sm px-28 py-[10px] rounded-[20px] bg-primary text-secondary font-bold
+    cursor-pointer transition-all duration-300 hover:scale-90
+}
+
+.errorText{
+    @apply text-red-600 text-sm
+}

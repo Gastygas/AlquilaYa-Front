@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 // import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
 import { IUser } from '@/Interfaces/IUser';
+import Chatbot from "@/Components/ChatBot/Chatbot";
 
 export default function Home() {
 
@@ -48,6 +49,7 @@ export default function Home() {
 <Hero/>
 <Section2/>
 <Section3/>
+<Chatbot/>
     </div>
   );
 }

@@ -7,23 +7,22 @@ import FavButton from '../FavButton/FavButton'
 
 
 interface ProductProps {
-    property: IProperty
+    property: IProperty;
+    onRemoveFavorite?: (propertyId: string) => void;
 }
 
-const Card = ({property}: ProductProps) => {
+const Card = ({property, onRemoveFavorite}: ProductProps) => {
 
   return (
     <Link href={`/propiedades/${property.id}`}>
     <div key={property.id} className={styles.cardGrid}>
-<FavButton propertyId={property.id} propertiesInfo={property} className={styles.favButton}/>
+    <FavButton propertyId={property.id} propertiesInfo={property} className={styles.favButton} onRemoveFavorite={onRemoveFavorite}/>
         <div className={styles.imgContainer}>
         <Image src={property.photos[0]} alt={property.propertyName} className="rounded-md" width={300} height={300}/>
         </div>
         <h3 className={styles.title}>{property.propertyName}</h3>
         <h4>${property.price}</h4>
         <p className={styles.description}>{property.description}</p>
-        
-
     </div>
     </Link>
   )
