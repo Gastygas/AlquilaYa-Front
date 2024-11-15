@@ -58,8 +58,17 @@ const EditInformationForm = () => {
       const data = await getUserData();
       if (data) {
         setUserData(data);
-        console.log("data", data)
-      } else {
+        // Sincroniza los datos con el estado de los inputs
+        setData({
+          id: data.id || "",
+          email: data.email || "",
+          address: data.address || "",
+          country: data.country || "",
+          dni: data.dni || "",
+          name: data.name || "",
+          phone: data.phone || "",
+          surname: data.surname || "",
+      });} else {
         setError({
           id:  "",
           email:  "",
@@ -132,7 +141,7 @@ const EditInformationForm = () => {
             name="name"
             className={styles.input}
             onChange={handleChange}
-            value={userData?.name}
+            value={data.name}
             disabled
           />
           {dirty.name && <p className={styles.errorText}>{error.name}</p>}
@@ -144,7 +153,7 @@ const EditInformationForm = () => {
             name="surname"
             className={styles.input}
             onChange={handleChange}
-            value={userData?.surname}
+            value={data.surname}
             disabled
           />
           {dirty.surname && <p className={styles.errorText}>{error.surname}</p>}
@@ -156,7 +165,7 @@ const EditInformationForm = () => {
             name="address"
             className={styles.input}
             onChange={handleChange}
-            value={userData?.address}
+            value={data.address}
           />
           {dirty.address && <p className={styles.errorText}>{error.address}</p>}
 
@@ -167,7 +176,7 @@ const EditInformationForm = () => {
             name="country"
             className={styles.input}
             onChange={handleChange}
-            value={userData?.country}
+            value={data.country}
           />
           {dirty.country && <p className={styles.errorText}>{error.country}</p>}
         </div>
@@ -180,7 +189,7 @@ const EditInformationForm = () => {
             id="dni"
             name="dni"
             className={styles.input}
-            value={userData?.dni}
+            value={data.dni}
             disabled
           />
           {dirty.dni && <p className={styles.errorText}>{error.dni}</p>}
@@ -192,7 +201,7 @@ const EditInformationForm = () => {
             name="phone"
             className={styles.input}
             onChange={handleChange}
-            value={userData?.phone}
+            value={data.phone}
           />
           {dirty.phone && <p className={styles.errorText}>{error.phone}</p>}
 
@@ -203,7 +212,7 @@ const EditInformationForm = () => {
             name="email"
             className={styles.input}
             onChange={handleChange}
-            value={userData?.email}
+            value={data.email}
           />
           {dirty.email && <p className={styles.errorText}>{error.email}</p>}
         </div>
