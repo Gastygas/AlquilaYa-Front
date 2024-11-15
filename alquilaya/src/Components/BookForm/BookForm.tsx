@@ -35,14 +35,17 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
         if (data && data.reservedDays) {
           // Convertir las fechas ISO en objetos Date
           const formattedDates = data.reservedDays.map((dateString: string) => new Date(dateString));
-          setExcludedDates(formattedDates);
+          
+          const excluir = formattedDates.map((date : any) => date.toISOString())
 
+          setExcludedDates(excluir);
           // Loguear las fechas en diferentes formatos
           console.log("Fechas crudas del backend (reservedDays):", data.reservedDays);
           console.log(
             "Fechas reservadas (ISO):",
             formattedDates.map((date : any) => date.toISOString())
           );
+ 
           console.log(
             "Fechas reservadas (DD/MM/YYYY):",
             formattedDates.map((date : any) => date.toLocaleDateString("en-GB"))
@@ -187,7 +190,7 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
         </div>
         <div className={styles.centerButton}>
           <button type="submit" className={styles.button} onClick={loadMercadoPagoScript}>
-            ReservarAR2
+            ReservarAR3
           </button>
         </div>
       </form>
