@@ -44,7 +44,7 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
           <div className='w-1/2'>
             <div className='flex justify-between'>
               <h1>{property.propertyName}</h1>
-              <FavButton propertyId={property.id} propertiesInfo={property} userId={userId} className="top-52 right-60 w-14 h-14 bg-primary rounded-full shadow-2xl flex items-center justify-center z-50 hover:bg-secondary hover:shadow-slate-700 transition-all" />
+              <FavButton propertyId={property.id} propertiesInfo={property} className="top-52 right-60 w-14 h-14 bg-primary rounded-full shadow-2xl flex items-center justify-center z-50 hover:bg-secondary hover:shadow-slate-700 transition-all" />
             </div>
             <h3>${property.price}</h3>
             <h4 className='font-bold'>{property.address}</h4>
