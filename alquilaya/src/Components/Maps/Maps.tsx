@@ -41,7 +41,7 @@ const Maps = ({propertyLat,propertyLng}: {propertyLat: string,propertyLng: strin
             marker?.setPosition(mapOptions.center)
               }
     return (
-        <div id="map" style={{ height: '450px', width: '450px' }}></div>
+        <div id="map" style={{ height: '600px', width: '1000px' }}></div>
     )
 
 
