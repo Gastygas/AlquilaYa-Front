@@ -33,7 +33,7 @@ const PropertiesHistory: React.FC<PropertyTableProps> = ({properties}) => {
                   <td className="border px-4 py-2 text-center">
                     <div className="flex justify-center">
                     <Link href={`/admin/solicitudes/${properties.id}`}>
-                    <button className="bg-primary text-secondary px-4 py-2 rounded font-semibold">
+                    <button className={styles.seeMore}>
                         Ver más
                       </button></Link>
                     </div>

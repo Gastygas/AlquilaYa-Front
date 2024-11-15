@@ -39,9 +39,9 @@ export const validateName = (name:string): string => {
 }
 export const validatePhone = (name:string): string => {
     let validation = ""
-    const regexCountry = /^\d{5,15}$/
+    const regexCountry = /^\d{9,15}$/
 
-    if(!regexCountry.test(name)) validation = " Ingresa Sólo números entre 5 y 15 dígitos"
+    if(!regexCountry.test(name)) validation = " Ingresa Sólo números entre 9 y 15 dígitos"
     return validation
 }
 

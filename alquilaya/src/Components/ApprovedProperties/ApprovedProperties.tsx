@@ -53,7 +53,7 @@ const ApprovedProperties:  React.FC<PropertyTableProps> = ({ properties: initial
   return (
     <table className={styles.primary}>
           <thead>
-            <tr className="bg-gray-200 text-primary  uppercase text-sm leading-normal">
+            <tr className={styles.headerForm}>
               <th className="py-3 px-6 text-left">Nombre</th>
               <th className="py-3 px-6 text-left">Dirección</th>
               <th className="py-3 px-6 text-center">Ciudad</th>
@@ -78,7 +78,7 @@ const ApprovedProperties:  React.FC<PropertyTableProps> = ({ properties: initial
                   <td className="border px-4 py-2 text-center">
                     <div className="flex justify-center">
                     <Link href={`/admin/propiedades/${properties.id}`}>
-                      <button className="bg-primary text-secondary px-4 py-2 rounded font-semibold">
+                      <button className={styles.seeMore}>
                         Ver más
                       </button></Link>
                     </div>
