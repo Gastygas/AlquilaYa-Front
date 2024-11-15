@@ -1,0 +1,14 @@
+.image-gallery-image {
+  height: 500px !important;
+  width: 100% !important;
+  object-fit: cover !important;
+  
+}
+
+.image-gallery-thumbnail-image {
+  height: 75px !important;
+  width: 100px !important;
+  object-fit: cover !important;
+   border-radius: 4px;
+}
+

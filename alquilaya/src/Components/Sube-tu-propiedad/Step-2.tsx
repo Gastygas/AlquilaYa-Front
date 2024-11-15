@@ -10,7 +10,7 @@ import { IsSelectedItem } from './types';
 const Step2 = () => {
     const router = useRouter();
     const [isSelected, setIsSelected] = useState<IsSelectedItem[]>([]);
-    //const [isLoading, setIsLoading] = useState(false);
+    // const [isLoading, setIsLoading] = useState(false);
 
 
     useEffect(() => {
