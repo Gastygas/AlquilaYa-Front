@@ -26,7 +26,20 @@ const FavButton: React.FC<IButton> = ({propertyId, propertiesInfo, className = "
     const addedFalse = () => toast.error("Inicio de sesión fallido, revisá tus datos", { autoClose: 3000 });
     const [userId, setUserId] = useState<string | null>(null);
 
-    useEffect(() => {
+      useEffect(() => {    
+        // Obtener el userId del usuario logueado si está presente en localStorage
+        const storedData = localStorage.getItem("user");
+        if (storedData) {
+          const parsedData = JSON.parse(storedData);
+          setUserId(parsedData.user.id);
+        }
+      }, []);
+
+      if (!userId) {
+        return null; // Equivalente a retornar un fragmento vacío (etiqueta vacía)
+      }
+
+      useEffect(() => {
         const storedData = localStorage.getItem("user");
         if (storedData) {
           const parsedData = JSON.parse(storedData);
@@ -40,19 +53,6 @@ const FavButton: React.FC<IButton> = ({propertyId, propertiesInfo, className = "
         }
         fetchUserData()
       }, []);
-
-      useEffect(() => {    
-        // Obtener el userId del usuario logueado si está presente en localStorage
-        const storedData = localStorage.getItem("user");
-        if (storedData) {
-          const parsedData = JSON.parse(storedData);
-          setUserId(parsedData.user.id);
-        }
-      }, []);
-
-      if (!userId) {
-        return null; // Equivalente a retornar un fragmento vacío (etiqueta vacía)
-      }
 
     const fetchProperties = async (propertyId: string) => {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property/${propertyId}`, {
