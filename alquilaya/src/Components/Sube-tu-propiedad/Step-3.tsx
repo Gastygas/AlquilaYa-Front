@@ -70,7 +70,6 @@ const Step3: React.FC = () => {
 
             <div className='py-10'>
                 <div>
-                    {/* <h3 className="ml-10 mt-1 text-black mb-2">Paso 4:</h3> */}
                     <h2 className="mt-2 text-black text-center mb-8">Detalles de la Propiedad</h2>
                 </div>
 
@@ -85,7 +84,6 @@ const Step3: React.FC = () => {
                                 id="limitCapacity"
                                 placeholder="Ingrese límite de capacidad"
                                 value={limitCapacity}
-                                // onChange={(e) => setLimitCapacity(Number(e.target.value) || "")}
                                 onChange={handleNumberInput(setLimitCapacity)}
                                 className={styles.inputStyle}
                                 required
