@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import styles from "./UserInformationCard.module.css"
 import { IUser } from "@/Interfaces/IUser";
 import { getUserData } from "@/services/dataUserService";
+import Link from "next/link";
 
 const UserInformationCard =  () => {
   const [userData, setUserData] = useState<IUser | null>(null);
@@ -52,7 +53,7 @@ const UserInformationCard =  () => {
       </div>
 
     </div>
-    <button className={styles.editButton}>Editar</button>
+    <Link href={"/editar-usuario"}><button className={styles.editButton}>Editar</button></Link>
   </div>
   )
 }
