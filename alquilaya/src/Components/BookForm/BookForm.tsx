@@ -36,17 +36,15 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
           // Convertir las fechas ISO en objetos Date
           const formattedDates = data.reservedDays.map((dateString: string) => new Date(dateString));
           
-          const excluir = formattedDates.map((date : any) => date.toISOString())
+          const excluir = formattedDates.map((date: any) => date.toISOString().split('T')[0]); // Solo toma la fecha (YYYY-MM-DD)
 
-          const excluirformateado = excluir.map((isoDate : any) => {
-            const date = new Date(isoDate);
-            const day = date.getDate().toString().padStart(2, '0'); // Asegura dos dígitos
-            const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Meses van de 0 a 11
-            const year = date.getFullYear();
-            return `${day}/${month}/${year}`;
+          const excluirformateado = excluir.map((isoDate: any) => {
+            const [year, month, day] = isoDate.split('-'); // Divide la fecha ISO en partes
+            return `${day}/${month}/${year}`; // Formatea en DD/MM/YYYY
           });
           
-          console.log( "formateado " , excluirformateado);
+          console.log("formateado ", excluirformateado);
+          
           
           // Loguear las fechas en diferentes formatos
           console.log("Fechas crudas del backend (reservedDays):", data.reservedDays);
