@@ -13,6 +13,7 @@ interface IButton {
   propertiesInfo: IProperty; 
   className?: string;
   onRemoveFavorite?:(propertyId: string) => void;
+  userId?:string | null
 }
 
 const FavButton: React.FC<IButton> = ({propertyId, propertiesInfo, className = "", onRemoveFavorite}) => {
@@ -23,7 +24,7 @@ const FavButton: React.FC<IButton> = ({propertyId, propertiesInfo, className = "
     const addedTrue = () => toast.success("Propiedad añadida a favoritos", { autoClose: 3000 });
     const removeTrue = () => toast.success("Propiedad removida de favoritas", { autoClose: 3000 });
     const addedFalse = () => toast.error("Inicio de sesión fallido, revisá tus datos", { autoClose: 3000 });
-
+    const [userId, setUserId] = useState<string | null>(null);
 
     useEffect(() => {
         const storedData = localStorage.getItem("user");
@@ -38,6 +39,15 @@ const FavButton: React.FC<IButton> = ({propertyId, propertiesInfo, className = "
           }
         }
         fetchUserData()
+      }, []);
+
+      useEffect(() => {    
+        // Obtener el userId del usuario logueado si está presente en localStorage
+        const storedData = localStorage.getItem("user");
+        if (storedData) {
+          const parsedData = JSON.parse(storedData);
+          setUserId(parsedData.user.id);
+        }
       }, []);
 
     const fetchProperties = async (propertyId: string) => {
@@ -97,7 +107,7 @@ const FavButton: React.FC<IButton> = ({propertyId, propertiesInfo, className = "
         fetchProperties(propertyId);
       };
 
-if(properties?.id !== null){
+if(userId !== null){
   return (
   
     <div>
