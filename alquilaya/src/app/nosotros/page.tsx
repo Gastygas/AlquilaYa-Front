@@ -22,27 +22,27 @@ const page = () => {
               <h3 className='text-center pt-4'>Samuel Franco</h3>
               <h5 className='text-center'>Desarrollador Fullstack</h5>
               <div className='flex justify-center py-4'>
-                <LiaLinkedin size={30} />
+              <Link href="https://www.linkedin.com/in/samuel-franco-zapata-174b90217/"><LiaLinkedin size={30} /></Link>
               </div>
             </div>
             <div>
               <div className='w-50 h-50 flex justify-center'>
-                <Image src='/imagen1.png' alt='Imagen' width={250} height={250} className={styles.imagen} />
+                <Image src='/Luis.png' alt='Imagen' width={250} height={250} className={styles.imagen} />
               </div>
               <h3 className='text-center pt-4'>Luis Coronel</h3>
               <h5 className='text-center'>Desarrollador Fullstack</h5>
               <div className='flex justify-center py-4'>
-                <LiaLinkedin size={30} />
+              <Link href="https://www.linkedin.com/in/luis-coronel-3075544a/"><LiaLinkedin size={30} /></Link>
               </div>
             </div>
             <div>
               <div className='w-50 h-50 flex justify-center'>
-                <Image src='/imagen1.png' alt='Imagen' width={250} height={250} className={styles.imagen}  />
+                <Image src='/Benja.png' alt='Imagen' width={250} height={250} className={styles.imagen}  />
               </div>
               <h3 className='text-center pt-4'>Benjamín del Campo</h3>
               <h5 className='text-center'>Desarrollador Fullstack</h5>
               <div className='flex justify-center py-4'>
-                <LiaLinkedin size={30} />
+              <Link href="https://www.linkedin.com/in/benjamindelcampo/"><LiaLinkedin size={30} /></Link>
               </div>
             </div>
           </div>
@@ -50,12 +50,12 @@ const page = () => {
           <div className='grid grid-cols-3 gap-8 w-full justify-evenly'>
             <div>
               <div className='w-50 h-50 flex justify-center'>
-                <Image src='/imagen1.png' alt='Imagen' width={250} height={250} className={styles.imagen}  />
+                <Image src='/Gaston.png' alt='Imagen' width={250} height={250} className={styles.imagen}  />
               </div>
               <h3 className='text-center pt-4'>Gastón</h3>
               <h5 className='text-center'>Desarrollador Fullstack</h5>
               <div className='flex justify-center py-4'>
-                <LiaLinkedin size={30} />
+              <Link href="https://www.linkedin.com/in/benjamindelcampo/"><LiaLinkedin size={30} /></Link>
               </div>
             </div>
             <div>
@@ -65,7 +65,8 @@ const page = () => {
               <h3 className='text-center pt-4'>Abby García</h3>
               <h5 className='text-center'>Desarrollador Fullstack</h5>
               <div className='flex justify-center py-4'>
-                <LiaLinkedin size={30} />
+              <Link href="https://www.linkedin.com/in/abigail-vanina-garcia-926059314/"><LiaLinkedin size={30} /></Link>
+
               </div>
             </div>
             <div>
