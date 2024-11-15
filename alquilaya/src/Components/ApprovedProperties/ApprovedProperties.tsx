@@ -54,13 +54,13 @@ const ApprovedProperties:  React.FC<PropertyTableProps> = ({ properties: initial
     <table className={styles.primary}>
           <thead>
             <tr className={styles.headerForm}>
-              <th className="py-3 px-6 text-left">Nombre</th>
-              <th className="py-3 px-6 text-left">Dirección</th>
-              <th className="py-3 px-6 text-center">Ciudad</th>
-              <th className="py-3 px-6 text-center">Precio</th>
-              <th className="py-3 px-6 text-center">Estado</th>
-              <th className="py-3 px-6 text-center">Detalles</th>
-              <th className="py-3 px-6 text-center">Acciones</th>
+              <th className={styles.titleLeft}>Nombre</th>
+              <th className={styles.titleLeft}>Dirección</th>
+              <th className={styles.titleCenter}>Ciudad</th>
+              <th  className={styles.titleCenter}>Precio</th>
+              <th  className={styles.titleCenter}>Estado</th>
+              <th  className={styles.titleCenter}>Detalles</th>
+              <th  className={styles.titleCenter}>Acciones</th>
             </tr>
           </thead>
           <tbody className="text-gray-600 text-sm font-light">
