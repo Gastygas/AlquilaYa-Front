@@ -34,11 +34,7 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
 
         if (data && data.reservedDays) {
           // Convertir las fechas ISO en objetos Date
-          const formattedDates = data.reservedDays.map((dateString: string) => {
-            const date = new Date(dateString);
-            // Asegurarse de que la fecha esté correctamente ajustada a la zona horaria local
-            return new Date(date.setHours(0, 0, 0, 0)); // Establecer las horas a 00:00:00 para evitar desfases
-          });
+          const formattedDates = data.reservedDays.map((dateString: string) => new Date(dateString));
           setExcludedDates(formattedDates);
 
           // Loguear las fechas en diferentes formatos
@@ -191,7 +187,7 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
         </div>
         <div className={styles.centerButton}>
           <button type="submit" className={styles.button} onClick={loadMercadoPagoScript}>
-            Reservar2
+            Reservar
           </button>
         </div>
       </form>
