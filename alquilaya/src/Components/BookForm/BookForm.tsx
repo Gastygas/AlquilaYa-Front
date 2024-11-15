@@ -32,34 +32,10 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
         const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property/${propertyId}`);
         const data = await response.json();
 
-        if (data && data.reservedRanges) {
-          // Generar fechas excluidas desde los rangos reservados
-          const reservedDateRanges = data.reservedRanges.map((range: { start: string; end: string }) => ({
-            start: new Date(range.start),
-            end: new Date(range.end),
-          }));
-
-          // Generar todas las fechas excluidas
-          const generatedExcludedDates = reservedDateRanges.flatMap((range : any) => {
-            const dates = [];
-            let currentDate = new Date(range.start); // Fecha de inicio
-            const endDate = new Date(range.end); // Fecha de fin
-
-            // Generar todas las fechas entre el inicio y el fin, inclusive
-            while (currentDate <= endDate) {
-              dates.push(new Date(currentDate)); // Añadimos la fecha
-              currentDate.setDate(currentDate.getDate() + 1); // Incrementamos un día
-            }
-            return dates;
-          });
-
-          setExcludedDates(generatedExcludedDates);
-
-          // Formatear las fechas excluidas y mostrarlas en consola
-          const formattedDates = generatedExcludedDates.map((date:any) => {
-            return date.toLocaleDateString('en-GB'); // Formato DD/MM/YYYY
-          });
-          console.log(formattedDates); // Ver fechas en el formato esperado
+        if (data && data.reservedDays) {
+          // Convertir las fechas ISO en objetos Date
+          const formattedDates = data.reservedDays.map((dateString: string) => new Date(dateString));
+          setExcludedDates(formattedDates);
         }
       } catch (error) {
         console.error("Error al obtener la propiedad:", error);
@@ -139,6 +115,12 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
     }
   }, [preferenceId, isMercadoPagoScriptLoaded]);
 
+  const formattedDates = excludedDates.map(date => {
+    return date.toLocaleDateString('en-GB'); // Formato DD/MM/YYYY
+  });
+  
+  console.log(formattedDates);
+
   return (
     <>
       <Script
@@ -157,8 +139,8 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
               selected={checkInDate}
               onChange={(date) => setCheckInDate(date)}
               minDate={new Date()}
+              dayClassName={(date) => (excludedDates.some((d) => d.getTime() === date.getTime()) ? styles.reservedDate : "")}
               excludeDates={excludedDates}
-              dayClassName={(date) => (excludedDates.some(d => d.getTime() === date.getTime()) ? styles.reservedDate : "")}
               dateFormat="yyyy-MM-dd"
               className={styles.input}
               placeholderText="Selecciona la fecha de entrada"
@@ -172,8 +154,8 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
               selected={checkOutDate}
               onChange={(date) => setCheckOutDate(date)}
               minDate={checkInDate || new Date()}
+              dayClassName={(date) => (excludedDates.some((d) => d.getTime() === date.getTime()) ? styles.reservedDate : "")}
               excludeDates={excludedDates}
-              dayClassName={(date) => (excludedDates.some(d => d.getTime() === date.getTime()) ? styles.reservedDate : "")}
               dateFormat="yyyy-MM-dd"
               className={styles.input}
               placeholderText="Selecciona la fecha de salida"
@@ -182,7 +164,7 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
         </div>
         <div className={styles.centerButton}>
           <button type="submit" className={styles.button} onClick={loadMercadoPagoScript}>
-            Reservar3
+            Reservar1
           </button>
         </div>
       </form>
