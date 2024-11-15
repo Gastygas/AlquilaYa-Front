@@ -157,8 +157,8 @@ const Step5: React.FC = () => {
 
             <h2 className={styles.heading}>Subí una foto de la propiedad</h2>
             <div className={styles.container}>
-                <label className={styles.inputLabel}>Solo puedes subir una foto a la vez. La primera sera la foto de portada asi que elige bien</label>
-                <label className={styles.inputLabel}>Recuerda que puedes subir hasta 5 fotos</label>
+                <label className={styles.inputLabel}>Seleccionar foto (obligatorio)</label>
+                <label className={styles.inputLabel}>Máximo 5 fotos</label>
                 <input
                     type="file"
                     multiple

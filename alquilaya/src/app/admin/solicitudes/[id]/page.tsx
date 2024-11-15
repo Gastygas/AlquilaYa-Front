@@ -15,6 +15,7 @@ import Link from 'next/link'
 import BookFormMock from '@/Components/BookFormMock/BookFormMock'
 import { PiVideoFill } from 'react-icons/pi'
 import Maps from '@/Components/Maps/Maps'
+import CreateCarousel from '@/Components/CarouselPhotos/CarouselPhotos';
 
 const getProductById = async (id: string) => {
 
@@ -38,32 +39,33 @@ const page = async ({ params }: { params: { id: string } }) => {
                 <div className='w-full bg-green-300 flex flex-col py-10 mt-0 mb-8 justify-center align-middle gap-4'>
                     <h3 className='text-center'>Esta propiedad está aprobada</h3>
                     <div className='flex justify-center gap-8 pt-3'>
-                    <Link href="/admin/solicitudes"><button className={styles.buttonBack}>Atrás</button></Link>
-                    <Link href={property.bill} target="_blank"><button className={styles.button}>Ver documento de respaldo</button></Link>
-                    <Link href={`/propiedades/${property.id}`} target="_blank"><button className={styles.button}>Ver Propiedad aquí</button></Link>
+                        <Link href="/admin/solicitudes"><button className={styles.buttonBack}>Atrás</button></Link>
+                        <Link href={property.bill} target="_blank"><button className={styles.button}>Ver documento de respaldo</button></Link>
+                        <Link href={`/propiedades/${property.id}`} target="_blank"><button className={styles.button}>Ver Propiedad aquí</button></Link>
                     </div>
                 </div>
-             : property.propertyStatus === 'pending' ? (<div className='w-full bg-orange-300 flex flex-col py-10 mt-0 mb-8 justify-center align-middle'>
+                : property.propertyStatus === 'pending' ? (<div className='w-full bg-orange-300 flex flex-col py-10 mt-0 mb-8 justify-center align-middle'>
                     <h3 className='text-center'>Esta propiedad está Pendiente</h3>
                     <div className='flex justify-center gap-8 pt-3'>
-                    <Link href="/admin/solicitudes"><button className={styles.buttonBack}>Atrás</button></Link>
-                    <Link href={property.bill} target="_blank"><button className={styles.button}>Ver documento de respaldo</button></Link>
+                        <Link href="/admin/solicitudes"><button className={styles.buttonBack}>Atrás</button></Link>
+                        <Link href={property.bill} target="_blank"><button className={styles.button}>Ver documento de respaldo</button></Link>
                     </div>
                 </div>)
-             : (<div className='w-full bg-red-300 flex flex-col py-14 mt-0 mb-8 justify-center align-middle'>
+                    : (<div className='w-full bg-red-300 flex flex-col py-14 mt-0 mb-8 justify-center align-middle'>
                         <h3 className='text-center'>Esta propiedad está Cancelada</h3>
                         <div className='flex justify-center gap-8 pt-3'>
-                    <Link href="/admin/solicitudes"><button className={styles.buttonBack}>Atrás</button></Link>
-                    <Link href={property.bill} target="_blank"><button className={styles.button}>Ver documento de respaldo</button></Link>
-                    <Link href="/#"><button className={styles.button}>Eliminar</button></Link>
-                    </div>
+                            <Link href="/admin/solicitudes"><button className={styles.buttonBack}>Atrás</button></Link>
+                            <Link href={property.bill} target="_blank"><button className={styles.button}>Ver documento de respaldo</button></Link>
+                            <Link href="/#"><button className={styles.button}>Eliminar</button></Link>
+                        </div>
                     </div>
                     )}
 
             <div className="container">
-                <div className='flex my-28'>
+                <div className='flex my-28 gap-8'>
                     <div className='w-1/2'>
-                        <Image src={property.photos[0]} alt={property.name} width={600} height={600} className='rounded-xl' />
+                        <CreateCarousel photos={property.photos} />
+                        {/* <Image src={property.photos[0]} alt={property.name} width={600} height={600} className='rounded-xl' /> */}
                     </div>
                     <div className='w-1/2'>
                         <div className='flex justify-between'>
@@ -106,28 +108,28 @@ const page = async ({ params }: { params: { id: string } }) => {
                                 <FaParking size={20} color="var(--darkBlue)" /><h4>Parqueadero</h4>
                             </div> : <></>}
                             {property.streaming ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
-                <PiVideoFill size={20} color="var(--darkBlue)" /><h4>Streaming</h4>
-              </div> : <></>}
-              {property.yard ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
-                <MdYard size={20} color="var(--darkBlue)" /><h4>Patio</h4>
-              </div> : <></>}
-              {property.grill ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
-                <MdOutdoorGrill size={20} color="var(--darkBlue)" /><h4>Parrilla</h4>
-              </div> : <></>}
-              {property.appliance ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
-                <GiWashingMachine size={20} color="var(--darkBlue)" /><h4>Electrodomésticos</h4>
-              </div> : <></>}
-              {property.cleaningService ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
-                <GiBroom size={20} color="var(--darkBlue)" /><h4>Servicio de Limpieza</h4>
-              </div> : <></>}
-              {property.catering ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
-                <MdDinnerDining size={20} color="var(--darkBlue)" /><h4>Catering</h4>
-              </div> : <></>}
+                                <PiVideoFill size={20} color="var(--darkBlue)" /><h4>Streaming</h4>
+                            </div> : <></>}
+                            {property.yard ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                                <MdYard size={20} color="var(--darkBlue)" /><h4>Patio</h4>
+                            </div> : <></>}
+                            {property.grill ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                                <MdOutdoorGrill size={20} color="var(--darkBlue)" /><h4>Parrilla</h4>
+                            </div> : <></>}
+                            {property.appliance ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                                <GiWashingMachine size={20} color="var(--darkBlue)" /><h4>Electrodomésticos</h4>
+                            </div> : <></>}
+                            {property.cleaningService ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                                <GiBroom size={20} color="var(--darkBlue)" /><h4>Servicio de Limpieza</h4>
+                            </div> : <></>}
+                            {property.catering ? <div className='flex justify-start items-center p-4 gap-3 shadow-lg rounded-md'>
+                                <MdDinnerDining size={20} color="var(--darkBlue)" /><h4>Catering</h4>
+                            </div> : <></>}
                         </div>
                     </div>
                 </div>
                 <div className='bg-primary rounded-2xl mb-28'>
-                    <BookFormMock/>
+                    <BookFormMock />
                 </div>
                 <div className='grid grid-cols-2 mb-36'>
                     <div className='flex flex-col align-middle gap-4 mx-10'>

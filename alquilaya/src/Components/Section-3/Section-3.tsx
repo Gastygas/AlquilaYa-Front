@@ -1,8 +1,19 @@
 import styles from "./Section-3.module.css"
 import Link from "next/link";
 import Image from "next/image";
+import CreateCarousel from '@/Components/CarouselPhotos/CarouselPhotos';
+
 
 const Section3 = () => {
+
+    const photos = [
+        "/foto-1.jpg",
+        "/foto-2.jpg",
+        "/foto-3.jpg",
+        "/foto-4.jpg",
+        "/foto-5.jpg"
+
+    ]
     return (
         <div className="bg-center container flex flex-col">
             <div className="padding-section">
@@ -13,7 +24,8 @@ const Section3 = () => {
                         <Link href="/propiedades"><button className={styles.button}>Ver Más</button></Link>
                     </div>
                     <div>
-                    <Image src="/seccion3.jpg" alt="hero" height={500} width={500} className={styles.image}/>
+                    <CreateCarousel photos={photos} />
+                    {/* <Image src="/seccion3.jpg" alt="hero" height={500} width={500} className={styles.image}/> */}
                     </div>
 
                 </div>
