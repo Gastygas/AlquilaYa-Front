@@ -22,6 +22,14 @@ const SuccessPage = () => {
     fetchUserData();
   }, []);
 
+  // Formatear fecha
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("es-AR"); // Formato DD/MM/YYYY
+  };
+
+  const latestBooking = userData?.bookings[userData.bookings.length - 1];
+
   return (
     <div>
       <Header />
@@ -35,48 +43,36 @@ const SuccessPage = () => {
           <div className="bg-white p-6 rounded-lg shadow-lg flex flex-col justify-center items-start space-y-4">
             <h2 className="text-xl font-bold mb-4">Detalles de la Reserva</h2>
             <p>
-              <strong>ID de la reserva:</strong>{" "}
-              {userData?.bookings[userData.bookings.length - 1]?.id}
+              <strong>ID de la reserva:</strong> {latestBooking?.id}
             </p>
 
             <p>
-              <strong>Propiedad:</strong>{" "}
-              {userData?.bookings[userData.bookings.length - 1]?.property
-                .propertyName}
+              <strong>Propiedad:</strong> {latestBooking?.property.propertyName}
             </p>
             <p>
               <strong>Método de pago:</strong>
-              {userData?.bookings[userData.bookings.length - 1]?.payment
-                ?.method === "credit_card"
+              {latestBooking?.payment?.method === "credit_card"
                 ? "Tarjeta de crédito"
-                : userData?.bookings[userData.bookings.length - 1]?.payment
-                    ?.method === "debit_card"
+                : latestBooking?.payment?.method === "debit_card"
                 ? "Tarjeta de débito"
                 : "Otro método de pago"}
             </p>
             <p>
-              <strong>Monto: $</strong>{" "}
-              {userData?.bookings[userData.bookings.length - 1]?.payment.amount}
+              <strong>Monto: $</strong> {latestBooking?.payment?.amount}
             </p>
             <p>
-              <strong>Fecha de inicio:</strong>{" "}
-              {userData?.bookings[userData.bookings.length - 1]?.dateStart}
+              <strong>Fecha de inicio:</strong> {formatDate(latestBooking?.dateStart || "")}
             </p>
             <p>
-              <strong>Fecha de fin:</strong>{" "}
-              {userData?.bookings[userData.bookings.length - 1]?.dateEnd}
+              <strong>Fecha de fin:</strong> {formatDate(latestBooking?.dateEnd || "")}
             </p>
           </div>
 
           <div className="bg-white p-6 rounded-lg shadow-lg flex flex-col justify-center items-start space-y-4">
             <h2 className="text-xl font-bold mb-4">Foto de la Propiedad</h2>
-            {userData?.bookings[userData.bookings.length - 1]?.property
-              .photos ? (
+            {latestBooking?.property.photos ? (
               <img
-                src={
-                  userData?.bookings[userData.bookings.length - 1]?.property
-                    .photos[0]
-                }
+                src={latestBooking?.property.photos[0]}
                 alt="Foto de la propiedad"
                 className="w-full h-64 object-cover rounded-md"
               />

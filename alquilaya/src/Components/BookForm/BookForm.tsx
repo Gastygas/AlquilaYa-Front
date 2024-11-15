@@ -203,7 +203,7 @@ const BookForm: React.FC<BookFormProps> = ({
               excludeDates={excludedDates}
               dateFormat="yyyy-MM-dd"
               className={styles.input}
-              placeholderText="Selecciona la fecha de entrada"
+              placeholderText="Fecha de entrada"
             />
           </div>
           <div className={styles.boxInput}>
@@ -222,7 +222,7 @@ const BookForm: React.FC<BookFormProps> = ({
               excludeDates={excludedDates}
               dateFormat="yyyy-MM-dd"
               className={styles.input}
-              placeholderText="Selecciona la fecha de salida"
+              placeholderText="Fecha de salida"
             />
           </div>
         </div>
