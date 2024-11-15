@@ -1,4 +1,4 @@
-import GridProperties from "@/Components/GridProperties/GridProperties"
+import GridFav from "@/Components/GridPropertiesFav/GridFav";
 import Header from "@/Components/Header/Header"
 
 const propiedadesFav = async () => {
@@ -8,7 +8,7 @@ const propiedadesFav = async () => {
       <main className="container">
         <div className="padding-section">
           <h1 className="mb-20">Tus Propiedades Favoritas</h1>
-          <GridProperties />
+          <GridFav />
         </div>
       </main>
     </div>
