@@ -26,20 +26,6 @@ const FavButton: React.FC<IButton> = ({propertyId, propertiesInfo, className = "
     const addedFalse = () => toast.error("Inicio de sesión fallido, revisá tus datos", { autoClose: 3000 });
     const [userId, setUserId] = useState<string | null>(null);
 
-    useEffect(() => {
-        const storedData = localStorage.getItem("user");
-        if (storedData) {
-          const parsedData = JSON.parse(storedData);
-          setToken(parsedData.token);
-        } 
-        const fetchUserData = async () => {
-          const data = await getUserData();
-          if (data) {
-            setUserData(data);
-          }
-        }
-        fetchUserData()
-      }, []);
 
       useEffect(() => {    
         // Obtener el userId del usuario logueado si está presente en localStorage
@@ -49,6 +35,10 @@ const FavButton: React.FC<IButton> = ({propertyId, propertiesInfo, className = "
           setUserId(parsedData.user.id);
         }
       }, []);
+
+      if (!userId) {
+        return null; // Equivalente a retornar un fragmento vacío (etiqueta vacía)
+      }
 
     const fetchProperties = async (propertyId: string) => {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property/${propertyId}`, {
@@ -107,9 +97,8 @@ const FavButton: React.FC<IButton> = ({propertyId, propertiesInfo, className = "
         fetchProperties(propertyId);
       };
 
-if(userId !== null){
+
   return (
-  
     <div>
       {userData?.favoriteProperties.includes(propertyId) ? (
       <button onClick={(e: React.MouseEvent) => handleFavProperty(e, propertyId)}className={`${className}`}>
@@ -120,14 +109,8 @@ if(userId !== null){
       )}
 
     </div>
-  )
-}else{
-return (
-  <></>
 )
 }
       
-
-}
 
 export default FavButton
