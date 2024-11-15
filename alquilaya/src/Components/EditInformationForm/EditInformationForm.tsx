@@ -36,6 +36,8 @@ const EditInformationForm = () => {
   const [error, setError] = useState(initialData);
   const [dirty, setDirty] = useState(initialData);
   const [userData, setUserData] = useState<IUser | null>(null);
+  const [token, setToken] = useState<string | null>(null);
+
  /* useEffect(() => {
     // Cargar datos desde localStorage
     const storedUser = localStorage.getItem("user");
@@ -108,11 +110,26 @@ const EditInformationForm = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const token = localStorage.getItem("userToken");
-    if (!token) {
+    const storedUser = localStorage.getItem("user");
+
+    // Verificar si `storedUser` no es null
+    if (!storedUser) {
       toast.error("Usuario no autenticado");
       return;
     }
+  
+    // Analizar el JSON solo si `storedUser` no es null
+    const parsedData = JSON.parse(storedUser);
+  
+    // Obtener el token del usuario
+    const token = parsedData.token;
+  
+    if (!token) {
+      toast.error("Token no encontrado");
+      return;
+    }
+  
+    setToken(token);
 
     const response = await updateUserService(
       `${process.env.NEXT_PUBLIC_BACK_URL}/users/edit`,
