@@ -96,8 +96,10 @@ const FavButton: React.FC<IButton> = ({propertyId, propertiesInfo, className = "
         }
         fetchProperties(propertyId);
       };
-      
+
+if(properties?.id !== null){
   return (
+  
     <div>
       {userData?.favoriteProperties.includes(propertyId) ? (
       <button onClick={(e: React.MouseEvent) => handleFavProperty(e, propertyId)}className={`${className}`}>
@@ -109,6 +111,13 @@ const FavButton: React.FC<IButton> = ({propertyId, propertiesInfo, className = "
 
     </div>
   )
+}else{
+return (
+  <></>
+)
+}
+      
+
 }
 
 export default FavButton
