@@ -268,14 +268,14 @@ const BookForm: React.FC<BookFormProps> = ({
             />
           </div>
         </div>
-        {userId === null? (
+        {userIdValidate === null? (
           <div className={styles.centerButton}>
           <button type="submit" className={styles.button} onClick={handleGoToLogin}>
             Reservar
           </button>
         </div>
         ):(
-          userId === property?.user.id ? (
+          userIdValidate === property?.user.id ? (
             <div className={styles.centerButton}>
           <button type="submit" className={styles.button} onClick={handleCannotReserve}>
             No podes reservar tu propia propiedad
