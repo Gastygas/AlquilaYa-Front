@@ -156,7 +156,7 @@ const EditInformationForm = () => {
             name="address"
             className={styles.input}
             onChange={handleChange}
-            value={data.address}
+            value={userData?.address}
           />
           {dirty.address && <p className={styles.errorText}>{error.address}</p>}
 
