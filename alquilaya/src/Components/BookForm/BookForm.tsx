@@ -12,13 +12,18 @@ interface BookFormProps {
   unitPrice: number;
 }
 
-const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice }) => {
+const BookForm: React.FC<BookFormProps> = ({
+  propertyId,
+  propertyName,
+  unitPrice,
+}) => {
   const [checkInDate, setCheckInDate] = useState<Date | null>(null);
   const [checkOutDate, setCheckOutDate] = useState<Date | null>(null);
   const [preferenceId, setPreferenceId] = useState<string | null>(null);
   const [userId, setUserId] = useState<string | null>(null);
   const [excludedDates, setExcludedDates] = useState<Date[]>([]);
-  const [isMercadoPagoScriptLoaded, setMercadoPagoScriptLoaded] = useState(false);
+  const [isMercadoPagoScriptLoaded, setMercadoPagoScriptLoaded] =
+    useState(false);
 
   // Cargar userId del localStorage
   useEffect(() => {
@@ -30,34 +35,43 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
   useEffect(() => {
     const fetchProperty = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property/${propertyId}`);
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_BACK_URL}/property/${propertyId}`
+        );
         const data = await response.json();
 
         if (data && data.reservedDays) {
           // Convertir las fechas ISO en objetos Date
-          const formattedDates = data.reservedDays.map((dateString: string) => new Date(dateString));
-          
-          const excluir = formattedDates.map((date: any) => date.toISOString().split('T')[0]); // Solo toma la fecha (YYYY-MM-DD)
+          const formattedDates = data.reservedDays.map(
+            (dateString: string) => new Date(dateString)
+          );
 
+          const excluir = formattedDates.map(
+            (date: any) => date.toISOString().split("T")[0]
+          ); // Solo toma la fecha (YYYY-MM-DD)
+
+          // Convierte las fechas formateadas de vuelta a objetos Date
           const excluirformateado = excluir.map((isoDate: any) => {
-            const [year, month, day] = isoDate.split('-'); // Divide la fecha ISO en partes
-            return `${day}/${month}/${year}`; // Formatea en DD/MM/YYYY
+            const [year, month, day] = isoDate.split("-"); // Divide la fecha ISO en partes
+            return new Date(parseInt(year), parseInt(month) - 1, parseInt(day)); // Devuelve un objeto Date
           });
-          
-          console.log("formateado ", excluirformateado);
-          
+
+          // Asigna las fechas a excludedDates
           setExcludedDates(excluirformateado);
-          
+
           // Loguear las fechas en diferentes formatos
-          console.log("Fechas crudas del backend (reservedDays):", data.reservedDays);
+          console.log(
+            "Fechas crudas del backend (reservedDays):",
+            data.reservedDays
+          );
           console.log(
             "Fechas reservadas (ISO):",
-            formattedDates.map((date : any) => date.toISOString())
+            formattedDates.map((date: any) => date.toISOString())
           );
- 
+
           console.log(
             "Fechas reservadas (DD/MM/YYYY):",
-            formattedDates.map((date : any) => date.toLocaleDateString("en-GB"))
+            formattedDates.map((date: any) => date.toLocaleDateString("en-GB"))
           );
         }
       } catch (error) {
@@ -112,13 +126,16 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
     };
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/mercadopago`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(orderData),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BACK_URL}/mercadopago`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(orderData),
+        }
+      );
 
       const data = await response.json();
       if (data.preferenceId) {
@@ -138,10 +155,18 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
   };
 
   useEffect(() => {
-    if (preferenceId && isMercadoPagoScriptLoaded && typeof window !== "undefined" && window.MercadoPago) {
-      const mp = new window.MercadoPago("TEST-fa93dbfd-43ff-4ad0-b01f-9fbd39faeafc", {
-        locale: "es-AR",
-      });
+    if (
+      preferenceId &&
+      isMercadoPagoScriptLoaded &&
+      typeof window !== "undefined" &&
+      window.MercadoPago
+    ) {
+      const mp = new window.MercadoPago(
+        "TEST-fa93dbfd-43ff-4ad0-b01f-9fbd39faeafc",
+        {
+          locale: "es-AR",
+        }
+      );
 
       mp.checkout({
         preference: {
@@ -171,7 +196,9 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
               onChange={(date) => setCheckInDate(date)}
               minDate={new Date()}
               dayClassName={(date) =>
-                excludedDates.some((d) => d.getTime() === date.getTime()) ? styles.reservedDate : ""
+                excludedDates.some((d) => d.getTime() === date.getTime())
+                  ? styles.reservedDate
+                  : ""
               }
               excludeDates={excludedDates}
               dateFormat="yyyy-MM-dd"
@@ -188,7 +215,9 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
               onChange={(date) => setCheckOutDate(date)}
               minDate={checkInDate || new Date()}
               dayClassName={(date) =>
-                excludedDates.some((d) => d.getTime() === date.getTime()) ? styles.reservedDate : ""
+                excludedDates.some((d) => d.getTime() === date.getTime())
+                  ? styles.reservedDate
+                  : ""
               }
               excludeDates={excludedDates}
               dateFormat="yyyy-MM-dd"
@@ -198,7 +227,11 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
           </div>
         </div>
         <div className={styles.centerButton}>
-          <button type="submit" className={styles.button} onClick={loadMercadoPagoScript}>
+          <button
+            type="submit"
+            className={styles.button}
+            onClick={loadMercadoPagoScript}
+          >
             Reservar
           </button>
         </div>
