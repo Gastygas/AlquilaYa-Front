@@ -38,6 +38,12 @@ const SuccessPage = () => {
               <strong>ID de la reserva:</strong>{" "}
               {userData?.bookings[userData.bookings.length - 1]?.id}
             </p>
+
+            <p>
+              <strong>Propiedad:</strong>{" "}
+              {userData?.bookings[userData.bookings.length - 1]?.property
+                .propertyName}
+            </p>
             <p>
               <strong>Método de pago:</strong>
               {userData?.bookings[userData.bookings.length - 1]?.payment
