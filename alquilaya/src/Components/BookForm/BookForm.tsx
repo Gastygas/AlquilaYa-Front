@@ -4,6 +4,7 @@ import Script from "next/script";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./BookForm.module.css";
+import { set } from "react-datepicker/dist/date_utils";
 
 interface BookFormProps {
   propertyId: string;
@@ -45,6 +46,7 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
           
           console.log("formateado ", excluirformateado);
           
+          setExcludedDates(excluirformateado);
           
           // Loguear las fechas en diferentes formatos
           console.log("Fechas crudas del backend (reservedDays):", data.reservedDays);
