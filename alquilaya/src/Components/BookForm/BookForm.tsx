@@ -47,14 +47,20 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    if (!checkInDate || !checkOutDate) {
-      console.error("Por favor, selecciona ambas fechas.");
+  
+    if (!checkInDate) {
+      console.error("Por favor, selecciona la fecha de entrada.");
       return;
     }
-
-    const daysDifference = Math.ceil((checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 3600 * 24));
-
+  
+    // Asegurar que checkOutDate sea al menos un día después de checkInDate
+    const adjustedCheckOutDate = new Date(checkInDate);
+    adjustedCheckOutDate.setDate(checkInDate.getDate() + 1); // Sumamos 1 día
+  
+    const daysDifference = Math.ceil(
+      (adjustedCheckOutDate.getTime() - checkInDate.getTime()) / (1000 * 3600 * 24)
+    );
+  
     const orderData = {
       items: [
         {
@@ -68,12 +74,12 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
         booking: {
           propertyId: propertyId,
           dateStart: checkInDate.toISOString(),
-          dateEnd: checkOutDate.toISOString(),
+          dateEnd: adjustedCheckOutDate.toISOString(), // Usamos la fecha ajustada
         },
         userId: userId,
       },
     };
-
+  
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/mercadopago`, {
         method: "POST",
@@ -82,7 +88,7 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
         },
         body: JSON.stringify(orderData),
       });
-
+  
       const data = await response.json();
       if (data.preferenceId) {
         setPreferenceId(data.preferenceId);
@@ -93,6 +99,7 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
       console.error("Error al crear la preferencia:", error);
     }
   };
+  
 
   const loadMercadoPagoScript = () => {
     if (!isMercadoPagoScriptLoaded) {
@@ -164,7 +171,7 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
         </div>
         <div className={styles.centerButton}>
           <button type="submit" className={styles.button} onClick={loadMercadoPagoScript}>
-            Reservar1
+            Reservar2
           </button>
         </div>
       </form>
