@@ -180,7 +180,6 @@ const EditInformationForm = () => {
             id="dni"
             name="dni"
             className={styles.input}
-            onChange={handleChange}
             value={userData?.dni}
             disabled
           />
@@ -203,7 +202,9 @@ const EditInformationForm = () => {
             id="email"
             name="email"
             className={styles.input}
+            onChange={handleChange}
             value={userData?.email}
+
           />
           {dirty.email && <p className={styles.errorText}>{error.email}</p>}
         </div>
