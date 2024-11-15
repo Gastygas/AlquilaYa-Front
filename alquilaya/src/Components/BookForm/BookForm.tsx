@@ -30,14 +30,17 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
     const fetchProperty = async () => {
       try {
         console.log(propertyId);
-        
+
         const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property/${propertyId}`);
         const data = await response.json();
         console.log(data);
-        
+
         if (data && data.reservedDays) {
-          // Convertir las fechas reservadas en el formato requerido para DatePicker
-          const formattedDates = data.reservedDays.map((dateString: string) => new Date(dateString));
+          // Convertir las fechas reservadas en formato UTC
+          const formattedDates = data.reservedDays.map((dateString: string) => {
+            const [year, month, day] = dateString.split("-");
+            return new Date(Date.UTC(Number(year), Number(month) - 1, Number(day)));
+          });
           setExcludedDates(formattedDates);
         }
       } catch (error) {
@@ -136,7 +139,7 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
               selected={checkInDate}
               onChange={(date) => setCheckInDate(date)}
               minDate={new Date()}
-              dayClassName={(date) => (excludedDates.some(d => d.getTime() === date.getTime()) ? styles.reservedDate : "")}
+              dayClassName={(date) => (excludedDates.some((d) => d.getTime() === date.getTime()) ? styles.reservedDate : "")}
               excludeDates={excludedDates}
               dateFormat="yyyy-MM-dd"
               className={styles.input}
@@ -151,7 +154,7 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
               selected={checkOutDate}
               onChange={(date) => setCheckOutDate(date)}
               minDate={checkInDate || new Date()}
-              dayClassName={(date) => (excludedDates.some(d => d.getTime() === date.getTime()) ? styles.reservedDate : "")}
+              dayClassName={(date) => (excludedDates.some((d) => d.getTime() === date.getTime()) ? styles.reservedDate : "")}
               excludeDates={excludedDates}
               dateFormat="yyyy-MM-dd"
               className={styles.input}
@@ -161,7 +164,7 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
         </div>
         <div className={styles.centerButton}>
           <button type="submit" className={styles.button} onClick={loadMercadoPagoScript}>
-            Reservar1
+            Reservar2
           </button>
         </div>
       </form>
