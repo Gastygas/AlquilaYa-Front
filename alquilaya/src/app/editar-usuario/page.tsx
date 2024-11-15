@@ -1,10 +1,12 @@
 import CompleteInformationForm from '@/Components/CompleteInformationForm/CompleteInformationForm'
 import EditInformationForm from '@/Components/EditInformationForm/EditInformationForm'
 import Header from '@/Components/Header/Header'
+import ProtectedRoute from '@/Components/ProtectRoutes/ProtecRoutes'
 import React from 'react'
 
 const page = () => {
   return (
+    <ProtectedRoute>
     <div>
       <Header/>
     <div className='container'>
@@ -14,6 +16,7 @@ const page = () => {
       </div>
     </div>
     </div>
+    </ProtectedRoute>
   )
 }
 

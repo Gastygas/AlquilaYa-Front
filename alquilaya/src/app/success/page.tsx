@@ -1,5 +1,6 @@
 "use client";
 import Header from "@/Components/Header/Header";
+import ProtectedRoute from "@/Components/ProtectRoutes/ProtecRoutes";
 import { IUser } from "@/Interfaces/IUser";
 import { getUserData } from "@/services/dataUserService";
 import { useSearchParams } from "next/navigation";
@@ -31,6 +32,7 @@ const SuccessPage = () => {
   const latestBooking = userData?.bookings[userData.bookings.length - 1];
 
   return (
+    <ProtectedRoute>
     <div>
       <Header />
 
@@ -87,6 +89,7 @@ const SuccessPage = () => {
         </div>
       </div>
     </div>
+    </ProtectedRoute>
   );
 };
 
