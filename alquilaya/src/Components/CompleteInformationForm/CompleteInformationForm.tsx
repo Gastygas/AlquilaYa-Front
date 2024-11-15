@@ -99,7 +99,7 @@ const CompleteInformationForm = () => {
         email: userGoogle.email
       }
       setData(userData);
-      
+      window.history.replaceState({}, document.title, window.location.pathname);
       console.log("Data: ", userData);
     }
   }, [])
