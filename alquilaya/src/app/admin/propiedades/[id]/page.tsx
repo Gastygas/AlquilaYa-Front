@@ -62,7 +62,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                     )}
 
             <div className="container">
-                <div className='flex my-28'>
+                <div className='flex my-28 gap-8'>
                     <div className='w-1/2'>
                         <CreateCarousel photos={property.photos} />
                         {/* <Image src={property.photos[0]} alt={property.name} width={600} height={600} className='rounded-xl' /> */}
