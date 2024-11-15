@@ -35,6 +35,9 @@ export default function Home() {
   
       localStorage.setItem("user", JSON.stringify(user));
       //window.location.href = '/';
+
+       // Actualizar la URL eliminando el parámetro `auth_token` sin recargar la página
+       window.history.replaceState({}, document.title, window.location.pathname);
     }
   }, [])
  
