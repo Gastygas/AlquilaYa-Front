@@ -104,16 +104,14 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
 
           </div>
         </div>
+        <div className='w-full flex mb-28 justify-center items-center'>
+            <Maps propertyLat={property.lat} propertyLng={property.lng} />
+        </div>
         <div className='bg-primary rounded-2xl mb-28'>
           <BookForm
             propertyId={property.id}
             propertyName={property.propertyName}
             unitPrice={property.price} />
-        </div>
-        <div className='w-full mb-36'>
-          <div className='flex justify-center items-center'>
-            <Maps propertyLat={property.lat} propertyLng={property.lng} />
-          </div>
         </div>
       </div>
     </div>
