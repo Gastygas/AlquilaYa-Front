@@ -131,7 +131,7 @@ const CompleteInformationForm = () => {
             name="name"
             className={styles.input}
             onChange={handleChange}
-            value={data.name}
+            value={userData?.name}
             disabled
           />
           {dirty.name && <p className={styles.errorText}>{error.name}</p>}
@@ -143,7 +143,7 @@ const CompleteInformationForm = () => {
             name="surname"
             className={styles.input}
             onChange={handleChange}
-            value={data.surname}
+            value={userData?.surname}
             disabled
           />
           {dirty.surname && <p className={styles.errorText}>{error.surname}</p>}
@@ -155,7 +155,7 @@ const CompleteInformationForm = () => {
             name="address"
             className={styles.input}
             onChange={handleChange}
-            value={data.address}
+            value={userData?.address}
           />
           {dirty.address && <p className={styles.errorText}>{error.address}</p>}
 
@@ -166,7 +166,7 @@ const CompleteInformationForm = () => {
             name="country"
             className={styles.input}
             onChange={handleChange}
-            value={data.country}
+            value={userData?.country}
           />
           {dirty.country && <p className={styles.errorText}>{error.country}</p>}
         </div>
@@ -180,7 +180,7 @@ const CompleteInformationForm = () => {
             name="dni"
             className={styles.input}
             onChange={handleChange}
-            value={data.dni}
+            value={userData?.dni}
             disabled
           />
           {dirty.dni && <p className={styles.errorText}>{error.dni}</p>}
@@ -192,7 +192,7 @@ const CompleteInformationForm = () => {
             name="phone"
             className={styles.input}
             onChange={handleChange}
-            value={data.phone}
+            value={userData?.phone}
           />
           {dirty.phone && <p className={styles.errorText}>{error.phone}</p>}
 
@@ -202,7 +202,7 @@ const CompleteInformationForm = () => {
             id="email"
             name="email"
             className={styles.input}
-            value={data.email}
+            value={userData?.email}
           />
           {dirty.email && <p className={styles.errorText}>{error.email}</p>}
         </div>
