@@ -5,6 +5,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./BookForm.module.css";
 import { set } from "react-datepicker/dist/date_utils";
+import { toast } from "react-toastify";
+import IProperty from "@/Interfaces/IProperties";
 
 interface BookFormProps {
   propertyId: string;
@@ -21,15 +23,55 @@ const BookForm: React.FC<BookFormProps> = ({
   const [checkOutDate, setCheckOutDate] = useState<Date | null>(null);
   const [preferenceId, setPreferenceId] = useState<string | null>(null);
   const [userId, setUserId] = useState<string | null>(null);
+  const [userIdValidate, setUserIdValidate] = useState<string | null>(null);
+  const [property,setProperty] = useState<IProperty | undefined>(undefined)
   const [excludedDates, setExcludedDates] = useState<Date[]>([]);
   const [isMercadoPagoScriptLoaded, setMercadoPagoScriptLoaded] =
     useState(false);
 
+    const notifyNoUserLogin = () => toast.error("Para reservar tenes que loguearte primero", {autoClose: 3000 });
+  const notifyNoSameId = () => toast.error("No podes reservar tu propia propiedad", {autoClose: 3000 });
+  const notifyDatabaseError = () => toast.error("Error en la base de datos, intenta nuevamente refrescando la pagina", {autoClose: 3000 });
+  const notifyNoPreferenceId = () => toast.error("No se pudo obtener el ID de preferencia, intenta nuevamente luego", {autoClose: 3000 });
   // Cargar userId del localStorage
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
     setUserId(storedUser.user?.id || null);
   }, []);
+
+
+  const fetchValidateProperty = async (id:string) => {
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property/${id}`, {
+        method: "GET",
+        cache: "no-store"
+      });
+      if (!res.ok) throw new Error("Can not get all properties");
+
+      const property = await res.json();
+      setProperty(property);
+    } catch (err: any) {
+      notifyDatabaseError();
+      return;
+    }
+  };
+
+  useEffect(() => {
+    fetchValidateProperty(propertyId)
+    const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
+    setUserIdValidate(storedUser.user?.id || null);
+    
+  }, []);
+
+  const handleGoToLogin = async(e:any) =>{
+    e.preventDefault()
+    notifyNoUserLogin()
+  }
+
+  const handleCannotReserve = (e:any) =>{
+    e.preventDefault()
+    notifyNoSameId()
+  }
 
   // Obtener propiedad y fechas reservadas desde el backend
   useEffect(() => {
@@ -226,15 +268,27 @@ const BookForm: React.FC<BookFormProps> = ({
             />
           </div>
         </div>
-        <div className={styles.centerButton}>
-          <button
-            type="submit"
-            className={styles.button}
-            onClick={loadMercadoPagoScript}
-          >
+        {userId === null? (
+          <div className={styles.centerButton}>
+          <button type="submit" className={styles.button} onClick={handleGoToLogin}>
             Reservar
           </button>
         </div>
+        ):(
+          userId === property?.user.id ? (
+            <div className={styles.centerButton}>
+          <button type="submit" className={styles.button} onClick={handleCannotReserve}>
+            No podes reservar tu propia propiedad
+          </button>
+        </div>
+          ) : (
+            <div className={styles.centerButton}>
+          <button type="submit" className={styles.button} onClick={loadMercadoPagoScript}>
+            Reservar
+          </button>
+        </div>
+          )
+        )}
       </form>
     </>
   );
