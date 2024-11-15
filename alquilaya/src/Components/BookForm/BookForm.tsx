@@ -29,14 +29,11 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
   useEffect(() => {
     const fetchProperty = async () => {
       try {
-        console.log(propertyId);
-        
         const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property/${propertyId}`);
         const data = await response.json();
-        console.log(data);
-        
+
         if (data && data.reservedDays) {
-          // Convertir las fechas reservadas en el formato requerido para DatePicker
+          // Convertir las fechas ISO en objetos Date
           const formattedDates = data.reservedDays.map((dateString: string) => new Date(dateString));
           setExcludedDates(formattedDates);
         }
@@ -136,7 +133,7 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
               selected={checkInDate}
               onChange={(date) => setCheckInDate(date)}
               minDate={new Date()}
-              dayClassName={(date) => (excludedDates.some(d => d.getTime() === date.getTime()) ? styles.reservedDate : "")}
+              dayClassName={(date) => (excludedDates.some((d) => d.getTime() === date.getTime()) ? styles.reservedDate : "")}
               excludeDates={excludedDates}
               dateFormat="yyyy-MM-dd"
               className={styles.input}
@@ -151,7 +148,7 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
               selected={checkOutDate}
               onChange={(date) => setCheckOutDate(date)}
               minDate={checkInDate || new Date()}
-              dayClassName={(date) => (excludedDates.some(d => d.getTime() === date.getTime()) ? styles.reservedDate : "")}
+              dayClassName={(date) => (excludedDates.some((d) => d.getTime() === date.getTime()) ? styles.reservedDate : "")}
               excludeDates={excludedDates}
               dateFormat="yyyy-MM-dd"
               className={styles.input}
@@ -161,7 +158,7 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
         </div>
         <div className={styles.centerButton}>
           <button type="submit" className={styles.button} onClick={loadMercadoPagoScript}>
-            Reservar
+            Reservar1
           </button>
         </div>
       </form>
