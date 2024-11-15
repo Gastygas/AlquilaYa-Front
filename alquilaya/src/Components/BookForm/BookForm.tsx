@@ -17,14 +17,19 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
   const [checkInDate, setCheckInDate] = useState<Date | null>(null);
   const [checkOutDate, setCheckOutDate] = useState<Date | null>(null);
   const [preferenceId, setPreferenceId] = useState<string | null>(null);
-  const [property,setProperty] = useState<IProperty | undefined>(undefined)
+  const [property, setProperty] = useState<IProperty | undefined>(undefined);
   const [userId, setUserId] = useState<string | null>(null);
   const [excludedDates, setExcludedDates] = useState<Date[]>([]);
   const [isMercadoPagoScriptLoaded, setMercadoPagoScriptLoaded] = useState(false);
-  const notifyNoUserLogin = () => toast.error("Para reservar tenes que loguearte primero", { autoClose: 3000 });
-  const notifyNoSameId = () => toast.error("No podes reservar tu propia propiedad", { autoClose: 3000 });
-  const notifyDatabaseError = () => toast.error("Error en la base de datos, intenta nuevamente refrescando la pagina", { autoClose: 3000 });
-  const notifyNoPreferenceId = () => toast.error("No se pudo obtener el ID de preferencia, intenta nuevamente luego", { autoClose: 3000 });
+
+  const notifyNoUserLogin = () =>
+    toast.error("Para reservar tenes que loguearte primero", { autoClose: 3000 });
+  const notifyNoSameId = () =>
+    toast.error("No podes reservar tu propia propiedad", { autoClose: 3000 });
+  const notifyDatabaseError = () =>
+    toast.error("Error en la base de datos, intenta nuevamente refrescando la pagina", { autoClose: 3000 });
+  const notifyNoPreferenceId = () =>
+    toast.error("No se pudo obtener el ID de preferencia, intenta nuevamente luego", { autoClose: 3000 });
 
   const fetchProperty = async (id: string) => {
     try {
@@ -36,70 +41,44 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
 
       const property = await res.json();
       setProperty(property);
+
+      if (property && property.reservedDays) {
+        const formattedDates = property.reservedDays.map((dateString: string) => new Date(dateString));
+        setExcludedDates(formattedDates);
+      }
     } catch (err: any) {
       notifyDatabaseError();
     }
   };
 
-  // Cargar userId del localStorage
   useEffect(() => {
     fetchProperty(propertyId);
     const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
     setUserId(storedUser.user?.id || null);
-  }, []);
-
-  // Obtener propiedad y fechas reservadas desde el backend
-  useEffect(() => {
-    const fetchProperty = async () => {
-      try {
-        console.log(propertyId);
-        
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property/${propertyId}`);
-        const data = await response.json();
-        console.log(data);
-        
-        if (data && data.reservedDays) {
-          // Convertir las fechas reservadas en el formato requerido para DatePicker
-          const formattedDates = data.reservedDays.map((dateString: string) => new Date(dateString));
-          setExcludedDates(formattedDates);
-        }
-      } catch (error) {
-        console.error("Error al obtener la propiedad:", error);
-      }
-    };
-
-    fetchProperty();
   }, [propertyId]);
-
-    
-  }, []);
 
   const handleGoToLogin = async (e: any) => {
     e.preventDefault();
     notifyNoUserLogin();
   };
 
-  const handleCannotReserve = (e:any) =>{
-    e.preventDefault()
-    notifyNoSameId()
-  }
-
+  const handleCannotReserve = (e: any) => {
+    e.preventDefault();
+    notifyNoSameId();
+  };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
 
     if (!checkInDate || !checkOutDate) {
       console.error("Por favor, selecciona ambas fechas.");
       return;
     }
 
-
-    onst startDate = new Date(checkInDate);
+    const startDate = new Date(checkInDate);
     const endDate = new Date(checkOutDate);
     const differenceInTime = endDate.getTime() - startDate.getTime();
     const daysDifference = Math.ceil(differenceInTime / (1000 * 3600 * 24));
-    
 
     const orderData = {
       items: [
@@ -133,10 +112,10 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
       if (data.preferenceId) {
         setPreferenceId(data.preferenceId);
       } else {
-        notifyNoPreferenceId()
+        notifyNoPreferenceId();
       }
     } catch (error) {
-      notifyNoPreferenceId()
+      notifyNoPreferenceId();
     }
   };
 
@@ -145,7 +124,7 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
       setMercadoPagoScriptLoaded(true);
     }
   };
-
+  
   useEffect(() => {
     if (preferenceId && isMercadoPagoScriptLoaded && typeof window !== "undefined" && window.MercadoPago) {
       const mp = new window.MercadoPago("TEST-fa93dbfd-43ff-4ad0-b01f-9fbd39faeafc", {
@@ -160,6 +139,8 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
       });
     }
   }, [preferenceId, isMercadoPagoScriptLoaded]);
+
+
 
   return (
     <>
@@ -207,7 +188,7 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
               Reservar
             </button>
           </div>
-        ) : userId === property?.user.id ? (
+        ) : userId === property?.user?.id ? (
           <div className={styles.centerButton}>
             <button type="submit" className={styles.button} onClick={handleCannotReserve}>
               No podes reservar tu propia propiedad
