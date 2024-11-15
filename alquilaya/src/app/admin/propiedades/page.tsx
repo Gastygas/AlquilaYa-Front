@@ -2,6 +2,7 @@ import HeaderAdmin from '@/Components/HeaderAdmin/HeaderAdmin'
 import styles from "./propiedades.module.css"
 import Link from 'next/link';
 import ApprovedProperties from '@/Components/ApprovedProperties/ApprovedProperties';
+import ProtectedRoute from '@/Components/ProtectRoutes/ProtecRoutes';
 
 const page = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property`, {
@@ -13,6 +14,7 @@ const page = async () => {
   const properties = await res.json()
 
   return (
+    <ProtectedRoute adminOnly={true}>
     <div>
       <HeaderAdmin />
       <div className='container'>
@@ -23,6 +25,7 @@ const page = async () => {
       </div>
       </div>
     </div>
+    </ProtectedRoute>
   )
 }
 

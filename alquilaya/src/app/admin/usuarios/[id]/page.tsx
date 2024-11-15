@@ -2,6 +2,7 @@ import styles from "./single.module.css"
 import { notFound } from 'next/navigation'
 import HeaderAdmin from '@/Components/HeaderAdmin/HeaderAdmin'
 import Link from 'next/link'
+import ProtectedRoute from "@/Components/ProtectRoutes/ProtecRoutes";
 
 
 
@@ -36,6 +37,7 @@ const page = async ({ params }: { params: { id: string } }) => {
 
 
   return (
+    <ProtectedRoute adminOnly={true}>
     <div>
       <HeaderAdmin />
       <div className='container'>
@@ -71,6 +73,7 @@ const page = async ({ params }: { params: { id: string } }) => {
         </div>
       </div>
     </div >
+    </ProtectedRoute>
   )
 }
 

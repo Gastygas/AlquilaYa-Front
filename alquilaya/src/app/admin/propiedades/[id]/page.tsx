@@ -16,6 +16,7 @@ import BookFormMock from '@/Components/BookFormMock/BookFormMock'
 import { PiVideoFill } from 'react-icons/pi'
 import Maps from '@/Components/Maps/Maps'
 import CreateCarousel from '@/Components/CarouselPhotos/CarouselPhotos';
+import ProtectedRoute from '@/Components/ProtectRoutes/ProtecRoutes'
 
 const getProductById = async (id: string) => {
 
@@ -34,6 +35,7 @@ const page = async ({ params }: { params: { id: string } }) => {
     const property = await getProductById(params.id)
 
     return (
+        <ProtectedRoute adminOnly={true}>
         <div><Header />
             {property.propertyStatus === 'approved' ?
                 <div className='w-full bg-green-300 flex flex-col py-10 mt-0 mb-8 justify-center align-middle gap-4'>
@@ -137,6 +139,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                 </div>
             </div>
         </div>
+        </ProtectedRoute>
     )
 }
 

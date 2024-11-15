@@ -1,4 +1,5 @@
 import HeaderAdmin from '@/Components/HeaderAdmin/HeaderAdmin'
+import ProtectedRoute from '@/Components/ProtectRoutes/ProtecRoutes';
 import UserList from '@/Components/UserList/UserList';
 
 const page = async () => {
@@ -12,10 +13,12 @@ const page = async () => {
   const users = await res.json();
 
   return (
+    <ProtectedRoute adminOnly={true}>
     <div>
       <HeaderAdmin />
       <UserList users={users}/>
     </div >
+    </ProtectedRoute>
   )
 }
 

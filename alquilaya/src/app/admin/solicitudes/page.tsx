@@ -1,6 +1,7 @@
 import HeaderAdmin from '@/Components/HeaderAdmin/HeaderAdmin';
 import PropertiesHistory from '@/Components/PropertiesHistory/PropertiesHistory';
 import PendingPropertiesTable from '@/Components/PendingProperties/PendingProperties';
+import ProtectedRoute from '@/Components/ProtectRoutes/ProtecRoutes';
 
 const SolicitudesPage = async () => {
   
@@ -13,6 +14,7 @@ const SolicitudesPage = async () => {
   const properties = await res.json();
 
   return (
+    <ProtectedRoute adminOnly={true}>
     <div>
       <HeaderAdmin />
       <div className="container">
@@ -24,6 +26,7 @@ const SolicitudesPage = async () => {
         </div>
       </div>
     </div>
+    </ProtectedRoute>
   );
 };
 
