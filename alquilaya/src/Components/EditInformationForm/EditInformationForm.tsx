@@ -58,6 +58,7 @@ const CompleteInformationForm = () => {
       const data = await getUserData();
       if (data) {
         setUserData(data);
+        console.log("data", data)
       } else {
         setError({
           id:  "",
