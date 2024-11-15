@@ -27,7 +27,7 @@ const RegisterForm = () => {
     const response: any = await registerService(`${process.env.NEXT_PUBLIC_BACK_URL}/auth/signup`, data)
     if (response.succes) {
       notifyRegisterTrue();
-      router.back();
+      router.push("/login");
     } else {
       notifyRegisterFalse();
     }

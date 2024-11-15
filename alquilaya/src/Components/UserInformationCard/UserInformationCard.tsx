@@ -53,7 +53,6 @@ const UserInformationCard =  () => {
 
     </div>
     <button className={styles.editButton}>Editar</button>
-    <button className={styles.editButton}>Cambiar contraseña</button>
   </div>
   )
 }

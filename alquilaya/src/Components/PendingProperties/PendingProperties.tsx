@@ -100,7 +100,7 @@ const PendingPropertiesTable: React.FC<PendingPropertiesTableProps> = ({ propert
             <td className="py-3 px-6 text-center">{property.propertyStatus === 'pending'? 'pendiente': ''}</td>
             <td className="border px-4 py-2 text-center">
             <Link href={`/admin/solicitudes/${property.id}`}>
-              <button className="bg-primary text-secondary px-4 py-2 rounded font-semibold">
+              <button className={styles.seeMore}>
                 Ver más
               </button></Link>
             </td>

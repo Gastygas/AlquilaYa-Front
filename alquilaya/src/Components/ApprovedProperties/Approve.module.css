@@ -5,3 +5,11 @@
 .deleteButton{
     @apply bg-red-400 text-white px-4 py-2 rounded
 }
+
+.headerForm{
+@apply bg-gray-200 text-primary  uppercase text-sm leading-normal
+}
+
+.seeMore{
+    @apply bg-primary text-secondary px-4 py-2 rounded font-semibold
+}

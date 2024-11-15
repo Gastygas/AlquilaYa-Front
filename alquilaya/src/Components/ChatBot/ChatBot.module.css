@@ -4,7 +4,7 @@
 }
 
 .chatbotContainer {
-  @apply fixed bottom-20 right-4 w-80 bg-gray-400 p-4 rounded-lg shadow-lg flex flex-col max-h-96 overflow-y-auto;
+  @apply fixed bottom-20 right-4 w-80 bg-gray-400 p-4 rounded-lg shadow-lg flex flex-col max-h-96 overflow-y-auto z-50;
   display: flex;
   flex-direction: column;
 }

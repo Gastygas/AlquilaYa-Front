@@ -1,9 +1,10 @@
 "use client"
 import IProperty from "@/Interfaces/IProperties";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import styles from "./FavButton.module.css"
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 interface IButton {
   propertyId: string;
@@ -15,6 +16,8 @@ const FavButton: React.FC<IButton> = ({propertyId, propertiesInfo, className = "
 
     const [properties, setProperties] = useState<IProperty>();
     const [token, setToken] = useState<string | null>(null);
+    const addedTrue = () => toast.success("Propiedad añadida a favoritos", { autoClose: 3000 });
+  const addedFalse = () => toast.error("Inicio de sesión fallido, revisá tus datos", { autoClose: 3000 });
 
 
     useEffect(() => {
@@ -48,9 +51,9 @@ const FavButton: React.FC<IButton> = ({propertyId, propertiesInfo, className = "
         });
         if (!res.ok) {
           const err = await res.json();
-          return alert(`${err.message === "This is your property, you can not do this with yours"? "No podes agregar a favoritos tu propia propiedad" : "Ya tenes esta propiedad en favoritos" }`)
+          return toast(`${err.message === "This is your property, you can not do this with yours"? "No podes agregar a favoritos tu propia propiedad" : "Ya tenes esta propiedad en favoritos" }`)
         };
-        alert("Propiedad agregada a favoritos");
+        addedTrue()
         fetchProperties(propertyId);
       };
 

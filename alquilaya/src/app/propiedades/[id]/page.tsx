@@ -18,7 +18,7 @@ import { PiVideoFill } from 'react-icons/pi';
 import CreateCarousel from '@/Components/CarouselPhotos/CarouselPhotos';
 
 
-const getProductById = async (id: string) => {
+const getPropertyById = async (id: string) => {
 
   const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property/${id}`, {
     method: "GET",
@@ -32,8 +32,7 @@ const getProductById = async (id: string) => {
 
 const ProductDetail = async ({ params }: { params: { id: string } }) => {
 
-  const property: IProperty = await getProductById(params.id)
-  console.log(property.photos)
+  const property: IProperty = await getPropertyById(params.id)
   return (
     <div><Header />
       <div className="container">
@@ -105,34 +104,14 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
 
           </div>
         </div>
+        <div className='w-full flex mb-28 justify-center items-center'>
+            <Maps propertyLat={property.lat} propertyLng={property.lng} />
+        </div>
         <div className='bg-primary rounded-2xl mb-28'>
           <BookForm
             propertyId={property.id}
             propertyName={property.propertyName}
             unitPrice={property.price} />
-        </div>
-        <div className='grid grid-cols-2 mb-36'>
-          <div className='flex flex-col align-middle gap-4 mx-10'>
-            <h2 className='text-center'>¿Qué dicen los usuarios?</h2>
-            <div className='bg-gray-200 p-4 rounded-md gap-4'>
-              <h4 className='font-bold capitalize'>nombre de usuario</h4>
-              <p className='text-base'>Lorem ipsum dolor sit amet consectetur adipisicing elit.e officia ea, est cumque eligendi minima dolorum? Explicabo, vel? Asperiores, quasi. Enim veritatis distinctio reprehenderit natus. Dolorem, quos?</p>
-            </div>
-            <div className='bg-gray-200  p-4 rounded-md gap-4'>
-              <h4 className='font-bold capitalize'>nombre de usuario</h4>
-              <p className='text-base'>Lorem ipsum dolor sit amet consectetur adipisicing elit.e officia ea, est cumque eligendi minima dolorum? Explicabo, vel? Asperiores, quasi. Enim veritatis distinctio reprehenderit natus. Dolorem, quos?</p>
-            </div>
-            <div className='bg-gray-200 p-4 rounded-md gap-4'>
-              <h4 className='font-bold capitalize'>nombre de usuario</h4>
-              <p className='text-base'>Lorem ipsum dolor sit amet consectetur adipisicing elit.e officia ea, est cumque eligendi minima dolorum? Explicabo, vel? Asperiores, quasi. Enim veritatis distinctio reprehenderit natus. Dolorem, quos?</p>
-            </div>
-          </div>
-          <div className='flex justify-center items-center'>
-
-            <Maps propertyLat={property.lat} propertyLng={property.lng} />
-            {/* <Image src="/mapa.png" alt={property.propertyName} width={600} height={600} className='rounded-xl' /> */}
-
-          </div>
         </div>
       </div>
     </div>
