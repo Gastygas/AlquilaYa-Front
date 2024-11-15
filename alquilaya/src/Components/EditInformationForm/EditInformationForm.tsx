@@ -14,6 +14,8 @@ import styles from "./Edit.module.css";
 import AuthContext from "../contexts/authContext";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { getUserData } from "@/services/dataUserService";
+import { IUser } from "@/Interfaces/IUser";
 
 const CompleteInformationForm = () => {
   // Estados iniciales
@@ -33,8 +35,8 @@ const CompleteInformationForm = () => {
   const [data, setData] = useState(initialData);
   const [error, setError] = useState(initialData);
   const [dirty, setDirty] = useState(initialData);
-
-  useEffect(() => {
+  const [userData, setUserData] = useState<IUser | null>(null);
+ /* useEffect(() => {
     // Cargar datos desde localStorage
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
@@ -50,6 +52,27 @@ const CompleteInformationForm = () => {
         surname: parsedUser.surname || "",
       });
     }
+  }, []);*/
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const data = await getUserData();
+      if (data) {
+        setUserData(data);
+      } else {
+        setError({
+          id:  "",
+          email:  "",
+          address: "",
+          country: "",
+          dni: "",
+          name: "",
+          phone: "",
+          surname:"",
+        });
+      }
+    };
+
+    fetchUserData();
   }, []);
 
   useEffect(() => {
@@ -109,6 +132,7 @@ const CompleteInformationForm = () => {
             className={styles.input}
             onChange={handleChange}
             value={data.name}
+            disabled
           />
           {dirty.name && <p className={styles.errorText}>{error.name}</p>}
 
@@ -120,6 +144,7 @@ const CompleteInformationForm = () => {
             className={styles.input}
             onChange={handleChange}
             value={data.surname}
+            disabled
           />
           {dirty.surname && <p className={styles.errorText}>{error.surname}</p>}
 
@@ -156,6 +181,7 @@ const CompleteInformationForm = () => {
             className={styles.input}
             onChange={handleChange}
             value={data.dni}
+            disabled
           />
           {dirty.dni && <p className={styles.errorText}>{error.dni}</p>}
 
@@ -177,7 +203,6 @@ const CompleteInformationForm = () => {
             name="email"
             className={styles.input}
             value={data.email}
-            disabled
           />
           {dirty.email && <p className={styles.errorText}>{error.email}</p>}
         </div>
