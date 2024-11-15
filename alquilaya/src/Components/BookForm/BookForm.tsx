@@ -64,7 +64,7 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
     );
     console.log(
       "Fechas excluidas actualizadas (DD/MM/YYYY):",
-      excludedDates.map((date) => date.toLocaleDateString("en-AR"))
+      excludedDates.map((date) => date.toLocaleDateString("es-AR"))
     );
   }, [excludedDates]);
 
@@ -187,7 +187,7 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
         </div>
         <div className={styles.centerButton}>
           <button type="submit" className={styles.button} onClick={loadMercadoPagoScript}>
-            ReservarAR
+            ReservarAR2
           </button>
         </div>
       </form>
