@@ -45,7 +45,8 @@ function Chatbot() {
       return; 
     }
     
-    const response = await fetch(`${process.env.BACK_URL}/chatbot/response`, {
+    const url =  'alquila-back-latest.onrender.com';
+    const response = await fetch(`${url}/chatbot/response`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ option }),
