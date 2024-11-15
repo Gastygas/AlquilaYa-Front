@@ -60,9 +60,9 @@ const page = () => {
             </div>
             <div>
               <div className='w-50 h-50 flex justify-center'>
-                <Image src='/imagen1.png' alt='Imagen' width={250} height={250} className={styles.imagen}  />
+                <Image src='/Abby.png' alt='Imagen' width={250} height={250} className={styles.imagen}  />
               </div>
-              <h3 className='text-center pt-4'>Abby</h3>
+              <h3 className='text-center pt-4'>Abby García</h3>
               <h5 className='text-center'>Desarrollador Fullstack</h5>
               <div className='flex justify-center py-4'>
                 <LiaLinkedin size={30} />

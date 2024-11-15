@@ -24,5 +24,9 @@
 }
 
 .boxInput{
-    @apply flex justify-center align-middle gap-4
+    @apply flex justify-center items-center gap-4
+}
+
+.react-datepicker-wrapper{
+    @apply w-1/2
 }
