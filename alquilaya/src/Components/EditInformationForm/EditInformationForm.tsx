@@ -156,7 +156,7 @@ const CompleteInformationForm = () => {
             name="address"
             className={styles.input}
             onChange={handleChange}
-            value={userData?.address}
+            value={data.address}
           />
           {dirty.address && <p className={styles.errorText}>{error.address}</p>}
 
