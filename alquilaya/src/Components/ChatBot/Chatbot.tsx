@@ -45,7 +45,7 @@ function Chatbot() {
       return; 
     }
     
-    const response = await fetch('http://localhost:3001/chatbot/response', {
+    const response = await fetch(`${process.env.BACK_URL}/chatbot/response`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ option }),
