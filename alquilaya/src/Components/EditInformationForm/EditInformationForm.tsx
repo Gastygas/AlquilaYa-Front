@@ -204,7 +204,6 @@ const EditInformationForm = () => {
             className={styles.input}
             onChange={handleChange}
             value={userData?.email}
-
           />
           {dirty.email && <p className={styles.errorText}>{error.email}</p>}
         </div>
