@@ -43,7 +43,7 @@ const GridProperties = () => {
           (!userId || prop.user.id !== userId) // Filtra si el usuario no es el propietario
         )
         .map((property: IProperty) => (
-          <Card key={property.id} property={property} />
+          <Card key={property.id} property={property} userId={userId} />
         ))}
     </Grid>
   );
