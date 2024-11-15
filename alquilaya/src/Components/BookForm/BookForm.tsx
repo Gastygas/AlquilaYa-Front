@@ -38,7 +38,15 @@ const BookForm: React.FC<BookFormProps> = ({ propertyId, propertyName, unitPrice
           
           const excluir = formattedDates.map((date : any) => date.toISOString())
 
-          console.log("excluir", excluir);
+          const excluirformateado = excluir.map((isoDate : any) => {
+            const date = new Date(isoDate);
+            const day = date.getDate().toString().padStart(2, '0'); // Asegura dos dígitos
+            const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Meses van de 0 a 11
+            const year = date.getFullYear();
+            return `${day}/${month}/${year}`;
+          });
+          
+          console.log( "formateado " , excluirformateado);
           
           // Loguear las fechas en diferentes formatos
           console.log("Fechas crudas del backend (reservedDays):", data.reservedDays);
