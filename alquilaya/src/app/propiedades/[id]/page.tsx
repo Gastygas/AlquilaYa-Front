@@ -33,7 +33,6 @@ const getPropertyById = async (id: string) => {
 const ProductDetail = async ({ params }: { params: { id: string } }) => {
 
   const property: IProperty = await getPropertyById(params.id)
-  console.log(property.photos)
   return (
     <div><Header />
       <div className="container">
