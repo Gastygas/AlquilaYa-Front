@@ -2,6 +2,9 @@
 import React, { useState, useEffect } from "react";
 import Script from "next/script";
 import styles from "./BookForm.module.css";
+import { IUser } from "@/Interfaces/IUser";
+import IProperty from "@/Interfaces/IProperties";
+import { toast } from "react-toastify";
 
 interface BookFormProps {
   propertyId: string;
@@ -17,17 +20,47 @@ const BookForm: React.FC<BookFormProps> = ({
   const [checkInDate, setCheckInDate] = useState<string>("");
   const [checkOutDate, setCheckOutDate] = useState<string>("");
   const [preferenceId, setPreferenceId] = useState<string | null>(null);
-
-  // const router = useRouter();
-
+  const [property,setProperty] = useState<IProperty | undefined>(undefined)
   const [userId, setUserId] = useState<string | null>(null);
   const [isMercadoPagoScriptLoaded, setMercadoPagoScriptLoaded] = useState(false);
+  // const router = useRouter();
+  const notifyNoUserLogin = () => toast.error("Para reservar tenes que loguearte primero", {autoClose: 3000 });
+  const notifyNoSameId = () => toast.error("No podes reservar tu propia propiedad", {autoClose: 3000 });
+  const notifyDatabaseError = () => toast.error("Error en la base de datos, intenta nuevamente refrescando la pagina", {autoClose: 3000 });
+  const notifyNoPreferenceId = () => toast.error("No se pudo obtener el ID de preferencia, intenta nuevamente luego", {autoClose: 3000 });
+
+  const fetchProperty = async (id:string) => {
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property/${id}`, {
+        method: "GET",
+        cache: "no-store"
+      });
+      if (!res.ok) throw new Error("Can not get all properties");
+
+      const property = await res.json();
+      setProperty(property);
+    } catch (err: any) {
+      notifyDatabaseError();
+      return;
+    }
+  };
 
   useEffect(() => {
+    fetchProperty(propertyId)
     const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
-    setUserId(storedUser.user.id || null);
+    setUserId(storedUser.user?.id || null);
     
   }, []);
+
+  const handleGoToLogin = async(e:any) =>{
+    e.preventDefault()
+    notifyNoUserLogin()
+  }
+
+  const handleCannotReserve = (e:any) =>{
+    e.preventDefault()
+    notifyNoSameId()
+  }
 
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -37,8 +70,6 @@ const BookForm: React.FC<BookFormProps> = ({
     const endDate = new Date(checkOutDate);
     const differenceInTime = endDate.getTime() - startDate.getTime();
     const daysDifference = Math.ceil(differenceInTime / (1000 * 3600 * 24));
-    console.log(userId);
-    
     
     const orderData = {
       items: [
@@ -61,7 +92,7 @@ const BookForm: React.FC<BookFormProps> = ({
     };
 
     try {
-      const response = await fetch(`http://localhost:3001/mercadopago`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/mercadopago`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -73,10 +104,10 @@ const BookForm: React.FC<BookFormProps> = ({
       if (data.preferenceId) {
         setPreferenceId(data.preferenceId);
       } else {
-        console.error("No se pudo obtener el ID de la preferencia");
+        notifyNoPreferenceId()
       }
     } catch (error) {
-      console.error("Error al crear la preferencia:", error);
+      notifyNoPreferenceId()
     }
   };
 
@@ -101,6 +132,7 @@ const BookForm: React.FC<BookFormProps> = ({
       });
     }
   }, [preferenceId, isMercadoPagoScriptLoaded]);
+  
 
   return (
     <>
@@ -142,11 +174,28 @@ const BookForm: React.FC<BookFormProps> = ({
             />
           </div>
         </div>
-        <div className={styles.centerButton}>
+        {userId === null? (
+          <div className={styles.centerButton}>
+          <button type="submit" className={styles.button} onClick={handleGoToLogin}>
+            Reservar
+          </button>
+        </div>
+        ):(
+          userId === property?.user.id ? (
+            <div className={styles.centerButton}>
+          <button type="submit" className={styles.button} onClick={handleCannotReserve}>
+            No podes reservar tu propia propiedad
+          </button>
+        </div>
+          ) : (
+            <div className={styles.centerButton}>
           <button type="submit" className={styles.button} onClick={loadMercadoPagoScript}>
             Reservar
           </button>
         </div>
+          )
+        )}
+        
       </form>
     </>
   );

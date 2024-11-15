@@ -49,7 +49,7 @@ const GridBooks = () => {
             <div className="relative h-48 w-full mb-6">
               {/* Suponiendo que la propiedad tiene una imagen de portada */}
               <img
-                src={booking.property.photos[0]}
+                src={userData.bookings[index].property.photos[0]}
                 alt="Property"
                 className="w-full h-full object-cover rounded-t-lg"
               />

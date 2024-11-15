@@ -18,7 +18,7 @@ import { PiVideoFill } from 'react-icons/pi';
 import CreateCarousel from '@/Components/CarouselPhotos/CarouselPhotos';
 
 
-const getProductById = async (id: string) => {
+const getPropertyById = async (id: string) => {
 
   const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/property/${id}`, {
     method: "GET",
@@ -32,7 +32,7 @@ const getProductById = async (id: string) => {
 
 const ProductDetail = async ({ params }: { params: { id: string } }) => {
 
-  const property: IProperty = await getProductById(params.id)
+  const property: IProperty = await getPropertyById(params.id)
   return (
     <div><Header />
       <div className="container">
