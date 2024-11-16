@@ -3,10 +3,12 @@ import React, { useEffect, useState } from "react";
 import Grid from "../Grid/Grid";
 import Card from "../Card/Card";
 import IProperty from "@/Interfaces/IProperties";
+import { toast } from "react-toastify";
 
 const GridProperties = () => {
   const [properties, setProperties] = useState<IProperty[]>([]);
   const [userId, setUserId] = useState<string | null>(null);
+  const notifyErrorDataBase = () => toast.error("La conexión tardó más de lo esperado, toca actualiza",{ autoClose: 3000 })
 
   const fetchProperties = async () => {
     try {
@@ -19,7 +21,7 @@ const GridProperties = () => {
       const data = await res.json();
       setProperties(data);
     } catch (err: any) {
-      alert("Error en base de datos, intenta nuevamente");
+      notifyErrorDataBase()
     }
   };
 
