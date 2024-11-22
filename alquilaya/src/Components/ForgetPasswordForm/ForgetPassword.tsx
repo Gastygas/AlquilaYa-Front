@@ -11,7 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const ForgetPasswordForm = () => {
   const initialData = { email: ""};
   const router = useRouter();
-  const notifySuccess = () => toast.info('Por favor, revisa tu mail. Puede demorar unos minutos, sea paciente y no vuelva a mandar otro mail sino suspenderemos su cuenta', {
+  const notifySuccess = () => toast.info('La siguiente informacion sera enviada via al mail que usteded nos mando. Por favor revisa su bandeja de spam si es necesario.', {
     position: "top-center",
     autoClose: 5000,
     hideProgressBar: false,

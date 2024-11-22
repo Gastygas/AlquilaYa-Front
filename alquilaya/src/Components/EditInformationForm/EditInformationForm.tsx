@@ -120,10 +120,10 @@ const EditInformationForm = () => {
   
     // Analizar el JSON solo si `storedUser` no es null
     const parsedData = JSON.parse(storedUser);
-  
+    console.log('holaa',parsedData);
+    
     // Obtener el token del usuario
     const token = parsedData.token;
-  
     if (!token) {
       toast.error("Token no encontrado");
       return;

@@ -55,7 +55,7 @@ const page = () => {
               <h3 className='text-center pt-4'>Gastón Gonzalez</h3>
               <h5 className='text-center'>Desarrollador Fullstack</h5>
               <div className='flex justify-center py-4'>
-              <Link href="https://www.linkedin.com/in/benjamindelcampo/"><LiaLinkedin size={30} /></Link>
+              <Link href="https://www.linkedin.com/in/gaston-rodrigo-gonzalez-403b03262/"><LiaLinkedin size={30} /></Link>
               </div>
             </div>
             <div>
