@@ -30,7 +30,7 @@ const EditInformationForm = () => {
     surname: "",
   };
 
-  const { setUser } = useContext(AuthContext);
+  // const { setUser } = useContext(AuthContext);
   const router = useRouter();
   const [data, setData] = useState(initialData);
   const [error, setError] = useState(initialData);
@@ -138,7 +138,7 @@ const EditInformationForm = () => {
     );
 
     if (response.success) {
-      setUser(response);
+      // setUser(response);
       toast.success("Edición exitosa");
       router.push("/");
     } else {
