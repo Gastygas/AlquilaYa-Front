@@ -31,6 +31,7 @@ export default function Home() {
           email: userGoogle.email,
           isAdmin: userGoogle.isAdmin,
         },
+        token: auth_token,
         login: true,
       }
   
